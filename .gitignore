@@ -1,0 +1,30 @@
+# ============================
+# STM32CubeIDE / STM32CubeMX
+# ============================
+
+# Build output
+Debug/
+Release/
+
+# IDE settings (mac/windows 모두 충돌 위험)
+.settings/
+.metadata/
+*.launch
+
+# CubeMX backup
+*.ioc-bak
+
+# Local workspace files
+*.swp
+*.swo
+
+# OS junk files
+.DS_Store
+Thumbs.db
+
+# Eclipse-generated index
+.project
+.cproject
+
+# Backup files
+*~
