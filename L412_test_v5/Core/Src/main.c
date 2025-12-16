@@ -21,9 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-// add
+//add
 #include <string.h>
-
+#include <stdio.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -44,7 +44,14 @@
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef hlpuart1;
 
+TIM_HandleTypeDef htim1;
+TIM_HandleTypeDef htim2;
+
 /* USER CODE BEGIN PV */
+//add
+volatile uint8_t g_mode = 0;      // 0=OFF, 1..3=mode
+volatile uint8_t g_update = 0;
+static uint32_t g_last_btn_ms = 0; // debounce
 
 /* USER CODE END PV */
 
@@ -52,12 +59,53 @@ UART_HandleTypeDef hlpuart1;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_LPUART1_UART_Init(void);
+static void MX_TIM1_Init(void);
+static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+//add
+static void PWM_ApplyMode(uint8_t mode)
+{
+  // TIM1 tick = 1MHz because PSC=79 (already set in MX_TIM1_Init)
+  // ARR = (1MHz / freq) - 1
+  uint32_t arr = 0;
+  uint32_t ccr = 0;
+
+  if (mode == 0)
+  {
+    HAL_TIMEx_PWMN_Stop(&htim1, TIM_CHANNEL_1);
+    return;
+  }
+
+  switch (mode)
+  {
+    case 1: // 1kHz 10%
+      arr = 1000 - 1;
+      ccr = (1000 * 10) / 100;
+      break;
+
+    case 2: // 3kHz 30% (근사: 3003Hz)
+      arr = 333 - 1;
+      ccr = (333 * 30) / 100;
+      break;
+
+    case 3: // 10kHz 99%
+      arr = 100 - 1;
+      ccr = (100 * 99) / 100;
+      break;
+  }
+
+  __HAL_TIM_SET_AUTORELOAD(&htim1, arr);
+  __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, ccr);
+  __HAL_TIM_SET_COUNTER(&htim1, 0);
+
+  // CH1N 출력 시작(핵심)
+  HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
+}
 
 /* USER CODE END 0 */
 
@@ -69,6 +117,7 @@ int main(void)
 {
 
   /* USER CODE BEGIN 1 */
+
 
   /* USER CODE END 1 */
 
@@ -91,34 +140,60 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
+  MX_TIM1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  // add
-  // const char *msg = "SelfTest Start\r\n";
-  // HAL_UART_Transmit(&hlpuart1, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
-  const char msg[] = "SelfTest Start\r\n";
-  HAL_UART_Transmit(&hlpuart1, (uint8_t*)msg, sizeof(msg)-1, HAL_MAX_DELAY);
+// add
+// PWM 초기 적용 (OFF)
+PWM_ApplyMode(0);
+
+
+  // add 
+  // void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+  // {
+  //   if (GPIO_Pin == B1_Pin)
+  //   {
+  //     uint8_t str[] = "Button Pressed\r\n";
+  //     HAL_UART_Transmit(&hlpuart1, str, sizeof(str), 100);
+  //   }
+  // }
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    // add
-    const char msg[] = "AAAA\r\n";
-    HAL_UART_Transmit(&hlpuart1, (uint8_t*)msg, sizeof(msg)-1, HAL_MAX_DELAY);
-    HAL_Delay(1000);
+      //add
+      if (g_update)
+    {
+      g_update = 0;
 
-    // add LED
-    HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_SET);  // LED On
-    HAL_Delay(500);
-    HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);  // LED Off
-    HAL_Delay(500);
+      PWM_ApplyMode(g_mode);
 
+      char buf[64];
+      int n = 0;
+      switch (g_mode)
+      {
+        case 0: n = snprintf(buf, sizeof(buf), "PWM OFF\r\n"); break;
+        case 1: n = snprintf(buf, sizeof(buf), "PWM 1kHz 10%%\r\n"); break;
+        case 2: n = snprintf(buf, sizeof(buf), "PWM 3kHz 30%%\r\n"); break;
+        case 3: n = snprintf(buf, sizeof(buf), "PWM 10kHz 99%%\r\n"); break;
+      }
+      
+      uint8_t str[] = "Button Pressed\r\n";
+      HAL_UART_Transmit(&hlpuart1, str, sizeof(str), 100);
+      HAL_UART_Transmit(&hlpuart1, (uint8_t*)buf, (uint16_t)n, 100);
+    }
+    // HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);  // LED On
+    // HAL_Delay(500);
+    // HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);  // LED Off
+    // HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-  }
+  
   /* USER CODE END 3 */
+  }
 }
 
 /**
@@ -205,6 +280,131 @@ static void MX_LPUART1_UART_Init(void)
 }
 
 /**
+  * @brief TIM1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM1_Init(void)
+{
+
+  /* USER CODE BEGIN TIM1_Init 0 */
+
+  /* USER CODE END TIM1_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+  TIM_OC_InitTypeDef sConfigOC = {0};
+  TIM_BreakDeadTimeConfigTypeDef sBreakDeadTimeConfig = {0};
+
+  /* USER CODE BEGIN TIM1_Init 1 */
+
+  /* USER CODE END TIM1_Init 1 */
+  htim1.Instance = TIM1;
+  htim1.Init.Prescaler = 79;
+  htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim1.Init.Period = 65535;
+  htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim1.Init.RepetitionCounter = 0;
+  htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim1, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  if (HAL_TIM_PWM_Init(&htim1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterOutputTrigger2 = TIM_TRGO2_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim1, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sConfigOC.OCMode = TIM_OCMODE_PWM1;
+  sConfigOC.Pulse = 0;
+  sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
+  sConfigOC.OCNPolarity = TIM_OCNPOLARITY_HIGH;
+  sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
+  sConfigOC.OCIdleState = TIM_OCIDLESTATE_RESET;
+  sConfigOC.OCNIdleState = TIM_OCNIDLESTATE_RESET;
+  if (HAL_TIM_PWM_ConfigChannel(&htim1, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sBreakDeadTimeConfig.OffStateRunMode = TIM_OSSR_DISABLE;
+  sBreakDeadTimeConfig.OffStateIDLEMode = TIM_OSSI_DISABLE;
+  sBreakDeadTimeConfig.LockLevel = TIM_LOCKLEVEL_OFF;
+  sBreakDeadTimeConfig.DeadTime = 0;
+  sBreakDeadTimeConfig.BreakState = TIM_BREAK_DISABLE;
+  sBreakDeadTimeConfig.BreakPolarity = TIM_BREAKPOLARITY_HIGH;
+  sBreakDeadTimeConfig.BreakFilter = 0;
+  sBreakDeadTimeConfig.Break2State = TIM_BREAK2_DISABLE;
+  sBreakDeadTimeConfig.Break2Polarity = TIM_BREAK2POLARITY_HIGH;
+  sBreakDeadTimeConfig.Break2Filter = 0;
+  sBreakDeadTimeConfig.AutomaticOutput = TIM_AUTOMATICOUTPUT_DISABLE;
+  if (HAL_TIMEx_ConfigBreakDeadTime(&htim1, &sBreakDeadTimeConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM1_Init 2 */
+
+  /* USER CODE END TIM1_Init 2 */
+  HAL_TIM_MspPostInit(&htim1);
+
+}
+
+/**
+  * @brief TIM2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM2_Init(void)
+{
+
+  /* USER CODE BEGIN TIM2_Init 0 */
+
+  /* USER CODE END TIM2_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM2_Init 1 */
+
+  /* USER CODE END TIM2_Init 1 */
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 0;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 4294967295;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM2_Init 2 */
+
+  /* USER CODE END TIM2_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -225,14 +425,11 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, SMPS_EN_Pin|SMPS_V1_Pin|SMPS_SW_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
-
-  /*Configure GPIO pin : Blue_button_Pin */
-  GPIO_InitStruct.Pin = Blue_button_Pin;
+  /*Configure GPIO pin : B1_Pin */
+  GPIO_InitStruct.Pin = B1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(Blue_button_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : SMPS_EN_Pin SMPS_V1_Pin SMPS_SW_Pin */
   GPIO_InitStruct.Pin = SMPS_EN_Pin|SMPS_V1_Pin|SMPS_SW_Pin;
@@ -247,13 +444,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(SMPS_PG_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : LED_Pin */
-  GPIO_InitStruct.Pin = LED_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LED_GPIO_Port, &GPIO_InitStruct);
-
   /* EXTI interrupt init*/
   HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
@@ -264,14 +454,41 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+//add
+// void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+// {
+//   if (GPIO_Pin == B1_Pin)
+//   {
+//     const char str[] = "Button Pressed\r\n";
+//     HAL_UART_Transmit(&hlpuart1, (uint8_t*)str, sizeof(str)-1, HAL_MAX_DELAY);
+//   }
+// }
+// void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+// {
+//   if (GPIO_Pin == B1_Pin)
+//   {
+//     const char str[] = "Button Pressed2\r\n";
+//     HAL_UART_Transmit(&hlpuart1, (uint8_t*)str, sizeof(str)-1, HAL_MAX_DELAY);
+//   }
+// }
+// 여기서 uart 출력 같이 써도 되는지 확인하기 
+//add 
+// 인터럽트 통한 4가지 모드 변경
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
 {
-	if (GPIO_Pin == Blue_button_Pin)
-	{
-		uint8_t str[] = "Button Pressed\r\n";
-		HAL_UART_Transmit(&hlpuart1, str, sizeof(str), 100);
-	}
+  if (GPIO_Pin == B1_Pin)
+  {
+    uint32_t now = HAL_GetTick();
+    if ((now - g_last_btn_ms) >= 200U)  // debounce 200ms
+    {
+      g_last_btn_ms = now;
+      g_mode = (g_mode + 1) % 4;        // 0=OFF -> 1 -> 2 -> 3 -> 0...
+      g_update = 1;
+    }
+  }
 }
+
+
 /* USER CODE END 4 */
 
 /**
