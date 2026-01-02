@@ -49,7 +49,7 @@ TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
 //add
-volatile uint8_t g_mode = 0;      // 0=OFF, 1..3=mode
+volatile uint8_t g_mode = 0;      // 0=OFF, 1..3=mode - off 상태로 시작 
 volatile uint8_t g_update = 0;
 static uint32_t g_last_btn_ms = 0; // debounce
 
@@ -102,7 +102,7 @@ static void PWM_ApplyMode(uint8_t mode)
   __HAL_TIM_SET_AUTORELOAD(&htim1, arr);
   __HAL_TIM_SET_COMPARE(&htim1, TIM_CHANNEL_1, ccr);
   __HAL_TIM_SET_COUNTER(&htim1, 0);
-
+// 카운터 0 초기화
   // CH1N 출력 시작(핵심)
   HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
 }
@@ -193,7 +193,6 @@ PWM_ApplyMode(0);
     /* USER CODE BEGIN 3 */
   
   /* USER CODE END 3 */
-  }
 }
 
 /**
