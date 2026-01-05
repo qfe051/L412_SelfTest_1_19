@@ -1,0 +1,19 @@
+10:42:01 **** Incremental Build of configuration Debug for project L412_test_v3 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main_bak.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main_bak.d" -MT"Core/Src/main_bak.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main_bak.o"
+arm-none-eabi-gcc -o "L412_test_v3.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\L412_test_v3\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="L412_test_v3.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main_bak.o:C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/L412_test_v3/Debug/../Core/Src/main_bak.c:45: multiple definition of `hlpuart1'; ./Core/Src/main.o:C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/L412_test_v3/Debug/../Core/Src/main.c:45: first defined here
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main_bak.o: in function `main':
+C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/L412_test_v3/Debug/../Core/Src/main_bak.c:69: multiple definition of `main'; ./Core/Src/main.o:C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/L412_test_v3/Debug/../Core/Src/main.c:69: first defined here
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main_bak.o: in function `SystemClock_Config':
+C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/L412_test_v3/Debug/../Core/Src/main_bak.c:129: multiple definition of `SystemClock_Config'; ./Core/Src/main.o:C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/L412_test_v3/Debug/../Core/Src/main.c:129: first defined here
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main_bak.o: in function `Error_Handler':
+C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/L412_test_v3/Debug/../Core/Src/main_bak.c:282: multiple definition of `Error_Handler'; ./Core/Src/main.o:C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/L412_test_v3/Debug/../Core/Src/main.c:282: first defined here
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main_bak.o: in function `HAL_GPIO_EXTI_Callback':
+C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/L412_test_v3/Debug/../Core/Src/main_bak.c:268: multiple definition of `HAL_GPIO_EXTI_Callback'; ./Core/Src/main.o:C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/L412_test_v3/Debug/../Core/Src/main.c:268: first defined here
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: L412_test_v3.elf] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+
+10:42:02 Build Failed. 6 errors, 0 warnings. (took 1s.243ms)
+
