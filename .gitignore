@@ -9,7 +9,7 @@ Release/
 # IDE settings (mac/windows 모두 충돌 위험)
 .settings/
 .metadata/
-*.launch
+# *.launch
 
 # CubeMX backup
 *.ioc-bak
@@ -19,12 +19,12 @@ Release/
 *.swo
 
 # OS junk files
-.DS_Store
-Thumbs.db
+# .DS_Store
+# Thumbs.db
 
 # Eclipse-generated index
-.project
-.cproject
+# .project
+# .cproject
 
 # Backup files
 *~
