@@ -426,9 +426,17 @@ static void process_press_events(void)
     for (uint8_t c = 0; c < 4; c++)
     {
       /* code */
+      //press
+      // 0 -> 1
       if(key[r][c] && !prev_key[r][c])
       {
         printf("(%d,%d) pressed \r\n",r,c);
+      }
+      //released
+      // 1 -> 0
+      else if(!key[r][c] && prev_key[r][c])
+      {
+        printf("(%d,%d) released \r\n",r,c);
       }
     }
     
