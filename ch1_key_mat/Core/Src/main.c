@@ -70,6 +70,11 @@ UART_HandleTypeDef hlpuart1;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_LPUART1_UART_Init(void);
+
+//add 함수들 
+static void scan_keypad_to_array(void);
+static void process_press_events(void);
+
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -79,8 +84,22 @@ static void MX_LPUART1_UART_Init(void);
 //add
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
-static uint8_t last_key_id = 0;   // 0이면 없음
+
+static uint8_t key[4][4];
+static uint8_t prev_key[4][4];
+
+//UART로 출력 보내기 위한 함수 
+int _write(int file, char *ptr, int len)
+{
+  if (file == STDOUT_FILENO)
+  {
+    HAL_UART_Transmit(&hlpuart1, (uint8_t*)ptr, len, HAL_MAX_DELAY);
+    return len;
+  }
+  return -1;
+}
 
 static void uart_print(const char *s)
 {
@@ -121,10 +140,13 @@ int main(void)
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  //add
-  char buf__init[32];
-  snprintf(buf__init, sizeof(buf__init), "Start Push Switch\r\n");
-  uart_print(buf__init);
+  //add - 
+  //memset 의미 확인하기 
+  memset(key, 0, sizeof(key));
+  memset(prev_key, 0, sizeof(prev_key));
+
+  uart_print("Keypad start\r\n");
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -134,143 +156,13 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    /* USER CODE BEGIN 3 */
-    // char buf_1[32] = {0};
-    // char buf_2[32] = {0};
-    // char buf_3[32] = {0};
-    // char buf_4[32] = {0};
+    scan_keypad_to_array();
+    process_press_events();
 
-    SET_OUT1_PIN()
-    HAL_Delay(5);
-    {
-      uint8_t row = 0;
-      uint8_t col = 0xFF; //입력 안한 경우. if문 사용 용도
-
-      if (HAL_GPIO_ReadPin(In_1_GPIO_Port,In_1_Pin) == GPIO_PIN_SET)
-        col = 0;
-      else if (HAL_GPIO_ReadPin(In_2_GPIO_Port,In_2_Pin) == GPIO_PIN_SET)
-        col = 1;
-      else if (HAL_GPIO_ReadPin(In_3_GPIO_Port,In_3_Pin) == GPIO_PIN_SET)
-        col = 2;
-      else if (HAL_GPIO_ReadPin(In_4_GPIO_Port,In_4_Pin) == GPIO_PIN_SET)
-        col = 3;
-
-      if(col != 0xFF)
-      {
-        uint8_t key_id = row * 4 + col + 1; //키 번호 
-
-        // if (key_id != last_key_id){
-        char buf_1[32];
-        snprintf(buf_1, sizeof(buf_1), "S%d pressed \r\n\n", key_id);
-        uart_print(buf_1);
-
-        
-        //   last_key_id = key_id ;
-        // }
-      }
-    }
-
-    HAL_Delay(10);
-
-    SET_OUT2_PIN()
-    HAL_Delay(5);
-    {
-      uint8_t row = 1;
-      uint8_t col = 0xFF; //입력 안한 경우. if문 사용 용도
-
-      if (HAL_GPIO_ReadPin(In_1_GPIO_Port,In_1_Pin) == GPIO_PIN_SET)
-        col = 0;
-      else if (HAL_GPIO_ReadPin(In_2_GPIO_Port,In_2_Pin) == GPIO_PIN_SET)
-        col = 1;
-      else if (HAL_GPIO_ReadPin(In_3_GPIO_Port,In_3_Pin) == GPIO_PIN_SET)
-        col = 2;
-      else if (HAL_GPIO_ReadPin(In_4_GPIO_Port,In_4_Pin) == GPIO_PIN_SET)
-        col = 3;
-
-      if(col != 0xFF)
-      {
-        uint8_t key_id = row * 4 + col + 1; //키 번호 
-
-        char buf_2[32];
-        snprintf(buf_2, sizeof(buf_2), "S%d pressed \r\n\n", key_id);
-        uart_print(buf_2);
-
-      }
-    }
-
-    HAL_Delay(10);
-
-    SET_OUT3_PIN()
-    HAL_Delay(5);
-    {
-      uint8_t row = 2;
-      uint8_t col = 0xFF; //입력 안한 경우. if문 사용 용도
-
-      if (HAL_GPIO_ReadPin(In_1_GPIO_Port,In_1_Pin) == GPIO_PIN_SET)
-        col = 0;
-      else if (HAL_GPIO_ReadPin(In_2_GPIO_Port,In_2_Pin) == GPIO_PIN_SET)
-        col = 1;
-      else if (HAL_GPIO_ReadPin(In_3_GPIO_Port,In_3_Pin) == GPIO_PIN_SET)
-        col = 2;
-      else if (HAL_GPIO_ReadPin(In_4_GPIO_Port,In_4_Pin) == GPIO_PIN_SET)
-        col = 3;
-
-      if(col != 0xFF)
-      {
-        uint8_t key_id = row * 4 + col + 1; //키 번호 
-
-        char buf_3[32];
-        snprintf(buf_3, sizeof(buf_3), "S%d pressed\r\n\n", key_id);
-        uart_print(buf_3);
-
-      }
-    }
-
-    HAL_Delay(10);
+    HAL_Delay(20);
 
 
-
-    SET_OUT5_PIN()
-    HAL_Delay(5);
-    {
-      uint8_t row = 3;
-      uint8_t col = 0xFF; //입력 안한 경우. if문 사용 용도
-
-      if (HAL_GPIO_ReadPin(In_1_GPIO_Port,In_1_Pin) == GPIO_PIN_SET)
-        col = 0;
-      else if (HAL_GPIO_ReadPin(In_2_GPIO_Port,In_2_Pin) == GPIO_PIN_SET)
-        col = 1;
-      else if (HAL_GPIO_ReadPin(In_3_GPIO_Port,In_3_Pin) == GPIO_PIN_SET)
-        col = 2;
-      else if (HAL_GPIO_ReadPin(In_4_GPIO_Port,In_4_Pin) == GPIO_PIN_SET)
-        col = 3;
-
-      if(col != 0xFF)
-      {
-        uint8_t key_id = row * 4 + col + 1; //키 번호 
-
-        char buf_4[32];
-        snprintf(buf_4, sizeof(buf_4), "S%d pressed\r\n\n", key_id);
-        uart_print(buf_4);
-
-      }
-    }
-    // if (buf_1[0] || buf_2[0] || buf_3[0] || buf_4[0]) 
-    // {
-    //   if (buf_1[0]) uart_print(buf_1);
-    //   if (buf_2[0]) uart_print(buf_2);
-    //   if (buf_3[0]) uart_print(buf_3);
-    //   if (buf_4[0]) uart_print(buf_4);
-    //   uart_print("\r\n");
-    // }
-
-    HAL_Delay(10);
-
-
-    // char buf[32];
-    // snprintf(buf, sizeof(buf), "\r\n\n");
-    // uart_print(buf);
-  /* USER CODE END 3 */
+   /* USER CODE END 3 */
   }
 
 }
@@ -439,6 +331,113 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+static void scan_keypad_to_array(void)
+{
+  // GPIO_PinState 활용하는 것도 고려해보기 
+  //GPIO_PinState input[1], input_2, input_3, input_4;
+
+  uint32_t input[4];
+
+
+  //row 0
+  SET_OUT1_PIN();
+  HAL_Delay(5);
+
+  input[0] = HAL_GPIO_ReadPin(In_1_GPIO_Port, In_1_Pin);
+  input[1] = HAL_GPIO_ReadPin(In_2_GPIO_Port, In_2_Pin);
+  input[2] = HAL_GPIO_ReadPin(In_3_GPIO_Port, In_3_Pin);
+  input[3] = HAL_GPIO_ReadPin(In_4_GPIO_Port, In_4_Pin);
+  
+  for (uint8_t i = 0; i < 4; i++)
+  {
+    /* code */
+    // (조건식) ?
+    // 참일 때 1
+    // 거짓일 때 0
+    key[0][i] = (input[i]==1) ? 1 : 0 ;
+  }
+  HAL_Delay(50);
+
+  //row 1
+  SET_OUT2_PIN();
+  HAL_Delay(5);
+
+  input[0] = HAL_GPIO_ReadPin(In_1_GPIO_Port, In_1_Pin);
+  input[1] = HAL_GPIO_ReadPin(In_2_GPIO_Port, In_2_Pin);
+  input[2] = HAL_GPIO_ReadPin(In_3_GPIO_Port, In_3_Pin);
+  input[3] = HAL_GPIO_ReadPin(In_4_GPIO_Port, In_4_Pin);
+  
+  for (uint8_t i = 0; i < 4; i++)
+  {
+    /* code */
+    // (조건식) ?
+    // 참일 때 1
+    // 거짓일 때 0
+    key[1][i] = (input[i]==1) ? 1 : 0 ;
+  }
+  HAL_Delay(50);
+
+  //row 2
+  SET_OUT3_PIN();
+  HAL_Delay(5);
+
+  input[0] = HAL_GPIO_ReadPin(In_1_GPIO_Port, In_1_Pin);
+  input[1] = HAL_GPIO_ReadPin(In_2_GPIO_Port, In_2_Pin);
+  input[2] = HAL_GPIO_ReadPin(In_3_GPIO_Port, In_3_Pin);
+  input[3] = HAL_GPIO_ReadPin(In_4_GPIO_Port, In_4_Pin);
+  
+  for (uint8_t i = 0; i < 4; i++)
+  {
+    /* code */
+    // (조건식) ?
+    // 참일 때 1
+    // 거짓일 때 0
+    key[2][i] = (input[i]==1) ? 1 : 0 ;
+  }
+  HAL_Delay(50);
+
+
+  //row 3
+  SET_OUT5_PIN();
+  HAL_Delay(5);
+
+  input[0] = HAL_GPIO_ReadPin(In_1_GPIO_Port, In_1_Pin);
+  input[1] = HAL_GPIO_ReadPin(In_2_GPIO_Port, In_2_Pin);
+  input[2] = HAL_GPIO_ReadPin(In_3_GPIO_Port, In_3_Pin);
+  input[3] = HAL_GPIO_ReadPin(In_4_GPIO_Port, In_4_Pin);
+  
+  for (uint8_t i = 0; i < 4; i++)
+  {
+    /* code */
+    // (조건식) ?
+    // 참일 때 1
+    // 거짓일 때 0
+    key[3][i] = (input[i]==1) ? 1 : 0 ;
+  }
+  HAL_Delay(50);
+
+}
+
+static void process_press_events(void)
+{
+  for (uint8_t r = 0; r < 4; r++)
+  {
+    for (uint8_t c = 0; c < 4; c++)
+    {
+      /* code */
+      if(key[r][c] && !prev_key[r][c])
+      {
+        printf("(%d,%d) pressed \r\n",r,c);
+      }
+    }
+    
+    /* code */
+  }
+  // prev_key에 key값 보냄
+  // 메모리값 통째로 보내는 함수 
+  memcpy(prev_key,key,sizeof(key));
+}
 
 static inline void set_row(uint8_t row)
 {
