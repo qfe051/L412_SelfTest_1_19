@@ -7,16 +7,16 @@ Debug/
 Release/
 
 # IDE settings (mac/windows 모두 충돌 위험)
-.settings/
-.metadata/
+# .settings/
+# .metadata/
 # *.launch
 
 # CubeMX backup
-*.ioc-bak
+# *.ioc-bak
 
 # Local workspace files
-*.swp
-*.swo
+# *.swp
+# *.swo
 
 # OS junk files
 # .DS_Store
