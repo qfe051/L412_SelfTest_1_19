@@ -1,0 +1,10 @@
+14:27:53 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16616	    104	   2072	  18792	   4968	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+
+14:27:53 Build Finished. 0 errors, 0 warnings. (took 404ms)
+

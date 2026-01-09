@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<item key="replaceBarOpen" value="false"/>
+	<list key="searchhistory">
+		<item value="SET_OUT1_PIN"/>
+		<item value="set_all_rows_input"/>
+		<item value="scan_keypad_to_array"/>
+		<item value="main"/>
+		<item value="process_press_events"/>
+	</list>
+</section>

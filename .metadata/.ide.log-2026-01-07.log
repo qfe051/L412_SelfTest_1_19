@@ -1,0 +1,274 @@
+2026-01-07 08:51:47,318 [INFO] WebApp:194 - Connection lost
+2026-01-07 08:51:47,662 [INFO] WebApp:191 - Connection restablished
+2026-01-07 08:51:49,135 [INFO] WebApp:194 - Connection lost
+2026-01-07 08:51:49,482 [INFO] WebApp:191 - Connection restablished
+2026-01-07 09:19:00,207 [INFO] WebApp:194 - Connection lost
+2026-01-07 09:19:00,377 [INFO] WebApp:191 - Connection restablished
+2026-01-07 09:36:31,478 [INFO] WebApp:194 - Connection lost
+2026-01-07 09:36:31,677 [INFO] WebApp:191 - Connection restablished
+2026-01-07 09:36:35,185 [INFO] WebApp:194 - Connection lost
+2026-01-07 09:36:35,437 [INFO] WebApp:191 - Connection restablished
+2026-01-07 09:41:26,192 [INFO] WebApp:194 - Connection lost
+2026-01-07 09:41:26,369 [INFO] WebApp:191 - Connection restablished
+2026-01-07 09:49:02,724 [INFO] WebApp:194 - Connection lost
+2026-01-07 09:49:02,881 [INFO] WebApp:191 - Connection restablished
+2026-01-07 09:55:47,444 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS, USART2]
+2026-01-07 10:19:04,238 [INFO] WebApp:194 - Connection lost
+2026-01-07 10:19:04,410 [INFO] WebApp:191 - Connection restablished
+2026-01-07 10:21:01,469 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 705490216 Bytes (1073741824)
+2026-01-07 10:21:03,043 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 740093224 Bytes (1073741824)
+2026-01-07 10:21:03,246 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 763684136 Bytes (1073741824)
+2026-01-07 10:21:03,642 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2026-01-07 10:21:03,642 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: USART
+2026-01-07 10:21:03,642 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2026-01-07 10:21:03,643 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2026-01-07 10:21:03,644 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2026-01-07 10:21:03,645 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
+2026-01-07 10:21:03,734 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\license.tmp_save
+2026-01-07 10:21:03,905 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\license.tmp
+2026-01-07 10:21:03,944 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\gpio.tmp_save
+2026-01-07 10:21:04,031 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\gpio.tmp
+2026-01-07 10:21:04,100 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_it.c_save
+2026-01-07 10:21:04,253 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_it.c
+2026-01-07 10:21:04,264 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_it.h_save
+2026-01-07 10:21:04,315 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_it.h
+2026-01-07 10:21:04,332 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_hal_msp.c_save
+2026-01-07 10:21:04,430 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_hal_msp.c
+2026-01-07 10:21:04,437 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\system.tmp_save
+2026-01-07 10:21:04,479 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\system.tmp
+2026-01-07 10:21:04,497 [INFO] CodeEngine:321 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_hal_conf.h_save
+2026-01-07 10:21:04,545 [INFO] CodeEngine:345 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_hal_conf.h
+2026-01-07 10:21:04,569 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\main.h_save
+2026-01-07 10:21:04,657 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\main.h
+2026-01-07 10:21:04,668 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\main.c_save
+2026-01-07 10:21:04,741 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\main.c
+2026-01-07 10:21:05,091 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 245mS.
+2026-01-07 10:21:05,097 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2026-01-07 10:21:05,145 [INFO] ConfigFileManager:1595 - The Die is : DIE464
+2026-01-07 10:21:06,034 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 937mS.
+2026-01-07 10:21:06,036 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 2mS.
+2026-01-07 10:21:06,039 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 2mS.
+2026-01-07 10:27:24,085 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS, USART2]
+2026-01-07 10:27:24,206 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-07 10:27:42,494 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-07 10:27:42,651 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-07 10:27:42,866 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-07 10:27:42,992 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-07 10:27:47,326 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-07 10:27:47,408 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-07 10:27:51,607 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-07 10:28:09,049 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-07 10:28:09,822 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 737712360 Bytes (1073741824)
+2026-01-07 10:28:11,331 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 788570256 Bytes (1073741824)
+2026-01-07 10:28:11,552 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 808493200 Bytes (1073741824)
+2026-01-07 10:28:11,989 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2026-01-07 10:28:11,990 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2026-01-07 10:28:11,990 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2026-01-07 10:28:11,990 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2026-01-07 10:28:11,990 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: LPUART
+2026-01-07 10:28:11,992 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
+2026-01-07 10:28:12,050 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\license.tmp_save
+2026-01-07 10:28:12,230 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\license.tmp
+2026-01-07 10:28:12,269 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\gpio.tmp_save
+2026-01-07 10:28:12,370 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\gpio.tmp
+2026-01-07 10:28:12,460 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_it.c_save
+2026-01-07 10:28:12,644 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_it.c
+2026-01-07 10:28:12,660 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_it.h_save
+2026-01-07 10:28:12,727 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_it.h
+2026-01-07 10:28:12,747 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_hal_msp.c_save
+2026-01-07 10:28:12,862 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_hal_msp.c
+2026-01-07 10:28:12,871 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\system.tmp_save
+2026-01-07 10:28:12,925 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\system.tmp
+2026-01-07 10:28:12,945 [INFO] CodeEngine:321 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_hal_conf.h_save
+2026-01-07 10:28:13,006 [INFO] CodeEngine:345 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_hal_conf.h
+2026-01-07 10:28:13,042 [INFO] ApiDbMcu:532 - Load IP Config File for LPUART1
+2026-01-07 10:28:13,056 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\main.h_save
+2026-01-07 10:28:13,138 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\main.h
+2026-01-07 10:28:13,150 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\main.c_save
+2026-01-07 10:28:13,232 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\main.c
+2026-01-07 10:28:13,725 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 339mS.
+2026-01-07 10:28:13,728 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2026-01-07 10:28:13,782 [INFO] ConfigFileManager:1595 - The Die is : DIE464
+2026-01-07 10:28:14,585 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 857mS.
+2026-01-07 10:28:14,586 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2026-01-07 10:28:14,589 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2026-01-07 10:35:01,175 [INFO] Gpio:278 - dependency for GPIO [LPUART1, RCC, SYS]
+2026-01-07 10:49:05,688 [INFO] WebApp:194 - Connection lost
+2026-01-07 10:49:05,861 [INFO] WebApp:191 - Connection restablished
+2026-01-07 10:54:20,239 [INFO] WebApp:194 - Connection lost
+2026-01-07 10:54:20,410 [INFO] WebApp:191 - Connection restablished
+2026-01-07 11:19:07,691 [INFO] WebApp:194 - Connection lost
+2026-01-07 11:19:07,865 [INFO] WebApp:191 - Connection restablished
+2026-01-07 11:27:00,183 [INFO] WebApp:194 - Connection lost
+2026-01-07 11:27:00,346 [INFO] WebApp:191 - Connection restablished
+2026-01-07 11:45:04,214 [INFO] WebApp:194 - Connection lost
+2026-01-07 11:45:04,397 [INFO] WebApp:191 - Connection restablished
+2026-01-07 11:49:10,205 [INFO] WebApp:194 - Connection lost
+2026-01-07 11:49:10,380 [INFO] WebApp:191 - Connection restablished
+2026-01-07 11:55:42,223 [INFO] WebApp:194 - Connection lost
+2026-01-07 11:55:42,417 [INFO] WebApp:191 - Connection restablished
+2026-01-07 11:58:47,223 [INFO] WebApp:194 - Connection lost
+2026-01-07 11:58:47,390 [INFO] WebApp:191 - Connection restablished
+2026-01-07 12:02:02,672 [INFO] WebApp:194 - Connection lost
+2026-01-07 12:02:02,841 [INFO] WebApp:191 - Connection restablished
+2026-01-07 12:19:12,214 [INFO] WebApp:194 - Connection lost
+2026-01-07 12:19:12,373 [INFO] WebApp:191 - Connection restablished
+2026-01-07 12:49:13,697 [INFO] WebApp:194 - Connection lost
+2026-01-07 12:49:13,859 [INFO] WebApp:191 - Connection restablished
+2026-01-07 13:19:16,217 [INFO] WebApp:194 - Connection lost
+2026-01-07 13:19:16,407 [INFO] WebApp:191 - Connection restablished
+2026-01-07 13:24:31,233 [INFO] WebApp:194 - Connection lost
+2026-01-07 13:24:31,402 [INFO] WebApp:191 - Connection restablished
+2026-01-07 13:34:14,239 [INFO] WebApp:194 - Connection lost
+2026-01-07 13:34:14,407 [INFO] WebApp:191 - Connection restablished
+2026-01-07 13:40:12,024 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 852069704 Bytes (1073741824)
+2026-01-07 13:40:13,958 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 892437832 Bytes (1073741824)
+2026-01-07 13:40:14,166 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 910263624 Bytes (1073741824)
+2026-01-07 13:40:14,646 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2026-01-07 13:40:14,646 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2026-01-07 13:40:14,647 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2026-01-07 13:40:14,647 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2026-01-07 13:40:14,647 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: LPUART
+2026-01-07 13:40:14,649 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
+2026-01-07 13:40:14,703 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\license.tmp_save
+2026-01-07 13:40:14,865 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\license.tmp
+2026-01-07 13:40:14,908 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\gpio.tmp_save
+2026-01-07 13:40:15,023 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\gpio.tmp
+2026-01-07 13:40:15,099 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_it.c_save
+2026-01-07 13:40:15,298 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_it.c
+2026-01-07 13:40:15,309 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_it.h_save
+2026-01-07 13:40:15,375 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_it.h
+2026-01-07 13:40:15,398 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_hal_msp.c_save
+2026-01-07 13:40:15,596 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_hal_msp.c
+2026-01-07 13:40:15,613 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\system.tmp_save
+2026-01-07 13:40:15,710 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\system.tmp
+2026-01-07 13:40:15,738 [INFO] CodeEngine:321 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_hal_conf.h_save
+2026-01-07 13:40:15,831 [INFO] CodeEngine:345 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_hal_conf.h
+2026-01-07 13:40:15,864 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\main.h_save
+2026-01-07 13:40:15,972 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\main.h
+2026-01-07 13:40:15,984 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\main.c_save
+2026-01-07 13:40:16,101 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\main.c
+2026-01-07 13:40:16,734 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 439mS.
+2026-01-07 13:40:16,739 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2026-01-07 13:40:16,803 [INFO] ConfigFileManager:1595 - The Die is : DIE464
+2026-01-07 13:40:17,913 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 1174mS.
+2026-01-07 13:40:17,915 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2026-01-07 13:40:17,919 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2026-01-07 13:46:29,470 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 729379296 Bytes (1073741824)
+2026-01-07 13:46:30,815 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 746308776 Bytes (1073741824)
+2026-01-07 13:46:31,019 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 765183144 Bytes (1073741824)
+2026-01-07 13:46:31,442 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2026-01-07 13:46:31,442 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2026-01-07 13:46:31,442 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2026-01-07 13:46:31,442 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2026-01-07 13:46:31,442 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: LPUART
+2026-01-07 13:46:31,444 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
+2026-01-07 13:46:31,519 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\license.tmp_save
+2026-01-07 13:46:31,645 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\license.tmp
+2026-01-07 13:46:31,687 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\gpio.tmp_save
+2026-01-07 13:46:31,784 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\gpio.tmp
+2026-01-07 13:46:31,848 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_it.c_save
+2026-01-07 13:46:31,925 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_it.c
+2026-01-07 13:46:31,937 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_it.h_save
+2026-01-07 13:46:32,007 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_it.h
+2026-01-07 13:46:32,027 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_hal_msp.c_save
+2026-01-07 13:46:32,123 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_hal_msp.c
+2026-01-07 13:46:32,130 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\system.tmp_save
+2026-01-07 13:46:32,191 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\system.tmp
+2026-01-07 13:46:32,208 [INFO] CodeEngine:321 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_hal_conf.h_save
+2026-01-07 13:46:32,281 [INFO] CodeEngine:345 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_hal_conf.h
+2026-01-07 13:46:32,306 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\main.h_save
+2026-01-07 13:46:32,368 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\main.h
+2026-01-07 13:46:32,376 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\main.c_save
+2026-01-07 13:46:32,458 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\main.c
+2026-01-07 13:46:32,799 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 233mS.
+2026-01-07 13:46:32,803 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2026-01-07 13:46:32,854 [INFO] ConfigFileManager:1595 - The Die is : DIE464
+2026-01-07 13:46:33,679 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 877mS.
+2026-01-07 13:46:33,680 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2026-01-07 13:46:33,685 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2026-01-07 13:49:19,473 [INFO] WebApp:194 - Connection lost
+2026-01-07 13:49:19,807 [INFO] WebApp:191 - Connection restablished
+2026-01-07 14:14:32,702 [INFO] WebApp:194 - Connection lost
+2026-01-07 14:14:32,864 [INFO] WebApp:191 - Connection restablished
+2026-01-07 14:19:20,686 [INFO] WebApp:194 - Connection lost
+2026-01-07 14:19:20,851 [INFO] WebApp:191 - Connection restablished
+2026-01-07 14:20:23,199 [INFO] WebApp:194 - Connection lost
+2026-01-07 14:20:23,361 [INFO] WebApp:191 - Connection restablished
+2026-01-07 14:23:27,198 [INFO] WebApp:194 - Connection lost
+2026-01-07 14:23:27,367 [INFO] WebApp:191 - Connection restablished
+2026-01-07 14:26:24,308 [INFO] Gpio:278 - dependency for GPIO [LPUART1, RCC, SYS]
+2026-01-07 14:26:24,414 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-07 14:26:24,589 [INFO] Gpio:278 - dependency for GPIO [LPUART1, RCC, SYS]
+2026-01-07 14:26:24,678 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-07 14:26:52,990 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 754244000 Bytes (1073741824)
+2026-01-07 14:26:54,429 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 773644704 Bytes (1073741824)
+2026-01-07 14:26:54,652 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 791992736 Bytes (1073741824)
+2026-01-07 14:26:55,130 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2026-01-07 14:26:55,130 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2026-01-07 14:26:55,130 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2026-01-07 14:26:55,130 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2026-01-07 14:26:55,130 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: LPUART
+2026-01-07 14:26:55,133 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
+2026-01-07 14:26:55,185 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\license.tmp_save
+2026-01-07 14:26:55,375 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\license.tmp
+2026-01-07 14:26:55,420 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\gpio.tmp_save
+2026-01-07 14:26:55,544 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\gpio.tmp
+2026-01-07 14:26:55,624 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_it.c_save
+2026-01-07 14:26:55,808 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_it.c
+2026-01-07 14:26:55,818 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_it.h_save
+2026-01-07 14:26:55,886 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_it.h
+2026-01-07 14:26:55,904 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_hal_msp.c_save
+2026-01-07 14:26:56,025 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\stm32l4xx_hal_msp.c
+2026-01-07 14:26:56,032 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\system.tmp_save
+2026-01-07 14:26:56,090 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\MXTmpFiles\system.tmp
+2026-01-07 14:26:56,105 [INFO] CodeEngine:321 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_hal_conf.h_save
+2026-01-07 14:26:56,165 [INFO] CodeEngine:345 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\stm32l4xx_hal_conf.h
+2026-01-07 14:26:56,190 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\main.h_save
+2026-01-07 14:26:56,287 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Inc\main.h
+2026-01-07 14:26:56,298 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\main.c_save
+2026-01-07 14:26:56,391 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\Core\Src\main.c
+2026-01-07 14:26:56,787 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 284mS.
+2026-01-07 14:26:56,793 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2026-01-07 14:26:56,847 [INFO] ConfigFileManager:1595 - The Die is : DIE464
+2026-01-07 14:26:57,781 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 988mS.
+2026-01-07 14:26:57,782 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 1mS.
+2026-01-07 14:26:57,787 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 1mS.
+2026-01-07 14:41:57,196 [INFO] WebApp:194 - Connection lost
+2026-01-07 14:41:57,386 [INFO] WebApp:191 - Connection restablished
+2026-01-07 14:42:00,181 [INFO] WebApp:194 - Connection lost
+2026-01-07 14:42:00,342 [INFO] WebApp:191 - Connection restablished
+2026-01-07 14:49:23,689 [INFO] WebApp:194 - Connection lost
+2026-01-07 14:49:23,864 [INFO] WebApp:191 - Connection restablished
+2026-01-07 15:19:25,389 [INFO] WebApp:194 - Connection lost
+2026-01-07 15:19:25,566 [INFO] WebApp:191 - Connection restablished
+2026-01-07 15:49:27,883 [INFO] WebApp:194 - Connection lost
+2026-01-07 15:49:28,067 [INFO] WebApp:191 - Connection restablished
+2026-01-07 15:54:42,487 [INFO] WebApp:194 - Connection lost
+2026-01-07 15:54:42,776 [INFO] WebApp:191 - Connection restablished
+2026-01-07 16:09:16,717 [INFO] Gpio:278 - dependency for GPIO [LPUART1, RCC, SYS]
+2026-01-07 16:09:16,893 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-07 16:09:17,037 [INFO] Gpio:278 - dependency for GPIO [LPUART1, RCC, SYS]
+2026-01-07 16:09:17,163 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-07 16:19:29,665 [INFO] WebApp:194 - Connection lost
+2026-01-07 16:19:29,843 [INFO] WebApp:191 - Connection restablished
+2026-01-07 16:21:50,202 [INFO] WebApp:194 - Connection lost
+2026-01-07 16:21:50,369 [INFO] WebApp:191 - Connection restablished
+2026-01-07 16:30:02,801 [INFO] WebApp:194 - Connection lost
+2026-01-07 16:30:02,981 [INFO] WebApp:191 - Connection restablished
+2026-01-07 16:49:32,035 [INFO] WebApp:194 - Connection lost
+2026-01-07 16:49:32,215 [INFO] WebApp:191 - Connection restablished
+2026-01-07 16:51:09,677 [INFO] WebApp:194 - Connection lost
+2026-01-07 16:51:09,859 [INFO] WebApp:191 - Connection restablished
+2026-01-07 17:19:33,221 [INFO] WebApp:194 - Connection lost
+2026-01-07 17:19:33,457 [INFO] WebApp:191 - Connection restablished
+2026-01-07 17:20:57,199 [INFO] WebApp:194 - Connection lost
+2026-01-07 17:20:57,431 [INFO] WebApp:191 - Connection restablished
+2026-01-07 17:49:35,223 [INFO] WebApp:194 - Connection lost
+2026-01-07 17:49:35,399 [INFO] WebApp:191 - Connection restablished
+2026-01-07 17:51:38,173 [INFO] WebApp:194 - Connection lost
+2026-01-07 17:51:38,338 [INFO] WebApp:191 - Connection restablished
+2026-01-07 18:19:37,705 [INFO] WebApp:194 - Connection lost
+2026-01-07 18:19:37,887 [INFO] WebApp:191 - Connection restablished
+2026-01-07 18:20:44,209 [INFO] WebApp:194 - Connection lost
+2026-01-07 18:20:44,394 [INFO] WebApp:191 - Connection restablished

@@ -1,0 +1,1745 @@
+14:29:16 **** Clean-only build of configuration Debug for project ch1_key_mat ****
+make -j20 clean 
+rm -rf ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.su ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.cyclo ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.d ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o ./Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.su
+rm -rf ./Core/Startup/startup_stm32l412rbtxp.d ./Core/Startup/startup_stm32l412rbtxp.o
+rm -rf ./Core/Src/main.cyclo ./Core/Src/main.d ./Core/Src/main.o ./Core/Src/main.su ./Core/Src/stm32l4xx_hal_msp.cyclo ./Core/Src/stm32l4xx_hal_msp.d ./Core/Src/stm32l4xx_hal_msp.o ./Core/Src/stm32l4xx_hal_msp.su ./Core/Src/stm32l4xx_it.cyclo ./Core/Src/stm32l4xx_it.d ./Core/Src/stm32l4xx_it.o ./Core/Src/stm32l4xx_it.su ./Core/Src/syscalls.cyclo ./Core/Src/syscalls.d ./Core/Src/syscalls.o ./Core/Src/syscalls.su ./Core/Src/sysmem.cyclo ./Core/Src/sysmem.d ./Core/Src/sysmem.o ./Core/Src/sysmem.su ./Core/Src/system_stm32l4xx.cyclo ./Core/Src/system_stm32l4xx.d ./Core/Src/system_stm32l4xx.o ./Core/Src/system_stm32l4xx.su
+rm -rf ch1_key_mat.elf ch1_key_mat.list ch1_key_mat.map default.size.stdout
+ 
+14:29:25 **** Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_cortex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_dma_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_exti.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_flash_ramfunc.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_gpio.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_i2c_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_pwr_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_rcc_ex.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart.o"
+arm-none-eabi-gcc "../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.d" -MT"Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_uart_ex.o"
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32l412rbtxp.d" -MT"Core/Startup/startup_stm32l412rbtxp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Startup/startup_stm32l412rbtxp.o" "../Core/Startup/startup_stm32l412rbtxp.s"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_hal_msp.d" -MT"Core/Src/stm32l4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_it.d" -MT"Core/Src/stm32l4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_it.o"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32l4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32l4xx.d" -MT"Core/Src/system_stm32l4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32l4xx.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:186:13: error: invalid storage class for function 'MX_LPUART1_UART_Init'
+  186 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:220:13: error: invalid storage class for function 'MX_GPIO_Init'
+  220 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:311:1: error: expected declaration or statement at end of input
+  311 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:51:13: warning: 'MX_GPIO_Init' used but never defined
+   51 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:52:13: warning: 'MX_LPUART1_UART_Init' used but never defined
+   52 | static void MX_LPUART1_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:302:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  302 | void Error_Handler(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:220:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  220 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:186:13: warning: 'MX_LPUART1_UART_Init' defined but not used [-Wunused-function]
+  186 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:136:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  136 | void SystemClock_Config(void)
+      |      ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:29:41 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:186:13: error: invalid storage class for function 'MX_LPUART1_UART_Init'
+  186 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:220:13: error: invalid storage class for function 'MX_GPIO_Init'
+  220 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:311:1: error: expected declaration or statement at end of input
+  311 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:51:13: warning: 'MX_GPIO_Init' used but never defined
+   51 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:52:13: warning: 'MX_LPUART1_UART_Init' used but never defined
+   52 | static void MX_LPUART1_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:302:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  302 | void Error_Handler(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:220:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  220 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:186:13: warning: 'MX_LPUART1_UART_Init' defined but not used [-Wunused-function]
+  186 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:136:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  136 | void SystemClock_Config(void)
+      |      ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:30:30 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:186:13: error: invalid storage class for function 'MX_LPUART1_UART_Init'
+  186 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:220:13: error: invalid storage class for function 'MX_GPIO_Init'
+  220 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:311:1: error: expected declaration or statement at end of input
+  311 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:51:13: warning: 'MX_GPIO_Init' used but never defined
+   51 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:52:13: warning: 'MX_LPUART1_UART_Init' used but never defined
+   52 | static void MX_LPUART1_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:302:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  302 | void Error_Handler(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:220:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  220 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:186:13: warning: 'MX_LPUART1_UART_Init' defined but not used [-Wunused-function]
+  186 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:136:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  136 | void SystemClock_Config(void)
+      |      ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:32:46 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:186:13: error: invalid storage class for function 'MX_LPUART1_UART_Init'
+  186 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:220:13: error: invalid storage class for function 'MX_GPIO_Init'
+  220 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:311:1: error: expected declaration or statement at end of input
+  311 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:51:13: warning: 'MX_GPIO_Init' used but never defined
+   51 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:52:13: warning: 'MX_LPUART1_UART_Init' used but never defined
+   52 | static void MX_LPUART1_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:302:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  302 | void Error_Handler(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:220:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  220 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:186:13: warning: 'MX_LPUART1_UART_Init' defined but not used [-Wunused-function]
+  186 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:136:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  136 | void SystemClock_Config(void)
+      |      ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:33:38 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  11140	     12	   1708	  12860	   323c	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+14:34:13 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  11144	     12	   1708	  12864	   3240	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:02:45 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:177:1: error: expected identifier or '(' before '}' token
+  177 | }
+      | ^
+../Core/Src/main.c:63:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   63 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:03:33 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:63:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   63 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14204	     92	   2036	  16332	   3fcc	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:05:00 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:63:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   63 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14372	     92	   2036	  16500	   4074	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:06:40 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:139:13: error: 'key_id' undeclared (first use in this function)
+  139 |         if (key_id != last_key_id){
+      |             ^~~~~~
+../Core/Src/main.c:139:13: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:121:15: warning: variable 'col' set but not used [-Wunused-but-set-variable]
+  121 |       uint8_t col = 0xFF; //입력 안한 경우. if문 사용 용도
+      |               ^~~
+../Core/Src/main.c:120:15: warning: unused variable 'row' [-Wunused-variable]
+  120 |       uint8_t row = 0;
+      |               ^~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:07:42 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:234:13: error: invalid storage class for function 'MX_LPUART1_UART_Init'
+  234 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:268:13: error: invalid storage class for function 'MX_GPIO_Init'
+  268 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:359:1: error: expected declaration or statement at end of input
+  359 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:51:13: warning: 'MX_GPIO_Init' used but never defined
+   51 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:52:13: warning: 'MX_LPUART1_UART_Init' used but never defined
+   52 | static void MX_LPUART1_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:350:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  350 | void Error_Handler(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:268:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  268 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:234:13: warning: 'MX_LPUART1_UART_Init' defined but not used [-Wunused-function]
+  234 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:184:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  184 | void SystemClock_Config(void)
+      |      ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:08:09 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14396	     92	   2044	  16532	   4094	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:11:17 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:107:22: error: 'buf' undeclared (first use in this function)
+  107 |           uart_print(buf);
+      |                      ^~~
+../Core/Src/main.c:107:22: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:63:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   63 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+15:11:43 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:63:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   63 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14420	     92	   2036	  16548	   40a4	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:14:44 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:63:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   63 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14420	     92	   2036	  16548	   40a4	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:15:33 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:63:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   63 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14372	     92	   2036	  16500	   4074	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:17:25 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:63:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   63 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14420	     92	   2036	  16548	   40a4	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:20:06 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:63:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   63 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14448	     92	   2036	  16576	   40c0	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:22:51 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:63:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   63 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14944	     92	   2036	  17072	   42b0	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:24:15 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:63:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   63 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14944	     92	   2036	  17072	   42b0	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:27:22 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:63:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   63 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14916	     92	   2036	  17044	   4294	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:49:33 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:83:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   83 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14916	     92	   2036	  17044	   4294	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:50:48 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:83:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   83 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14916	     92	   2036	  17044	   4294	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:52:27 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:83:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   83 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14916	     92	   2036	  17044	   4294	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+16:06:23 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:83:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   83 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  15072	     92	   2036	  17200	   4330	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+16:09:05 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:83:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   83 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  15068	     92	   2036	  17196	   432c	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+16:11:25 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:83:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   83 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14996	     92	   2036	  17124	   42e4	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+17:35:41 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:83:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   83 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14932	     92	   2036	  17060	   42a4	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+17:37:32 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:83:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   83 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14936	     92	   2036	  17064	   42a8	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+09:56:14 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/main_bak.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main_bak.d" -MT"Core/Src/main_bak.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main_bak.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_hal_msp.d" -MT"Core/Src/stm32l4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_it.d" -MT"Core/Src/stm32l4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_it.o"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32l4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32l4xx.d" -MT"Core/Src/system_stm32l4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32l4xx.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:155:16: warning: implicit declaration of function 'HAL_GPIO_Read\U00003134Pin'; did you mean 'HAL_GPIO_ReadPin'? [-Wimplicit-function-declaration]
+  155 |       else if (HAL_GPIO_ReadㄴPin(In_4_GPIO_Port,In_4_Pin) == GPIO_PIN_SET)
+      |                ^~~~~~~~~~~~~~~~~~
+      |                HAL_GPIO_ReadPin
+../Core/Src/main_bak.c:83:16: warning: 'last_key_id' defined but not used [-Wunused-variable]
+   83 | static uint8_t last_key_id = 0;   // 0이면 없음
+      |                ^~~~~~~~~~~
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main_bak.o:C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/ch1_key_mat/Debug/../Core/Src/main_bak.c:63: multiple definition of `hlpuart1'; ./Core/Src/main.o:C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/ch1_key_mat/Debug/../Core/Src/main.c:63: first defined here
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main_bak.o: in function `main':
+C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/ch1_key_mat/Debug/../Core/Src/main_bak.c:96: multiple definition of `main'; ./Core/Src/main.o:C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/ch1_key_mat/Debug/../Core/Src/main.c:97: first defined here
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main_bak.o: in function `SystemClock_Config':
+C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/ch1_key_mat/Debug/../Core/Src/main_bak.c:284: multiple definition of `SystemClock_Config'; ./Core/Src/main.o:C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/ch1_key_mat/Debug/../Core/Src/main.c:284: first defined here
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main_bak.o: in function `Error_Handler':
+C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/ch1_key_mat/Debug/../Core/Src/main_bak.c:460: multiple definition of `Error_Handler'; ./Core/Src/main.o:C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/ch1_key_mat/Debug/../Core/Src/main.c:460: first defined here
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/ch1_key_mat/Debug/../Core/Src/main.c:155:(.text.main+0xbe): undefined reference to `HAL_GPIO_ReadㄴPin'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: ch1_key_mat.elf] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+09:57:45 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_hal_msp.d" -MT"Core/Src/stm32l4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_it.d" -MT"Core/Src/stm32l4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_it.o"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32l4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32l4xx.d" -MT"Core/Src/system_stm32l4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32l4xx.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:155:16: warning: implicit declaration of function 'HAL_GPIO_Read\U00003134Pin'; did you mean 'HAL_GPIO_ReadPin'? [-Wimplicit-function-declaration]
+  155 |       else if (HAL_GPIO_ReadㄴPin(In_4_GPIO_Port,In_4_Pin) == GPIO_PIN_SET)
+      |                ^~~~~~~~~~~~~~~~~~
+      |                HAL_GPIO_ReadPin
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+C:/ST/STM32CubeIDE_1.19.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.13.3.rel1.win32_1.0.0.202411081344/tools/bin/../lib/gcc/arm-none-eabi/13.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Core/Src/main.o: in function `main':
+C:/Users/CAMMSYS/STM32CubeIDE/workspace_1.19.0/ch1_key_mat/Debug/../Core/Src/main.c:155:(.text.main+0xbe): undefined reference to `HAL_GPIO_ReadㄴPin'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:64: ch1_key_mat.elf] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+09:58:07 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  14940	     92	   2068	  17100	   42cc	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+13:42:40 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function '_write':
+../Core/Src/main.c:89:15: error: 'STDOUT_FILENO' undeclared (first use in this function)
+   89 |   if (file == STDOUT_FILENO)
+      |               ^~~~~~~~~~~~~
+../Core/Src/main.c:89:15: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:152:5: warning: implicit declaration of function 'scan_keypad_to_array' [-Wimplicit-function-declaration]
+  152 |     scan_keypad_to_array();
+      |     ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:153:5: warning: implicit declaration of function 'process_press_events' [-Wimplicit-function-declaration]
+  153 |     process_press_events();
+      |     ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:328:13: warning: conflicting types for 'scan_keypad_to_array'; have 'void(void)'
+  328 | static void scan_keypad_to_array(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:328:13: error: static declaration of 'scan_keypad_to_array' follows non-static declaration
+../Core/Src/main.c:152:5: note: previous implicit declaration of 'scan_keypad_to_array' with type 'void(void)'
+  152 |     scan_keypad_to_array();
+      |     ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:415:13: warning: conflicting types for 'process_press_events'; have 'void(void)'
+  415 | static void process_press_events(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:415:13: error: static declaration of 'process_press_events' follows non-static declaration
+../Core/Src/main.c:153:5: note: previous implicit declaration of 'process_press_events' with type 'void(void)'
+  153 |     process_press_events();
+      |     ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:415:13: warning: 'process_press_events' defined but not used [-Wunused-function]
+  415 | static void process_press_events(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:328:13: warning: 'scan_keypad_to_array' defined but not used [-Wunused-function]
+  328 | static void scan_keypad_to_array(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+13:45:20 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16336	    104	   2072	  18512	   4850	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+13:47:24 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16348	    104	   2072	  18524	   485c	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+13:53:51 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16396	    104	   2072	  18572	   488c	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+13:54:35 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16420	    104	   2072	  18596	   48a4	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+14:22:46 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:154:5: warning: implicit declaration of function 'scan_keypad_to_array' [-Wimplicit-function-declaration]
+  154 |     scan_keypad_to_array();
+      |     ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:155:5: warning: implicit declaration of function 'process_press_events' [-Wimplicit-function-declaration]
+  155 |     process_press_events();
+      |     ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:217:13: error: invalid storage class for function 'MX_LPUART1_UART_Init'
+  217 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:251:13: error: invalid storage class for function 'MX_GPIO_Init'
+  251 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:322:13: error: invalid storage class for function 'scan_keypad_to_array'
+  322 | static void scan_keypad_to_array(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:409:13: error: invalid storage class for function 'process_press_events'
+  409 | static void process_press_events(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:437:20: error: invalid storage class for function 'set_row'
+  437 | static inline void set_row(uint8_t row)
+      |                    ^~~~~~~
+../Core/Src/main.c:462:1: error: expected declaration or statement at end of input
+  462 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:71:13: warning: 'MX_GPIO_Init' used but never defined
+   71 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:72:13: warning: 'MX_LPUART1_UART_Init' used but never defined
+   72 | static void MX_LPUART1_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:453:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  453 | void Error_Handler(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:409:13: warning: 'process_press_events' defined but not used [-Wunused-function]
+  409 | static void process_press_events(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:322:13: warning: 'scan_keypad_to_array' defined but not used [-Wunused-function]
+  322 | static void scan_keypad_to_array(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:251:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  251 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:217:13: warning: 'MX_LPUART1_UART_Init' defined but not used [-Wunused-function]
+  217 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:167:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  167 | void SystemClock_Config(void)
+      |      ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:25:32 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:222:13: error: invalid storage class for function 'MX_LPUART1_UART_Init'
+  222 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:256:13: error: invalid storage class for function 'MX_GPIO_Init'
+  256 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:327:13: error: invalid storage class for function 'scan_keypad_to_array'
+  327 | static void scan_keypad_to_array(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:414:13: error: invalid storage class for function 'process_press_events'
+  414 | static void process_press_events(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:442:20: error: invalid storage class for function 'set_row'
+  442 | static inline void set_row(uint8_t row)
+      |                    ^~~~~~~
+../Core/Src/main.c:467:1: error: expected declaration or statement at end of input
+  467 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:71:13: warning: 'MX_GPIO_Init' used but never defined
+   71 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:72:13: warning: 'MX_LPUART1_UART_Init' used but never defined
+   72 | static void MX_LPUART1_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:88:13: warning: 'scan_keypad_to_array' used but never defined
+   88 | static void scan_keypad_to_array(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:89:13: warning: 'process_press_events' used but never defined
+   89 | static void process_press_events(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:458:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  458 | void Error_Handler(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:414:13: warning: 'process_press_events' defined but not used [-Wunused-function]
+  414 | static void process_press_events(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:327:13: warning: 'scan_keypad_to_array' defined but not used [-Wunused-function]
+  327 | static void scan_keypad_to_array(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:256:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  256 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:222:13: warning: 'MX_LPUART1_UART_Init' defined but not used [-Wunused-function]
+  222 | static void MX_LPUART1_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:172:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  172 | void SystemClock_Config(void)
+      |      ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:26:08 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16388	    104	   2072	  18564	   4884	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+14:26:12 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16388	    104	   2072	  18564	   4884	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+15:41:25 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  12120	     12	   1740	  13872	   3630	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+15:41:35 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  12120	     12	   1740	  13872	   3630	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+16:21:58 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16388	    104	   2072	  18564	   4884	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+16:52:47 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16388	    104	   2072	  18564	   4884	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+10:34:16 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'set_all_rows_input':
+../Core/Src/main.c:85:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before 'static'
+   85 | static void set_row_output_2(void)
+      | ^~~~~~
+../Core/Src/main.c:104:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  104 | {
+      | ^
+../Core/Src/main.c:114:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  114 | {
+      | ^
+../Core/Src/main.c:173:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  173 | {
+      | ^
+../Core/Src/main.c:223:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  223 | {
+      | ^
+../Core/Src/main.c:257:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  257 | {
+      | ^
+../Core/Src/main.c:328:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  328 | {
+      | ^
+../Core/Src/main.c:417:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  417 | {
+      | ^
+../Core/Src/main.c:442:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  442 | {
+      | ^
+../Core/Src/main.c:450:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  450 | {
+      | ^
+../Core/Src/main.c:459:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  459 | {
+      | ^
+../Core/Src/main.c:472:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  472 | {
+      | ^
+../Core/Src/main.c:485:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  485 | {
+      | ^
+../Core/Src/main.c:498:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  498 | {
+      | ^
+../Core/Src/main.c:518:1: error: expected '=', ',', ';', 'asm' or '__attribute__' before '{' token
+  518 | {
+      | ^
+../Core/Src/main.c:544: error: expected '{' at end of input
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:63:13: warning: 'MX_GPIO_Init' declared 'static' but never defined [-Wunused-function]
+   63 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:64:13: warning: 'MX_LPUART1_UART_Init' declared 'static' but never defined [-Wunused-function]
+   64 | static void MX_LPUART1_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:80:13: warning: 'scan_keypad_to_array' declared 'static' but never defined [-Wunused-function]
+   80 | static void scan_keypad_to_array(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:81:13: warning: 'process_press_events' declared 'static' but never defined [-Wunused-function]
+   81 | static void process_press_events(void);
+      |             ^~~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:83:13: warning: 'set_all_rows_input' defined but not used [-Wunused-function]
+   83 | static void set_all_rows_input(void)
+      |             ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:78:16: warning: 'prev_key' defined but not used [-Wunused-variable]
+   78 | static uint8_t prev_key[4][4];
+      |                ^~~~~~~~
+../Core/Src/main.c:77:16: warning: 'key' defined but not used [-Wunused-variable]
+   77 | static uint8_t key[4][4];
+      |                ^~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+10:35:02 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'set_all_rows_input':
+../Core/Src/main.c:452:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  452 |   GPIO_InitStruct.Pin = In_2_Pin|In_1_Pin|In_3_Pin|In_4_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c:452:3: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: In function 'set_row_output_1':
+../Core/Src/main.c:463:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  463 |   GPIO_InitStruct.Pin = Out_1_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_2':
+../Core/Src/main.c:476:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  476 |   GPIO_InitStruct.Pin = Out_2_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_3':
+../Core/Src/main.c:489:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  489 |   GPIO_InitStruct.Pin = Out_3_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_5':
+../Core/Src/main.c:502:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  502 |   GPIO_InitStruct.Pin = Out_5_Pin;
+      |   ^~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+10:35:37 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+../Core/Src/main.c: In function 'set_all_rows_input':
+../Core/Src/main.c:463:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  463 |   GPIO_InitStruct.Pin = In_2_Pin|In_1_Pin|In_3_Pin|In_4_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c:463:3: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: In function 'set_row_output_1':
+../Core/Src/main.c:474:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  474 |   GPIO_InitStruct.Pin = Out_1_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_2':
+../Core/Src/main.c:487:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  487 |   GPIO_InitStruct.Pin = Out_2_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_3':
+../Core/Src/main.c:500:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  500 |   GPIO_InitStruct.Pin = Out_3_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_5':
+../Core/Src/main.c:513:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  513 |   GPIO_InitStruct.Pin = Out_5_Pin;
+      |   ^~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+10:37:39 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+../Core/Src/main.c:89:1: warning: multi-line comment [-Wcomment]
+   89 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:92:1: warning: multi-line comment [-Wcomment]
+   92 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:95:1: warning: multi-line comment [-Wcomment]
+   95 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:98:1: warning: multi-line comment [-Wcomment]
+   98 | // #define SET_OUT5_PIN() \
+      | ^
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:156:13: error: invalid storage class for function 'set_all_rows_input'
+  156 | static void set_all_rows_input(void);
+      |             ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:157:13: error: invalid storage class for function 'set_row_output_1'
+  157 | static void set_row_output_1(void);
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:158:13: error: invalid storage class for function 'set_row_output_2'
+  158 | static void set_row_output_2(void);
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:159:13: error: invalid storage class for function 'set_row_output_3'
+  159 | static void set_row_output_3(void);
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:160:13: error: invalid storage class for function 'set_row_output_5'
+  160 | static void set_row_output_5(void);
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'scan_keypad_to_array':
+../Core/Src/main.c:163:3: warning: implicit declaration of function 'set_all_rows_input' [-Wimplicit-function-declaration]
+  163 |   set_all_rows_input(); \
+      |   ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:369:3: note: in expansion of macro 'SET_OUT1_PIN'
+  369 |   SET_OUT1_PIN();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c:164:3: warning: implicit declaration of function 'set_row_output_1' [-Wimplicit-function-declaration]
+  164 |   set_row_output_1();
+      |   ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:369:3: note: in expansion of macro 'SET_OUT1_PIN'
+  369 |   SET_OUT1_PIN();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c:167:3: warning: implicit declaration of function 'set_row_output_2' [-Wimplicit-function-declaration]
+  167 |   set_row_output_2();
+      |   ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:388:3: note: in expansion of macro 'SET_OUT2_PIN'
+  388 |   SET_OUT2_PIN();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c:170:3: warning: implicit declaration of function 'set_row_output_3' [-Wimplicit-function-declaration]
+  170 |   set_row_output_3();
+      |   ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:407:3: note: in expansion of macro 'SET_OUT3_PIN'
+  407 |   SET_OUT3_PIN();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c:173:3: warning: implicit declaration of function 'set_row_output_5' [-Wimplicit-function-declaration]
+  173 |   set_row_output_5();
+      |   ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:427:3: note: in expansion of macro 'SET_OUT5_PIN'
+  427 |   SET_OUT5_PIN();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:482:13: warning: conflicting types for 'set_all_rows_input'; have 'void(void)'
+  482 | static void set_all_rows_input(void)
+      |             ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:482:13: error: static declaration of 'set_all_rows_input' follows non-static declaration
+../Core/Src/main.c:163:3: note: previous implicit declaration of 'set_all_rows_input' with type 'void(void)'
+  163 |   set_all_rows_input(); \
+      |   ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:369:3: note: in expansion of macro 'SET_OUT1_PIN'
+  369 |   SET_OUT1_PIN();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_all_rows_input':
+../Core/Src/main.c:485:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  485 |   GPIO_InitStruct.Pin = In_2_Pin|In_1_Pin|In_3_Pin|In_4_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c:485:3: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:491:13: warning: conflicting types for 'set_row_output_1'; have 'void(void)'
+  491 | static void set_row_output_1(void)
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:491:13: error: static declaration of 'set_row_output_1' follows non-static declaration
+../Core/Src/main.c:164:3: note: previous implicit declaration of 'set_row_output_1' with type 'void(void)'
+  164 |   set_row_output_1();
+      |   ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:369:3: note: in expansion of macro 'SET_OUT1_PIN'
+  369 |   SET_OUT1_PIN();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_1':
+../Core/Src/main.c:496:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  496 |   GPIO_InitStruct.Pin = Out_1_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:504:13: warning: conflicting types for 'set_row_output_2'; have 'void(void)'
+  504 | static void set_row_output_2(void)
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:504:13: error: static declaration of 'set_row_output_2' follows non-static declaration
+../Core/Src/main.c:167:3: note: previous implicit declaration of 'set_row_output_2' with type 'void(void)'
+  167 |   set_row_output_2();
+      |   ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:388:3: note: in expansion of macro 'SET_OUT2_PIN'
+  388 |   SET_OUT2_PIN();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_2':
+../Core/Src/main.c:509:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  509 |   GPIO_InitStruct.Pin = Out_2_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:517:13: warning: conflicting types for 'set_row_output_3'; have 'void(void)'
+  517 | static void set_row_output_3(void)
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:517:13: error: static declaration of 'set_row_output_3' follows non-static declaration
+../Core/Src/main.c:170:3: note: previous implicit declaration of 'set_row_output_3' with type 'void(void)'
+  170 |   set_row_output_3();
+      |   ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:407:3: note: in expansion of macro 'SET_OUT3_PIN'
+  407 |   SET_OUT3_PIN();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_3':
+../Core/Src/main.c:522:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  522 |   GPIO_InitStruct.Pin = Out_3_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:530:13: warning: conflicting types for 'set_row_output_5'; have 'void(void)'
+  530 | static void set_row_output_5(void)
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:530:13: error: static declaration of 'set_row_output_5' follows non-static declaration
+../Core/Src/main.c:173:3: note: previous implicit declaration of 'set_row_output_5' with type 'void(void)'
+  173 |   set_row_output_5();
+      |   ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:427:3: note: in expansion of macro 'SET_OUT5_PIN'
+  427 |   SET_OUT5_PIN();
+      |   ^~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_5':
+../Core/Src/main.c:535:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  535 |   GPIO_InitStruct.Pin = Out_5_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:530:13: warning: 'set_row_output_5' defined but not used [-Wunused-function]
+  530 | static void set_row_output_5(void)
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:517:13: warning: 'set_row_output_3' defined but not used [-Wunused-function]
+  517 | static void set_row_output_3(void)
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:504:13: warning: 'set_row_output_2' defined but not used [-Wunused-function]
+  504 | static void set_row_output_2(void)
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:491:13: warning: 'set_row_output_1' defined but not used [-Wunused-function]
+  491 | static void set_row_output_1(void)
+      |             ^~~~~~~~~~~~~~~~
+../Core/Src/main.c:482:13: warning: 'set_all_rows_input' defined but not used [-Wunused-function]
+  482 | static void set_all_rows_input(void)
+      |             ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+10:38:11 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+../Core/Src/main.c: In function 'set_all_rows_input':
+../Core/Src/main.c:466:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  466 |   GPIO_InitStruct.Pin = In_2_Pin|In_1_Pin|In_3_Pin|In_4_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c:466:3: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: In function 'set_row_output_1':
+../Core/Src/main.c:477:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  477 |   GPIO_InitStruct.Pin = Out_1_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_2':
+../Core/Src/main.c:490:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  490 |   GPIO_InitStruct.Pin = Out_2_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_3':
+../Core/Src/main.c:503:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  503 |   GPIO_InitStruct.Pin = Out_3_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_5':
+../Core/Src/main.c:516:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  516 |   GPIO_InitStruct.Pin = Out_5_Pin;
+      |   ^~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+10:38:55 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+../Core/Src/main.c: In function 'set_all_rows_input':
+../Core/Src/main.c:466:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  466 |   GPIO_InitStruct.Pin = In_2_Pin|In_1_Pin|In_3_Pin|In_4_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c:466:3: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: In function 'set_row_output_1':
+../Core/Src/main.c:477:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  477 |   GPIO_InitStruct.Pin = Out_1_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_2':
+../Core/Src/main.c:490:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  490 |   GPIO_InitStruct.Pin = Out_2_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_3':
+../Core/Src/main.c:503:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  503 |   GPIO_InitStruct.Pin = Out_3_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_5':
+../Core/Src/main.c:516:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  516 |   GPIO_InitStruct.Pin = Out_5_Pin;
+      |   ^~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+10:43:00 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+../Core/Src/main.c: In function 'set_all_rows_input':
+../Core/Src/main.c:466:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  466 |   GPIO_InitStruct.Pin = Out_1_Pin|Out_2_Pin|Out_3_Pin|Out_5_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c:466:3: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: In function 'set_row_output_1':
+../Core/Src/main.c:477:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  477 |   GPIO_InitStruct.Pin = Out_1_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_2':
+../Core/Src/main.c:490:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  490 |   GPIO_InitStruct.Pin = Out_2_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_3':
+../Core/Src/main.c:503:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  503 |   GPIO_InitStruct.Pin = Out_3_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c: In function 'set_row_output_5':
+../Core/Src/main.c:516:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  516 |   GPIO_InitStruct.Pin = Out_5_Pin;
+      |   ^~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+10:45:44 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+../Core/Src/main.c: In function 'set_all_rows_input':
+../Core/Src/main.c:466:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  466 |   GPIO_InitStruct.Pin = Out_1_Pin|Out_2_Pin|Out_3_Pin|Out_5_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c:466:3: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c: In function 'set_row_output_1':
+../Core/Src/main.c:478:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  478 |   GPIO_InitStruct.Pin = Out_1_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c:474:20: warning: unused variable 'gi' [-Wunused-variable]
+  474 |   GPIO_InitTypeDef gi = {0};
+      |                    ^~
+../Core/Src/main.c: In function 'set_row_output_2':
+../Core/Src/main.c:492:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  492 |   GPIO_InitStruct.Pin = Out_2_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c:488:20: warning: unused variable 'gi' [-Wunused-variable]
+  488 |   GPIO_InitTypeDef gi = {0};
+      |                    ^~
+../Core/Src/main.c: In function 'set_row_output_3':
+../Core/Src/main.c:506:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  506 |   GPIO_InitStruct.Pin = Out_3_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c:502:20: warning: unused variable 'gi' [-Wunused-variable]
+  502 |   GPIO_InitTypeDef gi = {0};
+      |                    ^~
+../Core/Src/main.c: In function 'set_row_output_5':
+../Core/Src/main.c:520:3: error: 'GPIO_InitStruct' undeclared (first use in this function)
+  520 |   GPIO_InitStruct.Pin = Out_5_Pin;
+      |   ^~~~~~~~~~~~~~~
+../Core/Src/main.c:516:20: warning: unused variable 'gi' [-Wunused-variable]
+  516 |   GPIO_InitTypeDef gi = {0};
+      |                    ^~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+10:46:40 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16560	    104	   2072	  18736	   4930	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+10:50:19 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16560	    104	   2072	  18736	   4930	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+11:05:37 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+11:47:04 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+11:53:46 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+11:53:54 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+11:59:15 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+13:08:44 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+13:14:39 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+13:14:59 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+13:16:53 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+13:25:32 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16560	    104	   2072	  18736	   4930	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+13:27:28 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16560	    104	   2072	  18736	   4930	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+13:28:01 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16560	    104	   2072	  18736	   4930	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+13:29:31 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16560	    104	   2072	  18736	   4930	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+13:31:54 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16560	    104	   2072	  18736	   4930	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+13:37:13 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16560	    104	   2072	  18736	   4930	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+13:49:07 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16560	    104	   2072	  18736	   4930	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+14:04:39 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16560	    104	   2072	  18736	   4930	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+14:05:54 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16560	    104	   2072	  18736	   4930	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+14:11:23 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+14:14:19 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+14:17:48 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+14:23:18 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16612	    104	   2072	  18788	   4964	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+14:26:34 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:34:1: warning: multi-line comment [-Wcomment]
+   34 | // #define SET_OUT1_PIN() \
+      | ^
+../Core/Src/main.c:37:1: warning: multi-line comment [-Wcomment]
+   37 | // #define SET_OUT2_PIN() \
+      | ^
+../Core/Src/main.c:40:1: warning: multi-line comment [-Wcomment]
+   40 | // #define SET_OUT3_PIN() \
+      | ^
+../Core/Src/main.c:43:1: warning: multi-line comment [-Wcomment]
+   43 | // #define SET_OUT5_PIN() \
+      | ^
+arm-none-eabi-gcc -o "ch1_key_mat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch1_key_mat\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch1_key_mat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch1_key_mat.elf
+ 
+arm-none-eabi-size  ch1_key_mat.elf 
+arm-none-eabi-objdump -h -S ch1_key_mat.elf  > "ch1_key_mat.list"
+   text	   data	    bss	    dec	    hex	filename
+  16616	    104	   2072	  18792	   4968	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch1_key_mat.list
+ 
+14:26:45 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16616	    104	   2072	  18792	   4968	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+14:26:48 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16616	    104	   2072	  18792	   4968	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+14:26:54 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16616	    104	   2072	  18792	   4968	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
+14:27:53 **** Incremental Build of configuration Debug for project ch1_key_mat ****
+make -j20 all 
+arm-none-eabi-size  ch1_key_mat.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16616	    104	   2072	  18792	   4968	ch1_key_mat.elf
+Finished building: default.size.stdout
+ 
