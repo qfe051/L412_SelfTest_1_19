@@ -31,26 +31,18 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define SET_OUT1_PIN() \
-  HAL_GPIO_WritePin(Out_1_GPIO_Port, Out_1_Pin, GPIO_PIN_SET); \
-  HAL_GPIO_WritePin(Out_2_GPIO_Port, Out_2_Pin, GPIO_PIN_RESET); \
-  HAL_GPIO_WritePin(Out_3_GPIO_Port, Out_3_Pin, GPIO_PIN_RESET); \
-  HAL_GPIO_WritePin(Out_5_GPIO_Port, Out_5_Pin, GPIO_PIN_RESET);
-#define SET_OUT2_PIN() \
-  HAL_GPIO_WritePin(Out_1_GPIO_Port, Out_1_Pin, GPIO_PIN_RESET); \
-  HAL_GPIO_WritePin(Out_2_GPIO_Port, Out_2_Pin, GPIO_PIN_SET); \
-  HAL_GPIO_WritePin(Out_3_GPIO_Port, Out_3_Pin, GPIO_PIN_RESET); \
-  HAL_GPIO_WritePin(Out_5_GPIO_Port, Out_5_Pin, GPIO_PIN_RESET);
-#define SET_OUT3_PIN() \
-  HAL_GPIO_WritePin(Out_1_GPIO_Port, Out_1_Pin, GPIO_PIN_RESET); \
-  HAL_GPIO_WritePin(Out_2_GPIO_Port, Out_2_Pin, GPIO_PIN_RESET); \
-  HAL_GPIO_WritePin(Out_3_GPIO_Port, Out_3_Pin, GPIO_PIN_SET); \
-  HAL_GPIO_WritePin(Out_5_GPIO_Port, Out_5_Pin, GPIO_PIN_RESET);
-#define SET_OUT5_PIN() \
-  HAL_GPIO_WritePin(Out_1_GPIO_Port, Out_1_Pin, GPIO_PIN_RESET); \
-  HAL_GPIO_WritePin(Out_2_GPIO_Port, Out_2_Pin, GPIO_PIN_RESET); \
-  HAL_GPIO_WritePin(Out_3_GPIO_Port, Out_3_Pin, GPIO_PIN_RESET); \
-  HAL_GPIO_WritePin(Out_5_GPIO_Port, Out_5_Pin, GPIO_PIN_SET);
+// #define SET_OUT1_PIN() \
+//   set_all_rows_input(); \
+//   set_row_output_1();
+// #define SET_OUT2_PIN() \
+//   set_all_rows_input(); \
+//   set_row_output_2();
+// #define SET_OUT3_PIN() \
+//   set_all_rows_input(); \
+//   set_row_output_3();
+// #define SET_OUT5_PIN() \
+//   set_all_rows_input(); \
+//   set_row_output_5();
 
 /* USER CODE END PD */
 
@@ -70,11 +62,6 @@ UART_HandleTypeDef hlpuart1;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_LPUART1_UART_Init(void);
-
-//add 함수들 
-static void scan_keypad_to_array(void);
-static void process_press_events(void);
-
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -89,6 +76,29 @@ static void process_press_events(void);
 
 static uint8_t key[4][4];
 static uint8_t prev_key[4][4];
+
+static void scan_keypad_to_array(void);
+static void process_press_events(void);
+// input - output 변경 함수들 
+static void set_all_rows_input(void);
+static void set_row_output_1(void);
+static void set_row_output_2(void);
+static void set_row_output_3(void);
+static void set_row_output_5(void);
+
+#define SET_OUT1_PIN() \
+  set_all_rows_input(); \
+  set_row_output_1();
+#define SET_OUT2_PIN() \
+  set_all_rows_input(); \
+  set_row_output_2();
+#define SET_OUT3_PIN() \
+  set_all_rows_input(); \
+  set_row_output_3();
+#define SET_OUT5_PIN() \
+  set_all_rows_input(); \
+  set_row_output_5();
+
 
 //UART로 출력 보내기 위한 함수 
 int _write(int file, char *ptr, int len)
@@ -140,6 +150,9 @@ int main(void)
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
+	// add
+	// 이후로 정의 MX_GPIO_Init();
+
   //add - 
   //memset 의미 확인하기 
   memset(key, 0, sizeof(key));
@@ -160,13 +173,11 @@ int main(void)
     process_press_events();
 
     HAL_Delay(20);
-
-
-   /* USER CODE END 3 */
   }
 
-}
 
+  /* USER CODE END 3 */
+}
 
 /**
   * @brief System Clock Configuration
@@ -285,8 +296,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : SMPS_EN_Pin SMPS_V1_Pin SMPS_SW_Pin */
-  GPIO_InitStruct.Pin = SMPS_EN_Pin|SMPS_V1_Pin|SMPS_SW_Pin;
+  /*Configure GPIO pins : SMPS_EN_Pin SMPS_V1_Pin SMPS_SW_Pin Out_2_Pin
+                           Out_3_Pin Out_4_Pin */
+  GPIO_InitStruct.Pin = SMPS_EN_Pin|SMPS_V1_Pin|SMPS_SW_Pin|Out_2_Pin
+                          |Out_3_Pin|Out_4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -301,27 +314,20 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pins : In_2_Pin In_1_Pin In_3_Pin In_4_Pin */
   GPIO_InitStruct.Pin = In_2_Pin|In_1_Pin|In_3_Pin|In_4_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /*Configure GPIO pin : Out_5_Pin */
   GPIO_InitStruct.Pin = Out_5_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(Out_5_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : Out_2_Pin Out_3_Pin Out_4_Pin */
-  GPIO_InitStruct.Pin = Out_2_Pin|Out_3_Pin|Out_4_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : Out_1_Pin */
   GPIO_InitStruct.Pin = Out_1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(Out_1_GPIO_Port, &GPIO_InitStruct);
 
@@ -349,7 +355,7 @@ static void scan_keypad_to_array(void)
   input[2] = HAL_GPIO_ReadPin(In_3_GPIO_Port, In_3_Pin);
   input[3] = HAL_GPIO_ReadPin(In_4_GPIO_Port, In_4_Pin);
   
-  for (uint8_t i = 0; i < 4; i++)
+   for (uint8_t i = 0; i < 4; i++)
   {
     /* code */
     // (조건식) ?
@@ -419,28 +425,27 @@ static void scan_keypad_to_array(void)
 
 }
 
+// 함수 수정 필요
+// 어떤 것을 수정해야할지 확인하기 
 static void process_press_events(void)
 {
   for (uint8_t r = 0; r < 4; r++)
   {
     for (uint8_t c = 0; c < 4; c++)
     {
-      /* code */
       //press
       // 0 -> 1
       if(key[r][c] && !prev_key[r][c])
       {
-        printf("(%d,%d) pressed \r\n",r,c);
+        printf("(%d,%d) pressed \r\n",c,r);
       }
       //released
       // 1 -> 0
       else if(!key[r][c] && prev_key[r][c])
       {
-        printf("(%d,%d) released \r\n",r,c);
+        printf("(%d,%d) released \r\n",c,r);
       }
     }
-    
-    /* code */
   }
   // prev_key에 key값 보냄
   // 메모리값 통째로 보내는 함수 
@@ -454,8 +459,86 @@ static inline void set_row(uint8_t row)
     HAL_GPIO_WritePin(Out_3_GPIO_Port, Out_3_Pin, (row == 2) ? GPIO_PIN_SET : GPIO_PIN_RESET);
     HAL_GPIO_WritePin(Out_5_GPIO_Port, Out_5_Pin, (row == 3) ? GPIO_PIN_SET : GPIO_PIN_RESET);
 }
+// input으로 설정하여 High-Z 갖도록 함
+static void set_all_rows_input(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0}; 
 
+  // Out_1 ~ Out_4 전부 INPUT
+  // gpio 핀 확인하기 -> 판마다 설정 다름
+  GPIO_InitStruct.Pin = Out_1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(Out_1_GPIO_Port, &GPIO_InitStruct);  
 
+  GPIO_InitStruct.Pin = Out_2_Pin|Out_3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);  
+
+  GPIO_InitStruct.Pin = Out_5_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(Out_5_GPIO_Port, &GPIO_InitStruct);  
+
+}
+// 1개 핀만 output 설정
+static void set_row_output_1(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0}; 
+  // 해당 row만 OUTPUT
+  // HIGH 또는 LOW 출력
+  /*Configure GPIO pin : Out_1_Pin */
+  GPIO_InitStruct.Pin = Out_1_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(Out_1_GPIO_Port, &GPIO_InitStruct);
+  // high로 set
+  HAL_GPIO_WritePin(Out_1_GPIO_Port, Out_1_Pin, GPIO_PIN_SET);
+}
+static void set_row_output_2(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0}; 
+  // 해당 row만 OUTPUT
+  // HIGH 또는 LOW 출력
+  //out 2번
+  GPIO_InitStruct.Pin = Out_2_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  // high로 set
+  HAL_GPIO_WritePin(Out_2_GPIO_Port, Out_2_Pin, GPIO_PIN_SET);
+}
+static void set_row_output_3(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0}; 
+  // 해당 row만 OUTPUT
+  // HIGH 또는 LOW 출력
+  //out 3번
+  GPIO_InitStruct.Pin = Out_3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  // high로 set
+  HAL_GPIO_WritePin(Out_3_GPIO_Port, Out_3_Pin, GPIO_PIN_SET);
+}
+static void set_row_output_5(void)
+{
+  GPIO_InitTypeDef GPIO_InitStruct = {0}; 
+  // 해당 row만 OUTPUT
+  // HIGH 또는 LOW 출력
+  /*Configure GPIO pin : Out_5_Pin */
+  GPIO_InitStruct.Pin = Out_5_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(Out_5_GPIO_Port, &GPIO_InitStruct);
+  // high로 set
+  HAL_GPIO_WritePin(Out_5_GPIO_Port, Out_5_Pin, GPIO_PIN_SET);
+}
 
 /* USER CODE END 4 */
 
