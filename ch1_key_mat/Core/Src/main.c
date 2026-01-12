@@ -422,28 +422,32 @@ static void scan_keypad_to_array(void)
     key[3][i] = (input[i]==1) ? 1 : 0 ;
   }
   HAL_Delay(50);
+  // 모두 input으로 초기화
+  set_all_rows_input();
 
 }
 
 // 함수 수정 필요
 // 어떤 것을 수정해야할지 확인하기 
-static void process_press_events(void)
-{
+static void process_press_events(void) {
   for (uint8_t r = 0; r < 4; r++)
   {
     for (uint8_t c = 0; c < 4; c++)
     {
       //press
-      // 0 -> 1
-      if(key[r][c] && !prev_key[r][c])
+      if (key[r][c] != prev_key[r][c])
       {
-        printf("(%d,%d) pressed \r\n",c,r);
-      }
-      //released
-      // 1 -> 0
-      else if(!key[r][c] && prev_key[r][c])
-      {
-        printf("(%d,%d) released \r\n",c,r);
+        prev_key[r][c] = key[r][c];
+        if (key[r][c] == 1)
+        {
+          /* 입력 */ 
+          printf("(%d,%d) pressed \r\n",c,r);
+        }
+        else if (key[r][c] != 1)
+        {
+          /* 입력 중지  */
+          printf("(%d,%d) released \r\n",c,r);
+        }
       }
     }
   }
