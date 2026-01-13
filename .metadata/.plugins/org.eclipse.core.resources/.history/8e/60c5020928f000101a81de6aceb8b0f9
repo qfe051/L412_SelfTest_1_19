@@ -60,24 +60,7 @@ static void MX_LPUART1_UART_Init(void);
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <stm32l412xx.h>
 
-
-//선언 함수
-static GPIO_TypeDef* const ROW_PORT[];
-static const uint16_t ROW_PIN[];
-static GPIO_TypeDef* const COL_PORT[];
-static const uint16_t COL_PIN[];
-
-static const uint8_t img_x[3][3];
-static const uint8_t buf_8[8][8];
-
-
-static inline void row_off(uint8_t r);
-static inline void row_on(uint8_t r);
-static inline void col_on(uint8_t c);
-static inline void col_off(uint8_t c);
-static inline void matrix_all_off(void);
 
 //UART로 출력 보내기 위한 함수 
 int _write(int file, char *ptr, int len)
@@ -123,26 +106,57 @@ int main(void)
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
-    // 함수 및 배열 동작 test
-    for (int i=0 ; i<8 ; i++){
-      col_on(i);
-      row_on(i);
-      HAL_Delay(1000);
-      matrix_all_off();
-    }
+  // HAL_GPIO_WritePin(C_1_GPIO_Port, C_1_Pin, GPIO_PIN_SET);
+	// HAL_GPIO_WritePin(R_1_GPIO_Port, R_1_Pin, GPIO_PIN_RESET);
+	// printf("test 1 \r\n");
+	// HAL_Delay(500);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    // 함수 및 배열 동작 test
-    for (int i=0 ; i<8 ; i++){
-      col_on(i);
-      row_on(i);
-      HAL_Delay(1000);
-      matrix_all_off();
-    }
+	  HAL_GPIO_WritePin(C_1_GPIO_Port, C_1_Pin, GPIO_PIN_RESET);
+	  HAL_GPIO_WritePin(R_1_GPIO_Port, R_1_Pin, GPIO_PIN_SET);
+	  HAL_Delay(500);
+    
+    MX_GPIO_Init();
+    HAL_GPIO_WritePin(C_2_GPIO_Port, C_2_Pin, GPIO_PIN_RESET);
+	  HAL_GPIO_WritePin(R_2_GPIO_Port, R_2_Pin, GPIO_PIN_SET);
+	  HAL_Delay(500);
+
+    MX_GPIO_Init();
+    HAL_GPIO_WritePin(C_3_GPIO_Port, C_3_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(R_3_GPIO_Port, R_3_Pin, GPIO_PIN_SET);
+    HAL_Delay(500);
+
+    MX_GPIO_Init();
+    HAL_GPIO_WritePin(C_4_GPIO_Port, C_4_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(R_4_GPIO_Port, R_4_Pin, GPIO_PIN_SET);
+    HAL_Delay(500);
+
+    MX_GPIO_Init();
+    HAL_GPIO_WritePin(C_5_GPIO_Port, C_5_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(R_5_GPIO_Port, R_5_Pin, GPIO_PIN_SET);
+    HAL_Delay(500);
+
+    MX_GPIO_Init();
+    HAL_GPIO_WritePin(C_6_GPIO_Port, C_6_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(R_6_GPIO_Port, R_6_Pin, GPIO_PIN_SET);
+    HAL_Delay(500);
+
+    MX_GPIO_Init();
+    HAL_GPIO_WritePin(C_7_GPIO_Port, C_7_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(R_7_GPIO_Port, R_7_Pin, GPIO_PIN_SET);
+    HAL_Delay(500);
+
+    MX_GPIO_Init();
+    HAL_GPIO_WritePin(C_8_GPIO_Port, C_8_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(R_8_GPIO_Port, R_8_Pin, GPIO_PIN_SET);
+    HAL_Delay(500);
+
+    MX_GPIO_Init();
 
     /* USER CODE END WHILE */
 
@@ -281,42 +295,49 @@ static void MX_GPIO_Init(void)
                            C_6_Pin C_7_Pin */
   GPIO_InitStruct.Pin = C_1_Pin|C_2_Pin|C_4_Pin|C_5_Pin
                           |C_6_Pin|C_7_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : C_3_Pin */
   GPIO_InitStruct.Pin = C_3_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(C_3_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : C_8_Pin LD4_Pin */
-  GPIO_InitStruct.Pin = C_8_Pin|LD4_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  /*Configure GPIO pin : C_8_Pin */
+  GPIO_InitStruct.Pin = C_8_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+  HAL_GPIO_Init(C_8_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : R_7_Pin R_4_Pin R_5_Pin */
   GPIO_InitStruct.Pin = R_7_Pin|R_4_Pin|R_5_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
+  /*Configure GPIO pin : LD4_Pin */
+  GPIO_InitStruct.Pin = LD4_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(LD4_GPIO_Port, &GPIO_InitStruct);
+
   /*Configure GPIO pin : R_8_Pin */
   GPIO_InitStruct.Pin = R_8_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(R_8_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : R_2_Pin R_1_Pin R_3_Pin R_6_Pin */
   GPIO_InitStruct.Pin = R_2_Pin|R_1_Pin|R_3_Pin|R_6_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
@@ -327,97 +348,7 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-//add - 함수 정의
-// static inline void rows_all_off(void)
-// {
-//   HAL_GPIO_WritePin(R_1_GPIO_Port, R_1_Pin, GPIO_PIN_RESET);
-//   HAL_GPIO_WritePin(R_2_GPIO_Port, R_2_Pin, GPIO_PIN_RESET);
-//   HAL_GPIO_WritePin(R_3_GPIO_Port, R_3_Pin, GPIO_PIN_RESET);
-//   HAL_GPIO_WritePin(R_4_GPIO_Port, R_4_Pin, GPIO_PIN_RESET);
-//   HAL_GPIO_WritePin(R_5_GPIO_Port, R_5_Pin, GPIO_PIN_RESET);
-//   HAL_GPIO_WritePin(R_6_GPIO_Port, R_6_Pin, GPIO_PIN_RESET);
-//   HAL_GPIO_WritePin(R_7_GPIO_Port, R_7_Pin, GPIO_PIN_RESET);
-//   HAL_GPIO_WritePin(R_8_GPIO_Port, R_8_Pin, GPIO_PIN_RESET);
-// }
 
-// static inline void cols_all_off(void)
-// {
-//   HAL_GPIO_WritePin(C_1_GPIO_Port, C_1_Pin, GPIO_PIN_SET);
-//   HAL_GPIO_WritePin(C_2_GPIO_Port, C_2_Pin, GPIO_PIN_SET);
-//   HAL_GPIO_WritePin(C_3_GPIO_Port, C_3_Pin, GPIO_PIN_SET);
-//   HAL_GPIO_WritePin(C_4_GPIO_Port, C_4_Pin, GPIO_PIN_SET);
-//   HAL_GPIO_WritePin(C_5_GPIO_Port, C_5_Pin, GPIO_PIN_SET);
-//   HAL_GPIO_WritePin(C_6_GPIO_Port, C_6_Pin, GPIO_PIN_SET);
-//   HAL_GPIO_WritePin(C_7_GPIO_Port, C_7_Pin, GPIO_PIN_SET);
-//   HAL_GPIO_WritePin(C_8_GPIO_Port, C_8_Pin, GPIO_PIN_SET);
-// }
-
-// static inline void clear_matrix(void)
-// {
-//   cols_all_off();
-//   rows_all_off();
-// }
-
-// 배열 선언 
-
-// C , R 배열화 진행 
-static GPIO_TypeDef* const ROW_PORT[] = {
-  R_1_GPIO_Port ,R_2_GPIO_Port, R_3_GPIO_Port, R_4_GPIO_Port,
-  R_5_GPIO_Port, R_6_GPIO_Port, R_7_GPIO_Port, R_8_GPIO_Port
-};
-static const uint16_t ROW_PIN[] = {
-  R_1_Pin, R_2_Pin, R_3_Pin, R_4_Pin,
-  R_5_Pin, R_6_Pin, R_7_Pin, R_8_Pin
-};
-
-static GPIO_TypeDef* const COL_PORT[] = {
-  C_1_GPIO_Port, C_2_GPIO_Port, C_3_GPIO_Port, C_4_GPIO_Port,
-  C_5_GPIO_Port, C_6_GPIO_Port, C_7_GPIO_Port, C_8_GPIO_Port
-};
-static const uint16_t COL_PIN[] = {
-  C_1_Pin, C_2_Pin, C_3_Pin, C_4_Pin,
-  C_5_Pin, C_6_Pin, C_7_Pin, C_8_Pin
-};
-
-// 3x3 이미지 -> X 자 모양 
-static const uint8_t img_x[3][3] = {
-  {1,0,1},
-  {0,1,0},
-  {1,0,1}
-};
-
-// 8x8 출력 버퍼 생성  
-static const uint8_t buf_8[8][8];
-
-// 배열에서 사용성 향상 위한 함수 선언
-
-static inline void row_off(uint8_t r){
-  HAL_GPIO_WritePin(ROW_PORT[r],ROW_PIN[r],GPIO_PIN_RESET);
-}
-
-static inline void row_on(uint8_t r){
-  HAL_GPIO_WritePin(ROW_PORT[r],ROW_PIN[r],GPIO_PIN_SET);
-}
-
-static inline void col_on(uint8_t c){
-  HAL_GPIO_WritePin(COL_PORT[c],COL_PIN[c],GPIO_PIN_RESET);
-}
-
-static inline void col_off(uint8_t c){
-  HAL_GPIO_WritePin(COL_PORT[c],COL_PIN[c],GPIO_PIN_SET);
-}
-
-// 전체 종료 
-static inline void matrix_all_off(void){
-  // col -> set
-  for (int c=0; c<8 ; c++){
-    col_off(c);
-  }
-  // row -> reset
-  for (int r=0; r<8 ; r++){
-    row_off(r);
-  }
-}
 /* USER CODE END 4 */
 
 /**

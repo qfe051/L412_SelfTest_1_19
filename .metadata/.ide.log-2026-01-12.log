@@ -1,0 +1,49 @@
+2026-01-13 02:47:42,938 [INFO] WebApp:194 - Connection lost
+2026-01-13 02:47:43,318 [INFO] WebApp:191 - Connection restablished
+2026-01-13 08:44:33,310 [INFO] WebApp:194 - Connection lost
+2026-01-13 08:44:34,099 [INFO] WebApp:191 - Connection restablished
+2026-01-13 08:44:37,135 [INFO] WebApp:194 - Connection lost
+2026-01-13 08:44:37,361 [INFO] WebApp:191 - Connection restablished
+2026-01-13 08:53:02,433 [INFO] WebApp:194 - Connection lost
+2026-01-13 08:53:02,634 [INFO] WebApp:191 - Connection restablished
+2026-01-13 08:53:05,402 [INFO] WebApp:194 - Connection lost
+2026-01-13 08:53:05,670 [INFO] WebApp:191 - Connection restablished
+2026-01-13 09:23:05,685 [INFO] WebApp:194 - Connection lost
+2026-01-13 09:23:05,963 [INFO] WebApp:191 - Connection restablished
+2026-01-13 09:27:53,036 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS, USART2]
+2026-01-13 09:27:53,163 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:28:03,599 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS, USART2]
+2026-01-13 09:28:03,733 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:28:15,591 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS, USART2]
+2026-01-13 09:28:15,729 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:28:29,286 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS, USART2]
+2026-01-13 09:28:29,420 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:44:31,033 [INFO] WebApp:194 - Connection lost
+2026-01-13 09:44:31,233 [INFO] WebApp:191 - Connection restablished
+2026-01-13 09:44:47,345 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:44:47,515 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:44:47,737 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:44:47,848 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:45:02,877 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:45:02,959 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:46:06,005 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:46:06,137 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:46:14,057 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:46:14,137 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:46:16,608 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:46:16,677 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:46:18,974 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:46:19,052 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:46:25,829 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:46:25,894 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:46:28,551 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:46:28,597 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:46:35,232 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:46:35,268 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:46:47,862 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:46:47,896 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:46:49,750 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:46:49,769 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:46:57,579 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
+2026-01-13 09:46:57,609 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2026-01-13 09:48:41,189 [INFO] Gpio:278 - dependency for GPIO [RCC, SYS]
