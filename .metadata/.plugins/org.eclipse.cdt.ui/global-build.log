@@ -2454,3 +2454,157 @@ arm-none-eabi-size  ch2_led_matrix_v2.elf
   11436	     12	   1708	  13156	   3364	ch2_led_matrix_v2.elf
 Finished building: default.size.stdout
  
+16:47:07 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'buf_clear':
+../Core/Src/main.c:455:19: error: assignment of read-only location 'buf_8[x][y]'
+  455 |       buf_8[x][y] = 0 ;
+      |                   ^
+../Core/Src/main.c: In function 'x_to_buf_8':
+../Core/Src/main.c:471:19: error: assignment of read-only location 'buf_8[d][f]'
+  471 |       buf_8[d][f] = img_x[x][y];
+      |                   ^
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+16:49:14 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch2_led_matrix_v2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch2_led_matrix_v2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch2_led_matrix_v2.elf
+ 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+arm-none-eabi-objdump -h -S ch2_led_matrix_v2.elf  > "ch2_led_matrix_v2.list"
+   text	   data	    bss	    dec	    hex	filename
+  16488	    104	   2104	  18696	   4908	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch2_led_matrix_v2.list
+ 
+16:49:55 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16488	    104	   2104	  18696	   4908	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+16:50:50 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  16488	    104	   2104	  18696	   4908	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+16:52:12 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch2_led_matrix_v2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch2_led_matrix_v2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch2_led_matrix_v2.elf
+ 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+arm-none-eabi-objdump -h -S ch2_led_matrix_v2.elf  > "ch2_led_matrix_v2.list"
+   text	   data	    bss	    dec	    hex	filename
+  16504	    104	   2104	  18712	   4918	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch2_led_matrix_v2.list
+ 
+16:54:09 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-gcc -o "ch2_led_matrix_v2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch2_led_matrix_v2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch2_led_matrix_v2.elf
+ 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+arm-none-eabi-objdump -h -S ch2_led_matrix_v2.elf  > "ch2_led_matrix_v2.list"
+   text	   data	    bss	    dec	    hex	filename
+  16504	    104	   2104	  18712	   4918	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch2_led_matrix_v2.list
+ 
+17:29:40 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'draw_buf_8_frame':
+../Core/Src/main.c:496:15: error: expected expression before 'uint16_t'
+  496 |     HAL_Delay(uint16_t row_hold_ms);
+      |               ^~~~~~~~
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:374:13: warning: 'print_buf8x8' defined but not used [-Wunused-function]
+  374 | static void print_buf8x8(void)
+      |             ^~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+17:30:27 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c:374:13: warning: 'print_buf8x8' defined but not used [-Wunused-function]
+  374 | static void print_buf8x8(void)
+      |             ^~~~~~~~~~~~
+arm-none-eabi-gcc -o "ch2_led_matrix_v2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch2_led_matrix_v2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch2_led_matrix_v2.elf
+ 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+arm-none-eabi-objdump -h -S ch2_led_matrix_v2.elf  > "ch2_led_matrix_v2.list"
+   text	   data	    bss	    dec	    hex	filename
+  14888	    104	   2104	  17096	   42c8	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch2_led_matrix_v2.list
+ 
+17:31:00 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14888	    104	   2104	  17096	   42c8	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+17:31:25 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14888	    104	   2104	  17096	   42c8	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+17:32:44 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14888	    104	   2104	  17096	   42c8	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+17:33:19 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14888	    104	   2104	  17096	   42c8	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+17:33:43 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14888	    104	   2104	  17096	   42c8	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+17:34:05 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14888	    104	   2104	  17096	   42c8	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+17:34:43 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14888	    104	   2104	  17096	   42c8	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 
+17:35:17 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+make -j20 all 
+arm-none-eabi-size  ch2_led_matrix_v2.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14888	    104	   2104	  17096	   42c8	ch2_led_matrix_v2.elf
+Finished building: default.size.stdout
+ 

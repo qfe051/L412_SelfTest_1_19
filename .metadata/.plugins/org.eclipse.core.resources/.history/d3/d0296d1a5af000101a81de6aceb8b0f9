@@ -493,7 +493,7 @@ static void draw_buf_8_frame(uint16_t row_hold_ms){
     row_on(r);
 
     // 유지시간 -> 사람 눈에 안띌 정도 , 1~2ms 까지 줄여보기
-    HAL_Delay(row_hold_ms);
+    HAL_Delay(uint16_t row_hold_ms);
   }
 }
 

@@ -81,11 +81,8 @@ static inline void col_on(uint8_t c);
 static inline void col_off(uint8_t c);
 static inline void matrix_all_off(void);
 
-
 static void buf_clear(void);
 static void x_to_buf_8(int a, int b);
-static void draw_buf_8_frame(uint16_t row_hold_ms);
-static void show_for_ms(uint32_t total_ms, uint16_t row_hold_ms);
 
 //UART로 출력 보내기 위한 함수 
 int _write(int file, char *ptr, int len)
@@ -132,7 +129,7 @@ int main(void)
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
     // 함수 및 배열 동작 test
-  	printf("start \r\n");
+  	printf('start \r\n')
     for (int i=0 ; i<8 ; i++){
       col_on(i);
       row_on(i);
@@ -151,7 +148,12 @@ int main(void)
       for(int x=0; x<8; x++){
       buf_clear();
       x_to_buf_8(i,x);
-      show_for_ms(150,2);
+      printf("i=%d, x=%d \r\n",i,x);
+      print_buf8x8();
+
+      HAL_Delay(200);
+
+
       }
     }
 
@@ -471,48 +473,6 @@ static void x_to_buf_8(int a, int b){
 
     }
   }
-}
-
-// 한 프레임 생성
-// row_hold_ms - 다음 함수에서 대입 예정
-static void draw_buf_8_frame(uint16_t row_hold_ms){
-  for(int r=0; r<8; r++){
-    // 전체 off
-    matrix_all_off();
-
-    // row에서 col 설정
-    for (int c=0; c<8; c++){
-      if(buf_8[r][c]==1){
-        col_on(c);
-      }
-      else{
-        col_off(c);
-      }
-    }
-    // row 하나 단위로 c 켤 것들 다 켜기 
-    row_on(r);
-
-    // 유지시간 -> 사람 눈에 안띌 정도 , 1~2ms 까지 줄여보기
-    HAL_Delay(row_hold_ms);
-  }
-}
-
-// 눈에 보이도록 '
-static void show_for_ms(uint32_t total_ms, uint16_t row_hold_ms){
-  // row = 8 
-  uint32_t frame_time = 8 * row_hold_ms;
-  if (frame_time == 0){
-    frame_time = 1 ; 
-  }
-
-  uint32_t frames = total_ms / frame_time;
-  if (frames == 0){
-    frames = 1 ; 
-  }
-  for (uint32_t i=0; i<frames; i++){
-    draw_buf_8_frame(row_hold_ms);
-  }
-
 }
 
 /* USER CODE END 4 */
