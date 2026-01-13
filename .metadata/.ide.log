@@ -244,3 +244,40 @@
 2026-01-13 17:23:17,900 [INFO] WebApp:191 - Connection restablished
 2026-01-13 17:43:37,968 [INFO] WebApp:194 - Connection lost
 2026-01-13 17:43:38,145 [INFO] WebApp:191 - Connection restablished
+2026-01-13 17:53:18,213 [INFO] WebApp:194 - Connection lost
+2026-01-13 17:53:18,363 [INFO] WebApp:191 - Connection restablished
+2026-01-13 17:55:34,747 [INFO] Gpio:278 - dependency for GPIO [LPUART1, RCC, SYS]
+2026-01-13 17:58:27,548 [INFO] WebApp:194 - Connection lost
+2026-01-13 17:58:27,727 [INFO] WebApp:191 - Connection restablished
+2026-01-13 17:58:43,278 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 971717848 Bytes (1073741824)
+2026-01-13 17:58:45,400 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 809099336 Bytes (1073741824)
+2026-01-13 17:58:45,918 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
+2026-01-13 17:58:45,918 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
+2026-01-13 17:58:45,919 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
+2026-01-13 17:58:45,919 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
+2026-01-13 17:58:45,919 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: LPUART
+2026-01-13 17:58:45,921 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
+2026-01-13 17:58:46,140 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\license.tmp_save
+2026-01-13 17:58:46,369 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\license.tmp
+2026-01-13 17:58:46,431 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\gpio.tmp_save
+2026-01-13 17:58:46,608 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\gpio.tmp
+2026-01-13 17:58:46,714 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_it.c_save
+2026-01-13 17:58:46,933 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_it.c
+2026-01-13 17:58:46,944 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_it.h_save
+2026-01-13 17:58:47,030 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_it.h
+2026-01-13 17:58:47,054 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_hal_msp.c_save
+2026-01-13 17:58:47,193 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_hal_msp.c
+2026-01-13 17:58:47,201 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\system.tmp_save
+2026-01-13 17:58:47,271 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\system.tmp
+2026-01-13 17:58:47,289 [INFO] CodeEngine:321 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_hal_conf.h_save
+2026-01-13 17:58:47,401 [INFO] CodeEngine:345 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_hal_conf.h
+2026-01-13 17:58:47,451 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\main.h_save
+2026-01-13 17:58:47,617 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\main.h
+2026-01-13 17:58:47,628 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\main.c_save
+2026-01-13 17:58:47,721 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\main.c
+2026-01-13 17:58:48,148 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 316mS.
+2026-01-13 17:58:48,153 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
+2026-01-13 17:58:48,210 [INFO] ConfigFileManager:1595 - The Die is : DIE464
+2026-01-13 17:58:49,239 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 1086mS.
+2026-01-13 17:58:49,240 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 1mS.
+2026-01-13 17:58:49,244 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.

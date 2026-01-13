@@ -265,13 +265,13 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, C_1_Pin|C_2_Pin|C_4_Pin|C_5_Pin
-                          |C_6_Pin|C_7_Pin, GPIO_PIN_RESET);
+                          |C_6_Pin|C_7_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(C_3_GPIO_Port, C_3_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(C_3_GPIO_Port, C_3_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(C_8_GPIO_Port, C_8_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(C_8_GPIO_Port, C_8_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, R_7_Pin|LD4_Pin|R_4_Pin|R_5_Pin, GPIO_PIN_RESET);
