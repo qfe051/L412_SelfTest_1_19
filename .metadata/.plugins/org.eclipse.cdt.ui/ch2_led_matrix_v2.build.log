@@ -1,20 +1,10 @@
-18:00:40 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+16:02:34 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
 make -j20 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c:381:13: warning: 'print_buf8x8' defined but not used [-Wunused-function]
-  381 | static void print_buf8x8(void)
-      |             ^~~~~~~~~~~~
-arm-none-eabi-gcc -o "ch2_led_matrix_v2.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch2_led_matrix_v2.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: ch2_led_matrix_v2.elf
- 
 arm-none-eabi-size  ch2_led_matrix_v2.elf 
-arm-none-eabi-objdump -h -S ch2_led_matrix_v2.elf  > "ch2_led_matrix_v2.list"
    text	   data	    bss	    dec	    hex	filename
-  14920	    104	   2104	  17128	   42e8	ch2_led_matrix_v2.elf
+  15096	     12	   1772	  16880	   41f0	ch2_led_matrix_v2.elf
 Finished building: default.size.stdout
  
-Finished building: ch2_led_matrix_v2.list
- 
 
-18:00:42 Build Finished. 0 errors, 1 warnings. (took 2s.71ms)
+16:02:35 Build Finished. 0 errors, 0 warnings. (took 572ms)
 

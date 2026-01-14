@@ -132,13 +132,13 @@ int main(void)
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
     // 함수 및 배열 동작 test
-  	// printf("start \r\n");
-    // for (int i=0 ; i<8 ; i++){
-    //   col_on(i);
-    //   row_on(i);
-    //   HAL_Delay(1000);
-    //   matrix_all_off();
-    // }
+  	printf("start \r\n");
+    for (int i=0 ; i<8 ; i++){
+      col_on(i);
+      row_on(i);
+      HAL_Delay(1000);
+      matrix_all_off();
+    }
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -147,9 +147,11 @@ int main(void)
   {
     // 좌 -> 우 시프트
     for (int i=0 ; i<8 ; i++){
+      
       for(int x=0; x<8; x++){
       buf_clear();
-      x_to_buf_8(x,i);
+      i=i+1;
+      x_to_buf_8(i,x);
       show_for_ms(150,2);
       }
     }
@@ -456,38 +458,17 @@ static void buf_clear(void){
 } 
 
 // 버퍼 복사 함수 - 나머지 연산자 사용해보기 
-// 나머지 - x 값, 몫 - y값 올려주는 용도
-// static void x_to_buf_8(int a, int b){
-//   for (int y=0; y<3; y++){
-
-//     for (int x=0; x<3; x++){
-//       int raw_x = a + x; // 실제 x 연산 해주는 값 
-//       int bx = raw_x % 8 ; // 0~7 찍혀야하는 좌표
-//       int carry = raw_x / 8; // int 사용하여 몫이 1 or 0으로 출력 
-
-//       int raw_y = b + y + carry; // carry값 유무를 통해 1칸 단위로 움직이도록
-//       int by = raw_y % 8;
-
-//         buf_8[by][bx] = img_x[y][x];
-
-
-//     }
-//   }
-// }
-// c r 순서대로 해보기 
 static void x_to_buf_8(int a, int b){
-  for (int r=0; r<3; r++){
+  for (int x=0; x<3; x++){
 
-    for (int c=0; c<3; c++){
-      int raw_c = a + c; // 실제 x 연산 해주는 값 
-      int bc = raw_c % 8 ; // 0~7 찍혀야하는 좌표
-      int carry = raw_c / 8; // int 사용하여 몫이 1 or 0으로 출력 
+    for (int y=0; y<3; y++){
+      int d = a + x;
+      int f = b + y;
+      // 8 넘어가면 다시 0부터 시작하도록 함
+      d = d % 8;
+      f = f % 8;
 
-      int raw_r = b + r + carry; // carry값 유무를 통해 1칸 단위로 움직이도록
-      int br = raw_r % 8;
-
-        buf_8[bc][br] = img_x[c][r];
-
+      buf_8[d][f] = img_x[x][y];
 
     }
   }
@@ -495,7 +476,6 @@ static void x_to_buf_8(int a, int b){
 
 // 한 프레임 생성
 // row_hold_ms - 다음 함수에서 대입 예정
-// c r 순서로 업데이트 확인 
 static void draw_buf_8_frame(uint16_t row_hold_ms){
   for(int r=0; r<8; r++){
     // 전체 off
@@ -503,7 +483,7 @@ static void draw_buf_8_frame(uint16_t row_hold_ms){
 
     // row에서 col 설정
     for (int c=0; c<8; c++){
-      if(buf_8[c][r]==1){
+      if(buf_8[r][c]==1){
         col_on(c);
       }
       else{
