@@ -61,10 +61,10 @@ void Error_Handler(void);
 #define B1_GPIO_Port GPIOC
 #define MCO_Pin GPIO_PIN_0
 #define MCO_GPIO_Port GPIOH
-#define C_1_Pin GPIO_PIN_2
-#define C_1_GPIO_Port GPIOA
-#define C_2_Pin GPIO_PIN_3
-#define C_2_GPIO_Port GPIOA
+#define C_1_Pin GPIO_PIN_0
+#define C_1_GPIO_Port GPIOC
+#define C_2_Pin GPIO_PIN_1
+#define C_2_GPIO_Port GPIOC
 #define C_4_Pin GPIO_PIN_4
 #define C_4_GPIO_Port GPIOA
 #define C_5_Pin GPIO_PIN_5

@@ -132,13 +132,28 @@ int main(void)
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
     // 함수 및 배열 동작 test
-  	// printf("start \r\n");
+  	printf("start \r\n");
     // for (int i=0 ; i<8 ; i++){
     //   col_on(i);
     //   row_on(i);
     //   HAL_Delay(1000);
     //   matrix_all_off();
     // }
+    
+    // col2 관련 테스트 , c r 순서
+    for (int r = 0; r < 8; r++){
+      buf_clear();
+      for (int c = 0; c < 8; c++) {
+		  buf_8[r][c] = 1;   // col=1 전체 ON
+		}
+    print_buf8x8();
+    show_for_ms(100, 2);
+    buf_clear();
+    matrix_all_off();
+    }
+
+    
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -150,6 +165,7 @@ int main(void)
       for(int x=0; x<8; x++){
       buf_clear();
       x_to_buf_8(x,i);
+      print_buf8x8();
       show_for_ms(150,2);
       }
     }
@@ -263,11 +279,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, C_1_Pin|C_2_Pin|C_4_Pin|C_5_Pin
-                          |C_6_Pin|C_7_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOC, C_1_Pin|C_2_Pin|C_3_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(C_3_GPIO_Port, C_3_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOA, C_4_Pin|C_5_Pin|C_6_Pin|C_7_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(C_8_GPIO_Port, C_8_Pin, GPIO_PIN_SET);
@@ -287,21 +302,19 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : C_1_Pin C_2_Pin C_4_Pin C_5_Pin
-                           C_6_Pin C_7_Pin */
-  GPIO_InitStruct.Pin = C_1_Pin|C_2_Pin|C_4_Pin|C_5_Pin
-                          |C_6_Pin|C_7_Pin;
+  /*Configure GPIO pins : C_1_Pin C_2_Pin C_3_Pin */
+  GPIO_InitStruct.Pin = C_1_Pin|C_2_Pin|C_3_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : C_4_Pin C_5_Pin C_6_Pin C_7_Pin */
+  GPIO_InitStruct.Pin = C_4_Pin|C_5_Pin|C_6_Pin|C_7_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : C_3_Pin */
-  GPIO_InitStruct.Pin = C_3_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(C_3_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : C_8_Pin LD4_Pin */
   GPIO_InitStruct.Pin = C_8_Pin|LD4_Pin;
