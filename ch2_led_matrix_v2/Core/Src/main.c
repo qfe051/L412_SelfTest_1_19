@@ -164,7 +164,7 @@ int main(void)
         buf_clear();
         x_to_buf_8(x, i);
         //        print_buf8x8();
-        show_for_ms(80, 1);
+        show_for_ms(8, 1);
       }
     }
 
