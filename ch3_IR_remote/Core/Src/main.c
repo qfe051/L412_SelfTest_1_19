@@ -49,10 +49,21 @@ TIM_HandleTypeDef htim2;
 //  인터럽트 어떻게 받아오는지 알고 사용하기
 //  volatile -> 컴파일러의 최적화를 방지
 //  인터럽트 콜백 담당하는 함수 (HAL_GPIO_EXTI_Callback)
-volatile uint32_t ir_last_time = 0;    // 직전 edge 발생
-volatile uint32_t ir_current_time = 0; // 현재 edge 발생
-volatile uint32_t ir_diff = 0;         // 펄스폭 시간차 계산
-volatile uint32_t ir_flag = 0;         // ISR에서 1로 올라감. -> while로 와서 다른 동작 진행할 수 있도록
+volatile uint32_t ir_last_time = 0;      // 직전 edge 발생
+volatile uint32_t ir_current_time = 0;   // 현재 edge 발생
+volatile uint32_t ir_diff = 0;           // 펄스폭 시간차 계산
+volatile uint32_t packet_start_time = 0; // Leader code 시작 시간 -> 변수 재확인 필요
+// volatile uint32_t ir_flag = 0;         // ISR에서 1로 올라감. -> while로 와서 다른 동작 진행할 수 있도록
+
+// 데이터 수신하기 위한 변수
+volatile uint8_t ir_state = 0;      // 0: 대기 상태 , 1: 데이터 수신 중 (010101 관련 수신)
+volatile uint32_t ir_data_temp = 0; // 임시 저장
+volatile uint8_t ir_bit_count = 0;  // 비트 개수
+
+// main에서 실행용도
+volatile uint32_t ir_received_code = 0; // 완성된 코드 => data 코드 해석 필요
+volatile uint8_t ir_flag = 0;           // ISR에서 1로 올라감. -> while로 와서 다른 동작 진행할 수 있도록
+volatile uint8_t ir_repeat_flag = 0;    // [repeat 버전] ISR에서 1로 올라감. -> while로 와서 다른 동작 진행할 수 있도록
 
 // 1 (High): Rising Edge 발생 (직전까지 Low였음) -> Low 구간 길이 측정됨
 // 0 (Low): Falling Edge 발생 (직전까지 High였음) -> High 구간 길이 측정됨
@@ -63,6 +74,9 @@ volatile uint8_t GPIO_Toggle_current_level = 0; // 토글 핀 상태 읽기
 volatile uint32_t Toggle_last_time = 0;    // 직전 edge 발생
 volatile uint32_t Toggle_current_time = 0; // 현재 edge 발생
 volatile uint32_t Toggle_diff = 0;         // 펄스폭 시간차 계산
+
+// 2진수 출력함수
+void print_bin32();
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -150,8 +164,23 @@ int main(void)
     {
       ir_flag = 0; // flag 초기화
 
-      // ir_diff 값 출력
-      printf("Diff : %lu us \r\n", ir_diff);
+      // 32비트 코드 출력
+      // printf("32bit code [1] %ld \r\n", ir_data_temp);
+      print_bin32(ir_received_code);
+      printf("32bit code [1] 0x%08lX \r\n", ir_received_code);
+      uint8_t addr = (ir_received_code >> 24) & 0xFF;
+      uint8_t addr_ = (ir_received_code >> 16) & 0xFF;
+      uint8_t data = (ir_received_code >> 8) & 0xFF;
+      uint8_t data_ = (ir_received_code >> 0) & 0xFF;
+
+      printf("ADDR=%02X ADDR_=%02X DATA=%02X DATA_=%02X\r\n",
+             addr, addr_, data, data_);
+    }
+    if (ir_repeat_flag == 1)
+    {
+      ir_repeat_flag = 0;
+
+      printf("[Repeat pushed] \r\n");
     }
     // HAL_Delay(1000);
   }
@@ -302,7 +331,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, SMPS_EN_Pin | SMPS_V1_Pin | SMPS_SW_Pin, GPIO_PIN_RESET);
@@ -318,7 +350,7 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : IR_GPIO_EXTI0_Pin */
   GPIO_InitStruct.Pin = IR_GPIO_EXTI0_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING_FALLING;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(IR_GPIO_EXTI0_GPIO_Port, &GPIO_InitStruct);
 
@@ -326,8 +358,15 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pin = GPIO_Toggle_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   HAL_GPIO_Init(GPIO_Toggle_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PC2 */
+  GPIO_InitStruct.Pin = GPIO_PIN_2;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : SMPS_EN_Pin SMPS_V1_Pin SMPS_SW_Pin */
   GPIO_InitStruct.Pin = SMPS_EN_Pin | SMPS_V1_Pin | SMPS_SW_Pin;
@@ -367,67 +406,100 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
   {
     // fall , rise 읽기 위힘 -> 어디로? 변동 되었는지 확인 필수
     // (GPIOC -> IR_GPIO_EXTI0_GPIO_Port) 포트 이름도 설정해둔 포트 이름으로!
-    ir_current_level = HAL_GPIO_ReadPin(IR_GPIO_EXTI0_GPIO_Port, IR_GPIO_EXTI0_Pin);
-    GPIO_Toggle_current_level = HAL_GPIO_ReadPin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin);
+    // ir_current_level = HAL_GPIO_ReadPin(IR_GPIO_EXTI0_GPIO_Port, IR_GPIO_EXTI0_Pin);
+    GPIO_Toggle_current_level = HAL_GPIO_ReadPin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin); // 읽어야 할지는 확인 필요
 
-    // 인터럽트 fall , rise 기반 테스트
-    // if (ir_current_level == 1)
-    // {
-    //   printf("rising edge_[1] \r\n");
-    // }
-    // else if (ir_current_level == 0)
-    // {
-    //   printf("falling edge_[0] \r\n");
-    // }
-
-    // 현재 시각 읽기 -> 타이머 기반
-    // -> (화살표 연산자): 포인터가 가리키는 구조체를 찾아 대입
-    // CNT - HAL_TIM_Base_Start 이후로 카운팅 하며 올라감
-    ir_current_time = TIM2->CNT;
-
+    // ir_current_time = TIM2->CNT;
     // 시간 차 계산
-    ir_diff = ir_current_time - ir_last_time;
+    ir_diff = TIM2->CNT - ir_last_time;
+    ir_last_time = TIM2->CNT;
+
     if (ir_diff < 150)
       return; // 150us 이하는 노이즈 컷
-    // last time 업데이트
-    ir_last_time = ir_current_time;
 
-    // leader code 및 repeat code 검출용
-    // case 1 - falling
-    if (ir_current_level == 0)
+    // data 읽기
+    //  NEC 코드 관련해서 어떻게 읽어올지!!
+    if (ir_state == 1)
     {
-      if (ir_diff > 4600)
+      // data 0으로 들어오는 부분 판독 후, data 추가
+      if ((ir_diff > 1100) && (ir_diff < 1200))
       {
-        HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_RESET);
-        Toggle_current_time = TIM2->CNT; // 토클 핀 시간 지정
+        // 빈자리 자동으로 0으로 채워짐 -> 32비트 데이터에 0 추가
+        ir_data_temp = (ir_data_temp << 1);
+
+        // 비트 개수 추가
+        ir_bit_count++;
+      }
+      // data 1으로 들어오는 부분 판독 후, data 추가
+      else if ((ir_diff > 2200) && (ir_diff < 2300))
+      {
+        // 빈자리 자동으로 0으로 채워짐 -> 32비트 데이터에 1 추가
+        ir_data_temp = (ir_data_temp << 1) | 1;
+
+        // 비트 개수 추가
+        ir_bit_count++;
       }
       else
       {
-        HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_SET);
-      }
-    } // case2 - rising
-    else if (ir_current_level == 1)
-    {
-      if (GPIO_Toggle_current_level == 1)
-      {
-        HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_SET);
-        Toggle_current_time = TIM2->CNT; // 토클 핀 시간 지정
-        Toggle_diff = Toggle_current_time - Toggle_last_time;
-        if ((11000 < Toggle_diff) && (Toggle_diff < 12000))
-        {
-          printf("Repeat Code : %lu \r\n", Toggle_diff);
-        }
-        else if ((13000 < Toggle_diff) && (Toggle_diff < 14000))
-        {
-          printf("Leader Code : %lu \r\n", Toggle_diff);
-        }
+        // 신호 잘못 들어온 부분 -> 가지고 있는 데이터 전부 초기화
+        ir_state = 0;
+        ir_bit_count = 0;
+        ir_data_temp = 0;
+
+        return;
       }
     }
-    // 시간 변경
-    Toggle_last_time = Toggle_current_time;
-    // // 메인 루프에 넣기 -> 비동기 처리를 위한 플래그
-    // ir_flag = 1;
+    // leader code 및 repeat code 검출용
+    if (ir_diff > 10000)
+    {
+      ir_state = 0;
+      ir_bit_count = 0;
+      ir_data_temp = 0;
+      HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_RESET);
+
+      if ((ir_diff > 13000) && (ir_diff < 14000))
+      {
+        ir_state = 1;
+        HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_SET);
+      }
+      else if ((ir_diff > 11000) && (ir_diff < 12000))
+      {
+        // repeat 출력 위함
+        ir_repeat_flag = 1;
+        HAL_GPIO_TogglePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin);
+      }
+      else
+      {
+        return; // 다른 값들 의미 없음
+      }
+    }
+    // NEC 프로토콜 32개를 전부 모았는지?
+    if (ir_bit_count >= 32)
+    {
+      // 임시데이터 => 완성 데이터
+      // 꼭 필요한 과정인지....?
+      ir_received_code = ir_data_temp;
+
+      // while 문 내부 실행하도록 flag
+      ir_flag = 1;
+
+      // 0번 state 복귀
+      ir_state = 0;
+
+      HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_RESET);
+    }
   }
+}
+
+void print_bin32(uint32_t v)
+{
+  for (int i = 31; i >= 0; i--)
+  {
+    printf("%ld", (v >> i) & 1);
+    if (i % 8 == 0)
+      printf(" ");
+  }
+  printf("\r\n");
 }
 
 /* USER CODE END 4 */
