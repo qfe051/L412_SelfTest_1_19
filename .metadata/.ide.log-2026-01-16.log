@@ -1,0 +1,13 @@
+2026-01-16 17:49:12,351 [INFO] LogOutputStream:77 - [STDOUT_REDIRECT] 
+2026-01-16 17:49:16,687 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 4939mS.
+2026-01-16 17:49:16,688 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 1mS.
+2026-01-16 17:49:16,690 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
+2026-01-16 17:49:17,863 [INFO] McuFinderGlobals:76 - Set McuFinderConnectedMode to true
+2026-01-16 17:49:17,868 [INFO] ApiDb:448 - Save user favorites file C:\Users\CAMMSYS/.stm32cubeide/favorites.mcus.txt: 0 item(s)
+2026-01-16 17:49:17,868 [INFO] ApiDb:452 - User favorites MCUs=[]
+2026-01-16 17:49:17,873 [INFO] ApiDb:448 - Save user favorites file C:\Users\CAMMSYS/.stm32cubeide/favorites.boards.txt: 0 item(s)
+2026-01-16 17:49:17,873 [INFO] ApiDb:452 - User favorites Boards=[]
+2026-01-16 17:53:52,424 [INFO] WebApp:194 - Connection lost
+2026-01-16 17:53:52,585 [INFO] WebApp:191 - Connection restablished
+2026-01-16 17:55:27,418 [INFO] WebApp:194 - Connection lost
+2026-01-16 17:55:27,584 [INFO] WebApp:191 - Connection restablished

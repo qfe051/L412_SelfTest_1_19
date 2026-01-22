@@ -1,319 +1,74 @@
-2026-01-13 09:48:52,141 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] Exception in thread "AWT-EventQueue-0" java.awt.IllegalComponentStateException: component must be showing on the screen to determine its location
-2026-01-13 09:48:52,163 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.getLocationOnScreen_NoTreeLock(Component.java:2113)
-2026-01-13 09:48:52,163 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.getLocationOnScreen(Component.java:2087)
-2026-01-13 09:48:52,164 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.JPopupMenu.show(JPopupMenu.java:982)
-2026-01-13 09:48:52,164 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.plaf.basic.BasicComboPopup.show(BasicComboPopup.java:235)
-2026-01-13 09:48:52,164 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.plaf.basic.BasicComboPopup.togglePopup(BasicComboPopup.java:1265)
-2026-01-13 09:48:52,166 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.plaf.basic.BasicComboPopup$Handler.mousePressed(BasicComboPopup.java:936)
-2026-01-13 09:48:52,167 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6618)
-2026-01-13 09:48:52,167 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
-2026-01-13 09:48:52,167 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
-2026-01-13 09:48:52,168 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
-2026-01-13 09:48:52,168 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
-2026-01-13 09:48:52,170 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
-2026-01-13 09:48:52,170 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
-2026-01-13 09:48:52,171 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.plaf.basic.BasicTableUI$Handler.repostEvent(BasicTableUI.java:978)
-2026-01-13 09:48:52,171 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.plaf.basic.BasicTableUI$Handler.adjustSelection(BasicTableUI.java:1140)
-2026-01-13 09:48:52,172 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.plaf.basic.BasicTableUI$Handler.mousePressed(BasicTableUI.java:1068)
-2026-01-13 09:48:52,173 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.AWTEventMulticaster.mousePressed(AWTEventMulticaster.java:288)
-2026-01-13 09:48:52,173 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.AWTEventMulticaster.mousePressed(AWTEventMulticaster.java:287)
-2026-01-13 09:48:52,175 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.AWTEventMulticaster.mousePressed(AWTEventMulticaster.java:287)
-2026-01-13 09:48:52,175 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.AWTEventMulticaster.mousePressed(AWTEventMulticaster.java:287)
-2026-01-13 09:48:52,176 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6618)
-2026-01-13 09:48:52,176 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3398)
-2026-01-13 09:48:52,176 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.processEvent(Component.java:6386)
-2026-01-13 09:48:52,178 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
-2026-01-13 09:48:52,178 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:4996)
-2026-01-13 09:48:52,179 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
-2026-01-13 09:48:52,180 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
-2026-01-13 09:48:52,180 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
-2026-01-13 09:48:52,181 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4572)
-2026-01-13 09:48:52,182 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
-2026-01-13 09:48:52,182 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
-2026-01-13 09:48:52,183 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4828)
-2026-01-13 09:48:52,184 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:775)
-2026-01-13 09:48:52,184 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:720)
-2026-01-13 09:48:52,184 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:714)
-2026-01-13 09:48:52,186 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
-2026-01-13 09:48:52,186 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
-2026-01-13 09:48:52,187 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:98)
-2026-01-13 09:48:52,189 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:747)
-2026-01-13 09:48:52,190 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:745)
-2026-01-13 09:48:52,190 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
-2026-01-13 09:48:52,191 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
-2026-01-13 09:48:52,192 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:744)
-2026-01-13 09:48:52,193 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
-2026-01-13 09:48:52,193 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
-2026-01-13 09:48:52,194 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
-2026-01-13 09:48:52,195 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
-2026-01-13 09:48:52,196 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
-2026-01-13 09:48:52,196 [ERROR] LogOutputStream:75 - [STDERR_REDIRECT] 	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
-2026-01-13 09:48:54,439 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
-2026-01-13 09:48:56,003 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 924232504 Bytes (1073741824)
-2026-01-13 09:48:57,444 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 960172008 Bytes (1073741824)
-2026-01-13 09:48:59,196 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 762524440 Bytes (1073741824)
-2026-01-13 09:48:59,706 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
-2026-01-13 09:48:59,706 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
-2026-01-13 09:48:59,707 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
-2026-01-13 09:48:59,707 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
-2026-01-13 09:48:59,707 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: LPUART
-2026-01-13 09:48:59,710 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
-2026-01-13 09:48:59,897 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\license.tmp_save
-2026-01-13 09:49:00,097 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\license.tmp
-2026-01-13 09:49:00,156 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\gpio.tmp_save
-2026-01-13 09:49:00,264 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\gpio.tmp
-2026-01-13 09:49:00,379 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_it.c_save
-2026-01-13 09:49:00,579 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_it.c
-2026-01-13 09:49:00,590 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_it.h_save
-2026-01-13 09:49:00,667 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_it.h
-2026-01-13 09:49:00,686 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_hal_msp.c_save
-2026-01-13 09:49:00,820 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_hal_msp.c
-2026-01-13 09:49:00,828 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\system.tmp_save
-2026-01-13 09:49:00,885 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\system.tmp
-2026-01-13 09:49:00,900 [INFO] CodeEngine:321 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_hal_conf.h_save
-2026-01-13 09:49:00,963 [INFO] CodeEngine:345 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_hal_conf.h
-2026-01-13 09:49:00,995 [INFO] ApiDbMcu:532 - Load IP Config File for LPUART1
-2026-01-13 09:49:01,008 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\main.h_save
-2026-01-13 09:49:01,093 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\main.h
-2026-01-13 09:49:01,105 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\main.c_save
-2026-01-13 09:49:01,188 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\main.c
-2026-01-13 09:49:01,671 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 378mS.
-2026-01-13 09:49:01,676 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
-2026-01-13 09:49:01,747 [INFO] ConfigFileManager:1595 - The Die is : DIE464
-2026-01-13 09:49:02,651 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 974mS.
-2026-01-13 09:49:02,653 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 2mS.
-2026-01-13 09:49:02,658 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
-2026-01-13 09:53:07,204 [INFO] WebApp:194 - Connection lost
-2026-01-13 09:53:07,364 [INFO] WebApp:191 - Connection restablished
-2026-01-13 09:58:16,762 [INFO] WebApp:194 - Connection lost
-2026-01-13 09:58:16,913 [INFO] WebApp:191 - Connection restablished
-2026-01-13 10:23:08,244 [INFO] WebApp:194 - Connection lost
-2026-01-13 10:23:08,398 [INFO] WebApp:191 - Connection restablished
-2026-01-13 10:28:18,356 [INFO] WebApp:194 - Connection lost
-2026-01-13 10:28:18,534 [INFO] WebApp:191 - Connection restablished
-2026-01-13 10:35:25,594 [INFO] Gpio:278 - dependency for GPIO [LPUART1, RCC, SYS]
-2026-01-13 10:53:10,051 [INFO] WebApp:194 - Connection lost
-2026-01-13 10:53:10,209 [INFO] WebApp:191 - Connection restablished
-2026-01-13 10:58:19,049 [INFO] WebApp:194 - Connection lost
-2026-01-13 10:58:19,223 [INFO] WebApp:191 - Connection restablished
-2026-01-13 11:23:10,610 [INFO] WebApp:194 - Connection lost
-2026-01-13 11:23:10,782 [INFO] WebApp:191 - Connection restablished
-2026-01-13 11:28:20,186 [INFO] WebApp:194 - Connection lost
-2026-01-13 11:28:20,355 [INFO] WebApp:191 - Connection restablished
-2026-01-13 11:38:02,955 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 954909576 Bytes (1073741824)
-2026-01-13 11:38:03,831 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 985470456 Bytes (1073741824)
-2026-01-13 11:38:08,313 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 822437032 Bytes (1073741824)
-2026-01-13 11:38:08,501 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
-2026-01-13 11:38:08,502 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
-2026-01-13 11:38:08,503 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
-2026-01-13 11:38:08,503 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
-2026-01-13 11:38:08,503 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: LPUART
-2026-01-13 11:38:08,506 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
-2026-01-13 11:38:08,592 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\license.tmp_save
-2026-01-13 11:38:08,855 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\license.tmp
-2026-01-13 11:38:08,912 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\gpio.tmp_save
-2026-01-13 11:38:09,045 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\gpio.tmp
-2026-01-13 11:38:09,150 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_it.c_save
-2026-01-13 11:38:09,326 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_it.c
-2026-01-13 11:38:09,334 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_it.h_save
-2026-01-13 11:38:09,414 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_it.h
-2026-01-13 11:38:09,434 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_hal_msp.c_save
-2026-01-13 11:38:09,550 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_hal_msp.c
-2026-01-13 11:38:09,557 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\system.tmp_save
-2026-01-13 11:38:09,604 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\system.tmp
-2026-01-13 11:38:09,619 [INFO] CodeEngine:321 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_hal_conf.h_save
-2026-01-13 11:38:09,675 [INFO] CodeEngine:345 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_hal_conf.h
-2026-01-13 11:38:09,704 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\main.h_save
-2026-01-13 11:38:09,783 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\main.h
-2026-01-13 11:38:09,794 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\main.c_save
-2026-01-13 11:38:09,891 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\main.c
-2026-01-13 11:38:10,461 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 397mS.
-2026-01-13 11:38:10,465 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
-2026-01-13 11:38:10,521 [INFO] ConfigFileManager:1595 - The Die is : DIE464
-2026-01-13 11:38:11,241 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 776mS.
-2026-01-13 11:38:11,243 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 1mS.
-2026-01-13 11:38:11,250 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
-2026-01-13 11:53:10,856 [INFO] WebApp:194 - Connection lost
-2026-01-13 11:53:11,096 [INFO] WebApp:191 - Connection restablished
-2026-01-13 11:58:20,193 [INFO] WebApp:194 - Connection lost
-2026-01-13 11:58:20,379 [INFO] WebApp:191 - Connection restablished
-2026-01-13 11:59:50,988 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 951696552 Bytes (1073741824)
-2026-01-13 11:59:51,230 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
-2026-01-13 11:59:51,230 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
-2026-01-13 11:59:51,232 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
-2026-01-13 11:59:51,232 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
-2026-01-13 11:59:51,232 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: LPUART
-2026-01-13 11:59:51,234 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
-2026-01-13 11:59:51,379 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\license.tmp_save
-2026-01-13 11:59:51,577 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\license.tmp
-2026-01-13 11:59:51,679 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\gpio.tmp_save
-2026-01-13 11:59:51,800 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\gpio.tmp
-2026-01-13 11:59:51,911 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_it.c_save
-2026-01-13 11:59:52,086 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_it.c
-2026-01-13 11:59:52,096 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_it.h_save
-2026-01-13 11:59:52,176 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_it.h
-2026-01-13 11:59:52,193 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_hal_msp.c_save
-2026-01-13 11:59:52,332 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_hal_msp.c
-2026-01-13 11:59:52,344 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\system.tmp_save
-2026-01-13 11:59:52,413 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\system.tmp
-2026-01-13 11:59:52,432 [INFO] CodeEngine:321 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_hal_conf.h_save
-2026-01-13 11:59:52,522 [INFO] CodeEngine:345 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_hal_conf.h
-2026-01-13 11:59:52,554 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\main.h_save
-2026-01-13 11:59:52,661 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\main.h
-2026-01-13 11:59:52,672 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\main.c_save
-2026-01-13 11:59:52,780 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\main.c
-2026-01-13 11:59:53,354 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 419mS.
-2026-01-13 11:59:53,358 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
-2026-01-13 11:59:53,414 [INFO] ConfigFileManager:1595 - The Die is : DIE464
-2026-01-13 11:59:54,217 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 858mS.
-2026-01-13 11:59:54,218 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 1mS.
-2026-01-13 11:59:54,225 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
-2026-01-13 12:23:11,243 [INFO] WebApp:194 - Connection lost
-2026-01-13 12:23:11,432 [INFO] WebApp:191 - Connection restablished
-2026-01-13 12:28:46,202 [INFO] WebApp:194 - Connection lost
-2026-01-13 12:28:46,362 [INFO] WebApp:191 - Connection restablished
-2026-01-13 12:53:12,802 [INFO] WebApp:194 - Connection lost
-2026-01-13 12:53:12,971 [INFO] WebApp:191 - Connection restablished
-2026-01-13 12:58:21,738 [INFO] WebApp:194 - Connection lost
-2026-01-13 12:58:21,901 [INFO] WebApp:191 - Connection restablished
-2026-01-13 13:23:13,205 [INFO] WebApp:194 - Connection lost
-2026-01-13 13:23:13,375 [INFO] WebApp:191 - Connection restablished
-2026-01-13 13:48:39,707 [INFO] WebApp:194 - Connection lost
-2026-01-13 13:48:39,867 [INFO] WebApp:191 - Connection restablished
-2026-01-13 13:53:15,225 [INFO] WebApp:194 - Connection lost
-2026-01-13 13:53:15,391 [INFO] WebApp:191 - Connection restablished
-2026-01-13 14:23:15,751 [INFO] WebApp:194 - Connection lost
-2026-01-13 14:23:15,915 [INFO] WebApp:191 - Connection restablished
-2026-01-13 14:53:16,231 [INFO] WebApp:194 - Connection lost
-2026-01-13 14:53:16,396 [INFO] WebApp:191 - Connection restablished
-2026-01-13 15:09:16,225 [INFO] WebApp:194 - Connection lost
-2026-01-13 15:09:16,401 [INFO] WebApp:191 - Connection restablished
-2026-01-13 15:23:16,735 [INFO] WebApp:194 - Connection lost
-2026-01-13 15:23:16,911 [INFO] WebApp:191 - Connection restablished
-2026-01-13 15:43:34,712 [INFO] WebApp:194 - Connection lost
-2026-01-13 15:43:34,891 [INFO] WebApp:191 - Connection restablished
-2026-01-13 15:53:18,129 [INFO] WebApp:194 - Connection lost
-2026-01-13 15:53:18,316 [INFO] WebApp:191 - Connection restablished
-2026-01-13 16:14:08,198 [INFO] WebApp:194 - Connection lost
-2026-01-13 16:14:08,371 [INFO] WebApp:191 - Connection restablished
-2026-01-13 16:23:17,202 [INFO] WebApp:194 - Connection lost
-2026-01-13 16:23:17,369 [INFO] WebApp:191 - Connection restablished
-2026-01-13 16:45:52,737 [INFO] WebApp:194 - Connection lost
-2026-01-13 16:45:52,907 [INFO] WebApp:191 - Connection restablished
-2026-01-13 16:53:17,706 [INFO] WebApp:194 - Connection lost
-2026-01-13 16:53:17,865 [INFO] WebApp:191 - Connection restablished
-2026-01-13 16:53:39,441 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,549x588,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
-2026-01-13 16:53:46,540 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 965362888 Bytes (1073741824)
-2026-01-13 16:53:46,937 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
-2026-01-13 16:53:46,937 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
-2026-01-13 16:53:46,937 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
-2026-01-13 16:53:46,938 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
-2026-01-13 16:53:46,938 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: LPUART
-2026-01-13 16:53:46,940 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
-2026-01-13 16:53:47,067 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\license.tmp_save
-2026-01-13 16:53:47,277 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\license.tmp
-2026-01-13 16:53:47,347 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\gpio.tmp_save
-2026-01-13 16:53:47,486 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\gpio.tmp
-2026-01-13 16:53:47,597 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_it.c_save
-2026-01-13 16:53:47,789 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_it.c
-2026-01-13 16:53:47,800 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_it.h_save
-2026-01-13 16:53:47,890 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_it.h
-2026-01-13 16:53:47,922 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_hal_msp.c_save
-2026-01-13 16:53:48,060 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_hal_msp.c
-2026-01-13 16:53:48,070 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\system.tmp_save
-2026-01-13 16:53:48,139 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\system.tmp
-2026-01-13 16:53:48,158 [INFO] CodeEngine:321 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_hal_conf.h_save
-2026-01-13 16:53:48,223 [INFO] CodeEngine:345 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_hal_conf.h
-2026-01-13 16:53:48,252 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\main.h_save
-2026-01-13 16:53:48,336 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\main.h
-2026-01-13 16:53:48,347 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\main.c_save
-2026-01-13 16:53:48,437 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\main.c
-2026-01-13 16:53:49,035 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 416mS.
-2026-01-13 16:53:49,040 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
-2026-01-13 16:53:49,093 [INFO] ConfigFileManager:1595 - The Die is : DIE464
-2026-01-13 16:53:49,718 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 678mS.
-2026-01-13 16:53:49,720 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 1mS.
-2026-01-13 16:53:49,731 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
-2026-01-13 16:58:27,166 [INFO] WebApp:194 - Connection lost
-2026-01-13 16:58:27,343 [INFO] WebApp:191 - Connection restablished
-2026-01-13 17:02:03,172 [INFO] WebApp:194 - Connection lost
-2026-01-13 17:02:03,344 [INFO] WebApp:191 - Connection restablished
-2026-01-13 17:12:21,226 [INFO] WebApp:194 - Connection lost
-2026-01-13 17:12:21,380 [INFO] WebApp:191 - Connection restablished
-2026-01-13 17:23:17,724 [INFO] WebApp:194 - Connection lost
-2026-01-13 17:23:17,900 [INFO] WebApp:191 - Connection restablished
-2026-01-13 17:43:37,968 [INFO] WebApp:194 - Connection lost
-2026-01-13 17:43:38,145 [INFO] WebApp:191 - Connection restablished
-2026-01-13 17:53:18,213 [INFO] WebApp:194 - Connection lost
-2026-01-13 17:53:18,363 [INFO] WebApp:191 - Connection restablished
-2026-01-13 17:55:34,747 [INFO] Gpio:278 - dependency for GPIO [LPUART1, RCC, SYS]
-2026-01-13 17:58:27,548 [INFO] WebApp:194 - Connection lost
-2026-01-13 17:58:27,727 [INFO] WebApp:191 - Connection restablished
-2026-01-13 17:58:43,278 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 971717848 Bytes (1073741824)
-2026-01-13 17:58:45,400 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 809099336 Bytes (1073741824)
-2026-01-13 17:58:45,918 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: NVIC
-2026-01-13 17:58:45,918 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: SYS
-2026-01-13 17:58:45,919 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: GPIO
-2026-01-13 17:58:45,919 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: RCC
-2026-01-13 17:58:45,919 [INFO] BlockDiagram:2775 - set Specific Code input for plugin: LPUART
-2026-01-13 17:58:45,921 [INFO] CodeGenerator:892 - code generatio: config db path: C:\ST\STM32CubeIDE_1.19.0\STM32CubeIDE\plugins\com.st.stm32cube.common.mx_6.15.0.202507011659\\db\
-2026-01-13 17:58:46,140 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\license.tmp_save
-2026-01-13 17:58:46,369 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\license.tmp
-2026-01-13 17:58:46,431 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\gpio.tmp_save
-2026-01-13 17:58:46,608 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\gpio.tmp
-2026-01-13 17:58:46,714 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_it.c_save
-2026-01-13 17:58:46,933 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_it.c
-2026-01-13 17:58:46,944 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_it.h_save
-2026-01-13 17:58:47,030 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_it.h
-2026-01-13 17:58:47,054 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_hal_msp.c_save
-2026-01-13 17:58:47,193 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\stm32l4xx_hal_msp.c
-2026-01-13 17:58:47,201 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\system.tmp_save
-2026-01-13 17:58:47,271 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\MXTmpFiles\system.tmp
-2026-01-13 17:58:47,289 [INFO] CodeEngine:321 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_hal_conf.h_save
-2026-01-13 17:58:47,401 [INFO] CodeEngine:345 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\stm32l4xx_hal_conf.h
-2026-01-13 17:58:47,451 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\main.h_save
-2026-01-13 17:58:47,617 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Inc\main.h
-2026-01-13 17:58:47,628 [INFO] CodeEngine:265 - oldGeneratedFile, C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\main.c_save
-2026-01-13 17:58:47,721 [INFO] CodeEngine:289 - Generated code: C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch2_led_matrix_v2\Core\Src\main.c
-2026-01-13 17:58:48,148 [INFO] ProjectBuilder:3606 - Time for Copy HAL[1] : 316mS.
-2026-01-13 17:58:48,153 [INFO] ProjectBuilder:5216 - Project Generator version: 4.7.0-B52
-2026-01-13 17:58:48,210 [INFO] ConfigFileManager:1595 - The Die is : DIE464
-2026-01-13 17:58:49,239 [INFO] ProjectBuilder:5496 - Time for Generating toolchain IDE Files: 1086mS.
-2026-01-13 17:58:49,240 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 1mS.
-2026-01-13 17:58:49,244 [INFO] ProjectBuilder:3463 - Time for Copy CMSIS : 0mS.
-2026-01-13 18:23:18,733 [INFO] WebApp:194 - Connection lost
-2026-01-13 18:23:18,888 [INFO] WebApp:191 - Connection restablished
-2026-01-13 18:53:19,825 [INFO] WebApp:194 - Connection lost
-2026-01-13 18:53:20,026 [INFO] WebApp:191 - Connection restablished
-2026-01-13 19:23:20,722 [INFO] WebApp:194 - Connection lost
-2026-01-13 19:23:20,928 [INFO] WebApp:191 - Connection restablished
-2026-01-13 19:31:08,214 [INFO] WebApp:194 - Connection lost
-2026-01-13 19:31:08,399 [INFO] WebApp:191 - Connection restablished
-2026-01-13 19:53:22,266 [INFO] WebApp:194 - Connection lost
-2026-01-13 19:53:22,432 [INFO] WebApp:191 - Connection restablished
-2026-01-13 19:58:27,673 [INFO] WebApp:194 - Connection lost
-2026-01-13 19:58:27,832 [INFO] WebApp:191 - Connection restablished
-2026-01-13 20:23:23,889 [INFO] WebApp:194 - Connection lost
-2026-01-13 20:23:24,045 [INFO] WebApp:191 - Connection restablished
-2026-01-13 20:46:48,761 [INFO] WebApp:194 - Connection lost
-2026-01-13 20:46:48,946 [INFO] WebApp:191 - Connection restablished
-2026-01-13 20:53:23,999 [INFO] WebApp:194 - Connection lost
-2026-01-13 20:53:24,179 [INFO] WebApp:191 - Connection restablished
-2026-01-13 21:23:23,723 [INFO] WebApp:194 - Connection lost
-2026-01-13 21:23:23,904 [INFO] WebApp:191 - Connection restablished
-2026-01-13 21:53:23,700 [INFO] WebApp:194 - Connection lost
-2026-01-13 21:53:23,924 [INFO] WebApp:191 - Connection restablished
-2026-01-13 22:23:23,763 [INFO] WebApp:194 - Connection lost
-2026-01-13 22:23:23,992 [INFO] WebApp:191 - Connection restablished
-2026-01-13 22:53:24,253 [INFO] WebApp:194 - Connection lost
-2026-01-13 22:53:24,498 [INFO] WebApp:191 - Connection restablished
-2026-01-13 23:10:33,242 [INFO] WebApp:194 - Connection lost
-2026-01-13 23:10:33,531 [INFO] WebApp:191 - Connection restablished
-2026-01-13 23:23:24,225 [INFO] WebApp:194 - Connection lost
-2026-01-13 23:23:24,740 [INFO] WebApp:191 - Connection restablished
-2026-01-13 23:28:30,231 [INFO] WebApp:194 - Connection lost
-2026-01-13 23:28:30,509 [INFO] WebApp:191 - Connection restablished
-2026-01-13 23:53:24,235 [INFO] WebApp:194 - Connection lost
-2026-01-13 23:53:24,630 [INFO] WebApp:191 - Connection restablished
-2026-01-13 23:58:32,737 [INFO] WebApp:194 - Connection lost
-2026-01-13 23:58:33,005 [INFO] WebApp:191 - Connection restablished
+2026-01-15 00:24:08,031 [INFO] WebApp:194 - Connection lost
+2026-01-15 00:24:08,191 [INFO] WebApp:191 - Connection restablished
+2026-01-15 00:46:30,123 [INFO] WebApp:194 - Connection lost
+2026-01-15 00:46:30,285 [INFO] WebApp:191 - Connection restablished
+2026-01-15 00:54:08,561 [INFO] WebApp:194 - Connection lost
+2026-01-15 00:54:08,706 [INFO] WebApp:191 - Connection restablished
+2026-01-15 01:14:29,540 [INFO] WebApp:194 - Connection lost
+2026-01-15 01:14:29,751 [INFO] WebApp:191 - Connection restablished
+2026-01-15 01:24:09,184 [INFO] WebApp:194 - Connection lost
+2026-01-15 01:24:09,345 [INFO] WebApp:191 - Connection restablished
+2026-01-15 01:29:17,571 [INFO] WebApp:194 - Connection lost
+2026-01-15 01:29:17,781 [INFO] WebApp:191 - Connection restablished
+2026-01-15 01:54:10,016 [INFO] WebApp:194 - Connection lost
+2026-01-15 01:54:10,186 [INFO] WebApp:191 - Connection restablished
+2026-01-15 02:24:10,554 [INFO] WebApp:194 - Connection lost
+2026-01-15 02:24:10,772 [INFO] WebApp:191 - Connection restablished
+2026-01-15 02:54:10,560 [INFO] WebApp:194 - Connection lost
+2026-01-15 02:54:10,731 [INFO] WebApp:191 - Connection restablished
+2026-01-15 03:09:54,024 [INFO] WebApp:194 - Connection lost
+2026-01-15 03:09:54,236 [INFO] WebApp:191 - Connection restablished
+2026-01-15 03:24:11,011 [INFO] WebApp:194 - Connection lost
+2026-01-15 03:24:11,155 [INFO] WebApp:191 - Connection restablished
+2026-01-15 03:48:30,063 [INFO] WebApp:194 - Connection lost
+2026-01-15 03:48:30,270 [INFO] WebApp:191 - Connection restablished
+2026-01-15 03:54:12,566 [INFO] WebApp:194 - Connection lost
+2026-01-15 03:54:12,769 [INFO] WebApp:191 - Connection restablished
+2026-01-15 03:59:22,061 [INFO] WebApp:194 - Connection lost
+2026-01-15 03:59:22,270 [INFO] WebApp:191 - Connection restablished
+2026-01-15 04:24:13,541 [INFO] WebApp:194 - Connection lost
+2026-01-15 04:24:13,689 [INFO] WebApp:191 - Connection restablished
+2026-01-15 04:29:24,257 [INFO] WebApp:194 - Connection lost
+2026-01-15 04:29:24,459 [INFO] WebApp:191 - Connection restablished
+2026-01-15 04:54:13,143 [INFO] WebApp:194 - Connection lost
+2026-01-15 04:54:13,286 [INFO] WebApp:191 - Connection restablished
+2026-01-15 05:24:13,074 [INFO] WebApp:194 - Connection lost
+2026-01-15 05:24:13,230 [INFO] WebApp:191 - Connection restablished
+2026-01-15 05:54:13,528 [INFO] WebApp:194 - Connection lost
+2026-01-15 05:54:13,679 [INFO] WebApp:191 - Connection restablished
+2026-01-15 06:10:04,060 [INFO] WebApp:194 - Connection lost
+2026-01-15 06:10:04,213 [INFO] WebApp:191 - Connection restablished
+2026-01-15 06:24:13,583 [INFO] WebApp:194 - Connection lost
+2026-01-15 06:24:13,729 [INFO] WebApp:191 - Connection restablished
+2026-01-15 06:42:51,005 [INFO] WebApp:194 - Connection lost
+2026-01-15 06:42:51,158 [INFO] WebApp:191 - Connection restablished
+2026-01-15 06:54:24,543 [INFO] WebApp:194 - Connection lost
+2026-01-15 06:54:24,688 [INFO] WebApp:191 - Connection restablished
+2026-01-15 07:02:49,563 [INFO] WebApp:194 - Connection lost
+2026-01-15 07:02:49,772 [INFO] WebApp:191 - Connection restablished
+2026-01-15 07:24:25,535 [INFO] WebApp:194 - Connection lost
+2026-01-15 07:24:25,686 [INFO] WebApp:191 - Connection restablished
+2026-01-15 07:54:26,022 [INFO] WebApp:194 - Connection lost
+2026-01-15 07:54:26,179 [INFO] WebApp:191 - Connection restablished
+2026-01-15 08:24:26,997 [INFO] WebApp:194 - Connection lost
+2026-01-15 08:24:27,148 [INFO] WebApp:191 - Connection restablished
+2026-01-15 08:37:35,636 [INFO] WebApp:194 - Connection lost
+2026-01-15 08:37:35,787 [INFO] WebApp:191 - Connection restablished
+2026-01-15 08:54:28,284 [INFO] WebApp:194 - Connection lost
+2026-01-15 08:54:28,438 [INFO] WebApp:191 - Connection restablished
+2026-01-15 09:21:01,794 [INFO] WebApp:194 - Connection lost
+2026-01-15 09:21:01,958 [INFO] WebApp:191 - Connection restablished
+2026-01-15 09:24:28,738 [INFO] WebApp:194 - Connection lost
+2026-01-15 09:24:28,894 [INFO] WebApp:191 - Connection restablished
+2026-01-15 09:39:50,256 [INFO] WebApp:194 - Connection lost
+2026-01-15 09:39:50,423 [INFO] WebApp:191 - Connection restablished
+2026-01-15 09:54:29,300 [INFO] WebApp:194 - Connection lost
+2026-01-15 09:54:29,458 [INFO] WebApp:191 - Connection restablished
+2026-01-15 10:02:15,287 [INFO] WebApp:194 - Connection lost
+2026-01-15 10:02:15,447 [INFO] WebApp:191 - Connection restablished
+2026-01-15 10:12:11,303 [INFO] WebApp:194 - Connection lost
+2026-01-15 10:12:11,461 [INFO] WebApp:191 - Connection restablished
+2026-01-15 10:24:30,792 [INFO] WebApp:194 - Connection lost
+2026-01-15 10:24:31,031 [INFO] WebApp:191 - Connection restablished
+2026-01-15 10:32:43,270 [INFO] WebApp:194 - Connection lost
+2026-01-15 10:32:43,435 [INFO] WebApp:191 - Connection restablished

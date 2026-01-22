@@ -1,10 +1,10 @@
-16:02:34 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
+16:30:31 **** Incremental Build of configuration Debug for project ch2_led_matrix_v2 ****
 make -j20 all 
 arm-none-eabi-size  ch2_led_matrix_v2.elf 
    text	   data	    bss	    dec	    hex	filename
-  15096	     12	   1772	  16880	   41f0	ch2_led_matrix_v2.elf
+  16732	    104	   2104	  18940	   49fc	ch2_led_matrix_v2.elf
 Finished building: default.size.stdout
  
 
-16:02:35 Build Finished. 0 errors, 0 warnings. (took 572ms)
+16:30:31 Build Finished. 0 errors, 0 warnings. (took 519ms)
 

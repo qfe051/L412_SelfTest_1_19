@@ -3,10 +3,12 @@
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<item key="replaceBarOpen" value="false"/>
 	<list key="searchhistory">
+		<item value="MX_GPIO_Init"/>
+		<item value="MX_GPIO_Init()"/>
+		<item value="main"/>
 		<item value="SET_OUT1_PIN"/>
 		<item value="set_all_rows_input"/>
 		<item value="scan_keypad_to_array"/>
-		<item value="main"/>
 		<item value="process_press_events"/>
 	</list>
 </section>

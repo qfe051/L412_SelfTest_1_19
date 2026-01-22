@@ -1,0 +1,10 @@
+16:09:31 **** Incremental Build of configuration Debug for project ch3_IR_remote ****
+make -j20 all 
+arm-none-eabi-size  ch3_IR_remote.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17976	    104	   2152	  20232	   4f08	ch3_IR_remote.elf
+Finished building: default.size.stdout
+ 
+
+16:09:32 Build Finished. 0 errors, 0 warnings. (took 560ms)
+
