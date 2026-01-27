@@ -49,31 +49,31 @@ TIM_HandleTypeDef htim2;
 //  인터럽트 어떻게 받아오는지 알고 사용하기
 //  volatile -> 컴파일러의 최적화를 방지
 //  인터럽트 콜백 담당하는 함수 (HAL_GPIO_EXTI_Callback)
-volatile uint32_t ir_last_time = 0;      // 직전 edge 발생
-volatile uint32_t ir_current_time = 0;   // 현재 edge 발생
-volatile uint32_t ir_diff = 0;           // 펄스폭 시간차 계산
-volatile uint32_t packet_start_time = 0; // Leader code 시작 시간 -> 변수 재확인 필요
+volatile uint32_t ir_last_time      = 0;  // 직전 edge 발생
+volatile uint32_t ir_current_time   = 0;  // 현재 edge 발생
+volatile uint32_t ir_diff           = 0;  // 펄스폭 시간차 계산
+volatile uint32_t packet_start_time = 0;  // Leader code 시작 시간 -> 변수 재확인 필요
 // volatile uint32_t ir_flag = 0;         // ISR에서 1로 올라감. -> while로 와서 다른 동작 진행할 수 있도록
 
 // 데이터 수신하기 위한 변수
-volatile uint8_t ir_state = 0;      // 0: 대기 상태 , 1: 데이터 수신 중 (010101 관련 수신)
-volatile uint32_t ir_data_temp = 0; // 임시 저장
-volatile uint8_t ir_bit_count = 0;  // 비트 개수
+volatile uint8_t ir_state      = 0;  // 0: 대기 상태 , 1: 데이터 수신 중 (010101 관련 수신)
+volatile uint32_t ir_data_temp = 0;  // 임시 저장
+volatile uint8_t ir_bit_count  = 0;  // 비트 개수
 
 // main에서 실행용도
-volatile uint32_t ir_received_code = 0; // 완성된 코드 => data 코드 해석 필요
-volatile uint8_t ir_flag = 0;           // ISR에서 1로 올라감. -> while로 와서 다른 동작 진행할 수 있도록
-volatile uint8_t ir_repeat_flag = 0;    // [repeat 버전] ISR에서 1로 올라감. -> while로 와서 다른 동작 진행할 수 있도록
+volatile uint32_t ir_received_code = 0;  // 완성된 코드 => data 코드 해석 필요
+volatile uint8_t ir_flag           = 0;  // ISR에서 1로 올라감. -> while로 와서 다른 동작 진행할 수 있도록
+volatile uint8_t ir_repeat_flag    = 0;  // [repeat 버전] ISR에서 1로 올라감. -> while로 와서 다른 동작 진행할 수 있도록
 
 // 1 (High): Rising Edge 발생 (직전까지 Low였음) -> Low 구간 길이 측정됨
 // 0 (Low): Falling Edge 발생 (직전까지 High였음) -> High 구간 길이 측정됨
-volatile uint8_t ir_current_level = 0;          // 현재 레벨 기준으로 이전 상태 판단
-volatile uint8_t GPIO_Toggle_current_level = 0; // 토글 핀 상태 읽기
+volatile uint8_t ir_current_level          = 0;  // 현재 레벨 기준으로 이전 상태 판단
+volatile uint8_t GPIO_Toggle_current_level = 0;  // 토글 핀 상태 읽기
 
 // toggle 기준으로 정의
-volatile uint32_t Toggle_last_time = 0;    // 직전 edge 발생
-volatile uint32_t Toggle_current_time = 0; // 현재 edge 발생
-volatile uint32_t Toggle_diff = 0;         // 펄스폭 시간차 계산
+volatile uint32_t Toggle_last_time    = 0;  // 직전 edge 발생
+volatile uint32_t Toggle_current_time = 0;  // 현재 edge 발생
+volatile uint32_t Toggle_diff         = 0;  // 펄스폭 시간차 계산
 
 // 2진수 출력함수
 void print_bin32();
@@ -92,19 +92,17 @@ static void MX_TIM2_Init(void);
 /* USER CODE BEGIN 0 */
 // add
 #include <stdio.h>
+#include <stm32l412xx.h>
 #include <string.h>
 #include <unistd.h>
-#include <stm32l412xx.h>
 
 // UART로 출력 보내기 위한 함수
-int _write(int file, char *ptr, int len)
-{
-  if (file == STDOUT_FILENO)
-  {
-    HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
-    return len;
-  }
-  return -1;
+int _write(int file, char* ptr, int len) {
+    if (file == STDOUT_FILENO) {
+        HAL_UART_Transmit(&hlpuart1, (uint8_t*)ptr, len, HAL_MAX_DELAY);
+        return len;
+    }
+    return -1;
 }
 /* USER CODE END 0 */
 
@@ -112,127 +110,133 @@ int _write(int file, char *ptr, int len)
  * @brief  The application entry point.
  * @retval int
  */
-int main(void)
-{
+int main(void) {
+    /* USER CODE BEGIN 1 */
 
-  /* USER CODE BEGIN 1 */
+    /* USER CODE END 1 */
 
-  /* USER CODE END 1 */
+    /* MCU Configuration--------------------------------------------------------*/
 
-  /* MCU Configuration--------------------------------------------------------*/
+    /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+    HAL_Init();
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+    /* USER CODE BEGIN Init */
 
-  /* USER CODE BEGIN Init */
+    /* USER CODE END Init */
 
-  /* USER CODE END Init */
+    /* Configure the system clock */
+    SystemClock_Config();
 
-  /* Configure the system clock */
-  SystemClock_Config();
+    /* USER CODE BEGIN SysInit */
 
-  /* USER CODE BEGIN SysInit */
+    /* USER CODE END SysInit */
 
-  /* USER CODE END SysInit */
+    /* Initialize all configured peripherals */
+    MX_GPIO_Init();
+    MX_LPUART1_UART_Init();
+    MX_TIM2_Init();
+    /* USER CODE BEGIN 2 */
+    // unsigned test
+    volatile uint16_t bit_16 = 0;
+    volatile uint8_t bit_8   = 0;
+    // add test
+    bit_16    = 0xFF;
+    bit_8     = 0xF0;
 
-  /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_LPUART1_UART_Init();
-  MX_TIM2_Init();
-  /* USER CODE BEGIN 2 */
+    uint8_t a = bit_16 - bit_8;
+    uint8_t b = bit_8 - bit_16;
+    printf("a = 0x%08x \r\n", a);
+    printf("b = 0x%08x \r\n", b);
 
-  // add, UART Test -
-  printf("start IR Remote\r\n");
-  HAL_Delay(200);
+    uint16_t c = bit_16 - bit_8;
+    uint16_t d = bit_8 - bit_16;
+    printf("c = 0x%08x \r\n", c);
+    printf("d = 0x%08x \r\n", d);
 
-  // add TIMER
-  // 타이머 2번 시작
-  HAL_TIM_Base_Start(&htim2);
-  printf("start IR Timer\r\n");
+    // add, UART Test -
+    printf("start IR Remote\r\n");
+    HAL_Delay(200);
 
-  /* USER CODE END 2 */
+    // add TIMER
+    // 타이머 2번 시작
+    HAL_TIM_Base_Start(&htim2);
+    printf("start IR Timer\r\n");
 
-  /* Infinite loop */
-  /* USER CODE BEGIN WHILE */
-  while (1)
-  {
-    /* USER CODE END WHILE */
+    /* USER CODE END 2 */
 
-    /* USER CODE BEGIN 3 */
-    // printf("Scan IR Remote\r\n");
-    if (ir_flag == 1)
-    {
-      ir_flag = 0; // flag 초기화
+    /* Infinite loop */
+    /* USER CODE BEGIN WHILE */
+    while (1) {
+        /* USER CODE END WHILE */
 
-      // 32비트 코드 출력
-      // printf("32bit code [1] %ld \r\n", ir_data_temp);
-      print_bin32(ir_received_code);
-      printf("32bit code [1] 0x%08lX \r\n", ir_received_code);
-      uint8_t addr = (ir_received_code >> 24) & 0xFF;
-      uint8_t addr_ = (ir_received_code >> 16) & 0xFF;
-      uint8_t data = (ir_received_code >> 8) & 0xFF;
-      uint8_t data_ = (ir_received_code >> 0) & 0xFF;
+        /* USER CODE BEGIN 3 */
+        // printf("Scan IR Remote\r\n");
+        if (ir_flag == 1) {
+            ir_flag = 0;  // flag 초기화
 
-      printf("ADDR=%02X ADDR_=%02X DATA=%02X DATA_=%02X\r\n",
-             addr, addr_, data, data_);
+            // 32비트 코드 출력
+            // printf("32bit code [1] %ld \r\n", ir_data_temp);
+            print_bin32(ir_received_code);
+            printf("32bit code [1] 0x%08lX \r\n", ir_received_code);
+            uint8_t addr  = (ir_received_code >> 24) & 0xFF;
+            uint8_t addr_ = (ir_received_code >> 16) & 0xFF;
+            uint8_t data  = (ir_received_code >> 8) & 0xFF;
+            uint8_t data_ = (ir_received_code >> 0) & 0xFF;
+
+            printf("ADDR=%02X ADDR_=%02X DATA=%02X DATA_=%02X\r\n", addr, addr_, data, data_);
+        }
+        if (ir_repeat_flag == 1) {
+            ir_repeat_flag = 0;
+
+            printf("[Repeat pushed] \r\n");
+        }
+        // HAL_Delay(1000);
     }
-    if (ir_repeat_flag == 1)
-    {
-      ir_repeat_flag = 0;
-
-      printf("[Repeat pushed] \r\n");
-    }
-    // HAL_Delay(1000);
-  }
-  /* USER CODE END 3 */
+    /* USER CODE END 3 */
 }
 
 /**
  * @brief System Clock Configuration
  * @retval None
  */
-void SystemClock_Config(void)
-{
-  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+void SystemClock_Config(void) {
+    RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+    RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
 
-  /** Configure the main internal regulator output voltage
-   */
-  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
-  {
-    Error_Handler();
-  }
+    /** Configure the main internal regulator output voltage
+     */
+    if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK) {
+        Error_Handler();
+    }
 
-  /** Initializes the RCC Oscillators according to the specified parameters
-   * in the RCC_OscInitTypeDef structure.
-   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_MSI;
-  RCC_OscInitStruct.MSIState = RCC_MSI_ON;
-  RCC_OscInitStruct.MSICalibrationValue = 0;
-  RCC_OscInitStruct.MSIClockRange = RCC_MSIRANGE_6;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
-  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_MSI;
-  RCC_OscInitStruct.PLL.PLLM = 1;
-  RCC_OscInitStruct.PLL.PLLN = 40;
-  RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
-  RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    Error_Handler();
-  }
+    /** Initializes the RCC Oscillators according to the specified parameters
+     * in the RCC_OscInitTypeDef structure.
+     */
+    RCC_OscInitStruct.OscillatorType      = RCC_OSCILLATORTYPE_MSI;
+    RCC_OscInitStruct.MSIState            = RCC_MSI_ON;
+    RCC_OscInitStruct.MSICalibrationValue = 0;
+    RCC_OscInitStruct.MSIClockRange       = RCC_MSIRANGE_6;
+    RCC_OscInitStruct.PLL.PLLState        = RCC_PLL_ON;
+    RCC_OscInitStruct.PLL.PLLSource       = RCC_PLLSOURCE_MSI;
+    RCC_OscInitStruct.PLL.PLLM            = 1;
+    RCC_OscInitStruct.PLL.PLLN            = 40;
+    RCC_OscInitStruct.PLL.PLLQ            = RCC_PLLQ_DIV2;
+    RCC_OscInitStruct.PLL.PLLR            = RCC_PLLR_DIV2;
+    if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
+        Error_Handler();
+    }
 
-  /** Initializes the CPU, AHB and APB buses clocks
-   */
-  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
-  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+    /** Initializes the CPU, AHB and APB buses clocks
+     */
+    RCC_ClkInitStruct.ClockType      = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+    RCC_ClkInitStruct.SYSCLKSource   = RCC_SYSCLKSOURCE_PLLCLK;
+    RCC_ClkInitStruct.AHBCLKDivider  = RCC_SYSCLK_DIV1;
+    RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+    RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
-  {
-    Error_Handler();
-  }
+    if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK) {
+        Error_Handler();
+    }
 }
 
 /**
@@ -240,32 +244,29 @@ void SystemClock_Config(void)
  * @param None
  * @retval None
  */
-static void MX_LPUART1_UART_Init(void)
-{
+static void MX_LPUART1_UART_Init(void) {
+    /* USER CODE BEGIN LPUART1_Init 0 */
 
-  /* USER CODE BEGIN LPUART1_Init 0 */
+    /* USER CODE END LPUART1_Init 0 */
 
-  /* USER CODE END LPUART1_Init 0 */
+    /* USER CODE BEGIN LPUART1_Init 1 */
 
-  /* USER CODE BEGIN LPUART1_Init 1 */
+    /* USER CODE END LPUART1_Init 1 */
+    hlpuart1.Instance                    = LPUART1;
+    hlpuart1.Init.BaudRate               = 115200;
+    hlpuart1.Init.WordLength             = UART_WORDLENGTH_8B;
+    hlpuart1.Init.StopBits               = UART_STOPBITS_1;
+    hlpuart1.Init.Parity                 = UART_PARITY_NONE;
+    hlpuart1.Init.Mode                   = UART_MODE_TX_RX;
+    hlpuart1.Init.HwFlowCtl              = UART_HWCONTROL_NONE;
+    hlpuart1.Init.OneBitSampling         = UART_ONE_BIT_SAMPLE_DISABLE;
+    hlpuart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+    if (HAL_UART_Init(&hlpuart1) != HAL_OK) {
+        Error_Handler();
+    }
+    /* USER CODE BEGIN LPUART1_Init 2 */
 
-  /* USER CODE END LPUART1_Init 1 */
-  hlpuart1.Instance = LPUART1;
-  hlpuart1.Init.BaudRate = 115200;
-  hlpuart1.Init.WordLength = UART_WORDLENGTH_8B;
-  hlpuart1.Init.StopBits = UART_STOPBITS_1;
-  hlpuart1.Init.Parity = UART_PARITY_NONE;
-  hlpuart1.Init.Mode = UART_MODE_TX_RX;
-  hlpuart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  hlpuart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
-  hlpuart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
-  if (HAL_UART_Init(&hlpuart1) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN LPUART1_Init 2 */
-
-  /* USER CODE END LPUART1_Init 2 */
+    /* USER CODE END LPUART1_Init 2 */
 }
 
 /**
@@ -273,43 +274,38 @@ static void MX_LPUART1_UART_Init(void)
  * @param None
  * @retval None
  */
-static void MX_TIM2_Init(void)
-{
+static void MX_TIM2_Init(void) {
+    /* USER CODE BEGIN TIM2_Init 0 */
 
-  /* USER CODE BEGIN TIM2_Init 0 */
+    /* USER CODE END TIM2_Init 0 */
 
-  /* USER CODE END TIM2_Init 0 */
+    TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+    TIM_MasterConfigTypeDef sMasterConfig     = {0};
 
-  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
-  TIM_MasterConfigTypeDef sMasterConfig = {0};
+    /* USER CODE BEGIN TIM2_Init 1 */
 
-  /* USER CODE BEGIN TIM2_Init 1 */
+    /* USER CODE END TIM2_Init 1 */
+    htim2.Instance               = TIM2;
+    htim2.Init.Prescaler         = 79;
+    htim2.Init.CounterMode       = TIM_COUNTERMODE_UP;
+    htim2.Init.Period            = 4294967295;
+    htim2.Init.ClockDivision     = TIM_CLOCKDIVISION_DIV1;
+    htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+    if (HAL_TIM_Base_Init(&htim2) != HAL_OK) {
+        Error_Handler();
+    }
+    sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+    if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK) {
+        Error_Handler();
+    }
+    sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+    sMasterConfig.MasterSlaveMode     = TIM_MASTERSLAVEMODE_DISABLE;
+    if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK) {
+        Error_Handler();
+    }
+    /* USER CODE BEGIN TIM2_Init 2 */
 
-  /* USER CODE END TIM2_Init 1 */
-  htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 79;
-  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 4294967295;
-  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
-  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
-  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
-  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
-  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
-  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN TIM2_Init 2 */
-
-  /* USER CODE END TIM2_Init 2 */
+    /* USER CODE END TIM2_Init 2 */
 }
 
 /**
@@ -317,189 +313,170 @@ static void MX_TIM2_Init(void)
  * @param None
  * @retval None
  */
-static void MX_GPIO_Init(void)
-{
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
-  /* USER CODE BEGIN MX_GPIO_Init_1 */
+static void MX_GPIO_Init(void) {
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    /* USER CODE BEGIN MX_GPIO_Init_1 */
 
-  /* USER CODE END MX_GPIO_Init_1 */
+    /* USER CODE END MX_GPIO_Init_1 */
 
-  /* GPIO Ports Clock Enable */
-  __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
-  __HAL_RCC_GPIOB_CLK_ENABLE();
+    /* GPIO Ports Clock Enable */
+    __HAL_RCC_GPIOC_CLK_ENABLE();
+    __HAL_RCC_GPIOH_CLK_ENABLE();
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    __HAL_RCC_GPIOB_CLK_ENABLE();
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_RESET);
+    /*Configure GPIO pin Output Level */
+    HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
+    /*Configure GPIO pin Output Level */
+    HAL_GPIO_WritePin(GPIOC, GPIO_PIN_2, GPIO_PIN_SET);
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, SMPS_EN_Pin | SMPS_V1_Pin | SMPS_SW_Pin, GPIO_PIN_RESET);
+    /*Configure GPIO pin Output Level */
+    HAL_GPIO_WritePin(GPIOA, SMPS_EN_Pin | SMPS_V1_Pin | SMPS_SW_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+    /*Configure GPIO pin Output Level */
+    HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : B1_Pin */
-  GPIO_InitStruct.Pin = B1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
+    /*Configure GPIO pin : B1_Pin */
+    GPIO_InitStruct.Pin  = B1_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : IR_GPIO_EXTI0_Pin */
-  GPIO_InitStruct.Pin = IR_GPIO_EXTI0_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(IR_GPIO_EXTI0_GPIO_Port, &GPIO_InitStruct);
+    /*Configure GPIO pin : IR_GPIO_EXTI0_Pin */
+    GPIO_InitStruct.Pin  = IR_GPIO_EXTI0_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    HAL_GPIO_Init(IR_GPIO_EXTI0_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : GPIO_Toggle_Pin */
-  GPIO_InitStruct.Pin = GPIO_Toggle_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-  HAL_GPIO_Init(GPIO_Toggle_GPIO_Port, &GPIO_InitStruct);
+    /*Configure GPIO pin : GPIO_Toggle_Pin */
+    GPIO_InitStruct.Pin   = GPIO_Toggle_Pin;
+    GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull  = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+    HAL_GPIO_Init(GPIO_Toggle_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PC2 */
-  GPIO_InitStruct.Pin = GPIO_PIN_2;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+    /*Configure GPIO pin : PC2 */
+    GPIO_InitStruct.Pin   = GPIO_PIN_2;
+    GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull  = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : SMPS_EN_Pin SMPS_V1_Pin SMPS_SW_Pin */
-  GPIO_InitStruct.Pin = SMPS_EN_Pin | SMPS_V1_Pin | SMPS_SW_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+    /*Configure GPIO pins : SMPS_EN_Pin SMPS_V1_Pin SMPS_SW_Pin */
+    GPIO_InitStruct.Pin   = SMPS_EN_Pin | SMPS_V1_Pin | SMPS_SW_Pin;
+    GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull  = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : SMPS_PG_Pin */
-  GPIO_InitStruct.Pin = SMPS_PG_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(SMPS_PG_GPIO_Port, &GPIO_InitStruct);
+    /*Configure GPIO pin : SMPS_PG_Pin */
+    GPIO_InitStruct.Pin  = SMPS_PG_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    HAL_GPIO_Init(SMPS_PG_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : LD4_Pin */
-  GPIO_InitStruct.Pin = LD4_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LD4_GPIO_Port, &GPIO_InitStruct);
+    /*Configure GPIO pin : LD4_Pin */
+    GPIO_InitStruct.Pin   = LD4_Pin;
+    GPIO_InitStruct.Mode  = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull  = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(LD4_GPIO_Port, &GPIO_InitStruct);
 
-  /* EXTI interrupt init*/
-  HAL_NVIC_SetPriority(EXTI0_IRQn, 5, 0);
-  HAL_NVIC_EnableIRQ(EXTI0_IRQn);
+    /* EXTI interrupt init*/
+    HAL_NVIC_SetPriority(EXTI0_IRQn, 5, 0);
+    HAL_NVIC_EnableIRQ(EXTI0_IRQn);
 
-  /* USER CODE BEGIN MX_GPIO_Init_2 */
+    /* USER CODE BEGIN MX_GPIO_Init_2 */
 
-  /* USER CODE END MX_GPIO_Init_2 */
+    /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
 // add
-void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-{
-  // 연결 후 설정해둔 핀
-  if (GPIO_Pin == IR_GPIO_EXTI0_Pin)
-  {
-    // fall , rise 읽기 위힘 -> 어디로? 변동 되었는지 확인 필수
-    // (GPIOC -> IR_GPIO_EXTI0_GPIO_Port) 포트 이름도 설정해둔 포트 이름으로!
-    // ir_current_level = HAL_GPIO_ReadPin(IR_GPIO_EXTI0_GPIO_Port, IR_GPIO_EXTI0_Pin);
-    GPIO_Toggle_current_level = HAL_GPIO_ReadPin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin); // 읽어야 할지는 확인 필요
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+    // 연결 후 설정해둔 핀
+    if (GPIO_Pin == IR_GPIO_EXTI0_Pin) {
+        // fall , rise 읽기 위힘 -> 어디로? 변동 되었는지 확인 필수
+        // (GPIOC -> IR_GPIO_EXTI0_GPIO_Port) 포트 이름도 설정해둔 포트 이름으로!
+        // ir_current_level = HAL_GPIO_ReadPin(IR_GPIO_EXTI0_GPIO_Port, IR_GPIO_EXTI0_Pin);
+        GPIO_Toggle_current_level = HAL_GPIO_ReadPin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin);  // 읽어야 할지는 확인 필요
 
-    // ir_current_time = TIM2->CNT;
-    // 시간 차 계산
-    ir_diff = TIM2->CNT - ir_last_time;
-    ir_last_time = TIM2->CNT;
+        // ir_current_time = TIM2->CNT;
+        // 시간 차 계산
+        ir_diff      = TIM2->CNT - ir_last_time;
+        ir_last_time = TIM2->CNT;
 
-    if (ir_diff < 150)
-      return; // 150us 이하는 노이즈 컷
+        if (ir_diff < 150) return;  // 150us 이하는 노이즈 컷
 
-    // data 읽기
-    //  NEC 코드 관련해서 어떻게 읽어올지!!
-    if (ir_state == 1)
-    {
-      // data 0으로 들어오는 부분 판독 후, data 추가
-      if ((ir_diff > 1100) && (ir_diff < 1200))
-      {
-        // 빈자리 자동으로 0으로 채워짐 -> 32비트 데이터에 0 추가
-        ir_data_temp = (ir_data_temp << 1);
+        // data 읽기
+        //  NEC 코드 관련해서 어떻게 읽어올지!!
+        if (ir_state == 1) {
+            // data 0으로 들어오는 부분 판독 후, data 추가
+            if ((ir_diff > 1100) && (ir_diff < 1200)) {
+                // 빈자리 자동으로 0으로 채워짐 -> 32비트 데이터에 0 추가
+                ir_data_temp = (ir_data_temp << 1);
 
-        // 비트 개수 추가
-        ir_bit_count++;
-      }
-      // data 1으로 들어오는 부분 판독 후, data 추가
-      else if ((ir_diff > 2200) && (ir_diff < 2300))
-      {
-        // 빈자리 자동으로 0으로 채워짐 -> 32비트 데이터에 1 추가
-        ir_data_temp = (ir_data_temp << 1) | 1;
+                // 비트 개수 추가
+                ir_bit_count++;
+            }
+            // data 1으로 들어오는 부분 판독 후, data 추가
+            else if ((ir_diff > 2200) && (ir_diff < 2300)) {
+                // 빈자리 자동으로 0으로 채워짐 -> 32비트 데이터에 1 추가
+                ir_data_temp = (ir_data_temp << 1) | 1;
 
-        // 비트 개수 추가
-        ir_bit_count++;
-      }
-      else
-      {
-        // 신호 잘못 들어온 부분 -> 가지고 있는 데이터 전부 초기화
-        ir_state = 0;
-        ir_bit_count = 0;
-        ir_data_temp = 0;
+                // 비트 개수 추가
+                ir_bit_count++;
+            } else {
+                // 신호 잘못 들어온 부분 -> 가지고 있는 데이터 전부 초기화
+                ir_state     = 0;
+                ir_bit_count = 0;
+                ir_data_temp = 0;
 
-        return;
-      }
+                return;
+            }
+        }
+        // leader code 및 repeat code 검출용
+        if (ir_diff > 10000) {
+            ir_state     = 0;
+            ir_bit_count = 0;
+            ir_data_temp = 0;
+            HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_RESET);
+
+            if ((ir_diff > 13000) && (ir_diff < 14000)) {
+                ir_state = 1;
+                HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_SET);
+            } else if ((ir_diff > 11000) && (ir_diff < 12000)) {
+                // repeat 출력 위함
+                ir_repeat_flag = 1;
+                HAL_GPIO_TogglePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin);
+            } else {
+                return;  // 다른 값들 의미 없음
+            }
+        }
+        // NEC 프로토콜 32개를 전부 모았는지?
+        if (ir_bit_count >= 32) {
+            // 임시데이터 => 완성 데이터
+            // 꼭 필요한 과정인지....?
+            ir_received_code = ir_data_temp;
+
+            // while 문 내부 실행하도록 flag
+            ir_flag = 1;
+
+            // 0번 state 복귀
+            ir_state = 0;
+
+            HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_RESET);
+        }
     }
-    // leader code 및 repeat code 검출용
-    if (ir_diff > 10000)
-    {
-      ir_state = 0;
-      ir_bit_count = 0;
-      ir_data_temp = 0;
-      HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_RESET);
-
-      if ((ir_diff > 13000) && (ir_diff < 14000))
-      {
-        ir_state = 1;
-        HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_SET);
-      }
-      else if ((ir_diff > 11000) && (ir_diff < 12000))
-      {
-        // repeat 출력 위함
-        ir_repeat_flag = 1;
-        HAL_GPIO_TogglePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin);
-      }
-      else
-      {
-        return; // 다른 값들 의미 없음
-      }
-    }
-    // NEC 프로토콜 32개를 전부 모았는지?
-    if (ir_bit_count >= 32)
-    {
-      // 임시데이터 => 완성 데이터
-      // 꼭 필요한 과정인지....?
-      ir_received_code = ir_data_temp;
-
-      // while 문 내부 실행하도록 flag
-      ir_flag = 1;
-
-      // 0번 state 복귀
-      ir_state = 0;
-
-      HAL_GPIO_WritePin(GPIO_Toggle_GPIO_Port, GPIO_Toggle_Pin, GPIO_PIN_RESET);
-    }
-  }
 }
 
-void print_bin32(uint32_t v)
-{
-  for (int i = 31; i >= 0; i--)
-  {
-    printf("%ld", (v >> i) & 1);
-    if (i % 8 == 0)
-      printf(" ");
-  }
-  printf("\r\n");
+void print_bin32(uint32_t v) {
+    for (int i = 31; i >= 0; i--) {
+        printf("%ld", (v >> i) & 1);
+        if (i % 8 == 0) printf(" ");
+    }
+    printf("\r\n");
 }
 
 /* USER CODE END 4 */
@@ -508,15 +485,13 @@ void print_bin32(uint32_t v)
  * @brief  This function is executed in case of error occurrence.
  * @retval None
  */
-void Error_Handler(void)
-{
-  /* USER CODE BEGIN Error_Handler_Debug */
-  /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
-  /* USER CODE END Error_Handler_Debug */
+void Error_Handler(void) {
+    /* USER CODE BEGIN Error_Handler_Debug */
+    /* User can add his own implementation to report the HAL error return state */
+    __disable_irq();
+    while (1) {
+    }
+    /* USER CODE END Error_Handler_Debug */
 }
 #ifdef USE_FULL_ASSERT
 /**
@@ -526,11 +501,10 @@ void Error_Handler(void)
  * @param  line: assert_param error line source number
  * @retval None
  */
-void assert_failed(uint8_t *file, uint32_t line)
-{
-  /* USER CODE BEGIN 6 */
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
-  /* USER CODE END 6 */
+void assert_failed(uint8_t* file, uint32_t line) {
+    /* USER CODE BEGIN 6 */
+    /* User can add his own implementation to report the file name and line number,
+       ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+    /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */

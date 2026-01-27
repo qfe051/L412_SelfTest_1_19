@@ -1,0 +1,9 @@
+BasedOnStyle: Google
+IndentWidth: 4
+TabWidth: 4
+AllowShortFunctionsOnASingleLine: false
+AlignConsecutiveAssignments: AcrossEmptyLines
+AlignConsecutiveMacros: AcrossEmptyLines
+ColumnLimit: 300
+BinPackArguments: false
+BinPackParameters: false
