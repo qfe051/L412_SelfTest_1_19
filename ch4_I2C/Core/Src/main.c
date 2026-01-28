@@ -103,10 +103,13 @@ void DS1302_SetInput(void) {
 void DS1302_WriteByte(uint8_t data) {
   // 출력모드 세팅
   DS1302_SetOutput();
-  
+
   for (int i = 0; i < 8; i++) {
+
     // LSB (0번비트 부터!)
-    if (data & 0x01) {
+    // 가장 오른쪽 비트와 비교
+    // 1 -> 0000 0001 과 & 연산하여 1인지 확인 
+    if ((data & 1)==1) {
       // data 가 1인 경우에만 set으로 설정 ?
       HAL_GPIO_WritePin(GPIOC, DAT_Pin, GPIO_PIN_SET);
     }
@@ -114,10 +117,8 @@ void DS1302_WriteByte(uint8_t data) {
       HAL_GPIO_WritePin(GPIOC, DAT_Pin, GPIO_PIN_RESET);
     }
     data >>= 1; // 비트 밀어넣기 (시프트)
-
-    // CLK 핀 토글 생성
-    // 토글 안되면 다른 방법도 보기 
-    HAL_GPIO_TogglePin(GPIOC, CLK_Pin);
+    HAL_GPIO_WritePin(GPIOC, CLK_Pin, GPIO_PIN_SET);
+    HAL_GPIO_WritePin(GPIOC, CLK_Pin, GPIO_PIN_RESET);
   }
 }
 // uint8_t -> 8bit data를 받아와야 함
@@ -128,6 +129,8 @@ uint8_t DS1302_ReadByte(void) {
   DS1302_SetInput();
 
   for (int i = 0; i < 8; i++) {
+    HAL_GPIO_WritePin(GPIOC, CLK_Pin, GPIO_PIN_SET);
+
     // LSB 부터 데이터 읽기
     // 값이 1인 데이터 읽어오기
     // GPIO_PIN_SET 대신 1 집어넣는 것이 안정적인지 확인
@@ -136,8 +139,12 @@ uint8_t DS1302_ReadByte(void) {
     }
     // CLK 핀 토글 생성
     // 토글 안되면 다른 방법도 보기
-    HAL_GPIO_TogglePin(GPIOC, CLK_Pin);
+    // HAL_GPIO_TogglePin(GPIOC, CLK_Pin);
+
+    // set reset
+    HAL_GPIO_WritePin(GPIOC, CLK_Pin, GPIO_PIN_RESET);
   }
+  return data;
 }
 
 // 3. 레지스터 단위 R/W
@@ -162,6 +169,73 @@ uint8_t DS1302_ReadReg(uint8_t reg) {
 
   return data;
 }
+
+uint8_t sec_min(uint8_t data) {
+  uint8_t sec_1 = 0;
+  uint8_t sec_10 = 0;
+  uint8_t sec = 0;
+
+  sec_1 = (data & 0x0F);
+  sec_10 = ((data >> 4) & 0x07);
+  sec = 10 * sec_10 + sec_1;
+
+  return sec;
+}
+
+uint8_t hours(uint8_t data) {
+  uint8_t hours_1 = 0;
+  uint8_t hours_10 = 0;
+  uint8_t hours = 0;
+
+  hours_1 = (data & 0x0F);
+  hours_10 = ((data >> 4) & 0x03);
+  hours = 10 * hours_10 + hours_1;
+
+  return hours;
+}
+
+uint8_t years(uint8_t data) {
+  uint8_t years_1 = 0;
+  uint8_t years_10 = 0;
+  uint8_t years = 0;
+
+  years_1 = (data & 0x0F);
+  years_10 = ((data >> 4) & 0x0F);
+  years = 10 * years_10 + years_1;
+
+  return years;
+}
+
+const char* days(uint8_t data) {
+  int temp = 0;
+  temp = data++;
+
+  switch (temp) {
+  case 1:
+    return "Mon";
+  case 2:
+    return "Tue";
+  case 3:
+    return "Wed";
+  case 4:
+    return "Thu";
+  case 5:
+    return "Fri";
+  case 6:
+    return "Sat";
+  case 7:
+    return "Sun";
+  }
+
+  return days;
+}
+
+// uint8_t sec_10(uint8_t data) {
+//   uint8_t sec_10 = 0;
+//   sec_10 = ((data >> 4) & 0x07);
+
+//   return sec_10;
+// }
 /* USER CODE END 0 */
 
 /**
@@ -205,34 +279,80 @@ int main(void) {
   printf("DS1302 Test Start...\r\n");
 
   // 쓰기 방지 설정 가능성
-  // WRITE-PROTECT BIT 설정이 있음
+  // // WRITE-PROTECT BIT 설정이 있음
   DS1302_WriteReg(0x8E, 0x00);
 
-  // test용 값 입력
-  DS1302_WriteReg(0xC0, 0x11);
+  // 초시계 활성화
+  printf("Clock init \r\n");
+  DS1302_WriteReg(0x80, 0x00);
 
+  // 24시간제
+  printf("24H \r\n");
+  DS1302_WriteReg(0x84, 0x00);
+
+  // 날짜 시각 초기회
+  // 26년 1월 28일 17시 00분 수요일(3)
+  DS1302_WriteReg(0x82, 0x00); // min
+  DS1302_WriteReg(0x84, 0x17); // hours
+  DS1302_WriteReg(0x86, 0x28); // date
+  DS1302_WriteReg(0x88, 0x01); // month
+  DS1302_WriteReg(0x8A, 0x03); // days
+  DS1302_WriteReg(0x8C, 0x26); // years
+
+  // 초 읽기
+  // DS1302_ReadReg(0x81);
+
+
+  // // test용 값 입력 -> RAM의 시작값에 입력 함
+  // Vcc 3.3->5v 변경 후 재시도 해보기
+
+
+  // DS1302_WriteByte(0x01);
+
+  // printf("[] Read Sec hex: 0x%02X \r\n", DS1302_ReadReg(0x81));
+  // printf("[] Read Sec dec: %d \r\n", DS1302_ReadReg(0x81));
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1) {
-    // 위에서 적어둔 값 읽기 -  DS1302_WriteReg(0xC0, 0xAB);
-    // 쓰기주소 +1 했던 ->  0xC1 에서 값 읽어오기
-    uint8_t readVal = DS1302_ReadReg(0xC1);
+    
+    //초단위 출력
+    printf("\r\n");
+    // uint8_t sec_data = 0;
+    // sec_data = DS1302_ReadReg(0x81);
+    // sec_data = sec(sec_data);
+    printf("RTC \r\n");
+    printf("[] Read Sec: %d \r\n", sec_min(DS1302_ReadReg(0x81)));
+    printf("[] Read Min: %d \r\n", sec_min(DS1302_ReadReg(0x83)));
+    printf("[] Read Hours: %d \r\n", hours(DS1302_ReadReg(0x85)));
+    printf("[] Read Dates: %d \r\n", hours(DS1302_ReadReg(0x87)));
+    printf("[] Read Month: %d \r\n", hours(DS1302_ReadReg(0x89)));
+    printf("[] Read Day: %s \r\n",days(DS1302_ReadReg(0x8B)));
+    printf("[] Read Years: %d \r\n", sec_min(DS1302_ReadReg(0x8D)));
+    printf("\r\n");
 
-    printf("[] Read : 0x%02X \r\n", readVal);
+    HAL_Delay(500);
 
-    // if (readVal = 0xAB) {
-    //   printf("[O] Read : 0x%02X \r\n", readVal);
-    // }
-    // else {
-    //   printf("[X] Read : 0x%02X \r\n (expect : 0xAB)", readVal);
-    // }
+    printf("Burst Mode \r\n");
+    HAL_GPIO_WritePin(GPIOC, RST_Pin, GPIO_PIN_SET);
 
+    DS1302_WriteByte(0xBF);
+
+    printf("[] Read Sec: %d \r\n", sec_min(DS1302_ReadByte()));
+    printf("[] Read Min: %d \r\n", sec_min(DS1302_ReadByte()));
+    printf("[] Read Hours: %d \r\n", hours(DS1302_ReadByte()));
+    printf("[] Read Dates: %d \r\n", hours(DS1302_ReadByte()));
+    printf("[] Read Month: %d \r\n", hours(DS1302_ReadByte()));
+    printf("[] Read Day: %s \r\n", days(DS1302_ReadByte()));
+    printf("[] Read Years: %d \r\n", sec_min(DS1302_ReadByte()));
+    HAL_GPIO_WritePin(GPIOC, RST_Pin, GPIO_PIN_RESET);
+
+    HAL_Delay(500);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-}
+  }
   /* USER CODE END 3 */
 }
 
