@@ -21,7 +21,13 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+// add
+#include <stdio.h>
+#include <stm32l412xx.h>
+#include <string.h>
+#include <unistd.h>
 
+#include "ds1302.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,11 +62,7 @@ static void MX_LPUART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-// add
-#include <stdio.h>
-#include <stm32l412xx.h>
-#include <string.h>
-#include <unistd.h>
+
 
 // UART로 출력 보내기 위한 함수
 int _write(int file, char *ptr, int len) {
@@ -81,7 +83,7 @@ void DS1302_SetOutput(void) {
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  GPIO_Init_C;
 }
 
 // 입력 설정 함수
@@ -92,7 +94,7 @@ void DS1302_SetInput(void) {
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  GPIO_Init_C;
 }
 
 // 2. 1바이트 쓰기 / 읽기 단위로 진행
@@ -117,8 +119,8 @@ void DS1302_WriteByte(uint8_t data) {
       HAL_GPIO_WritePin(GPIOC, DAT_Pin, GPIO_PIN_RESET);
     }
     data >>= 1; // 비트 밀어넣기 (시프트)
-    HAL_GPIO_WritePin(GPIOC, CLK_Pin, GPIO_PIN_SET);
-    HAL_GPIO_WritePin(GPIOC, CLK_Pin, GPIO_PIN_RESET);
+    CLK_ON;
+    CLK_OFF;
   }
 }
 // uint8_t -> 8bit data를 받아와야 함
@@ -129,7 +131,7 @@ uint8_t DS1302_ReadByte(void) {
   DS1302_SetInput();
 
   for (int i = 0; i < 8; i++) {
-    HAL_GPIO_WritePin(GPIOC, CLK_Pin, GPIO_PIN_SET);
+    CLK_ON;
 
     // LSB 부터 데이터 읽기
     // 값이 1인 데이터 읽어오기
@@ -142,7 +144,7 @@ uint8_t DS1302_ReadByte(void) {
     // HAL_GPIO_TogglePin(GPIOC, CLK_Pin);
 
     // set reset
-    HAL_GPIO_WritePin(GPIOC, CLK_Pin, GPIO_PIN_RESET);
+    CLK_OFF;
   }
   return data;
 }
@@ -151,21 +153,21 @@ uint8_t DS1302_ReadByte(void) {
 // 마찬가지로 쓰기 작업이라 - return 받을 데이터 없음
 void DS1302_WriteReg(uint8_t reg, uint8_t data) {
   // CE - High로 올려 통신 시작
-  HAL_GPIO_WritePin(GPIOC, RST_Pin, GPIO_PIN_SET);
+  CE_ON;
   DS1302_WriteByte(reg); // 주소 -> 시작 시점
   DS1302_WriteByte(data); // 데이터
   // CE - Low로 통신 종료
-  HAL_GPIO_WritePin(GPIOC, RST_Pin, GPIO_PIN_RESET);
+  CE_OFF;
 }
 
 // reg 삽입할 공간만 추가
 uint8_t DS1302_ReadReg(uint8_t reg) {
   uint8_t data;
-  HAL_GPIO_WritePin(GPIOC, RST_Pin, GPIO_PIN_SET);
+  CE_ON;
   DS1302_WriteByte(reg);  // 주소 -> 시작 시점 전송 먼저 해야!
   data = DS1302_ReadByte(); // 데이터 저장(수신?)
   // CE - Low로 통신 종료
-  HAL_GPIO_WritePin(GPIOC, RST_Pin, GPIO_PIN_RESET);
+  CE_OFF;
 
   return data;
 }
@@ -272,19 +274,23 @@ int main(void) {
   // printf("UART Test \r\n");
 
   // 핀 초기화 (RST , CLK )
-  HAL_GPIO_WritePin(GPIOC, RST_Pin, GPIO_PIN_RESET);
-  HAL_GPIO_WritePin(GPIOC, CLK_Pin, GPIO_PIN_RESET);
+  CE_OFF;
+  CLK_OFF;
 
   // uart 테스트 출력
   printf("DS1302 Test Start...\r\n");
 
+  // 구조체 테스트
+
+  now.sec = 10;
+  printf("struct sec test : %d \r\n", now.sec);
+
   // 쓰기 방지 설정 가능성
   // // WRITE-PROTECT BIT 설정이 있음
-  DS1302_WriteReg(0x8E, 0x00);
-
+  Enable_Write;
   // 초시계 활성화
   printf("Clock init \r\n");
-  DS1302_WriteReg(0x80, 0x00);
+  Enable_Clock;
 
   // 24시간제
   printf("24H \r\n");
@@ -292,25 +298,11 @@ int main(void) {
 
   // 날짜 시각 초기회
   // 26년 1월 28일 17시 00분 수요일(3)
-  DS1302_WriteReg(0x82, 0x00); // min
-  DS1302_WriteReg(0x84, 0x17); // hours
-  DS1302_WriteReg(0x86, 0x28); // date
-  DS1302_WriteReg(0x88, 0x01); // month
-  DS1302_WriteReg(0x8A, 0x03); // days
-  DS1302_WriteReg(0x8C, 0x26); // years
-
-  // 초 읽기
-  // DS1302_ReadReg(0x81);
-
+  TimeSet_v1700;
 
   // // test용 값 입력 -> RAM의 시작값에 입력 함
   // Vcc 3.3->5v 변경 후 재시도 해보기
 
-
-  // DS1302_WriteByte(0x01);
-
-  // printf("[] Read Sec hex: 0x%02X \r\n", DS1302_ReadReg(0x81));
-  // printf("[] Read Sec dec: %d \r\n", DS1302_ReadReg(0x81));
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -319,9 +311,7 @@ int main(void) {
     
     //초단위 출력
     printf("\r\n");
-    // uint8_t sec_data = 0;
-    // sec_data = DS1302_ReadReg(0x81);
-    // sec_data = sec(sec_data);
+
     printf("RTC \r\n");
     printf("[] Read Sec: %d \r\n", sec_min(DS1302_ReadReg(0x81)));
     printf("[] Read Min: %d \r\n", sec_min(DS1302_ReadReg(0x83)));
@@ -335,7 +325,7 @@ int main(void) {
     HAL_Delay(500);
 
     printf("Burst Mode \r\n");
-    HAL_GPIO_WritePin(GPIOC, RST_Pin, GPIO_PIN_SET);
+    CE_ON;
 
     DS1302_WriteByte(0xBF);
 
@@ -346,7 +336,7 @@ int main(void) {
     printf("[] Read Month: %d \r\n", hours(DS1302_ReadByte()));
     printf("[] Read Day: %s \r\n", days(DS1302_ReadByte()));
     printf("[] Read Years: %d \r\n", sec_min(DS1302_ReadByte()));
-    HAL_GPIO_WritePin(GPIOC, RST_Pin, GPIO_PIN_RESET);
+    CE_OFF;
 
     HAL_Delay(500);
     /* USER CODE END WHILE */
@@ -477,7 +467,7 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  GPIO_Init_C;
 
   /*Configure GPIO pin : RST_Pin */
   GPIO_InitStruct.Pin = RST_Pin;
