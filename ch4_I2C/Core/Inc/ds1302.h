@@ -7,8 +7,7 @@
 #ifndef __DS1302_H_
 #define __DS1302_H_
 // 함수 선언만!
-void burst_mode(rtc_time *r);
-void burst_mode_printf(rtc_time *r);
+
 
 int _write(int file, char *ptr, int len);
 void DS1302_SetOutput(void);
@@ -57,6 +56,8 @@ typedef struct {
   uint8_t Years;
 } rtc_time;
 
+void burst_mode(rtc_time *r);
+void burst_mode_printf(rtc_time *r);
 // main.c로 이동
 // ㄴ
 #endif

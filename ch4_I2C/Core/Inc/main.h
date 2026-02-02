@@ -67,6 +67,10 @@ void Error_Handler(void);
 #define DAT_GPIO_Port GPIOC
 #define RST_Pin GPIO_PIN_2
 #define RST_GPIO_Port GPIOC
+#define CLK_DIS_Pin GPIO_PIN_0
+#define CLK_DIS_GPIO_Port GPIOA
+#define DAT_DIS_Pin GPIO_PIN_1
+#define DAT_DIS_GPIO_Port GPIOA
 #define SMPS_EN_Pin GPIO_PIN_4
 #define SMPS_EN_GPIO_Port GPIOA
 #define SMPS_V1_Pin GPIO_PIN_5
@@ -77,6 +81,8 @@ void Error_Handler(void);
 #define SMPS_SW_GPIO_Port GPIOA
 #define LD4_Pin GPIO_PIN_13
 #define LD4_GPIO_Port GPIOB
+#define DELAY_US_Pin GPIO_PIN_9
+#define DELAY_US_GPIO_Port GPIOC
 #define TMS_Pin GPIO_PIN_13
 #define TMS_GPIO_Port GPIOA
 #define TCK_Pin GPIO_PIN_14

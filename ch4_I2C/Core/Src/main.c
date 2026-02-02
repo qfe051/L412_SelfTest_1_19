@@ -28,6 +28,7 @@
 #include <unistd.h>
 
 #include "ds1302.h"
+#include "tm1637.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,6 +50,7 @@
 UART_HandleTypeDef hlpuart1;
 
 /* USER CODE BEGIN PV */
+
 
 /* USER CODE END PV */
 
@@ -79,10 +81,11 @@ int _write(int file, char *ptr, int len) {
 /* USER CODE END 0 */
 
 /**
- * @brief  The application entry point.
- * @retval int
- */
-int main(void) {
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
 
   /* USER CODE BEGIN 1 */
 
@@ -117,6 +120,27 @@ int main(void) {
 
   // uart 테스트 출력
   printf("DS1302 Test Start...\r\n");
+
+  // TM1637 테스트 출력
+  TM1637_Start();
+  // cmd1 data
+  TM1637_WriteByte(0x40);
+
+  // cmd2 data
+  TM1637_Stop();
+
+  // TM1637_Start();
+  // TM1637_WriteByte(0xC0);
+
+  // // data 1
+  // TM1637_WriteByte(0x01);
+
+  // // data 2
+  // TM1637_WriteByte(0x03);
+  // // cmd3 data
+  // TM1637_Start();
+  // TM1637_WriteByte(0x87);
+  // TM1637_Stop();
 
   // 구조체 테스트
   rtc_time now ;
@@ -263,7 +287,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, CLK_Pin|DAT_Pin|RST_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, CLK_Pin|DAT_Pin|RST_Pin|DELAY_US_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, CLK_DIS_Pin|DAT_DIS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, SMPS_EN_Pin|SMPS_V1_Pin|SMPS_SW_Pin, GPIO_PIN_RESET);
@@ -277,12 +304,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : CLK_Pin DAT_Pin */
-  GPIO_InitStruct.Pin = CLK_Pin|DAT_Pin;
+  /*Configure GPIO pins : CLK_Pin DAT_Pin DELAY_US_Pin */
+  GPIO_InitStruct.Pin = CLK_Pin|DAT_Pin|DELAY_US_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  GPIO_Init_C;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : RST_Pin */
   GPIO_InitStruct.Pin = RST_Pin;
@@ -290,6 +317,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(RST_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : CLK_DIS_Pin DAT_DIS_Pin */
+  GPIO_InitStruct.Pin = CLK_DIS_Pin|DAT_DIS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pins : SMPS_EN_Pin SMPS_V1_Pin SMPS_SW_Pin */
   GPIO_InitStruct.Pin = SMPS_EN_Pin|SMPS_V1_Pin|SMPS_SW_Pin;

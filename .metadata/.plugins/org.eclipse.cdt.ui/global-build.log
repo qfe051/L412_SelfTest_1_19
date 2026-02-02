@@ -581,3 +581,658 @@ arm-none-eabi-size  ch4_I2C.elf
   16884	    104	   2040	  19028	   4a54	ch4_I2C.elf
 Finished building: default.size.stdout
  
+14:01:33 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/ds1302.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ds1302.d" -MT"Core/Src/ds1302.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ds1302.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_hal_msp.d" -MT"Core/Src/stm32l4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_it.d" -MT"Core/Src/stm32l4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_it.o"
+arm-none-eabi-gcc "../Core/Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/syscalls.d" -MT"Core/Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/syscalls.o"
+arm-none-eabi-gcc "../Core/Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/sysmem.d" -MT"Core/Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/sysmem.o"
+arm-none-eabi-gcc "../Core/Src/system_stm32l4xx.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/system_stm32l4xx.d" -MT"Core/Src/system_stm32l4xx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/system_stm32l4xx.o"
+arm-none-eabi-gcc "../Core/Src/tm1637.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tm1637.d" -MT"Core/Src/tm1637.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tm1637.o"
+In file included from ../Core/Src/ds1302.c:2:
+../Core/Inc/ds1302.h:10:17: error: unknown type name 'rtc_time'
+   10 | void burst_mode(rtc_time *r);
+      |                 ^~~~~~~~
+../Core/Inc/ds1302.h:11:24: error: unknown type name 'rtc_time'
+   11 | void burst_mode_printf(rtc_time *r);
+      |                        ^~~~~~~~
+../Core/Src/ds1302.c: In function 'days':
+../Core/Src/ds1302.c:50:10: warning: returning 'const char * (*)(uint8_t)' {aka 'const char * (*)(unsigned char)'} from a function with incompatible return type 'const char *' [-Wincompatible-pointer-types]
+   50 |   return days;
+      |          ^~~~
+../Core/Src/ds1302.c: In function 'burst_mode':
+../Core/Src/ds1302.c:68:10: warning: assignment to 'uint8_t' {aka 'unsigned char'} from 'const char *' makes integer from pointer without a cast [-Wint-conversion]
+   68 |   r->Day = days(DS1302_ReadByte());
+      |          ^
+../Core/Src/ds1302.c: In function 'burst_mode_printf':
+../Core/Src/ds1302.c:87:25: warning: format '%s' expects argument of type 'char *', but argument 2 has type 'int' [-Wformat=]
+   87 |   printf("[] Read Day: %s \r\n", r->Day);
+      |                        ~^        ~~~~~~
+      |                         |         |
+      |                         char *    int
+      |                        %d
+make: *** [Core/Src/subdir.mk:40: Core/Src/ds1302.o] Error 1
+make: *** Waiting for unfinished jobs....
+In file included from ../Core/Src/main.c:30:
+../Core/Inc/ds1302.h:10:17: error: unknown type name 'rtc_time'
+   10 | void burst_mode(rtc_time *r);
+      |                 ^~~~~~~~
+../Core/Inc/ds1302.h:11:24: error: unknown type name 'rtc_time'
+   11 | void burst_mode_printf(rtc_time *r);
+      |                        ^~~~~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:154:5: warning: implicit declaration of function 'burst_mode' [-Wimplicit-function-declaration]
+  154 |     burst_mode(&now);
+      |     ^~~~~~~~~~
+../Core/Src/main.c:155:5: warning: implicit declaration of function 'burst_mode_printf' [-Wimplicit-function-declaration]
+  155 |     burst_mode_printf(&now);
+      |     ^~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/main.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:03:30 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/ds1302.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ds1302.d" -MT"Core/Src/ds1302.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ds1302.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/ds1302.c: In function 'days':
+../Core/Src/ds1302.c:50:10: warning: returning 'const char * (*)(uint8_t)' {aka 'const char * (*)(unsigned char)'} from a function with incompatible return type 'const char *' [-Wincompatible-pointer-types]
+   50 |   return days;
+      |          ^~~~
+../Core/Src/ds1302.c: In function 'burst_mode':
+../Core/Src/ds1302.c:68:10: warning: assignment to 'uint8_t' {aka 'unsigned char'} from 'const char *' makes integer from pointer without a cast [-Wint-conversion]
+   68 |   r->Day = days(DS1302_ReadByte());
+      |          ^
+../Core/Src/ds1302.c: In function 'burst_mode_printf':
+../Core/Src/ds1302.c:87:25: warning: format '%s' expects argument of type 'char *', but argument 2 has type 'int' [-Wformat=]
+   87 |   printf("[] Read Day: %s \r\n", r->Day);
+      |                        ~^        ~~~~~~
+      |                         |         |
+      |                         char *    int
+      |                        %d
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  16884	    104	   2040	  19028	   4a54	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+14:17:06 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/tm1637.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tm1637.d" -MT"Core/Src/tm1637.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tm1637.o"
+In file included from ../Core/Src/tm1637.c:1:
+../Core/Inc/tm1637.h:9:23: error: unknown type name 'uint8_t'
+    9 | void TM1637_WriteByte(uint8_t data);
+      |                       ^~~~~~~
+../Core/Inc/tm1637.h:1:1: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+  +++ |+#include <stdint.h>
+    1 | #define CLK_DIS_ON HAL_GPIO_WritePin(GPIOA, CLK_DIS_Pin, GPIO_PIN_SET);
+../Core/Inc/tm1637.h:10:1: error: unknown type name 'uint8_t'
+   10 | uint8_t TM1637_ReadByte(void);
+      | ^~~~~~~
+../Core/Inc/tm1637.h:10:1: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Core/Inc/tm1637.h:12:22: error: unknown type name 'uint8_t'
+   12 | void TM1637_WriteReg(uint8_t reg, uint8_t data);
+      |                      ^~~~~~~
+../Core/Inc/tm1637.h:12:22: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Core/Inc/tm1637.h:12:35: error: unknown type name 'uint8_t'
+   12 | void TM1637_WriteReg(uint8_t reg, uint8_t data);
+      |                                   ^~~~~~~
+../Core/Inc/tm1637.h:12:35: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Core/Inc/tm1637.h:13:1: error: unknown type name 'uint8_t'
+   13 | uint8_t TM1637_ReadReg(uint8_t reg);
+      | ^~~~~~~
+../Core/Inc/tm1637.h:13:1: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Core/Inc/tm1637.h:13:24: error: unknown type name 'uint8_t'
+   13 | uint8_t TM1637_ReadReg(uint8_t reg);
+      |                        ^~~~~~~
+../Core/Inc/tm1637.h:13:24: note: 'uint8_t' is defined in header '<stdint.h>'; did you forget to '#include <stdint.h>'?
+../Core/Src/tm1637.c: In function 'TM1637_SetOutput':
+../Core/Src/tm1637.c:9:3: error: unknown type name 'GPIO_InitTypeDef'
+    9 |   GPIO_InitTypeDef GPIO_InitStruct = {0};
+      |   ^~~~~~~~~~~~~~~~
+../Core/Src/tm1637.c:10:18: error: request for member 'Pin' in something not a structure or union
+   10 |   GPIO_InitStruct.Pin = DAT_DIS_Pin;
+      |                  ^
+../Core/Src/tm1637.c:10:25: error: 'DAT_DIS_Pin' undeclared (first use in this function)
+   10 |   GPIO_InitStruct.Pin = DAT_DIS_Pin;
+      |                         ^~~~~~~~~~~
+../Core/Src/tm1637.c:10:25: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/tm1637.c:11:18: error: request for member 'Mode' in something not a structure or union
+   11 |   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+      |                  ^
+../Core/Src/tm1637.c:11:26: error: 'GPIO_MODE_OUTPUT_PP' undeclared (first use in this function)
+   11 |   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+      |                          ^~~~~~~~~~~~~~~~~~~
+../Core/Src/tm1637.c:12:18: error: request for member 'Pull' in something not a structure or union
+   12 |   GPIO_InitStruct.Pull = GPIO_NOPULL;
+      |                  ^
+../Core/Src/tm1637.c:12:26: error: 'GPIO_NOPULL' undeclared (first use in this function)
+   12 |   GPIO_InitStruct.Pull = GPIO_NOPULL;
+      |                          ^~~~~~~~~~~
+../Core/Src/tm1637.c:13:18: error: request for member 'Speed' in something not a structure or union
+   13 |   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+      |                  ^
+../Core/Src/tm1637.c:13:27: error: 'GPIO_SPEED_FREQ_LOW' undeclared (first use in this function)
+   13 |   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+      |                           ^~~~~~~~~~~~~~~~~~~
+../Core/Inc/tm1637.h:4:21: warning: implicit declaration of function 'HAL_GPIO_Init' [-Wimplicit-function-declaration]
+    4 | #define GPIO_Init_A HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+      |                     ^~~~~~~~~~~~~
+../Core/Src/tm1637.c:14:3: note: in expansion of macro 'GPIO_Init_A'
+   14 |   GPIO_Init_A;
+      |   ^~~~~~~~~~~
+../Core/Inc/tm1637.h:4:35: error: 'GPIOA' undeclared (first use in this function)
+    4 | #define GPIO_Init_A HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+      |                                   ^~~~~
+../Core/Src/tm1637.c:14:3: note: in expansion of macro 'GPIO_Init_A'
+   14 |   GPIO_Init_A;
+      |   ^~~~~~~~~~~
+../Core/Src/tm1637.c: In function 'TM1637_SetInput':
+../Core/Src/tm1637.c:20:3: error: unknown type name 'GPIO_InitTypeDef'
+   20 |   GPIO_InitTypeDef GPIO_InitStruct = {0};
+      |   ^~~~~~~~~~~~~~~~
+../Core/Src/tm1637.c:21:18: error: request for member 'Pin' in something not a structure or union
+   21 |   GPIO_InitStruct.Pin = DAT_DIS_Pin;
+      |                  ^
+../Core/Src/tm1637.c:21:25: error: 'DAT_DIS_Pin' undeclared (first use in this function)
+   21 |   GPIO_InitStruct.Pin = DAT_DIS_Pin;
+      |                         ^~~~~~~~~~~
+../Core/Src/tm1637.c:22:18: error: request for member 'Mode' in something not a structure or union
+   22 |   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+      |                  ^
+../Core/Src/tm1637.c:22:26: error: 'GPIO_MODE_INPUT' undeclared (first use in this function)
+   22 |   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+      |                          ^~~~~~~~~~~~~~~
+../Core/Src/tm1637.c:23:18: error: request for member 'Pull' in something not a structure or union
+   23 |   GPIO_InitStruct.Pull = GPIO_NOPULL;
+      |                  ^
+../Core/Src/tm1637.c:23:26: error: 'GPIO_NOPULL' undeclared (first use in this function)
+   23 |   GPIO_InitStruct.Pull = GPIO_NOPULL;
+      |                          ^~~~~~~~~~~
+../Core/Src/tm1637.c:24:18: error: request for member 'Speed' in something not a structure or union
+   24 |   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+      |                  ^
+../Core/Src/tm1637.c:24:27: error: 'GPIO_SPEED_FREQ_LOW' undeclared (first use in this function)
+   24 |   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+      |                           ^~~~~~~~~~~~~~~~~~~
+../Core/Inc/tm1637.h:4:35: error: 'GPIOA' undeclared (first use in this function)
+    4 | #define GPIO_Init_A HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+      |                                   ^~~~~
+../Core/Src/tm1637.c:25:3: note: in expansion of macro 'GPIO_Init_A'
+   25 |   GPIO_Init_A;
+      |   ^~~~~~~~~~~
+../Core/Src/tm1637.c: In function 'TM1637_WriteByte':
+../Core/Src/tm1637.c:44:7: warning: implicit declaration of function 'HAL_GPIO_WritePin' [-Wimplicit-function-declaration]
+   44 |       HAL_GPIO_WritePin(GPIOA, DAT_DIS_Pin, GPIO_PIN_SET);
+      |       ^~~~~~~~~~~~~~~~~
+../Core/Src/tm1637.c:44:25: error: 'GPIOA' undeclared (first use in this function)
+   44 |       HAL_GPIO_WritePin(GPIOA, DAT_DIS_Pin, GPIO_PIN_SET);
+      |                         ^~~~~
+../Core/Src/tm1637.c:44:32: error: 'DAT_DIS_Pin' undeclared (first use in this function)
+   44 |       HAL_GPIO_WritePin(GPIOA, DAT_DIS_Pin, GPIO_PIN_SET);
+      |                                ^~~~~~~~~~~
+../Core/Src/tm1637.c:44:45: error: 'GPIO_PIN_SET' undeclared (first use in this function)
+   44 |       HAL_GPIO_WritePin(GPIOA, DAT_DIS_Pin, GPIO_PIN_SET);
+      |                                             ^~~~~~~~~~~~
+../Core/Src/tm1637.c:46:45: error: 'GPIO_PIN_RESET' undeclared (first use in this function)
+   46 |       HAL_GPIO_WritePin(GPIOA, DAT_DIS_Pin, GPIO_PIN_RESET);
+      |                                             ^~~~~~~~~~~~~~
+../Core/Inc/tm1637.h:1:45: error: 'CLK_DIS_Pin' undeclared (first use in this function); did you mean 'CLK_DIS_ON'?
+    1 | #define CLK_DIS_ON HAL_GPIO_WritePin(GPIOA, CLK_DIS_Pin, GPIO_PIN_SET);
+      |                                             ^~~~~~~~~~~
+../Core/Src/tm1637.c:49:5: note: in expansion of macro 'CLK_DIS_ON'
+   49 |     CLK_DIS_ON;
+      |     ^~~~~~~~~~
+../Core/Src/tm1637.c: At top level:
+../Core/Src/tm1637.c:55:9: error: conflicting types for 'TM1637_ReadByte'; have 'uint8_t(void)' {aka 'unsigned char(void)'}
+   55 | uint8_t TM1637_ReadByte(void) {
+      |         ^~~~~~~~~~~~~~~
+../Core/Inc/tm1637.h:10:9: note: previous declaration of 'TM1637_ReadByte' with type 'int(void)'
+   10 | uint8_t TM1637_ReadByte(void);
+      |         ^~~~~~~~~~~~~~~
+../Core/Src/tm1637.c: In function 'TM1637_ReadByte':
+../Core/Inc/tm1637.h:1:38: error: 'GPIOA' undeclared (first use in this function)
+    1 | #define CLK_DIS_ON HAL_GPIO_WritePin(GPIOA, CLK_DIS_Pin, GPIO_PIN_SET);
+      |                                      ^~~~~
+../Core/Src/tm1637.c:61:5: note: in expansion of macro 'CLK_DIS_ON'
+   61 |     CLK_DIS_ON;
+      |     ^~~~~~~~~~
+../Core/Inc/tm1637.h:1:45: error: 'CLK_DIS_Pin' undeclared (first use in this function); did you mean 'CLK_DIS_ON'?
+    1 | #define CLK_DIS_ON HAL_GPIO_WritePin(GPIOA, CLK_DIS_Pin, GPIO_PIN_SET);
+      |                                             ^~~~~~~~~~~
+../Core/Src/tm1637.c:61:5: note: in expansion of macro 'CLK_DIS_ON'
+   61 |     CLK_DIS_ON;
+      |     ^~~~~~~~~~
+../Core/Inc/tm1637.h:1:58: error: 'GPIO_PIN_SET' undeclared (first use in this function)
+    1 | #define CLK_DIS_ON HAL_GPIO_WritePin(GPIOA, CLK_DIS_Pin, GPIO_PIN_SET);
+      |                                                          ^~~~~~~~~~~~
+../Core/Src/tm1637.c:61:5: note: in expansion of macro 'CLK_DIS_ON'
+   61 |     CLK_DIS_ON;
+      |     ^~~~~~~~~~
+../Core/Src/tm1637.c:66:9: warning: implicit declaration of function 'HAL_GPIO_ReadPin' [-Wimplicit-function-declaration]
+   66 |     if (HAL_GPIO_ReadPin(GPIOA, DAT_DIS_Pin) == GPIO_PIN_SET) {
+      |         ^~~~~~~~~~~~~~~~
+../Core/Src/tm1637.c:66:33: error: 'DAT_DIS_Pin' undeclared (first use in this function)
+   66 |     if (HAL_GPIO_ReadPin(GPIOA, DAT_DIS_Pin) == GPIO_PIN_SET) {
+      |                                 ^~~~~~~~~~~
+../Core/Inc/tm1637.h:2:59: error: 'GPIO_PIN_RESET' undeclared (first use in this function)
+    2 | #define CLK_DIS_OFF HAL_GPIO_WritePin(GPIOA, CLK_DIS_Pin, GPIO_PIN_RESET);
+      |                                                           ^~~~~~~~~~~~~~
+../Core/Src/tm1637.c:74:5: note: in expansion of macro 'CLK_DIS_OFF'
+   74 |     CLK_DIS_OFF;
+      |     ^~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:40: Core/Src/tm1637.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:17:44 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/tm1637.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tm1637.d" -MT"Core/Src/tm1637.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tm1637.o"
+In file included from ../Core/Src/tm1637.c:1:
+../Core/Inc/tm1637.h:7: error: unterminated #ifndef
+    7 | #ifndef __TM1637_H_
+      | 
+make: *** [Core/Src/subdir.mk:40: Core/Src/tm1637.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+14:18:00 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/tm1637.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tm1637.d" -MT"Core/Src/tm1637.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tm1637.o"
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  16884	    104	   2040	  19028	   4a54	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+14:22:38 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  17080	    104	   2040	  19224	   4b18	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+14:22:44 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17080	    104	   2040	  19224	   4b18	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+14:23:23 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17080	    104	   2040	  19224	   4b18	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+14:28:48 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  17080	    104	   2040	  19224	   4b18	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+14:28:54 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17080	    104	   2040	  19224	   4b18	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+14:41:52 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/tm1637.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tm1637.d" -MT"Core/Src/tm1637.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tm1637.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:124:3: warning: implicit declaration of function 'TM1637_Start'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  124 |   TM1637_Start();
+      |   ^~~~~~~~~~~~
+      |   TM1637_SetInput
+../Core/Src/main.c:128:3: warning: implicit declaration of function 'TM1637_Stop'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  128 |   TM1637_Stop();
+      |   ^~~~~~~~~~~
+      |   TM1637_SetInput
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  17176	    104	   2040	  19320	   4b78	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+14:41:58 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17176	    104	   2040	  19320	   4b78	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+14:42:25 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17176	    104	   2040	  19320	   4b78	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+14:48:19 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:124:3: warning: implicit declaration of function 'TM1637_Start'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  124 |   TM1637_Start();
+      |   ^~~~~~~~~~~~
+      |   TM1637_SetInput
+../Core/Src/main.c:129:3: warning: implicit declaration of function 'TM1637_Stop'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  129 |   TM1637_Stop();
+      |   ^~~~~~~~~~~
+      |   TM1637_SetInput
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  17272	    104	   2040	  19416	   4bd8	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+14:48:24 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17272	    104	   2040	  19416	   4bd8	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+14:49:57 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/tm1637.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tm1637.d" -MT"Core/Src/tm1637.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tm1637.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:124:3: warning: implicit declaration of function 'TM1637_Start'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  124 |   TM1637_Start();
+      |   ^~~~~~~~~~~~
+      |   TM1637_SetInput
+../Core/Src/main.c:129:3: warning: implicit declaration of function 'TM1637_Stop'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  129 |   TM1637_Stop();
+      |   ^~~~~~~~~~~
+      |   TM1637_SetInput
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  17236	    104	   2040	  19380	   4bb4	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+14:50:01 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17236	    104	   2040	  19380	   4bb4	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+14:51:29 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17236	    104	   2040	  19380	   4bb4	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+15:40:13 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/ds1302.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/ds1302.d" -MT"Core/Src/ds1302.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/ds1302.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_hal_msp.d" -MT"Core/Src/stm32l4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_hal_msp.o"
+arm-none-eabi-gcc "../Core/Src/stm32l4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32l4xx_it.d" -MT"Core/Src/stm32l4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32l4xx_it.o"
+arm-none-eabi-gcc "../Core/Src/tm1637.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tm1637.d" -MT"Core/Src/tm1637.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tm1637.o"
+../Core/Src/ds1302.c: In function 'days':
+../Core/Src/ds1302.c:50:10: warning: returning 'const char * (*)(uint8_t)' {aka 'const char * (*)(unsigned char)'} from a function with incompatible return type 'const char *' [-Wincompatible-pointer-types]
+   50 |   return days;
+      |          ^~~~
+../Core/Src/ds1302.c: In function 'burst_mode':
+../Core/Src/ds1302.c:68:10: warning: assignment to 'uint8_t' {aka 'unsigned char'} from 'const char *' makes integer from pointer without a cast [-Wint-conversion]
+   68 |   r->Day = days(DS1302_ReadByte());
+      |          ^
+../Core/Src/ds1302.c: In function 'burst_mode_printf':
+../Core/Src/ds1302.c:87:25: warning: format '%s' expects argument of type 'char *', but argument 2 has type 'int' [-Wformat=]
+   87 |   printf("[] Read Day: %s \r\n", r->Day);
+      |                        ~^        ~~~~~~
+      |                         |         |
+      |                         char *    int
+      |                        %d
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:124:3: warning: implicit declaration of function 'TM1637_Start'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  124 |   TM1637_Start();
+      |   ^~~~~~~~~~~~
+      |   TM1637_SetInput
+../Core/Src/main.c:129:3: warning: implicit declaration of function 'TM1637_Stop'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  129 |   TM1637_Stop();
+      |   ^~~~~~~~~~~
+      |   TM1637_SetInput
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  17268	    104	   2040	  19412	   4bd4	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+15:44:32 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:3: warning: implicit declaration of function 'TM1637_Start'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  131 |   TM1637_Start();
+      |   ^~~~~~~~~~~~
+      |   TM1637_SetInput
+../Core/Src/main.c:136:3: warning: implicit declaration of function 'TM1637_Stop'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  136 |   TM1637_Stop();
+      |   ^~~~~~~~~~~
+      |   TM1637_SetInput
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  17268	    104	   2040	  19412	   4bd4	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+15:46:30 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/tm1637.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tm1637.d" -MT"Core/Src/tm1637.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tm1637.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:3: warning: implicit declaration of function 'TM1637_Start'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  131 |   TM1637_Start();
+      |   ^~~~~~~~~~~~
+      |   TM1637_SetInput
+../Core/Src/main.c:136:3: warning: implicit declaration of function 'TM1637_Stop'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  136 |   TM1637_Stop();
+      |   ^~~~~~~~~~~
+      |   TM1637_SetInput
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  17024	    104	   2040	  19168	   4ae0	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+15:46:45 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17024	    104	   2040	  19168	   4ae0	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+15:47:23 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17024	    104	   2040	  19168	   4ae0	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+16:34:24 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:3: warning: implicit declaration of function 'TM1637_Start'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  131 |   TM1637_Start();
+      |   ^~~~~~~~~~~~
+      |   TM1637_SetInput
+../Core/Src/main.c:136:3: warning: implicit declaration of function 'TM1637_Stop'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  136 |   TM1637_Stop();
+      |   ^~~~~~~~~~~
+      |   TM1637_SetInput
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  17024	    104	   2040	  19168	   4ae0	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+16:35:33 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17024	    104	   2040	  19168	   4ae0	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+16:36:23 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/tm1637.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tm1637.d" -MT"Core/Src/tm1637.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tm1637.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:131:3: warning: implicit declaration of function 'TM1637_Start'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  131 |   TM1637_Start();
+      |   ^~~~~~~~~~~~
+      |   TM1637_SetInput
+../Core/Src/main.c:136:3: warning: implicit declaration of function 'TM1637_Stop'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  136 |   TM1637_Stop();
+      |   ^~~~~~~~~~~
+      |   TM1637_SetInput
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  17024	    104	   2040	  19168	   4ae0	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+16:36:44 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17024	    104	   2040	  19168	   4ae0	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+16:43:42 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/tm1637.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tm1637.d" -MT"Core/Src/tm1637.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tm1637.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:125:3: warning: implicit declaration of function 'TM1637_Start'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  125 |   TM1637_Start();
+      |   ^~~~~~~~~~~~
+      |   TM1637_SetInput
+../Core/Src/main.c:130:3: warning: implicit declaration of function 'TM1637_Stop'; did you mean 'TM1637_SetInput'? [-Wimplicit-function-declaration]
+  130 |   TM1637_Stop();
+      |   ^~~~~~~~~~~
+      |   TM1637_SetInput
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  17280	    104	   2040	  19424	   4be0	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+16:43:47 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17280	    104	   2040	  19424	   4be0	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+16:45:36 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17280	    104	   2040	  19424	   4be0	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+16:49:28 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/tm1637.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/tm1637.d" -MT"Core/Src/tm1637.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/tm1637.o"
+arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ch4_I2C.elf
+ 
+arm-none-eabi-size  ch4_I2C.elf 
+arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
+   text	   data	    bss	    dec	    hex	filename
+  17360	    104	   2040	  19504	   4c30	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+Finished building: ch4_I2C.list
+ 
+16:49:40 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17360	    104	   2040	  19504	   4c30	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
+16:50:21 **** Incremental Build of configuration Debug for project ch4_I2C ****
+make -j20 all 
+arm-none-eabi-size  ch4_I2C.elf 
+   text	   data	    bss	    dec	    hex	filename
+  17360	    104	   2040	  19504	   4c30	ch4_I2C.elf
+Finished building: default.size.stdout
+ 
