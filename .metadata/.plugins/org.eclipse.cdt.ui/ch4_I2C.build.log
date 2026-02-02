@@ -1,21 +1,10 @@
-13:20:08 **** Incremental Build of configuration Debug for project ch4_I2C ****
+11:21:14 **** Incremental Build of configuration Debug for project ch4_I2C ****
 make -j20 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L412xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'DS1302_ReadByte':
-../Core/Src/main.c:141:1: warning: control reaches end of non-void function [-Wreturn-type]
-  141 | }
-      | ^
-arm-none-eabi-gcc -o "ch4_I2C.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\CAMMSYS\STM32CubeIDE\workspace_1.19.0\ch4_I2C\STM32L412RBTXP_FLASH.ld" --specs=nosys.specs -Wl,-Map="ch4_I2C.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: ch4_I2C.elf
- 
 arm-none-eabi-size  ch4_I2C.elf 
-arm-none-eabi-objdump -h -S ch4_I2C.elf  > "ch4_I2C.list"
    text	   data	    bss	    dec	    hex	filename
-  16072	    104	   2040	  18216	   4728	ch4_I2C.elf
+  16884	    104	   2040	  19028	   4a54	ch4_I2C.elf
 Finished building: default.size.stdout
  
-Finished building: ch4_I2C.list
- 
 
-13:20:11 Build Finished. 0 errors, 1 warnings. (took 2s.380ms)
+11:21:14 Build Finished. 0 errors, 0 warnings. (took 565ms)
 

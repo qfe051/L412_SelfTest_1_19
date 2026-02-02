@@ -1,7 +1,26 @@
+#include <stdint.h>
 #include <stdio.h>
 #include <unistd.h>
 
+#include "main.h"
+
+#ifndef __DS1302_H_
+#define __DS1302_H_
 // 함수 선언만!
+void burst_mode(rtc_time *r);
+void burst_mode_printf(rtc_time *r);
+
+int _write(int file, char *ptr, int len);
+void DS1302_SetOutput(void);
+void DS1302_SetInput(void);
+void DS1302_WriteByte(uint8_t data);
+uint8_t DS1302_ReadByte(void);
+void DS1302_WriteReg(uint8_t reg, uint8_t data);
+uint8_t DS1302_ReadReg(uint8_t reg);
+
+// BCD -> DEC 함수 하나로!
+uint8_t bcd_2_dec(uint8_t data);
+const char *days(uint8_t data);
 
 // 핀에 대한 define 정의
 // GPIOC에 그대로 RST_Pin이름 쓰면 사용 가능 
@@ -15,6 +34,8 @@
 
 #define Enable_Write DS1302_WriteReg(0x8E, 0x00);
 #define Enable_Clock DS1302_WriteReg(0x80, 0x00);
+
+#define Set_24H DS1302_WriteReg(0x84, 0x00);
 
 // 26년 1월 28일 17시 00분 수요일(3)
 // min, hours, date, month, days,years
@@ -36,7 +57,6 @@ typedef struct {
   uint8_t Years;
 } rtc_time;
 
-rtc_time now[] {
-  
-};
-
+// main.c로 이동
+// ㄴ
+#endif
