@@ -1,0 +1,5 @@
+2025-12-11 00:01:31,417 [INFO] NvicTabbedPanel:226 - Cannot restore the selected Tab for NVIC
+2025-12-11 00:02:51,215 [INFO] DmaTabbedPanel:205 - Cannot restore the selected Tab for DMA
+2025-12-11 00:02:52,714 [INFO] DmaTabbedPanel:205 - Cannot restore the selected Tab for DMA
+2025-12-11 00:06:34,782 [INFO] NvicIntPanel:101 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,0x0,invalid,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2025-12-11 00:09:18,544 [INFO] UtilMem:75 - End SaveConfig() Used Memory: 909404312 Bytes (1073741824)
