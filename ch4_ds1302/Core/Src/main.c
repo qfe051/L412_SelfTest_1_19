@@ -24,7 +24,9 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include <stm32l412xx.h>
-#include <unistd.h>
+// #include <unistd.h>
+
+#include "ds1302.h"
 
 /* USER CODE END Includes */
 
@@ -49,11 +51,11 @@ UART_HandleTypeDef hlpuart1;
 /* USER CODE BEGIN PV */
 // UART로 출력 보내기 위한 함수
 int _write(int file, char *ptr, int len) {
-  if (file == STDOUT_FILENO) {
-    HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
-    return len;
-  }
-  return -1;
+
+  //(void)file;
+  HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
+  return len;
+  
 }
 /* USER CODE END PV */
 
@@ -104,17 +106,65 @@ int main(void)
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  printf("UART print test \r\n");
 
-  // test - 로직아날라이저 확인 ok 
-  write_byte_ds1302(0x11);
+
+  printf("UART print test \r\n");
+  write_reg_ds1302(0x8E,0x00);
+
+  // 시간 세팅 26년,2월,4일
+  write_reg_ds1302(0x86, 0x04);
+  printf("test1 -date : %#x \r\n", read_reg_ds1302(0x87));
+
+  write_reg_ds1302(0x88, 0x02);
+  printf("test1 -month :%#x \r\n", read_reg_ds1302(0x89));
+
+  write_reg_ds1302(0x8C, 0x26);
+  printf("test1 -year :%#x \r\n", read_reg_ds1302(0x8D));
+
+  // 오전 설정
+  // write_reg_ds1302(0x84, 0x11);
+  // printf("test1 %#x \r\n", read_reg_ds1302(0x85));
+  // write_reg_ds1302(0x84, 0x91);
+  // printf("test2 %#x \r\n", read_reg_ds1302(0x85));
+  
+  // disable_24H();
+
+  // set_AM();
+  // printf("test3 %#x \r\n", read_reg_ds1302(0x85));
+
+  // test - 로직아날라이저 확인 ok
+
+
+
+  
+  enable_clock();
+  // write_reg_ds1302(0x80, 0x00);
+
+  
+  read_reg_ds1302(0x81);
+
+  //구조체 , 공용체 선언
+  s_rtc_time now_s;
+  u_rtc_time now_u;
+
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  while (1) {
+    printf(" \r\n");
+    printf("struct \r\n");
+
+    s_burst_mode_read(&now_s);
+    s_burst_mode_print(&now_s);
+
+    printf("Union \r\n");
+
+    u_burst_mode_read(&now_u);
+    u_burst_mode_print(&now_u);
+
+    HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

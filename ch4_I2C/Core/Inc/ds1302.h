@@ -9,7 +9,6 @@
 // 함수 선언만!
 
 
-int _write(int file, char *ptr, int len);
 void DS1302_SetOutput(void);
 void DS1302_SetInput(void);
 void DS1302_WriteByte(uint8_t data);
