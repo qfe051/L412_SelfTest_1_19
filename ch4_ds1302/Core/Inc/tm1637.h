@@ -1,3 +1,4 @@
+#include "main.h"
 #include <stdint.h>
 
 #ifndef __TM1637_H
@@ -12,5 +13,7 @@ void set_start(void);
 void set_stop(void);
 
 void send_cmd(uint8_t data);
+void send_cmd_2(uint8_t data);
+
 
 #endif

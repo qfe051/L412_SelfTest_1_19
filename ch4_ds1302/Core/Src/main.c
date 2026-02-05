@@ -27,6 +27,7 @@
 // #include <unistd.h>
 
 #include "ds1302.h"
+#include "tm1637.h"
 
 /* USER CODE END Includes */
 
@@ -48,6 +49,8 @@
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef hlpuart1;
 
+TIM_HandleTypeDef htim2;
+
 /* USER CODE BEGIN PV */
 // UART로 출력 보내기 위한 함수
 int _write(int file, char *ptr, int len) {
@@ -63,13 +66,17 @@ int _write(int file, char *ptr, int len) {
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_LPUART1_UART_Init(void);
+static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void delay_5us(void) {
+  __HAL_TIM_SET_COUNTER(&htim2, 0);
+  while ((__HAL_TIM_GET_COUNTER(&htim2)) < 5);
+}
 /* USER CODE END 0 */
 
 /**
@@ -104,8 +111,9 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-
+  HAL_TIM_Base_Start(&htim2);
 
   printf("UART print test \r\n");
   // 쓰기 활성화 
@@ -138,10 +146,28 @@ int main(void)
   // printf("test3 %#x \r\n", read_reg_ds1302(0x85));
 
   // test - 로직아날라이저 확인 ok
-  
+  printf("TM1637 test \r\n");
+  // 명령어 1개 세트
+  send_cmd(0x40);
+  send_cmd_2(0xC0);
 
+  write_byte_tm1637(0x01);
+  write_byte_tm1637(0x02);
+  write_byte_tm1637(0x04);
+  write_byte_tm1637(0x08);
 
-  
+  send_cmd(0x88);
+  // 명령어 1개 세트
+  send_cmd(0x40);
+  send_cmd_2(0xC0);
+
+  write_byte_tm1637(0x3F);
+  write_byte_tm1637(0x06);
+  write_byte_tm1637(0x5B);
+  write_byte_tm1637(0x4F);
+
+  send_cmd(0x87);
+
   enable_clock();
   // write_reg_ds1302(0x80, 0x00);
 
@@ -257,6 +283,51 @@ static void MX_LPUART1_UART_Init(void)
   /* USER CODE BEGIN LPUART1_Init 2 */
 
   /* USER CODE END LPUART1_Init 2 */
+
+}
+
+/**
+  * @brief TIM2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM2_Init(void)
+{
+
+  /* USER CODE BEGIN TIM2_Init 0 */
+
+  /* USER CODE END TIM2_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM2_Init 1 */
+
+  /* USER CODE END TIM2_Init 1 */
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 79;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 4294967295;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM2_Init 2 */
+
+  /* USER CODE END TIM2_Init 2 */
 
 }
 
