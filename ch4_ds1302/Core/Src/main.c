@@ -138,6 +138,7 @@ int main(void)
   // printf("test3 %#x \r\n", read_reg_ds1302(0x85));
 
   // test - 로직아날라이저 확인 ok
+  
 
 
 
