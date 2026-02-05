@@ -27,4 +27,4 @@ Release/
 # .cproject
 
 # Backup files
-*~
+*~.metadata/
