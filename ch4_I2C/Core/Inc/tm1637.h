@@ -24,4 +24,9 @@ uint8_t TM1637_ReadByte(void);
 void TM1637_WriteReg(uint8_t reg, uint8_t data);
 uint8_t TM1637_ReadReg(uint8_t reg);
 
+void TM1637_Start(void);
+void TM1637_Stop(void);
+
+void TM1637_Send_cmd(uint8_t data);
+
 #endif

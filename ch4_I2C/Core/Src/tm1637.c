@@ -17,7 +17,7 @@ void TM1637_SetOutput(void) {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   GPIO_InitStruct.Pin = DAT_DIS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   GPIO_Init_A;
 }
@@ -28,7 +28,7 @@ void TM1637_SetInput(void) {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   GPIO_InitStruct.Pin = DAT_DIS_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   GPIO_Init_A;
 }
@@ -55,13 +55,16 @@ void TM1637_WriteByte(uint8_t data) {
       HAL_GPIO_WritePin(GPIOA, DAT_DIS_Pin, GPIO_PIN_RESET);
     }
     data >>= 1; // 비트 밀어넣기 (시프트)
-    CLK_DIS_ON;
     CLK_DIS_OFF;
+    CLK_DIS_ON;
+    delay_us(5);
   }
-  delay_us(5);
+  
   //9번째 pulse
   TM1637_SetInput();
+  
   CLK_DIS_ON;
+  HAL_GPIO_ReadPin(GPIOA, DAT_DIS_Pin);
   CLK_DIS_OFF;
 }
 // uint8_t -> 8bit data를 받아와야 함
@@ -121,3 +124,11 @@ void TM1637_Stop(void) {
   CLK_DIS_ON;
   DAT_DIS_ON;
 }
+
+// command 보내는 형식
+
+void TM1637_Send_cmd(uint8_t data) {
+  TM1637_Start();
+  TM1637_WriteByte(data);
+  TM1637_Stop();
+  }
