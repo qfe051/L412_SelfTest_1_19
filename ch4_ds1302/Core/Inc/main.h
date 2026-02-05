@@ -29,7 +29,6 @@ extern "C" {
 /* Includes ------------------------------------------------------------------*/
 #include "stm32l4xx_hal.h"
 
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
@@ -57,7 +56,7 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-
+void delay_5us(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -71,6 +70,10 @@ void Error_Handler(void);
 #define DS_DAT_GPIO_Port GPIOC
 #define DS_RST_Pin GPIO_PIN_2
 #define DS_RST_GPIO_Port GPIOC
+#define TM_CLK_Pin GPIO_PIN_0
+#define TM_CLK_GPIO_Port GPIOA
+#define TM_DAT_Pin GPIO_PIN_1
+#define TM_DAT_GPIO_Port GPIOA
 #define SMPS_EN_Pin GPIO_PIN_4
 #define SMPS_EN_GPIO_Port GPIOA
 #define SMPS_V1_Pin GPIO_PIN_5

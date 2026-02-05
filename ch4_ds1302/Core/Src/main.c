@@ -24,7 +24,10 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include <stm32l412xx.h>
-#include <unistd.h>
+// #include <unistd.h>
+
+#include "ds1302.h"
+#include "tm1637.h"
 
 /* USER CODE END Includes */
 
@@ -46,14 +49,16 @@
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef hlpuart1;
 
+TIM_HandleTypeDef htim2;
+
 /* USER CODE BEGIN PV */
 // UART로 출력 보내기 위한 함수
 int _write(int file, char *ptr, int len) {
-  if (file == STDOUT_FILENO) {
-    HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
-    return len;
-  }
-  return -1;
+
+  //(void)file;
+  HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
+  return len;
+  
 }
 /* USER CODE END PV */
 
@@ -61,13 +66,17 @@ int _write(int file, char *ptr, int len) {
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_LPUART1_UART_Init(void);
+static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void delay_5us(void) {
+  __HAL_TIM_SET_COUNTER(&htim2, 0);
+  while ((__HAL_TIM_GET_COUNTER(&htim2)) < 5);
+}
 /* USER CODE END 0 */
 
 /**
@@ -85,8 +94,7 @@ int main(void)
 
   /* MCU Configuration--------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick.
-   */
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
   /* USER CODE BEGIN Init */
@@ -103,18 +111,91 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  printf("UART print test \r\n");
+  HAL_TIM_Base_Start(&htim2);
 
-  // test - 로직아날라이저 확인 ok 
-  write_byte_ds1302(0x11);
+  printf("UART print test \r\n");
+  // 쓰기 활성화 
+  write_reg_ds1302(0x8E, 0x00);
+  // Tirckle Charger 정보
+  printf("Tirckle Charger inform : %#x \r\n", read_reg_ds1302(0x91));
+
+  // // 시간 세팅 26년,2월,4일
+  // write_reg_ds1302(0x86, 0x04);
+  // printf("test1 -date : %#x \r\n", read_reg_ds1302(0x87));
+
+  // write_reg_ds1302(0x88, 0x02);
+  // printf("test1 -month :%#x \r\n", read_reg_ds1302(0x89));
+
+  // write_reg_ds1302(0x8C, 0x26);
+  // printf("test1 -year :%#x \r\n", read_reg_ds1302(0x8D));
+
+  // 오전 설정
+  // enable_24H();
+  // printf("test1 %#x \r\n", read_reg_ds1302(0x85));
+  // write_reg_ds1302(0x84, 0x11);
+  // printf("test1 %#x \r\n", read_reg_ds1302(0x85));
+  // write_reg_ds1302(0x84, 0x91);
+  // printf("test2 %#x \r\n", read_reg_ds1302(0x85));
+  
+  // disable_24H();
+
+  // set_AM();
+  // set_PM();
+  // printf("test3 %#x \r\n", read_reg_ds1302(0x85));
+
+  // test - 로직아날라이저 확인 ok
+  printf("TM1637 test \r\n");
+  // 명령어 1개 세트
+  send_cmd(0x40);
+  send_cmd_2(0xC0);
+
+  write_byte_tm1637(0x01);
+  write_byte_tm1637(0x02);
+  write_byte_tm1637(0x04);
+  write_byte_tm1637(0x08);
+
+  send_cmd(0x88);
+  // 명령어 1개 세트
+  send_cmd(0x40);
+  send_cmd_2(0xC0);
+
+  write_byte_tm1637(0x3F);
+  write_byte_tm1637(0x06);
+  write_byte_tm1637(0x5B);
+  write_byte_tm1637(0x4F);
+
+  send_cmd(0x87);
+
+  enable_clock();
+  // write_reg_ds1302(0x80, 0x00);
+
+  
+  read_reg_ds1302(0x81);
+
+  //구조체 , 공용체 선언
+  s_rtc_time now_s;
+  u_rtc_time now_u;
+
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  while (1) {
+    printf(" \r\n");
+    printf("struct \r\n");
+
+    s_burst_mode_read(&now_s);
+    s_burst_mode_print(&now_s);
+
+    printf("Union \r\n");
+
+    u_burst_mode_read(&now_u);
+    u_burst_mode_print(&now_u);
+
+    HAL_Delay(1000);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -206,6 +287,51 @@ static void MX_LPUART1_UART_Init(void)
 }
 
 /**
+  * @brief TIM2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_TIM2_Init(void)
+{
+
+  /* USER CODE BEGIN TIM2_Init 0 */
+
+  /* USER CODE END TIM2_Init 0 */
+
+  TIM_ClockConfigTypeDef sClockSourceConfig = {0};
+  TIM_MasterConfigTypeDef sMasterConfig = {0};
+
+  /* USER CODE BEGIN TIM2_Init 1 */
+
+  /* USER CODE END TIM2_Init 1 */
+  htim2.Instance = TIM2;
+  htim2.Init.Prescaler = 79;
+  htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
+  htim2.Init.Period = 4294967295;
+  htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
+  htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
+  if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sClockSourceConfig.ClockSource = TIM_CLOCKSOURCE_INTERNAL;
+  if (HAL_TIM_ConfigClockSource(&htim2, &sClockSourceConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_RESET;
+  sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
+  if (HAL_TIMEx_MasterConfigSynchronization(&htim2, &sMasterConfig) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN TIM2_Init 2 */
+
+  /* USER CODE END TIM2_Init 2 */
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -227,6 +353,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, DS_CLK_Pin|DS_DAT_Pin|DS_RST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin|TM_DAT_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, SMPS_EN_Pin|SMPS_V1_Pin|SMPS_SW_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
@@ -245,8 +374,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : SMPS_EN_Pin SMPS_V1_Pin SMPS_SW_Pin */
-  GPIO_InitStruct.Pin = SMPS_EN_Pin|SMPS_V1_Pin|SMPS_SW_Pin;
+  /*Configure GPIO pins : TM_CLK_Pin TM_DAT_Pin SMPS_EN_Pin SMPS_V1_Pin
+                           SMPS_SW_Pin */
+  GPIO_InitStruct.Pin = TM_CLK_Pin|TM_DAT_Pin|SMPS_EN_Pin|SMPS_V1_Pin
+                          |SMPS_SW_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
