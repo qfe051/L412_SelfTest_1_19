@@ -27,8 +27,7 @@ void set_input_ds1302() {
 
 void write_byte_ds1302(uint8_t data) {
   set_output_ds1302();
-//   //CE ON
-//   HAL_GPIO_WritePin(GPIOC, DS_RST_Pin, GPIO_PIN_SET);
+
 
   for (int i = 0; i < 8; i++) {
     if ((data & 0x01) == 1) {

@@ -118,9 +118,9 @@ int main(void) {
   // uart 테스트 출력
   printf("DS1302 Test Start...\r\n");
 
-  printf("test : %#x \r\n",DS1302_ReadReg(0x81));
 
-  DS1302_WriteByte(0x01);
+  DS1302_WriteReg(0x86, 0x04);
+  printf("test1 -date : %#x \r\n", DS1302_ReadReg(0x87));
 
   // TM1637 테스트 출력
   TM1637_Start();
@@ -163,7 +163,7 @@ int main(void) {
 
   // 날짜 시각 초기회
   // 26년 1월 28일 17시 00분 수요일(3)
-  TimeSet_v1700;
+  // TimeSet_v1700;
 
   /* USER CODE END 2 */
 

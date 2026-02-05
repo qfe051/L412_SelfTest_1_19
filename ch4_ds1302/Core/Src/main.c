@@ -87,8 +87,7 @@ int main(void)
 
   /* MCU Configuration--------------------------------------------------------*/
 
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick.
-   */
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
   /* USER CODE BEGIN Init */
@@ -109,19 +108,24 @@ int main(void)
 
 
   printf("UART print test \r\n");
-  write_reg_ds1302(0x8E,0x00);
+  // 쓰기 활성화 
+  write_reg_ds1302(0x8E, 0x00);
+  // Tirckle Charger 정보
+  printf("Tirckle Charger inform : %#x \r\n", read_reg_ds1302(0x91));
 
-  // 시간 세팅 26년,2월,4일
-  write_reg_ds1302(0x86, 0x04);
-  printf("test1 -date : %#x \r\n", read_reg_ds1302(0x87));
+  // // 시간 세팅 26년,2월,4일
+  // write_reg_ds1302(0x86, 0x04);
+  // printf("test1 -date : %#x \r\n", read_reg_ds1302(0x87));
 
-  write_reg_ds1302(0x88, 0x02);
-  printf("test1 -month :%#x \r\n", read_reg_ds1302(0x89));
+  // write_reg_ds1302(0x88, 0x02);
+  // printf("test1 -month :%#x \r\n", read_reg_ds1302(0x89));
 
-  write_reg_ds1302(0x8C, 0x26);
-  printf("test1 -year :%#x \r\n", read_reg_ds1302(0x8D));
+  // write_reg_ds1302(0x8C, 0x26);
+  // printf("test1 -year :%#x \r\n", read_reg_ds1302(0x8D));
 
   // 오전 설정
+  // enable_24H();
+  // printf("test1 %#x \r\n", read_reg_ds1302(0x85));
   // write_reg_ds1302(0x84, 0x11);
   // printf("test1 %#x \r\n", read_reg_ds1302(0x85));
   // write_reg_ds1302(0x84, 0x91);
@@ -130,6 +134,7 @@ int main(void)
   // disable_24H();
 
   // set_AM();
+  // set_PM();
   // printf("test3 %#x \r\n", read_reg_ds1302(0x85));
 
   // test - 로직아날라이저 확인 ok
@@ -277,6 +282,9 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(GPIOC, DS_CLK_Pin|DS_DAT_Pin|DS_RST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin|TM_DAT_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, SMPS_EN_Pin|SMPS_V1_Pin|SMPS_SW_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
@@ -295,8 +303,10 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : SMPS_EN_Pin SMPS_V1_Pin SMPS_SW_Pin */
-  GPIO_InitStruct.Pin = SMPS_EN_Pin|SMPS_V1_Pin|SMPS_SW_Pin;
+  /*Configure GPIO pins : TM_CLK_Pin TM_DAT_Pin SMPS_EN_Pin SMPS_V1_Pin
+                           SMPS_SW_Pin */
+  GPIO_InitStruct.Pin = TM_CLK_Pin|TM_DAT_Pin|SMPS_EN_Pin|SMPS_V1_Pin
+                          |SMPS_SW_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
