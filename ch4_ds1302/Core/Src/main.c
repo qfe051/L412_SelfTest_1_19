@@ -141,7 +141,6 @@ int main(void)
   
 
 
-
   
   enable_clock();
   // write_reg_ds1302(0x80, 0x00);
