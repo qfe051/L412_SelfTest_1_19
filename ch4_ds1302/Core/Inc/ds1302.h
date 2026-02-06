@@ -3,6 +3,15 @@
 #ifndef __DS1302_H
 #define __DS1302_H
 
+
+
+bool DS1302_Init(void);
+bool DS1302_Set_Sec(uint8_t sec);
+bool DS1302_Get_Sec(uint8_t* pSec);
+bool DS1302_Get_Time1_12_24()
+
+
+
 // 함수 선언
 void set_output_ds1302();
 void set_input_ds1302();
@@ -48,11 +57,43 @@ typedef union {
   uint8_t idx_data[7];
 } u_rtc_time;
 
+// typedef union {
+//   uint8_t input_data;
+//   uint8_t sec;
+//   uint8_t min;
+//   uint8_t hour;
+//   uint8_t date;
+//   uint8_t month;
+//   uint8_t day;
+//   uint8_t year;
+// } d_rtc_time;
+
+typedef struct {
+  bool is_hour_type_12;
+  bool is_day_type_pm;
+  bool is_CH;
+  
+  union {
+    uint8_t raw[8];
+    struct {
+      uint8_t sec;
+      uint8_t min;
+      uint8_t hour;
+      uint8_t date;
+      uint8_t month;
+      uint8_t day;
+      uint8_t year;
+      uint8_t wp;
+    }time;
+  } ds1302;
+  
+} w_time;
 
 // 구조체 관련 함수
 void s_burst_mode_read(s_rtc_time *r);
 void u_burst_mode_read(u_rtc_time *r);
 void s_burst_mode_print(s_rtc_time *r);
 void u_burst_mode_print(u_rtc_time *r);
+// void burst_read_print(d_rtc_time *r);
 
 #endif

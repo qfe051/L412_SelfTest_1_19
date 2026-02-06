@@ -3,6 +3,12 @@
 #include <stdint.h>
 
 
+
+
+
+
+static void DS1302_IO_Set_Output(bool isOutput);
+
 // data - output
 void set_output_ds1302() {
   GPIO_InitTypeDef GPIO_InitStruct = {0};
@@ -190,6 +196,38 @@ void u_burst_mode_print(u_rtc_time *r) {
   printf("year : %d \r\n", bcd_2_dec(r->idx_data[6]));
 }
 
+void burst_read_print(d_rtc_time *r) {
+
+  HAL_GPIO_WritePin(GPIOC, DS_RST_Pin, GPIO_PIN_SET);
+
+  write_byte_ds1302(0xBF);
+
+  r->input_data = read_byte_ds1302();
+  printf("sec : %d \r\n", bcd_2_dec_sec(r->sec));
+
+  r->input_data = read_byte_ds1302();
+  printf("min : %d \r\n", bcd_2_dec(r->min));
+
+  r->input_data = read_byte_ds1302();
+  printf("hour : %d \r\n", bcd_2_dec_hour(r->hour));
+  print_AM_PM(r->hour);
+
+  r->input_data = read_byte_ds1302();
+  printf("date : %d \r\n", bcd_2_dec(r->date));
+
+  r->input_data = read_byte_ds1302();
+  printf("month : %d \r\n", bcd_2_dec(r->month));
+
+  r->input_data = read_byte_ds1302();
+  day_print(r->day);
+  
+  r->input_data = read_byte_ds1302();
+  printf("year : %d \r\n", bcd_2_dec(r->year));
+
+
+  HAL_GPIO_WritePin(GPIOC, DS_RST_Pin, GPIO_PIN_RESET);
+}
+
 void enable_clock(void) {
   uint8_t now_sec = 0;
   uint8_t enable_now_sec = 0;
@@ -213,21 +251,61 @@ void disable_clock(void) {
 void enable_24H(void) {
   uint8_t now_hour = 0;
   uint8_t enable_hour_24 = 0;
-
   now_hour = read_reg_ds1302(0x85);
-  enable_hour_24 = now_hour & 0x7F;
 
-  write_reg_ds1302(0x84, enable_hour_24);
+  // 현재 상태와 동일한 경우 break
+  if ((0x80 & now_hour) == 0) {
+  } // PM인 경우 분기
+  else if (0x20 & now_hour) {
+    // pm1~7시
+    if ((now_hour & 0x1F) < 0x07) {
+      enable_hour_24 = (now_hour & 0x0F) + 0x12;
+      write_reg_ds1302(0x84, enable_hour_24);
+    } // pm12시
+    else if ((now_hour & 0x1F) == 0x12) {
+      enable_hour_24 = 0x00;
+      write_reg_ds1302(0x84, enable_hour_24);
+    } // pm8~11시
+    else {
+      enable_hour_24 = (now_hour & 0x2F) - 0x08;
+      write_reg_ds1302(0x84, enable_hour_24);
+    }
+  } // AM 인 경우 , AM12시 경우 추가하기
+  else {
+    enable_hour_24 = now_hour & 0x7F;
+    write_reg_ds1302(0x84, enable_hour_24);
+  }
+
+  
 }
 
 void disable_24H(void) {
   uint8_t now_hour = 0;
-  uint8_t disable_hour_24= 0;
-
+  uint8_t disable_hour_24 = 0;
   now_hour = read_reg_ds1302(0x85);
-  disable_hour_24 = now_hour | 0x80;
 
-  write_reg_ds1302(0x84, disable_hour_24);
+  // 현재 상태와 동일한 경우 break
+  if ((0x80 & now_hour)) {
+  } // 13~23시
+  else if ((0x20 & now_hour) | ((0x10 & now_hour) && (0x02 < (now_hour & 0x0F)))) {
+    disable_hour_24 = (now_hour | 0x80) - 0x12;
+    disable_hour_24 = disable_hour_24 | 0x20; // PM 표시
+    write_reg_ds1302(0x84, disable_hour_24);
+  } //24시
+  else if (now_hour == 0x00) {
+    disable_hour_24 = 0x92;
+    write_reg_ds1302(0x84, disable_hour_24);
+  } //12시
+  else if (now_hour == 0x12) {
+    disable_hour_24 = 0xB2;
+    write_reg_ds1302(0x84, disable_hour_24);
+  } // 1~11시 
+  else {
+    disable_hour_24 = now_hour | 0x80;
+    write_reg_ds1302(0x84, disable_hour_24);
+  }
+
+  
 }
 
 void set_AM(void) {
@@ -235,11 +313,10 @@ void set_AM(void) {
   uint8_t set_AM = 0;
 
   disable_24H();
-    now_hour = read_reg_ds1302(0x85);
+  now_hour = read_reg_ds1302(0x85);
   set_AM = now_hour & 0xDF;
   
 
-  printf("set_AM %#x \r\n", set_AM);
 
   write_reg_ds1302(0x84, set_AM);
 }

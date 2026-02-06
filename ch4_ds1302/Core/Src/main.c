@@ -121,31 +121,17 @@ int main(void)
   // Tirckle Charger 정보
   printf("Tirckle Charger inform : %#x \r\n", read_reg_ds1302(0x91));
 
-  // // 시간 세팅 26년,2월,4일
-  // write_reg_ds1302(0x86, 0x04);
-  // printf("test1 -date : %#x \r\n", read_reg_ds1302(0x87));
 
-  // write_reg_ds1302(0x88, 0x02);
-  // printf("test1 -month :%#x \r\n", read_reg_ds1302(0x89));
 
-  // write_reg_ds1302(0x8C, 0x26);
-  // printf("test1 -year :%#x \r\n", read_reg_ds1302(0x8D));
 
-  // 오전 설정
-  // enable_24H();
-  // printf("test1 %#x \r\n", read_reg_ds1302(0x85));
-  // write_reg_ds1302(0x84, 0x11);
-  // printf("test1 %#x \r\n", read_reg_ds1302(0x85));
-  // write_reg_ds1302(0x84, 0x91);
-  // printf("test2 %#x \r\n", read_reg_ds1302(0x85));
+
+  // delay test
+  HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_RESET);
+  delay_5us();
+  HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_SET);
   
-  // disable_24H();
 
-  // set_AM();
-  // set_PM();
-  // printf("test3 %#x \r\n", read_reg_ds1302(0x85));
-
-  // test - 로직아날라이저 확인 ok
+  // test - 로직아날라이저 확인 ok///////////////
   printf("TM1637 test \r\n");
   // 명령어 1개 세트
   send_cmd(0x40);
@@ -165,19 +151,30 @@ int main(void)
   write_byte_tm1637(0x06);
   write_byte_tm1637(0x5B);
   write_byte_tm1637(0x4F);
-
+////////////////////////////b
   send_cmd(0x87);
 
   enable_clock();
-  // write_reg_ds1302(0x80, 0x00);
 
   
-  read_reg_ds1302(0x81);
 
   //구조체 , 공용체 선언
   s_rtc_time now_s;
   u_rtc_time now_u;
+  // d_rtc_time now_d;
 
+  // 2 AM 설정 후 enable 24H
+  write_reg_ds1302(0x84, 0x22);
+  printf(" \r\n");
+  printf("struct \r\n");
+  s_burst_mode_read(&now_s);
+  s_burst_mode_print(&now_s);
+
+  enable_24H();
+  printf(" \r\n");
+  printf("struct \r\n");
+  s_burst_mode_read(&now_s);
+  s_burst_mode_print(&now_s);
 
   /* USER CODE END 2 */
 
@@ -185,15 +182,18 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1) {
     printf(" \r\n");
-    printf("struct \r\n");
+    
 
-    s_burst_mode_read(&now_s);
-    s_burst_mode_print(&now_s);
+    // s_burst_mode_read(&now_s);
+    // s_burst_mode_print(&now_s);
 
     printf("Union \r\n");
 
     u_burst_mode_read(&now_u);
     u_burst_mode_print(&now_u);
+
+    // printf("struct-union \r\n");
+    // burst_read_print(&now_d); 
 
     HAL_Delay(1000);
     /* USER CODE END WHILE */
