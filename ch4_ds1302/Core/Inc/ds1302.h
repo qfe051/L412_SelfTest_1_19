@@ -1,14 +1,21 @@
 #include <stdint.h>
+#include<stdbool.h>
 
 #ifndef __DS1302_H
 #define __DS1302_H
 
-
-
+// bool 함수 사용법
 bool DS1302_Init(void);
 bool DS1302_Set_Sec(uint8_t sec);
-bool DS1302_Get_Sec(uint8_t* pSec);
-bool DS1302_Get_Time1_12_24()
+bool DS1302_Set_Min(uint8_t set_min);
+bool DS1302_Set_Hour_case_24(uint8_t set_hour);
+// 2개 함수 합치기
+// DS1302_Set_Hour_case_12 , DS1302_Set_AM_PM
+bool DS1302_Set_Hour_case_12(uint8_t set_hour, uint8_t set_AM_PM);
+bool DS1302_Set_AM_PM(uint8_t set_AM_PM);
+bool DS1302_Set_Hour_12h(void);
+bool DS1302_Get_Sec(uint8_t *pSec);
+bool DS1302_Get_Time1_12_24();
 
 
 
@@ -68,32 +75,105 @@ typedef union {
 //   uint8_t year;
 // } d_rtc_time;
 
-typedef struct {
-  bool is_hour_type_12;
-  bool is_day_type_pm;
-  bool is_CH;
+// typedef struct {
+//   bool is_hour_type_12;
+//   bool is_day_type_pm;
+//   bool is_CH;
   
-  union {
-    uint8_t raw[8];
-    struct {
-      uint8_t sec;
-      uint8_t min;
-      uint8_t hour;
-      uint8_t date;
-      uint8_t month;
-      uint8_t day;
-      uint8_t year;
-      uint8_t wp;
-    }time;
-  } ds1302;
-  
-} w_time;
+//   union {
+//     uint8_t raw[8];
+//     struct {
+//       uint8_t sec;
+//       uint8_t min;
+//       uint8_t hour;
+//       uint8_t date;
+//       uint8_t month;
+//       uint8_t day;
+//       uint8_t year;
+//       uint8_t wp;
+//     }time;
+//   } ds1302;
+
+// } w_time;
+
+// bitfield 기반 구조체 정의
+
+typedef union  {
+  uint8_t raw;
+  struct sec_bit {
+    uint8_t sec_1 : 4;
+    uint8_t sec_10 : 3;
+    uint8_t ch : 1;
+
+  }sec_bitfield;
+} _sec;
+
+typedef union {
+  uint8_t raw;
+  struct min_bit {
+    uint8_t min_1 : 4;
+    uint8_t min_10 : 3;
+    uint8_t blank : 1;
+
+  } min_bitfield;
+} _min;
+
+typedef union {
+  uint8_t raw;
+  struct hour_bit {
+    uint8_t hour_1 : 4;
+    uint8_t hour_10 : 2;
+    uint8_t time_24 : 2;
+
+  } hour_bitfield;
+} _hour;
+
+typedef union {
+  uint8_t raw;
+  struct date_bit {
+    uint8_t date_1 : 4;
+    uint8_t date_10 : 2;
+    uint8_t blank : 2;
+
+  } date_bitfield;
+} _date;
+
+typedef union {
+  uint8_t raw;
+  struct month_bit {
+    uint8_t month_1 : 4;
+    uint8_t month_10 : 1;
+    uint8_t blank : 3;
+
+  } month_bitfield;
+} _month;
+
+typedef union {
+  uint8_t raw;
+  struct day_bit {
+    uint8_t day_1 : 3;
+    uint8_t blank : 5;
+  } day_bitfield;
+} _day;
+
+typedef union {
+  uint8_t raw;
+  struct year_bit {
+    uint8_t year_1 : 4;
+    uint8_t year_10 : 4;
+  } year_bitfield;
+} _year;
 
 // 구조체 관련 함수
 void s_burst_mode_read(s_rtc_time *r);
 void u_burst_mode_read(u_rtc_time *r);
 void s_burst_mode_print(s_rtc_time *r);
 void u_burst_mode_print(u_rtc_time *r);
+
+void bitfield_burst_mode_read(void);
+void bitfield_burst_mode_print(void);
+void bit_print_AM_PM(void);
+
 // void burst_read_print(d_rtc_time *r);
 
 #endif

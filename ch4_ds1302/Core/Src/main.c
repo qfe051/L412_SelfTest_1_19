@@ -22,6 +22,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdint.h>
 #include <stdio.h>
 #include <stm32l412xx.h>
 // #include <unistd.h>
@@ -129,7 +130,66 @@ int main(void)
   HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_RESET);
   delay_5us();
   HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_SET);
-  
+
+  // bitfield test
+  _sec sec;
+  _min min;
+  _hour hour;
+  _date date;
+  _month month;
+  _day day;
+  _year year;
+      
+
+  printf("bitfield print test \r\n");
+  sec.raw = read_reg_ds1302(0x81);
+  printf("_sec.raw : %#x \r\n", sec.raw);
+  printf("_sec.raw.ch : %#x \r\n", sec.sec_bitfield.ch);
+  printf("_sec.raw.sec_10 : %#x \r\n", sec.sec_bitfield.sec_10);
+  printf("_sec.raw.sec_1 : %#x \r\n", sec.sec_bitfield.sec_1);
+
+  printf("\r\n");
+  printf("_sec.raw.sec : %d \r\n", sec.sec_bitfield.sec_10 * 10 + sec.sec_bitfield.sec_1);
+
+  // 초 설정
+  uint8_t set_sec = 30;
+  if (DS1302_Set_Sec(set_sec)) {
+    printf("set sec 완료 \r\n");
+  }
+  else {
+    printf("set sec 실패 \r\n");
+  }
+  // 분 설정
+  uint8_t set_min = 50;
+  if (DS1302_Set_Min(set_min)) {
+    printf("set min 완료 \r\n");
+  } else {
+    printf("set min 실패 \r\n");
+  }
+
+  enable_24H();
+  // 시간 설정
+  uint8_t set_hour = 20;
+  if (DS1302_Set_Hour_case_24(set_hour)) {
+    printf("set_hour 완료 \r\n");
+  } else {
+    printf("set_hour 실패 \r\n");
+  }
+
+  if (DS1302_Set_Hour_12h()) {
+    printf("set_hour_12h 완료 \r\n");
+  }
+  else {
+    printf("set_hour_12h 실패 \r\n");
+  }
+
+  set_hour = 12;
+  uint8_t set_AM_PM = 1;  // AM : 0 , PM :1
+  if (DS1302_Set_Hour_case_12(set_hour,set_AM_PM)) {
+    printf("set_hour_12_AM_PM 완료 \r\n");
+  } else {
+    printf("set_hour_12_AM_PM 실패 \r\n");
+  }
 
   // test - 로직아날라이저 확인 ok///////////////
   printf("TM1637 test \r\n");
@@ -151,7 +211,7 @@ int main(void)
   write_byte_tm1637(0x06);
   write_byte_tm1637(0x5B);
   write_byte_tm1637(0x4F);
-////////////////////////////b
+////////////////////////////
   send_cmd(0x87);
 
   enable_clock();
@@ -161,20 +221,19 @@ int main(void)
   //구조체 , 공용체 선언
   s_rtc_time now_s;
   u_rtc_time now_u;
-  // d_rtc_time now_d;
 
   // 2 AM 설정 후 enable 24H
-  write_reg_ds1302(0x84, 0x22);
-  printf(" \r\n");
-  printf("struct \r\n");
-  s_burst_mode_read(&now_s);
-  s_burst_mode_print(&now_s);
 
-  enable_24H();
-  printf(" \r\n");
-  printf("struct \r\n");
-  s_burst_mode_read(&now_s);
-  s_burst_mode_print(&now_s);
+  // printf(" \r\n");
+  // printf("struct \r\n");
+  // s_burst_mode_read(&now_s);
+  // s_burst_mode_print(&now_s);
+
+  // enable_24H();
+  // printf(" \r\n");
+  // printf("struct \r\n");
+  // s_burst_mode_read(&now_s);
+  // s_burst_mode_print(&now_s);
 
   /* USER CODE END 2 */
 
@@ -182,18 +241,20 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1) {
     printf(" \r\n");
-    
+
+    sec.raw = read_reg_ds1302(0x81);
+    printf("_sec.raw.sec : %d \r\n", sec.sec_bitfield.sec_10 * 10 + sec.sec_bitfield.sec_1);
 
     // s_burst_mode_read(&now_s);
     // s_burst_mode_print(&now_s);
 
     printf("Union \r\n");
-
     u_burst_mode_read(&now_u);
     u_burst_mode_print(&now_u);
 
-    // printf("struct-union \r\n");
-    // burst_read_print(&now_d); 
+    printf("Bitfield \r\n");
+    bitfield_burst_mode_read();
+    bitfield_burst_mode_print();
 
     HAL_Delay(1000);
     /* USER CODE END WHILE */
