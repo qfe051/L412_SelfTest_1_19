@@ -222,18 +222,7 @@ int main(void)
   s_rtc_time now_s;
   u_rtc_time now_u;
 
-  // 2 AM 설정 후 enable 24H
 
-  // printf(" \r\n");
-  // printf("struct \r\n");
-  // s_burst_mode_read(&now_s);
-  // s_burst_mode_print(&now_s);
-
-  // enable_24H();
-  // printf(" \r\n");
-  // printf("struct \r\n");
-  // s_burst_mode_read(&now_s);
-  // s_burst_mode_print(&now_s);
 
   /* USER CODE END 2 */
 
@@ -242,19 +231,13 @@ int main(void)
   while (1) {
     printf(" \r\n");
 
-    sec.raw = read_reg_ds1302(0x81);
-    printf("_sec.raw.sec : %d \r\n", sec.sec_bitfield.sec_10 * 10 + sec.sec_bitfield.sec_1);
-
-    // s_burst_mode_read(&now_s);
-    // s_burst_mode_print(&now_s);
-
     printf("Union \r\n");
-    u_burst_mode_read(&now_u);
-    u_burst_mode_print(&now_u);
+    bust_mode_Union(&now_u);
 
     printf("Bitfield \r\n");
-    bitfield_burst_mode_read();
-    bitfield_burst_mode_print();
+    bust_mode_Bitfield();
+    // bitfield_burst_mode_read();
+    // bitfield_burst_mode_print();
 
     HAL_Delay(1000);
     /* USER CODE END WHILE */

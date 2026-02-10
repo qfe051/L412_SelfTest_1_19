@@ -4,9 +4,10 @@
 #ifndef __TM1637_H
 #define __TM1637_H
 
-void set_output_tm1637(void);
-void set_input_tm1637(void);
+// void set_output_tm1637(void);
+// void set_input_tm1637(void);
 
+// test 이후 static으로 넘기기 
 void write_byte_tm1637(uint8_t data);
 
 void set_start(void);

@@ -1,38 +1,104 @@
 #include "ds1302.h"
 #include "main.h"
+#include <stdbool.h>
 #include <stdint.h>
 
-// static 함수 정의 하기 -> 내부에서만 사용하는 함수 
+
+
+// static 함수 정의 하기 -> 내부에서만 사용하는 함수
+static void DS1302_IO_Set_Output(bool isOutput);
+
+static void write_byte_ds1302(uint8_t data);
+static uint8_t read_byte_ds1302(void);
+
+static uint8_t bcd_2_dec(uint8_t data);
+static uint8_t bcd_2_dec_hour(uint8_t data);
+static uint8_t bcd_2_dec_sec(uint8_t data);
+
+static void day_print(uint8_t data);
+static void print_AM_PM(uint8_t data);
+
+static void u_burst_mode_read(u_rtc_time *r);
+static void u_burst_mode_print(u_rtc_time *r);
+
+static void s_burst_mode_read(s_rtc_time *r);
+static void s_burst_mode_print(s_rtc_time *r);
+
+static void bitfield_burst_mode_read(void);
+static void bitfield_burst_mode_print(void);
+static void bit_print_AM_PM(void);
+
+/*
+< 미사용 함수>
+void enable_clock(void);
+void disable_clock(void);
+
+void enable_24H(void);
+void disable_24H(void);
+
+void set_AM(void);
+void set_PM(void);
+
+*/
+
+// 기존 함수 묶어서 사용하기
+
+void bust_mode_Union(u_rtc_time *r) {
+  u_burst_mode_read(&r);
+  u_burst_mode_print(&r);
+}
+
+void bust_mode_Struct(u_rtc_time *r) {
+  s_burst_mode_read(&r);
+  s_burst_mode_print(&r);
+}
+
+void bust_mode_Bitfield(void) {
+  bitfield_burst_mode_read();
+  bitfield_burst_mode_print();
+}
+
 
 // static void DS1302_IO_Set_Output(bool isOutput);
 
+bool isOutput;
 
+void DS1302_IO_Set_Output(bool isOutput) {
+  if (isOutput == true) {
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
 
-// data - output
-void set_output_ds1302() {
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
+    GPIO_InitStruct.Pin = DS_DAT_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  }
+  else {
+    GPIO_InitTypeDef GPIO_InitStruct = {0};
 
-  GPIO_InitStruct.Pin = DS_DAT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+    GPIO_InitStruct.Pin = DS_DAT_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  }
+  
 }
-// data - input
-void set_input_ds1302() {
-  GPIO_InitTypeDef GPIO_InitStruct = {0};
 
-  GPIO_InitStruct.Pin = DS_DAT_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+// Clock 활성화
+// bool isEnable;
+void DS1302_Clock_Enable(bool isEnable, _sec *r) {
+  if (isEnable == true) {
+    r->sec_bitfield.ch = 0;
+  }
+  else {
+    r->sec_bitfield.ch = 1;
+  }
 }
-
 
 void write_byte_ds1302(uint8_t data) {
-  set_output_ds1302();
-
+  isOutput = true;
+  DS1302_IO_Set_Output(isOutput);
 
   for (int i = 0; i < 8; i++) {
     if ((data & 0x01) == 1) {
@@ -50,7 +116,9 @@ void write_byte_ds1302(uint8_t data) {
 }
 
 uint8_t read_byte_ds1302(void) {
-  set_input_ds1302();
+  isOutput = false;
+  DS1302_IO_Set_Output(isOutput);
+  // set_input_ds1302();
   uint8_t read_data = 0;
   uint8_t temp_data = 0;
 
@@ -680,10 +748,9 @@ bool DS1302_Set_Month(uint8_t set_month) {
 
 bool DS1302_Set_Day(uint8_t set_day) {
   day.raw = read_reg_ds1302(0x8B);
-  day.day_bitfield.day_10 = set_day / 10;
   day.day_bitfield.day_1 = set_day % 10;
 
-  uint8_t day_data = day.day_bitfield.day_10 * 10 + day.day_bitfield.day_1;
+  uint8_t day_data = day.day_bitfield.day_1;
   // uint8_t read_min_data;
 
   if (day_data == set_day && set_day < 8) {

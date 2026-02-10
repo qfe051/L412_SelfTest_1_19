@@ -1,53 +1,17 @@
 #include <stdint.h>
-#include<stdbool.h>
+#include <stdbool.h>
 
 #ifndef __DS1302_H
 #define __DS1302_H
 
-// bool 함수 사용법
-bool DS1302_Init(void);
-bool DS1302_Set_Sec(uint8_t sec);
-bool DS1302_Set_Min(uint8_t set_min);
-bool DS1302_Set_Hour_case_24(uint8_t set_hour);
-// 2개 함수 합치기
-// DS1302_Set_Hour_case_12 , DS1302_Set_AM_PM
-bool DS1302_Set_Hour_case_12(uint8_t set_hour, uint8_t set_AM_PM);
-bool DS1302_Set_AM_PM(uint8_t set_AM_PM);
-bool DS1302_Set_Hour_12h(void);
-bool DS1302_Get_Sec(uint8_t *pSec);
-bool DS1302_Get_Time1_12_24();
-
-
-
 // 함수 선언
-void set_output_ds1302();
-void set_input_ds1302();
-
-void write_byte_ds1302(uint8_t data);
-uint8_t read_byte_ds1302(void);
-
+// 
 // 디버깅용으로 필요 
 void write_reg_ds1302(uint8_t address, uint8_t data);
 uint8_t read_reg_ds1302(uint8_t address);
 
-uint8_t bcd_2_dec(uint8_t data);
-uint8_t bcd_2_dec_hour(uint8_t data);
-uint8_t bcd_2_dec_sec(uint8_t data);
 
-
-
-void enable_clock(void);
-void disable_clock(void);
-
-void enable_24H(void);
-void disable_24H(void);
-
-void set_AM(void);
-void set_PM(void);
-
-// const char *day_num_2_str(uint8_t data);
-void day_print(uint8_t data);
-void print_AM_PM(uint8_t data);
+// 디버깅용 
 
 // 구조체 선언, day - 숫자로 값 받고 -> 출력할 때 문자 변환 함수 
 typedef struct{
@@ -134,15 +98,14 @@ typedef union {
   } year_bitfield;
 } _year;
 
+// // 구조체 , 공용체 선언
+// s_rtc_time now_s;
+// u_rtc_time now_u;
 // 구조체 관련 함수
-void s_burst_mode_read(s_rtc_time *r);
-void u_burst_mode_read(u_rtc_time *r);
-void s_burst_mode_print(s_rtc_time *r);
-void u_burst_mode_print(u_rtc_time *r);
+void bust_mode_Union(u_rtc_time *r);
+void bust_mode_Struct(u_rtc_time *r);
+void bust_mode_Bitfield(void);
 
-void bitfield_burst_mode_read(void);
-void bitfield_burst_mode_print(void);
-void bit_print_AM_PM(void);
 
 // bool 함수 추가
 bool DS1302_Init(void);
@@ -160,6 +123,7 @@ bool DS1302_Set_Month(uint8_t set_month);
 bool DS1302_Set_Day(uint8_t set_day);
 bool DS1302_Set_year(uint8_t set_year);
 
+void DS1302_Clock_Enable(bool isEnable, _sec *r);
 
 // void burst_read_print(d_rtc_time *r);
 
