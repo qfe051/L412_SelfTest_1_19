@@ -26,6 +26,7 @@ void set_input_ds1302();
 void write_byte_ds1302(uint8_t data);
 uint8_t read_byte_ds1302(void);
 
+// 디버깅용으로 필요 
 void write_reg_ds1302(uint8_t address, uint8_t data);
 uint8_t read_reg_ds1302(uint8_t address);
 
@@ -64,37 +65,6 @@ typedef union {
   uint8_t idx_data[7];
 } u_rtc_time;
 
-// typedef union {
-//   uint8_t input_data;
-//   uint8_t sec;
-//   uint8_t min;
-//   uint8_t hour;
-//   uint8_t date;
-//   uint8_t month;
-//   uint8_t day;
-//   uint8_t year;
-// } d_rtc_time;
-
-// typedef struct {
-//   bool is_hour_type_12;
-//   bool is_day_type_pm;
-//   bool is_CH;
-  
-//   union {
-//     uint8_t raw[8];
-//     struct {
-//       uint8_t sec;
-//       uint8_t min;
-//       uint8_t hour;
-//       uint8_t date;
-//       uint8_t month;
-//       uint8_t day;
-//       uint8_t year;
-//       uint8_t wp;
-//     }time;
-//   } ds1302;
-
-// } w_time;
 
 // bitfield 기반 구조체 정의
 
@@ -173,6 +143,23 @@ void u_burst_mode_print(u_rtc_time *r);
 void bitfield_burst_mode_read(void);
 void bitfield_burst_mode_print(void);
 void bit_print_AM_PM(void);
+
+// bool 함수 추가
+bool DS1302_Init(void);
+bool DS1302_Set_Sec(uint8_t set_sec);
+bool DS1302_Set_Min(uint8_t set_min);
+bool DS1302_Set_Hour_case_24(uint8_t set_hour);
+bool DS1302_Set_Hour_case_12(uint8_t set_hour, uint8_t set_AM_PM);
+bool DS1302_Set_AM_PM(uint8_t set_AM_PM);
+
+bool DS1302_Set_Hour_12h(void);
+bool DS1302_Set_Hour_24h(void);
+
+bool DS1302_Set_Date(uint8_t set_date);
+bool DS1302_Set_Month(uint8_t set_month);
+bool DS1302_Set_Day(uint8_t set_day);
+bool DS1302_Set_year(uint8_t set_year);
+
 
 // void burst_read_print(d_rtc_time *r);
 

@@ -2,12 +2,11 @@
 #include "main.h"
 #include <stdint.h>
 
-
-
-
-
+// static 함수 정의 하기 -> 내부에서만 사용하는 함수 
 
 // static void DS1302_IO_Set_Output(bool isOutput);
+
+
 
 // data - output
 void set_output_ds1302() {
@@ -461,6 +460,8 @@ void print_AM_PM(uint8_t data) {
     }
 }
 
+// bitfield 기반 함수 설정 
+
 void bit_print_AM_PM(void) {
 
   uint8_t now_time, AM_PM = 0;
@@ -562,7 +563,7 @@ bool DS1302_Set_Hour_case_12(uint8_t set_hour, uint8_t set_AM_PM) {
 
     uint8_t hour_data = hour.hour_bitfield.hour_10 * 10 + hour.hour_bitfield.hour_1;
 
-    if (hour_data == set_hour && set_hour < 12) {
+    if (hour_data == set_hour && set_hour < 13) {
       write_reg_ds1302(0x84, hour.raw);
 
       return true;
@@ -636,4 +637,78 @@ bool DS1302_Set_Hour_12h(void) {
   }
 }
 
-bool DS1302_Set_Hour_24h(uint8_t set_hour){}
+// 12->24 시간제로 세팅 -> 수정하기 
+bool DS1302_Set_Hour_24h(void) {
+  
+}
+
+bool DS1302_Set_Date(uint8_t set_date) {
+  date.raw = read_reg_ds1302(0x87);
+  date.date_bitfield.date_10 = set_date / 10;
+  date.date_bitfield.date_1 = set_date % 10;
+
+  uint8_t date_data =
+      date.date_bitfield.date_10 * 10 + date.date_bitfield.date_1;
+  // uint8_t read_min_data;
+
+  if (date_data == set_date && set_date < 32) {
+    write_reg_ds1302(0x86, date.raw);
+
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool DS1302_Set_Month(uint8_t set_month) {
+  month.raw = read_reg_ds1302(0x89);
+  month.month_bitfield.month_10 = set_month / 10;
+  month.month_bitfield.month_1 = set_month % 10;
+
+  uint8_t month_data =
+      month.month_bitfield.month_10 * 10 + month.month_bitfield.month_1;
+  // uint8_t read_min_data;
+
+  if (month_data == set_month && set_month < 13) {
+    write_reg_ds1302(0x88, month.raw);
+
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool DS1302_Set_Day(uint8_t set_day) {
+  day.raw = read_reg_ds1302(0x8B);
+  day.day_bitfield.day_10 = set_day / 10;
+  day.day_bitfield.day_1 = set_day % 10;
+
+  uint8_t day_data = day.day_bitfield.day_10 * 10 + day.day_bitfield.day_1;
+  // uint8_t read_min_data;
+
+  if (day_data == set_day && set_day < 8) {
+    write_reg_ds1302(0x8A, day.raw);
+
+    return true;
+  } else {
+    return false;
+  }
+}
+
+bool DS1302_Set_year(uint8_t set_year) {
+  year.raw = read_reg_ds1302(0x8D);
+  year.year_bitfield.year_10 = set_year / 10;
+  year.year_bitfield.year_1 = set_year % 10;
+
+  uint8_t year_data =
+      year.year_bitfield.year_10 * 10 + year.year_bitfield.year_1;
+  // uint8_t read_min_data;
+
+  if (year_data == set_year && set_year < 100) {
+    write_reg_ds1302(0x8C, year.raw);
+
+    return true;
+  } else {
+    return false;
+  }
+}
