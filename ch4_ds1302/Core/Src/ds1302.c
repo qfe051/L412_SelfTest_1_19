@@ -5,6 +5,7 @@
 
 
 
+
 // static 함수 정의 하기 -> 내부에서만 사용하는 함수
 static void DS1302_IO_Set_Output(bool isOutput);
 
@@ -27,6 +28,22 @@ static void s_burst_mode_print(s_rtc_time *r);
 static void bitfield_burst_mode_read(void);
 static void bitfield_burst_mode_print(void);
 static void bit_print_AM_PM(void);
+
+// Init용 함수
+static bool DS1302_Set_Sec(uint8_t set_sec);
+static bool DS1302_Set_Min(uint8_t set_min);
+
+static bool DS1302_Set_Hour_case_24(uint8_t set_hour);
+static bool DS1302_Set_Hour_case_12(uint8_t set_hour, uint8_t set_AM_PM);
+static bool DS1302_Set_AM_PM(uint8_t set_AM_PM);
+
+static bool DS1302_Set_Hour_12h(bool change_12_2_24);
+static bool DS1302_Set_Hour_24h(bool change_2_24);
+
+static bool DS1302_Set_Date(uint8_t set_date);
+static bool DS1302_Set_Month(uint8_t set_month);
+static bool DS1302_Set_Day(uint8_t set_day);
+static bool DS1302_Set_year(uint8_t set_year);
 
 /*
 < 미사용 함수>
@@ -314,37 +331,6 @@ void u_burst_mode_print(u_rtc_time *r) {
   printf("year : %d \r\n", bcd_2_dec(r->idx_data[6]));
 }
 
-// void burst_read_print(d_rtc_time *r) {
-
-//   HAL_GPIO_WritePin(GPIOC, DS_RST_Pin, GPIO_PIN_SET);
-
-//   write_byte_ds1302(0xBF);
-
-//   r->input_data = read_byte_ds1302();
-//   printf("sec : %d \r\n", bcd_2_dec_sec(r->sec));
-
-//   r->input_data = read_byte_ds1302();
-//   printf("min : %d \r\n", bcd_2_dec(r->min));
-
-//   r->input_data = read_byte_ds1302();
-//   printf("hour : %d \r\n", bcd_2_dec_hour(r->hour));
-//   print_AM_PM(r->hour);
-
-//   r->input_data = read_byte_ds1302();
-//   printf("date : %d \r\n", bcd_2_dec(r->date));
-
-//   r->input_data = read_byte_ds1302();
-//   printf("month : %d \r\n", bcd_2_dec(r->month));
-
-//   r->input_data = read_byte_ds1302();
-//   day_print(r->day);
-  
-//   r->input_data = read_byte_ds1302();
-//   printf("year : %d \r\n", bcd_2_dec(r->year));
-
-
-//   HAL_GPIO_WritePin(GPIOC, DS_RST_Pin, GPIO_PIN_RESET);
-// }
 
 void enable_clock(void) {
   uint8_t now_sec = 0;
@@ -450,35 +436,6 @@ void set_PM(void) {
   write_reg_ds1302(0x84, set_PM);
 }
 
-// const char* day_num_2_str(uint8_t data) {
-//   char days;
-
-//   switch (data) {
-//   case 1:
-//     days= "Mon";
-//     break;
-//   case 2:
-//     days= "Tue";
-//     break;
-//   case 3:
-//     days = "Wed";
-//     break;
-//   case 4:
-//     days= "Thu";
-//     break;
-//   case 5:
-//     days="Fri";
-//     break;
-//   case 6:
-//     days="Sat";
-//     break;
-//   case 7:
-//     days= "Sun";
-//     break;
-//   }
-
-//   return days;
-// }
 
 void day_print(uint8_t data) {
   const char* days;
@@ -531,17 +488,17 @@ void print_AM_PM(uint8_t data) {
 // bitfield 기반 함수 설정 
 
 void bit_print_AM_PM(void) {
-
+  hour.raw=read_reg_ds1302(0x85);
   uint8_t now_time, AM_PM = 0;
   now_time = hour.hour_bitfield.time_24;
   AM_PM = hour.hour_bitfield.hour_10;
+  // printf("AM_PM : %#x \r\n",AM_PM);
 
-
-  if (now_time == 0x02) {
-    if (AM_PM == 0x02) {
-      printf("Time PM \r\n");
+  if (now_time == 0x2) {
+    if (AM_PM == 0x2 | AM_PM == 0x3) {
+      printf("Time : PM \r\n");
     } else {
-      printf("Time AM\r\n");
+      printf("Time : AM \r\n");
     }
 
   } else {
@@ -551,7 +508,48 @@ void bit_print_AM_PM(void) {
 
 // bool 함수 추가
 
-bool DS1302_Init(void) {
+bool DS1302_Init(bool is_init) {
+  bitfield_burst_mode_read();
+  if (is_init == true) {
+    DS1302_Set_Sec(SET_SEC);
+    DS1302_Set_Min(SET_MIN);
+    DS1302_Set_Date(SET_DATE);
+    DS1302_Set_Month(SET_MONTH);
+    DS1302_Set_Day(SET_DAY);
+    DS1302_Set_year(SET_Year);
+
+    // 기존 24시간제인 경우
+    if (hour.hour_bitfield.time_24 == 0) {
+      //12시간제 활성화 한 경우
+      if (CH_24_2_12) {
+        DS1302_Set_Hour_12h(CH_24_2_12);
+        DS1302_Set_Hour_case_12(SET_HOUR, SET_AM_PM);
+      }
+      // 24시간제 유지
+      else {
+        DS1302_Set_Hour_case_24(SET_HOUR);
+      }
+    }
+    // 기존 12시간제인 경우
+    else {
+      // 24시간제 활성화 한 경우
+      if (CH_12_2_24) {
+        printf("Change 12h -> 24h \r\n");
+        DS1302_Set_Hour_24h(CH_12_2_24);
+        DS1302_Set_Hour_case_24(SET_HOUR);
+      } else {
+        DS1302_Set_Hour_case_12(SET_HOUR, SET_AM_PM);
+      }
+    }
+
+
+    return true;
+  }
+  else {
+
+    return false;
+  }
+
   
 }
 
@@ -616,15 +614,6 @@ bool DS1302_Set_Hour_case_24(uint8_t set_hour) {
 //  1~12시 세팅 가능 ,  AM PM 세팅 가능
 bool DS1302_Set_Hour_case_12(uint8_t set_hour, uint8_t set_AM_PM) {
   hour.raw = read_reg_ds1302(0x85);
-
-  if (set_AM_PM == 0) {
-    hour.raw = hour.raw & 0xCF;
-    write_reg_ds1302(0x84, hour.raw);
-  } else if (set_AM_PM == 1) {
-    hour.raw = hour.raw | 0x20;
-    write_reg_ds1302(0x84, hour.raw);
-  }
-
   if (hour.hour_bitfield.time_24 == 2) {
     hour.hour_bitfield.hour_10 = set_hour / 10;
     hour.hour_bitfield.hour_1 = set_hour % 10;
@@ -634,12 +623,27 @@ bool DS1302_Set_Hour_case_12(uint8_t set_hour, uint8_t set_AM_PM) {
     if (hour_data == set_hour && set_hour < 13) {
       write_reg_ds1302(0x84, hour.raw);
 
-      return true;
     } else {
-      return false;
     }
   } else {
-    return false;
+  }
+  // AM 만들기
+  if (set_AM_PM == 0) {
+    hour.hour_bitfield.hour_10 = hour.hour_bitfield.hour_10 & 0x1;
+    write_reg_ds1302(0x84, hour.raw);
+    printf("Set AM \r\n");
+  }
+  // PM 만들기
+  else if (set_AM_PM == 1) {
+    hour.hour_bitfield.hour_10 = hour.hour_bitfield.hour_10 + 0x2;
+    write_reg_ds1302(0x84, hour.raw);
+    printf("hour.hour_bitfield.hour_10 %#x \r\n", hour.hour_bitfield.hour_10);
+    printf("hour.raw %#x \r\n", hour.raw);
+    printf("Set PM \r\n");
+    hour.raw=read_reg_ds1302(0x85);
+    printf("hour.hour_bitfield.hour_10 %#x \r\n", hour.hour_bitfield.hour_10);
+    printf("hour.raw %#x \r\n", hour.raw);
+    
   }
 }
 
@@ -663,10 +667,10 @@ bool DS1302_Set_AM_PM(uint8_t set_AM_PM) {
 }
 
 //  12시간제, 24시간제 세팅
-bool DS1302_Set_Hour_12h(void) {
+bool DS1302_Set_Hour_12h(bool change_12_2_24) {
   hour.raw = read_reg_ds1302(0x85);
   // 24시간제 -> 12시간제
-  if (hour.hour_bitfield.time_24 == 0x0) {
+  if ((change_12_2_24==true)&&(hour.hour_bitfield.time_24 == 0x0)) {
     // PM인 경우 12 ~ 23h
     if (hour.hour_bitfield.hour_10 == 0x2) {
       // 20시 21시인 경우
@@ -705,9 +709,36 @@ bool DS1302_Set_Hour_12h(void) {
   }
 }
 
-// 12->24 시간제로 세팅 -> 수정하기 
-bool DS1302_Set_Hour_24h(void) {
-  
+// 12->24 시간제로 세팅 -> 수정하기
+bool DS1302_Set_Hour_24h(bool change_2_24) {
+  hour.raw = read_reg_ds1302(0x85);
+  if ((change_2_24 == true) && (hour.hour_bitfield.time_24 == 0x2)) {
+    hour.hour_bitfield.time_24 = 0x0;
+    // AM인 경우
+    if (hour.hour_bitfield.hour_10 == 0x0 | hour.hour_bitfield.hour_10 == 0x1) {
+      
+      // 12 AM 인 경우
+      if (hour.hour_bitfield.hour_10 == 0x1 && hour.hour_bitfield.hour_1 == 0x2) {
+        hour.hour_bitfield.hour_10 = 0;
+        hour.hour_bitfield.hour_1 = 0;
+      }
+    }
+    else {
+      // PM 8,9시
+      if (hour.hour_bitfield.hour_1 == 8 | hour.hour_bitfield.hour_1 == 9) {
+        hour.hour_bitfield.hour_1 = hour.hour_bitfield.hour_1 - 8;
+      }
+      else {
+        hour.hour_bitfield.hour_1 = hour.hour_bitfield.hour_1 + 2;
+        hour.hour_bitfield.hour_10 = hour.hour_bitfield.hour_10 -1 ;
+      }
+    }
+    write_reg_ds1302(0x84, hour.raw);
+    return true;
+  }
+  else {
+    return false;
+  }
 }
 
 bool DS1302_Set_Date(uint8_t set_date) {

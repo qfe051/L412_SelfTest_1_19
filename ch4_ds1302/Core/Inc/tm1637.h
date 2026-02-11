@@ -16,5 +16,7 @@ void set_stop(void);
 void send_cmd(uint8_t data);
 void send_cmd_2(uint8_t data);
 
+void test_write_tm1637(void);
+
 
 #endif

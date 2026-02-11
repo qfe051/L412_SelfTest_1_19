@@ -1,9 +1,9 @@
 #include "tm1637.h"
 #include "main.h"
 #include "stm32l4xx_hal.h"
+#include <stdbool.h>
 #include <stdint.h>
 #include <stm32l412xx.h>
-
 
 // static 함수 정의
 void TM1637_IO_Set_Output(bool isOutput) {
@@ -21,7 +21,30 @@ void TM1637_IO_Set_Output(bool isOutput) {
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   }
-  
+}
+//test용 함수
+void test_write_tm1637(void) {
+  printf("TM1637 test \r\n");
+  // 명령어 1개 세트
+  send_cmd(0x40);
+  send_cmd_2(0xC0);
+
+  write_byte_tm1637(0x01);
+  write_byte_tm1637(0x02);
+  write_byte_tm1637(0x04);
+  write_byte_tm1637(0x08);
+
+  send_cmd(0x88);
+  // 명령어 1개 세트
+  send_cmd(0x40);
+  send_cmd_2(0xC0);
+
+  write_byte_tm1637(0x3F);
+  write_byte_tm1637(0x06);
+  write_byte_tm1637(0x5B);
+  write_byte_tm1637(0x4F);
+  ////////////////////////////
+  send_cmd(0x87);
 }
 
 void set_output_tm1637(void) {

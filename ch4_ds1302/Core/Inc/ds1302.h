@@ -4,9 +4,26 @@
 #ifndef __DS1302_H
 #define __DS1302_H
 
+// 옵션 전차리기로 정의
+#define NEW_SET_TIME 0 // 0: 기존 시간 , 1 : 새로운 시간 세팅
+#define IS_ENABLE 1 // 0 : 시계 비활성화, 1 : 시계 활성화
+#define SET_SEC 10   // 0~59
+#define SET_MIN 20   // 0~59
+#define SET_DATE 11  // 1~31
+#define SET_MONTH 2 // 1~12
+#define SET_DAY 11  // 1~7
+#define SET_Year 26 // 0~99
+
+#define SET_HOUR 22 // 1~12 or 0~23
+#define SET_AM_PM 0 // 0 : AM , 1: PM
+
+#define CH_12_2_24 1 // 0 : 바활성화, 1 : 활성화
+#define CH_24_2_12 0 // 0 : 바활성화, 1 : 활성화
+
+
 // 함수 선언
-// 
-// 디버깅용으로 필요 
+
+// 디버깅용으로 필요
 void write_reg_ds1302(uint8_t address, uint8_t data);
 uint8_t read_reg_ds1302(uint8_t address);
 
@@ -108,20 +125,8 @@ void bust_mode_Bitfield(void);
 
 
 // bool 함수 추가
-bool DS1302_Init(void);
-bool DS1302_Set_Sec(uint8_t set_sec);
-bool DS1302_Set_Min(uint8_t set_min);
-bool DS1302_Set_Hour_case_24(uint8_t set_hour);
-bool DS1302_Set_Hour_case_12(uint8_t set_hour, uint8_t set_AM_PM);
-bool DS1302_Set_AM_PM(uint8_t set_AM_PM);
+bool DS1302_Init(bool is_init);
 
-bool DS1302_Set_Hour_12h(void);
-bool DS1302_Set_Hour_24h(void);
-
-bool DS1302_Set_Date(uint8_t set_date);
-bool DS1302_Set_Month(uint8_t set_month);
-bool DS1302_Set_Day(uint8_t set_day);
-bool DS1302_Set_year(uint8_t set_year);
 
 void DS1302_Clock_Enable(bool isEnable, _sec *r);
 

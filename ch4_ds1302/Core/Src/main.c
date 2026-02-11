@@ -141,78 +141,60 @@ int main(void)
   _year year;
       
 
-  printf("bitfield print test \r\n");
-  sec.raw = read_reg_ds1302(0x81);
-  printf("_sec.raw : %#x \r\n", sec.raw);
-  printf("_sec.raw.ch : %#x \r\n", sec.sec_bitfield.ch);
-  printf("_sec.raw.sec_10 : %#x \r\n", sec.sec_bitfield.sec_10);
-  printf("_sec.raw.sec_1 : %#x \r\n", sec.sec_bitfield.sec_1);
+//   printf("bitfield print test \r\n");
+//   sec.raw = read_reg_ds1302(0x81);
+//   printf("_sec.raw : %#x \r\n", sec.raw);
+//   printf("_sec.raw.ch : %#x \r\n", sec.sec_bitfield.ch);
+//   printf("_sec.raw.sec_10 : %#x \r\n", sec.sec_bitfield.sec_10);
+//   printf("_sec.raw.sec_1 : %#x \r\n", sec.sec_bitfield.sec_1);
 
-  printf("\r\n");
-  printf("_sec.raw.sec : %d \r\n", sec.sec_bitfield.sec_10 * 10 + sec.sec_bitfield.sec_1);
+//   printf("\r\n");
+//   printf("_sec.raw.sec : %d \r\n", sec.sec_bitfield.sec_10 * 10 + sec.sec_bitfield.sec_1);
 
-  // 초 설정
-  uint8_t set_sec = 30;
-  if (DS1302_Set_Sec(set_sec)) {
-    printf("set sec 완료 \r\n");
-  }
-  else {
-    printf("set sec 실패 \r\n");
-  }
-  // 분 설정
-  uint8_t set_min = 50;
-  if (DS1302_Set_Min(set_min)) {
-    printf("set min 완료 \r\n");
-  } else {
-    printf("set min 실패 \r\n");
-  }
+//   // 초 설정
+//   uint8_t set_sec = 30;
+//   if (DS1302_Set_Sec(set_sec)) {
+//     printf("set sec 완료 \r\n");
+//   }
+//   else {
+//     printf("set sec 실패 \r\n");
+//   }
+//   // 분 설정
+//   uint8_t set_min = 50;
+//   if (DS1302_Set_Min(set_min)) {
+//     printf("set min 완료 \r\n");
+//   } else {
+//     printf("set min 실패 \r\n");
+//   }
 
-  enable_24H();
-  // 시간 설정
-  uint8_t set_hour = 20;
-  if (DS1302_Set_Hour_case_24(set_hour)) {
-    printf("set_hour 완료 \r\n");
-  } else {
-    printf("set_hour 실패 \r\n");
-  }
+//   enable_24H();
+//   // 시간 설정
+//   uint8_t set_hour = 20;
+//   if (DS1302_Set_Hour_case_24(set_hour)) {
+//     printf("set_hour 완료 \r\n");
+//   } else {
+//     printf("set_hour 실패 \r\n");
+//   }
 
-  if (DS1302_Set_Hour_12h()) {
-    printf("set_hour_12h 완료 \r\n");
-  }
-  else {
-    printf("set_hour_12h 실패 \r\n");
-  }
+// //  if (DS1302_Set_Hour_12h()) {
+// //    printf("set_hour_12h 완료 \r\n");
+// //  }
+// //  else {
+// //    printf("set_hour_12h 실패 \r\n");
+// //  }
 
-  set_hour = 12;
-  uint8_t set_AM_PM = 1;  // AM : 0 , PM :1
-  if (DS1302_Set_Hour_case_12(set_hour,set_AM_PM)) {
-    printf("set_hour_12_AM_PM 완료 \r\n");
-  } else {
-    printf("set_hour_12_AM_PM 실패 \r\n");
-  }
+  //   set_hour = 12;
+  //   uint8_t set_AM_PM = 1;  // AM : 0 , PM :1
+  //   if (DS1302_Set_Hour_case_12(set_hour,set_AM_PM)) {
+  //     printf("set_hour_12_AM_PM 완료 \r\n");
+  //   } else {
+  //     printf("set_hour_12_AM_PM 실패 \r\n");
+  //   }
+
+  DS1302_Init(NEW_SET_TIME);
 
   // test - 로직아날라이저 확인 ok///////////////
-  printf("TM1637 test \r\n");
-  // 명령어 1개 세트
-  send_cmd(0x40);
-  send_cmd_2(0xC0);
-
-  write_byte_tm1637(0x01);
-  write_byte_tm1637(0x02);
-  write_byte_tm1637(0x04);
-  write_byte_tm1637(0x08);
-
-  send_cmd(0x88);
-  // 명령어 1개 세트
-  send_cmd(0x40);
-  send_cmd_2(0xC0);
-
-  write_byte_tm1637(0x3F);
-  write_byte_tm1637(0x06);
-  write_byte_tm1637(0x5B);
-  write_byte_tm1637(0x4F);
-////////////////////////////
-  send_cmd(0x87);
+  test_write_tm1637();
 
   enable_clock();
 
