@@ -139,59 +139,27 @@ int main(void)
   _month month;
   _day day;
   _year year;
-      
+  /*
+    DS1302_Set_Sec(SET_SEC);
+    DS1302_Set_Min(SET_MIN);
+    DS1302_Set_Date(SET_DATE);
+    DS1302_Set_Month(SET_MONTH);
+    DS1302_Set_Day(SET_DAY);
+    DS1302_Set_year(SET_Year);
+  */
+  //구조체 , 공용체 선언
+  s_rtc_time now_s;
+  u_rtc_time now_u;
+  _MCU_time_data mcu_clock;
 
-//   printf("bitfield print test \r\n");
-//   sec.raw = read_reg_ds1302(0x81);
-//   printf("_sec.raw : %#x \r\n", sec.raw);
-//   printf("_sec.raw.ch : %#x \r\n", sec.sec_bitfield.ch);
-//   printf("_sec.raw.sec_10 : %#x \r\n", sec.sec_bitfield.sec_10);
-//   printf("_sec.raw.sec_1 : %#x \r\n", sec.sec_bitfield.sec_1);
+  // 11 PM 설정
+  write_reg_ds1302(0x84, 0xB1);
+  if (is_hour_PM_mode()) {
+    printf(" is_hour_PM_mode() \r\n");
+  }
 
-//   printf("\r\n");
-//   printf("_sec.raw.sec : %d \r\n", sec.sec_bitfield.sec_10 * 10 + sec.sec_bitfield.sec_1);
+  set_new_time(&mcu_clock,SET_INIT_TIME_TYPE);
 
-//   // 초 설정
-//   uint8_t set_sec = 30;
-//   if (DS1302_Set_Sec(set_sec)) {
-//     printf("set sec 완료 \r\n");
-//   }
-//   else {
-//     printf("set sec 실패 \r\n");
-//   }
-//   // 분 설정
-//   uint8_t set_min = 50;
-//   if (DS1302_Set_Min(set_min)) {
-//     printf("set min 완료 \r\n");
-//   } else {
-//     printf("set min 실패 \r\n");
-//   }
-
-//   enable_24H();
-//   // 시간 설정
-//   uint8_t set_hour = 20;
-//   if (DS1302_Set_Hour_case_24(set_hour)) {
-//     printf("set_hour 완료 \r\n");
-//   } else {
-//     printf("set_hour 실패 \r\n");
-//   }
-
-// //  if (DS1302_Set_Hour_12h()) {
-// //    printf("set_hour_12h 완료 \r\n");
-// //  }
-// //  else {
-// //    printf("set_hour_12h 실패 \r\n");
-// //  }
-
-  //   set_hour = 12;
-  //   uint8_t set_AM_PM = 1;  // AM : 0 , PM :1
-  //   if (DS1302_Set_Hour_case_12(set_hour,set_AM_PM)) {
-  //     printf("set_hour_12_AM_PM 완료 \r\n");
-  //   } else {
-  //     printf("set_hour_12_AM_PM 실패 \r\n");
-  //   }
-
-  DS1302_Init(NEW_SET_TIME);
 
   // test - 로직아날라이저 확인 ok///////////////
   test_write_tm1637();
@@ -200,9 +168,7 @@ int main(void)
 
   
 
-  //구조체 , 공용체 선언
-  s_rtc_time now_s;
-  u_rtc_time now_u;
+
 
 
 

@@ -45,6 +45,11 @@ static bool DS1302_Set_Month(uint8_t set_month);
 static bool DS1302_Set_Day(uint8_t set_day);
 static bool DS1302_Set_year(uint8_t set_year);
 
+// bool 함수 추가
+static bool set_hour_type_12_24(HOUR_TYPE_12_24 type);
+static bool enable_ch(bool is_enable);
+static bool set_hour_type_AM_PM(HOUR_TYPE_AM_PM type);
+
 /*
 < 미사용 함수>
 void enable_clock(void);
@@ -77,6 +82,9 @@ void bust_mode_Bitfield(void) {
 
 
 // static void DS1302_IO_Set_Output(bool isOutput);
+
+
+
 
 bool isOutput;
 
@@ -309,6 +317,148 @@ void bitfield_burst_mode_print(void) {
   printf("year : %d \r\n", year_data);
 }
 
+// PM인 경우 함수 만들기
+bool is_hour_PM_mode(void) {
+  bitfield_burst_mode_read();
+  if ((hour.hour_bitfield.hour_10 == 0x2 | hour.hour_bitfield.hour_10 == 0x3) && hour.hour_bitfield.time_24 == 0x2) {
+    return true;
+  }
+  else {
+  return false;
+  }
+}
+
+// 24시간 형태로 잡아두기
+// MCU 함수 하나로
+void set_new_time(_MCU_time_data *r,INIT_TIME_TYPE type) {
+  get_MCU_clock_inform(&r);
+  set_MCU_clock_inform(&r, type);
+  write_MCU_clock_to_ds1302(&r,type);
+  printf("MCU 기반 시간 세팅 완료 \r\n");
+  print_MCU_clock_inform(&r);
+
+
+}
+// 내부 clock 저장 함수
+void get_MCU_clock_inform(_MCU_time_data *r) {
+  bitfield_burst_mode_read();
+  
+  
+  r->sec = sec.sec_bitfield.sec_10 * 10  +sec.sec_bitfield.sec_1;
+  r->min = 10 * min.min_bitfield.min_10 + min.min_bitfield.min_1;
+  r->hour =10 * hour.hour_bitfield.hour_10 + hour.hour_bitfield.hour_1;
+  r->date = 10 * date.date_bitfield.date_10 + date.date_bitfield.date_1;
+  r->month= 10 * month.month_bitfield.month_10 + month.month_bitfield.month_1;
+  r->day= day.day_bitfield.day_1;
+  r->year = 10 * year.year_bitfield.year_10 + year.year_bitfield.year_1;
+
+  // PM인 경우 'hour.hour_bitfield.hour_10'가 2,3으로 정의 됨 
+  if (is_hour_PM_mode()) {
+    r->hour = r->hour -12;
+  }
+}
+
+void set_MCU_clock_inform(_MCU_time_data *r,INIT_TIME_TYPE type) {
+  bitfield_burst_mode_read();
+  // INIT_TIME_TYPE 활성화 된 경우
+  if (type) {
+  r->sec = SET_SEC;
+  r->min = SET_MIN;
+  r->hour =SET_HOUR;
+  r->date = SET_DATE;
+  r->month= SET_MONTH;
+  r->day= SET_DAY;
+  r->year = SET_Year;
+  }
+  
+  
+
+  // PM인 경우 'hour.hour_bitfield.hour_10'가 2,3으로 정의 됨 
+  if (is_hour_PM_mode()) {
+    r->hour = r->hour -12;
+  }
+}
+
+void print_MCU_clock_inform(_MCU_time_data *r) {
+  printf(" MCU_clock_inform \r\n");
+  printf("sec : %d \r\n", r->sec);
+  printf("min : %d \r\n", r->min);
+  printf("hour : %d \r\n", r->hour);
+  printf("date : %d \r\n", r->date);
+  printf("month : %d \r\n", r->month);
+  day_print(r->day);
+  printf("year : %d \r\n", r->year);
+}
+
+// 옵션은 따로 진행 -> 함수화 하여 넣어주기 
+void write_MCU_clock_to_ds1302(_MCU_time_data *r,INIT_TIME_TYPE type) {
+  bitfield_burst_mode_read();
+
+  // sec
+  sec.sec_bitfield.sec_10 = r->sec / 10;
+  sec.sec_bitfield.sec_1 = r->sec % 10;
+
+  // min
+  min.min_bitfield.min_10 = r->min / 10;
+  min.min_bitfield.min_1 = r->min % 10;
+
+  // pm 이면 12 빼서 넣기
+  //  if (set_hour_type_12_24(SET_HOUR_TYPE_12_24)&&set_hour_type_AM_PM(SET_HOUR_TYPE_AM_PM))
+  // hour  | am, pm 옵션 확인 추가 - enum 활용하기
+  if (set_hour_type_12_24(SET_HOUR_TYPE_12_24)) {
+    if (r->hour >12) {
+    r->hour = r->hour -12;
+    }
+
+    
+  }
+  hour.hour_bitfield.hour_10 = r->hour / 10;
+  hour.hour_bitfield.hour_1 = r->hour % 10;
+
+  // date
+  date.date_bitfield.date_10 = r->date / 10;
+  date.date_bitfield.date_1 = r->date % 10;
+
+  // month
+  month.month_bitfield.month_10 = r->month / 10;
+  month.month_bitfield.month_1 = r->month % 10;
+
+  // day
+  day.day_bitfield.day_1 = r->day;
+
+  // year
+  year.year_bitfield.year_10 = r->year / 10;
+  year.year_bitfield.year_1 = r->year % 10;
+
+  if (type) {
+    bitfield_burst_mode_write();
+  }
+  
+}
+
+
+
+void bitfield_burst_mode_write(void) {
+  // rST 핀 set
+  HAL_GPIO_WritePin(GPIOC, DS_RST_Pin, GPIO_PIN_SET);
+
+  // 명령어 바이트
+  write_byte_ds1302(0xBE);
+
+  // 데이터 바이트
+  write_byte_ds1302(sec.raw);
+  write_byte_ds1302(min.raw);
+  write_byte_ds1302(hour.raw);
+  write_byte_ds1302(date.raw);
+  write_byte_ds1302(month.raw);
+  write_byte_ds1302(day.raw);
+  write_byte_ds1302(year.raw);
+
+
+  HAL_GPIO_WritePin(GPIOC, DS_RST_Pin, GPIO_PIN_RESET);
+
+}
+
 void s_burst_mode_print(s_rtc_time *r) {
   printf("sec : %d \r\n", bcd_2_dec_sec(r->sec));
   printf("min : %d \r\n", bcd_2_dec(r->min));
@@ -506,51 +656,65 @@ void bit_print_AM_PM(void) {
   }
 }
 
-// bool 함수 추가
-
-bool DS1302_Init(bool is_init) {
-  bitfield_burst_mode_read();
-  if (is_init == true) {
-    DS1302_Set_Sec(SET_SEC);
-    DS1302_Set_Min(SET_MIN);
-    DS1302_Set_Date(SET_DATE);
-    DS1302_Set_Month(SET_MONTH);
-    DS1302_Set_Day(SET_DAY);
-    DS1302_Set_year(SET_Year);
-
-    // 기존 24시간제인 경우
-    if (hour.hour_bitfield.time_24 == 0) {
-      //12시간제 활성화 한 경우
-      if (CH_24_2_12) {
-        DS1302_Set_Hour_12h(CH_24_2_12);
-        DS1302_Set_Hour_case_12(SET_HOUR, SET_AM_PM);
-      }
-      // 24시간제 유지
-      else {
-        DS1302_Set_Hour_case_24(SET_HOUR);
-      }
-    }
-    // 기존 12시간제인 경우
-    else {
-      // 24시간제 활성화 한 경우
-      if (CH_12_2_24) {
-        printf("Change 12h -> 24h \r\n");
-        DS1302_Set_Hour_24h(CH_12_2_24);
-        DS1302_Set_Hour_case_24(SET_HOUR);
-      } else {
-        DS1302_Set_Hour_case_12(SET_HOUR, SET_AM_PM);
-      }
-    }
 
 
-    return true;
+
+// bool DS1302_Init() {
+//   bool status = true;
+//   // 24시간 설정 함수 호출
+//   status = set_hour_type(HOUR_TYPE_24);
+//   if (!status) {
+//     return false;
+//   }
+//   // ch enable 함수 호출
+//   status = enable_ch(true);
+//   if (!status) {
+//     return false;
+//   }
+
+//   return status;
+// }
+
+bool set_hour_type_12_24(HOUR_TYPE_12_24 type) {
+  bool status = true;
+  switch (type) {
+  case HOUR_TYPE_12:
+    status = true;
+    break;
+  case HOUR_TYPE_24:
+    status = false;
+    break;
+  default:
+    status = false;
+    break;
   }
-  else {
+  return status;
+}
 
-    return false;
+bool set_hour_type_AM_PM(HOUR_TYPE_AM_PM type) {
+  bool status = true;
+  switch (type) {
+  case HOUR_TYPE_PM:
+    status = true;
+    break;
+  case HOUR_TYPE_AM:
+    status = false;
+    break;
+  default:
+    status = false;
+    break;
   }
+  return status;
+}
 
-  
+bool enable_ch(bool is_enable) {
+  bool status = true;
+  if (is_enable) {
+    status = 0;
+  } else {
+    status = 0;
+  }
+  return status;
 }
 
 bool DS1302_Set_Sec(uint8_t set_sec) {
@@ -625,7 +789,9 @@ bool DS1302_Set_Hour_case_12(uint8_t set_hour, uint8_t set_AM_PM) {
 
     } else {
     }
+    return true;
   } else {
+    return false;
   }
   // AM 만들기
   if (set_AM_PM == 0) {
@@ -810,3 +976,5 @@ bool DS1302_Set_year(uint8_t set_year) {
     return false;
   }
 }
+
+// bool 함수, 점검하기 위한 함수 필요

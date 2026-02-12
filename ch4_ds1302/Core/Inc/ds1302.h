@@ -5,23 +5,47 @@
 #define __DS1302_H
 
 // 옵션 전차리기로 정의
-#define NEW_SET_TIME 0 // 0: 기존 시간 , 1 : 새로운 시간 세팅
-#define IS_ENABLE 1 // 0 : 시계 비활성화, 1 : 시계 활성화
+
 #define SET_SEC 10   // 0~59
 #define SET_MIN 20   // 0~59
 #define SET_DATE 11  // 1~31
 #define SET_MONTH 2 // 1~12
-#define SET_DAY 11  // 1~7
+#define SET_DAY 4  // 1~7
 #define SET_Year 26 // 0~99
 
 #define SET_HOUR 22 // 1~12 or 0~23
-#define SET_AM_PM 0 // 0 : AM , 1: PM
 
-#define CH_12_2_24 1 // 0 : 바활성화, 1 : 활성화
-#define CH_24_2_12 0 // 0 : 바활성화, 1 : 활성화
+// type형 변수 전처리기로 정의
+#define SET_HOUR_TYPE_AM_PM HOUR_TYPE_AM // HOUR_TYPE_AM, HOUR_TYPE_PM
+#define SET_HOUR_TYPE_12_24 HOUR_TYPE_12 // HOUR_TYPE_12HOUR_TYPE_24
+#define SET_INIT_TIME_TYPE IS_CURRENT_TIME //IS_CURRENT_TIME, IS_SET_NEW_TIME
+#define SET_IS_CLOCK_ENABLE ENABLE_CLOCK //DISABLE_CLOCK , ENABLE_CLOCK
+
+
 
 
 // 함수 선언
+// 열거형으로 0,1 순서대로 사용 
+typedef enum {
+  HOUR_TYPE_12 = 0,
+  HOUR_TYPE_24
+} HOUR_TYPE_12_24;
+
+typedef enum {
+  IS_CURRENT_TIME = 0,
+  IS_SET_NEW_TIME
+} INIT_TIME_TYPE;
+
+typedef enum {
+  HOUR_TYPE_AM = 0,
+  HOUR_TYPE_PM
+} HOUR_TYPE_AM_PM;
+
+typedef enum {
+  ENABLE_CLOCK = 0,
+  DISABLE_CLOCK
+} IS_CLOCK_ENABLE;
+
 
 // 디버깅용으로 필요
 void write_reg_ds1302(uint8_t address, uint8_t data);
@@ -40,6 +64,17 @@ typedef struct{
   uint8_t day;
   uint8_t year;
 } s_rtc_time;
+
+// MCU에 data 담기 
+typedef struct {
+  uint8_t sec;
+  uint8_t min;
+  uint8_t hour;
+  uint8_t date;
+  uint8_t month;
+  uint8_t day;
+  uint8_t year;
+} _MCU_time_data;
 
 typedef union {
   uint64_t full_data;
@@ -115,6 +150,8 @@ typedef union {
   } year_bitfield;
 } _year;
 
+
+
 // // 구조체 , 공용체 선언
 // s_rtc_time now_s;
 // u_rtc_time now_u;
@@ -125,10 +162,20 @@ void bust_mode_Bitfield(void);
 
 
 // bool 함수 추가
-bool DS1302_Init(bool is_init);
+bool DS1302_Init(void);
 
 
 void DS1302_Clock_Enable(bool isEnable, _sec *r);
+
+// 코드 정리 이후 추가
+
+// 코드 작성 중
+bool is_hour_PM_mode(void);
+void get_MCU_clock_inform(_MCU_time_data *r);
+void print_MCU_clock_inform(_MCU_time_data *r);
+void write_MCU_clock_to_ds1302(_MCU_time_data *r,INIT_TIME_TYPE type);
+void bitfield_burst_mode_write(void);
+
 
 // void burst_read_print(d_rtc_time *r);
 
