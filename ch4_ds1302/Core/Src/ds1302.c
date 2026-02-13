@@ -22,7 +22,6 @@ static void bit_print_AM_PM(void);
 
 // bool 함수 추가
 static bool set_hour_type_12_24(HOUR_TYPE_12_24 type);
-static bool enable_ch(IS_CLOCK_ENABLE type);
 static bool set_hour_type_AM_PM(HOUR_TYPE_AM_PM type);
 
 /*
@@ -364,16 +363,6 @@ void bitfield_burst_mode_write(void) {
 }
 
 
-void enable_clock(void) {
-  uint8_t now_sec = 0;
-  uint8_t enable_now_sec = 0;
-
-  now_sec = read_reg_ds1302(0x81);
-  enable_now_sec = now_sec & 0x7F;
-
-  write_reg_ds1302(0x80, enable_now_sec);
-}
-
 void day_print(uint8_t data) {
   const char* days;
 
@@ -425,7 +414,8 @@ void bit_print_AM_PM(void) {
   }
 }
 
-
+// mcu가 읽기 -> 형태에 따라서 hour type 바꿔주기 
+// 내부에서 set_hour_type 실행까지 하기 
 bool set_hour_type_12_24(HOUR_TYPE_12_24 type) {
   bool status = true;
   switch (type) {
@@ -444,27 +434,42 @@ bool set_hour_type_12_24(HOUR_TYPE_12_24 type) {
 
 bool set_hour_type_AM_PM(HOUR_TYPE_AM_PM type) {
   bool status = true;
+  bitfield_burst_mode_read();
+  if (hour.hour_bitfield.time_24 == 2) {
   switch (type) {
-  case HOUR_TYPE_PM:
-    status = true;
-    break;
-  case HOUR_TYPE_AM:
-    status = true;
-    break;
-  default:
-    status = false;
-    break;
+    case HOUR_TYPE_PM:
+      hour.hour_bitfield.hour_10 = hour.hour_bitfield.hour_10 | 0x2; 
+      status = true;
+      break;
+    case HOUR_TYPE_AM:
+      hour.hour_bitfield.hour_10 = hour.hour_bitfield.hour_10 & 0x1;
+      status = true;
+      break;
+    default:
+      status = false;
+      break;
+    }
   }
+   else {
+    printf("24시간제 입니다. \r\n");
+   status = false;
+   }
+  
   return status;
 }
 
 bool enable_ch(IS_CLOCK_ENABLE type) {
+  bitfield_burst_mode_read();
   bool status = true;
   switch (type) {
   case ENABLE_CLOCK:
+    sec.sec_bitfield.ch = 0;
+    bitfield_burst_mode_write();
     status = true;
     break;
   case DISABLE_CLOCK:
+    sec.sec_bitfield.ch = 1;
+    bitfield_burst_mode_write();
     status = true;
     break;
   default:
@@ -476,37 +481,32 @@ bool enable_ch(IS_CLOCK_ENABLE type) {
 
 bool enable_write(IS_CLOCK_ENABLE type) {
   // disable 하는 경우
-  if (type) {
-    write_reg_ds1302(0x8E, 0x80);
+  bool status = true;
+  switch (type) {
+    case ENABLE_WRITE:
+      write_reg_ds1302(0x8E, 0x00);
+      status = true;
+      break;
+    case DISABLE_WRITE:
+      write_reg_ds1302(0x8E, 0x80);
+      status = true;
+      break;
+    default:
+      status = false;
+      break;
   }
-  // enable 하는 경우
-  else {
-    write_reg_ds1302(0x8E, 0x00);
-  }
-  
+
+  return status;
 }
 
 bool DS1302_Init(_MCU_time_data *r) {
   get_MCU_clock_inform(&r);
-  if (enable_ch(SET_IS_CLOCK_ENABLE)) {
-    sec.sec_bitfield.ch = 0;
-  } else {
 
-    sec.sec_bitfield.ch = 1;
-    // printf("시계 비활성화\r\n");
-  }
+  set_hour_type_12_24(HOUR_TYPE_24);
+  set_hour_type_AM_PM(HOUR_TYPE_PM);
+  enable_ch(ENABLE_CLOCK);
+  
 
-  if (set_hour_type_12_24(SET_HOUR_TYPE_12_24)) {
-    if (r->hour >12) {
-      r->hour = r->hour - 12;
-      hour.hour_bitfield.hour_10 = r->hour / 10;
-      hour.hour_bitfield.hour_1 = r->hour % 10;
-    }
-  }
-  // AM , PM 추가 명시
-  if (set_hour_type_AM_PM(SET_HOUR_TYPE_AM_PM)) {
-    hour.hour_bitfield.hour_10 +=2;
-  }
   bitfield_burst_mode_write();
 
   enable_write(SET_ENABLE_WRITE);

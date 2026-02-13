@@ -130,7 +130,7 @@ int main(void)
   //구조체 , 공용체 선언
   _MCU_time_data mcu_clock;
 
-  DS1302_Init(&mcu_clock);
+   DS1302_Init(&mcu_clock);
 
   bust_mode_Bitfield();
 
@@ -140,7 +140,8 @@ int main(void)
   //   printf(" is_hour_PM_mode() \r\n");
   // }
 
-  set_new_time(&mcu_clock,SET_INIT_TIME_TYPE);
+  // set_new_time(&mcu_clock,SET_INIT_TIME_TYPE);
+  enable_ch(ENABLE_CLOCK);
 
 
   // test - 로직아날라이저 확인 ok///////////////

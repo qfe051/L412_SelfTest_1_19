@@ -5,6 +5,7 @@
 #define __DS1302_H
 
 // 옵션 전차리기로 정의
+// 전체 옵션 변수화 하기 , 열거형은 그냥 두기 
 
 #define SET_SEC 10   // 0~59
 #define SET_MIN 20   // 0~59
@@ -19,12 +20,23 @@
 // 모든 설정 변경하기 위함 
 #define SET_INIT_TIME_TYPE IS_SET_NEW_TIME //IS_CURRENT_TIME, IS_SET_NEW_TIME
 
-// IS_SET_NEW_TIME 설정 시 동작 
+// 각각 함수에서 옵션 사용하기 
+// // IS_SET_NEW_TIME 설정 시 동작 
 #define SET_HOUR_TYPE_AM_PM HOUR_TYPE_AM // HOUR_TYPE_AM, HOUR_TYPE_PM
 #define SET_HOUR_TYPE_12_24 HOUR_TYPE_12 // HOUR_TYPE_12HOUR_TYPE_24
 #define SET_IS_CLOCK_ENABLE ENABLE_CLOCK //DISABLE_CLOCK , ENABLE_CLOCK
 
-#define SET_ENABLE_WRITE ENABLE_WRITE // ENABLE_WRITE , DISABLE_WRITE 
+#define SET_ENABLE_WRITE ENABLE_WRITE // ENABLE_WRITE , DISABLE_WRITE
+
+// 변수 선언
+// uint8_t set_sec = 10; // 0~59
+// uint8_t set_min = 20; // 0~59
+// uint8_t set_date = 13;  // 1~31
+// uint8_t set_month = 2; // 1~12
+// uint8_t set_day = 5; // 1~7
+// uint8_t set_year = 10;  // 0~99
+
+// uint8_t set_hour = 10 ; // 1~12 or 0~23
 
 // 함수 선언
 // 열거형으로 0,1 순서대로 사용 
@@ -52,6 +64,9 @@ typedef enum {
   ENABLE_WRITE = 0,
   DISABLE_WRITE
 } IS_ENABLE_WRITE;
+
+// bool ENABLE_WRITE = true;
+// bool DISABLE_WRITE = false;
 
 // 디버깅용으로 필요
 void write_reg_ds1302(uint8_t address, uint8_t data);
@@ -162,7 +177,9 @@ void get_MCU_clock_inform(_MCU_time_data *r);
 void print_MCU_clock_inform(_MCU_time_data *r);
 void write_MCU_clock_to_ds1302(_MCU_time_data *r,INIT_TIME_TYPE type);
 void bitfield_burst_mode_write(void);
-void set_new_time(_MCU_time_data *r,INIT_TIME_TYPE type);
+void set_new_time(_MCU_time_data *r, INIT_TIME_TYPE type);
+
+bool enable_ch(IS_CLOCK_ENABLE type);
 
 // void burst_read_print(d_rtc_time *r);
 
