@@ -117,60 +117,34 @@ int main(void)
   HAL_TIM_Base_Start(&htim2);
 
   printf("UART print test \r\n");
-  // 쓰기 활성화 
-  write_reg_ds1302(0x8E, 0x00);
+
   // Tirckle Charger 정보
   printf("Tirckle Charger inform : %#x \r\n", read_reg_ds1302(0x91));
-
-
-
-
 
   // delay test
   HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_RESET);
   delay_5us();
   HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_SET);
 
-  // bitfield test
-  _sec sec;
-  _min min;
-  _hour hour;
-  _date date;
-  _month month;
-  _day day;
-  _year year;
-  /*
-    DS1302_Set_Sec(SET_SEC);
-    DS1302_Set_Min(SET_MIN);
-    DS1302_Set_Date(SET_DATE);
-    DS1302_Set_Month(SET_MONTH);
-    DS1302_Set_Day(SET_DAY);
-    DS1302_Set_year(SET_Year);
-  */
+
   //구조체 , 공용체 선언
-  s_rtc_time now_s;
-  u_rtc_time now_u;
   _MCU_time_data mcu_clock;
 
-  // 11 PM 설정
-  write_reg_ds1302(0x84, 0xB1);
-  if (is_hour_PM_mode()) {
-    printf(" is_hour_PM_mode() \r\n");
-  }
+  DS1302_Init(&mcu_clock);
+
+  bust_mode_Bitfield();
+
+  // // 11 PM 설정 - for test
+  // write_reg_ds1302(0x84, 0xB1);
+  // if (is_hour_PM_mode()) {
+  //   printf(" is_hour_PM_mode() \r\n");
+  // }
 
   set_new_time(&mcu_clock,SET_INIT_TIME_TYPE);
 
 
   // test - 로직아날라이저 확인 ok///////////////
   test_write_tm1637();
-
-  enable_clock();
-
-  
-
-
-
-
 
   /* USER CODE END 2 */
 
@@ -179,13 +153,8 @@ int main(void)
   while (1) {
     printf(" \r\n");
 
-    printf("Union \r\n");
-    bust_mode_Union(&now_u);
-
     printf("Bitfield \r\n");
     bust_mode_Bitfield();
-    // bitfield_burst_mode_read();
-    // bitfield_burst_mode_print();
 
     HAL_Delay(1000);
     /* USER CODE END WHILE */

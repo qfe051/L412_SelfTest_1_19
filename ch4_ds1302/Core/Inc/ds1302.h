@@ -16,13 +16,15 @@
 #define SET_HOUR 22 // 1~12 or 0~23
 
 // type형 변수 전처리기로 정의
+// 모든 설정 변경하기 위함 
+#define SET_INIT_TIME_TYPE IS_SET_NEW_TIME //IS_CURRENT_TIME, IS_SET_NEW_TIME
+
+// IS_SET_NEW_TIME 설정 시 동작 
 #define SET_HOUR_TYPE_AM_PM HOUR_TYPE_AM // HOUR_TYPE_AM, HOUR_TYPE_PM
 #define SET_HOUR_TYPE_12_24 HOUR_TYPE_12 // HOUR_TYPE_12HOUR_TYPE_24
-#define SET_INIT_TIME_TYPE IS_CURRENT_TIME //IS_CURRENT_TIME, IS_SET_NEW_TIME
 #define SET_IS_CLOCK_ENABLE ENABLE_CLOCK //DISABLE_CLOCK , ENABLE_CLOCK
 
-
-
+#define SET_ENABLE_WRITE ENABLE_WRITE // ENABLE_WRITE , DISABLE_WRITE 
 
 // 함수 선언
 // 열거형으로 0,1 순서대로 사용 
@@ -46,24 +48,15 @@ typedef enum {
   DISABLE_CLOCK
 } IS_CLOCK_ENABLE;
 
+typedef enum {
+  ENABLE_WRITE = 0,
+  DISABLE_WRITE
+} IS_ENABLE_WRITE;
 
 // 디버깅용으로 필요
 void write_reg_ds1302(uint8_t address, uint8_t data);
 uint8_t read_reg_ds1302(uint8_t address);
 
-
-// 디버깅용 
-
-// 구조체 선언, day - 숫자로 값 받고 -> 출력할 때 문자 변환 함수 
-typedef struct{
-  uint8_t sec;
-  uint8_t min;
-  uint8_t hour;
-  uint8_t date;
-  uint8_t month;
-  uint8_t day;
-  uint8_t year;
-} s_rtc_time;
 
 // MCU에 data 담기 
 typedef struct {
@@ -75,11 +68,6 @@ typedef struct {
   uint8_t day;
   uint8_t year;
 } _MCU_time_data;
-
-typedef union {
-  uint64_t full_data;
-  uint8_t idx_data[7];
-} u_rtc_time;
 
 
 // bitfield 기반 구조체 정의
@@ -153,19 +141,18 @@ typedef union {
 
 
 // // 구조체 , 공용체 선언
-// s_rtc_time now_s;
-// u_rtc_time now_u;
+
+
 // 구조체 관련 함수
-void bust_mode_Union(u_rtc_time *r);
-void bust_mode_Struct(u_rtc_time *r);
+
 void bust_mode_Bitfield(void);
 
 
 // bool 함수 추가
-bool DS1302_Init(void);
+bool DS1302_Init(_MCU_time_data *r);
 
 
-void DS1302_Clock_Enable(bool isEnable, _sec *r);
+bool enable_write(IS_CLOCK_ENABLE type);
 
 // 코드 정리 이후 추가
 
@@ -175,7 +162,7 @@ void get_MCU_clock_inform(_MCU_time_data *r);
 void print_MCU_clock_inform(_MCU_time_data *r);
 void write_MCU_clock_to_ds1302(_MCU_time_data *r,INIT_TIME_TYPE type);
 void bitfield_burst_mode_write(void);
-
+void set_new_time(_MCU_time_data *r,INIT_TIME_TYPE type);
 
 // void burst_read_print(d_rtc_time *r);
 
