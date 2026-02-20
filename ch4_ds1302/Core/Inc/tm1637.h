@@ -18,5 +18,8 @@ void send_cmd_2(uint8_t data);
 
 void test_write_tm1637(void);
 
+// ds1302에서 사용
+void show_tm1637(uint8_t data_1, uint8_t data_2);
+
 
 #endif

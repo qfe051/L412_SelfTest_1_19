@@ -130,18 +130,23 @@ int main(void)
   //구조체 , 공용체 선언
   _MCU_time_data mcu_clock;
 
-   DS1302_Init(&mcu_clock);
+  DS1302_Init(&mcu_clock);
 
   bust_mode_Bitfield();
 
-  // // 11 PM 설정 - for test
+  // // 11 PM 설정 - for test=
   // write_reg_ds1302(0x84, 0xB1);
   // if (is_hour_PM_mode()) {
   //   printf(" is_hour_PM_mode() \r\n");
   // }
 
-  // set_new_time(&mcu_clock,SET_INIT_TIME_TYPE);
+  // 전처리기로 테스트만 진행 -> 추후에 변수 넣어 재사용 가능 
+  set_new_time(&mcu_clock,SET_INIT_TIME_TYPE,SET_SEC,SET_MIN,SET_HOUR,SET_DATE,SET_MONTH,SET_DAY,SET_Year);
   enable_ch(ENABLE_CLOCK);
+  bust_mode_Bitfield();
+
+  set_hour_type_12_24(&mcu_clock, HOUR_TYPE_12);
+  bust_mode_Bitfield();
 
 
   // test - 로직아날라이저 확인 ok///////////////
@@ -336,10 +341,15 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : TM_CLK_Pin TM_DAT_Pin SMPS_EN_Pin SMPS_V1_Pin
-                           SMPS_SW_Pin */
-  GPIO_InitStruct.Pin = TM_CLK_Pin|TM_DAT_Pin|SMPS_EN_Pin|SMPS_V1_Pin
-                          |SMPS_SW_Pin;
+  /*Configure GPIO pins : TM_CLK_Pin TM_DAT_Pin */
+  GPIO_InitStruct.Pin = TM_CLK_Pin|TM_DAT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : SMPS_EN_Pin SMPS_V1_Pin SMPS_SW_Pin */
+  GPIO_InitStruct.Pin = SMPS_EN_Pin|SMPS_V1_Pin|SMPS_SW_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;

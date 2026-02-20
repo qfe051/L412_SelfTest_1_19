@@ -1,5 +1,6 @@
 #include "ds1302.h"
 #include "main.h"
+#include "tm1637.h"
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -18,11 +19,15 @@ static void bitfield_burst_mode_read(void);
 static void bitfield_burst_mode_print(void);
 static void bit_print_AM_PM(void);
 
+// static void set_MCU_clock_inform(_MCU_time_data *r);
+static void set_MCU_clock_inform(_MCU_time_data *r, uint8_t input_sec,uint8_t input_min,uint8_t input_hour , uint8_t input_date , uint8_t input_month, uint8_t input_day, uint8_t input_year) ;
+
+
 // Init용 함수
 
 // bool 함수 추가
-static bool set_hour_type_12_24(HOUR_TYPE_12_24 type);
-static bool set_hour_type_AM_PM(HOUR_TYPE_AM_PM type);
+// static bool set_hour_type_12_24(_MCU_time_data *r, HOUR_TYPE_12_24 type);
+// static bool set_hour_type_AM_PM(HOUR_TYPE_AM_PM type);
 
 /*
 < 미사용 함수>
@@ -203,6 +208,9 @@ void bitfield_burst_mode_print(void) {
   printf("month : %d \r\n", month_data);
   day_print(day_data);
   printf("year : %d \r\n", year_data);
+
+
+  show_tm1637(hour_data, min_data);
 }
 
 // PM인 경우 함수 만들기
@@ -218,12 +226,16 @@ bool is_hour_PM_mode(void) {
 
 // 24시간 형태로 잡아두기
 // MCU 함수 하나로
-void set_new_time(_MCU_time_data *r,INIT_TIME_TYPE type) {
-  get_MCU_clock_inform(&r);
-  set_MCU_clock_inform(&r, type);
-  write_MCU_clock_to_ds1302(&r,type);
+void set_new_time(_MCU_time_data *r,INIT_TIME_TYPE type, uint8_t input_sec,uint8_t input_min,uint8_t input_hour , uint8_t input_date , uint8_t input_month, uint8_t input_day, uint8_t input_year) {
+  get_MCU_clock_inform(r);
+  if (type) {
+    set_MCU_clock_inform(r,input_sec,input_min,input_hour,input_date,input_month,input_day,input_year);
+    
+  }
+  write_MCU_clock_to_ds1302(r);
   printf("MCU 기반 시간 세팅 완료 \r\n");
-  print_MCU_clock_inform(&r);
+  print_MCU_clock_inform(r);
+  printf("\r\n");
 
 
 }
@@ -231,39 +243,63 @@ void set_new_time(_MCU_time_data *r,INIT_TIME_TYPE type) {
 void get_MCU_clock_inform(_MCU_time_data *r) {
   bitfield_burst_mode_read();
   
-  
+  if (is_hour_PM_mode()) {
+    r->hour = 10 * (hour.hour_bitfield.hour_10 - 2) + hour.hour_bitfield.hour_1;
+    r->hour += 12;
+  }
+  else {
+    r->hour =10 * hour.hour_bitfield.hour_10 + hour.hour_bitfield.hour_1;
+  }
+
   r->sec = sec.sec_bitfield.sec_10 * 10  +sec.sec_bitfield.sec_1;
   r->min = 10 * min.min_bitfield.min_10 + min.min_bitfield.min_1;
-  r->hour =10 * hour.hour_bitfield.hour_10 + hour.hour_bitfield.hour_1;
+  // r->hour =10 * hour.hour_bitfield.hour_10 + hour.hour_bitfield.hour_1;
   r->date = 10 * date.date_bitfield.date_10 + date.date_bitfield.date_1;
   r->month= 10 * month.month_bitfield.month_10 + month.month_bitfield.month_1;
   r->day= day.day_bitfield.day_1;
   r->year = 10 * year.year_bitfield.year_10 + year.year_bitfield.year_1;
 
   // PM인 경우 'hour.hour_bitfield.hour_10'가 2,3으로 정의 됨 
-  if (is_hour_PM_mode()) {
-    r->hour = r->hour -12;
-  }
+  
 }
 
-void set_MCU_clock_inform(_MCU_time_data *r,INIT_TIME_TYPE type) {
-  bitfield_burst_mode_read();
-  // INIT_TIME_TYPE 활성화 된 경우
-  if (type) {
-  r->sec = SET_SEC;
-  r->min = SET_MIN;
-  r->hour =SET_HOUR;
-  r->date = SET_DATE;
-  r->month= SET_MONTH;
-  r->day= SET_DAY;
-  r->year = SET_Year;
-  }
+// void set_MCU_clock_inform(_MCU_time_data *r) {
+//   bitfield_burst_mode_read();
+//   // INIT_TIME_TYPE 활성화 된 경우
+  
+//   r->sec = SET_SEC;
+//   r->min = SET_MIN;
+//   r->hour =SET_HOUR;
+//   r->date = SET_DATE;
+//   r->month= SET_MONTH;
+//   r->day= SET_DAY;
+//   r->year = SET_Year;
+  
   
   
 
+//   // PM인 경우 'hour.hour_bitfield.hour_10'가 2,3으로 정의 됨 
+//   if (is_hour_PM_mode()) {
+//     r->hour = r->hour % 12;
+//   }
+// }
+
+
+void set_MCU_clock_inform(_MCU_time_data *r, uint8_t input_sec,uint8_t input_min,uint8_t input_hour , uint8_t input_date , uint8_t input_month, uint8_t input_day, uint8_t input_year) {
+  bitfield_burst_mode_read();
+  // INIT_TIME_TYPE 활성화 된 경우
+  
+  r->sec = input_sec;
+  r->min = input_min;
+  r->hour =input_hour;
+  r->date = input_date;
+  r->month= input_month;
+  r->day= input_day;
+  r->year = input_year;
+  
   // PM인 경우 'hour.hour_bitfield.hour_10'가 2,3으로 정의 됨 
   if (is_hour_PM_mode()) {
-    r->hour = r->hour -12;
+    r->hour = r->hour % 12;
   }
 }
 
@@ -278,8 +314,9 @@ void print_MCU_clock_inform(_MCU_time_data *r) {
   printf("year : %d \r\n", r->year);
 }
 
+// INIT_TIME_TYPE type 인자 필요한지? 
 // 옵션은 따로 진행 -> 함수화 하여 넣어주기 
-void write_MCU_clock_to_ds1302(_MCU_time_data *r,INIT_TIME_TYPE type) {
+void write_MCU_clock_to_ds1302(_MCU_time_data *r) {
   bitfield_burst_mode_read();
   if (enable_ch(SET_IS_CLOCK_ENABLE)) {
     sec.sec_bitfield.ch = 0;
@@ -305,18 +342,33 @@ void write_MCU_clock_to_ds1302(_MCU_time_data *r,INIT_TIME_TYPE type) {
   //  if
   //  (set_hour_type_12_24(SET_HOUR_TYPE_12_24)&&set_hour_type_AM_PM(SET_HOUR_TYPE_AM_PM))
   // hour  | am, pm 옵션 확인 추가 - enum 활용하기
-  if (hour.hour_bitfield.time_24 == 1) {
+
+  printf("[before-write] r->hour : %d \r\n",r->hour);
+  if (hour.hour_bitfield.time_24 == 2) {
     if (r->hour >12) {
-      r->hour = r->hour -12;
-    }    
+      r->hour = r->hour % 12;
+    }
   }
+  printf("[cal-write] r->hour : %d \r\n",r->hour);
   hour.hour_bitfield.hour_10 = r->hour / 10;
   hour.hour_bitfield.hour_1 = r->hour % 10;
   // AM , PM 추가 명시
-  if (set_hour_type_AM_PM(SET_HOUR_TYPE_AM_PM)) {
-    hour.hour_bitfield.hour_10 +=2;
-  }
 
+
+  //set_hour_type_AM_PM() 이전에 쓰기 읽기 동작 추가 -> 동작 확인 
+  bitfield_burst_mode_write();
+  bitfield_burst_mode_read();
+
+  set_hour_type_AM_PM(SET_HOUR_TYPE_AM_PM);
+  
+  
+  printf("hour.hour_bitfield.time_24 : %d \r\n", hour.hour_bitfield.time_24);
+  printf("hour.hour_bitfield.hour_10 : %d \r\n", hour.hour_bitfield.hour_10);
+  printf("hour.hour_bitfield.hour_1 : %d \r\n", hour.hour_bitfield.hour_1);
+
+  printf("hour.hour_bitfield.time_24 : %#x \r\n", hour.hour_bitfield.time_24);
+  printf("hour.hour_bitfield.hour_10 : %#x \r\n", hour.hour_bitfield.hour_10);
+  printf("hour.hour_bitfield.hour_1 : %#x \r\n",hour.hour_bitfield.hour_1);
   
   // date
   date.date_bitfield.date_10 = r->date / 10;
@@ -333,9 +385,9 @@ void write_MCU_clock_to_ds1302(_MCU_time_data *r,INIT_TIME_TYPE type) {
   year.year_bitfield.year_10 = r->year / 10;
   year.year_bitfield.year_1 = r->year % 10;
 
-  if (type) {
-    bitfield_burst_mode_write();
-  }
+ 
+  bitfield_burst_mode_write();
+
   
 }
 
@@ -414,16 +466,50 @@ void bit_print_AM_PM(void) {
   }
 }
 
-// mcu가 읽기 -> 형태에 따라서 hour type 바꿔주기 
-// 내부에서 set_hour_type 실행까지 하기 
-bool set_hour_type_12_24(HOUR_TYPE_12_24 type) {
+// mcu가 읽기 -> 형태에 따라서 hour type 바꿔주기
+// 내부에서 set_hour_type 실행까지 하기
+// 재사용 함수 기능만 하기 
+bool set_hour_type_12_24(_MCU_time_data *r, HOUR_TYPE_12_24 type) {
   bool status = true;
+  bitfield_burst_mode_read();
+  printf("hour.hour_bitfield.time_24 : %d \r\n", hour.hour_bitfield.time_24);
+  printf("hour.hour_bitfield.hour_10 : %d \r\n", hour.hour_bitfield.hour_10);
+  printf("hour.hour_bitfield.hour_1 : %d \r\n",hour.hour_bitfield.hour_1);
+  get_MCU_clock_inform(r);
+  printf("[before] r->hour : %d \r\n",r->hour);
+  
   switch (type) {
   case HOUR_TYPE_12:
+    //24h -> 12h 변경 
+    if (hour.hour_bitfield.time_24 == 0) {
+      if ((r->hour == 12) | (r->hour == 24)) {
+        r->hour = 12;
+        printf("[] r->hour 24 or 12 : %d \r\n", r->hour);
+      }
+      else {
+        r->hour = r->hour % 12;
+        printf("[] r->hour normal : %d \r\n", r->hour);
+      }
+    }
+    printf("[after_12h] r->hour : %d \r\n", r->hour);
+    hour.hour_bitfield.time_24 = 2;
+    bitfield_burst_mode_write();
+    write_MCU_clock_to_ds1302(r);
+    
     status = true;
     break;
   case HOUR_TYPE_24:
-    status = false;
+    // 기존 MCU 값이 24시간제로 되어 있어, 그대로 사용하면 됨.
+    
+    // if (is_hour_PM_mode()) {
+    //   r->hour += 12;
+    // }
+    printf("[after_24h] r->hour : %d \r\n", r->hour);
+    hour.hour_bitfield.time_24 = 0;
+    // 변경 후 write 필수!
+    bitfield_burst_mode_write();
+    write_MCU_clock_to_ds1302(r);
+    status = true;
     break;
   default:
     status = false;
@@ -438,11 +524,13 @@ bool set_hour_type_AM_PM(HOUR_TYPE_AM_PM type) {
   if (hour.hour_bitfield.time_24 == 2) {
   switch (type) {
     case HOUR_TYPE_PM:
-      hour.hour_bitfield.hour_10 = hour.hour_bitfield.hour_10 | 0x2; 
+      hour.hour_bitfield.hour_10 = hour.hour_bitfield.hour_10 | 0x2;
+      bitfield_burst_mode_write();
       status = true;
       break;
     case HOUR_TYPE_AM:
       hour.hour_bitfield.hour_10 = hour.hour_bitfield.hour_10 & 0x1;
+      bitfield_burst_mode_write();
       status = true;
       break;
     default:
@@ -500,9 +588,10 @@ bool enable_write(IS_CLOCK_ENABLE type) {
 }
 
 bool DS1302_Init(_MCU_time_data *r) {
-  get_MCU_clock_inform(&r);
+  get_MCU_clock_inform(r);
 
-  set_hour_type_12_24(HOUR_TYPE_24);
+  // 재활성화
+  set_hour_type_12_24(r,HOUR_TYPE_24);
   set_hour_type_AM_PM(HOUR_TYPE_PM);
   enable_ch(ENABLE_CLOCK);
   
@@ -511,4 +600,27 @@ bool DS1302_Init(_MCU_time_data *r) {
 
   enable_write(SET_ENABLE_WRITE);
 }
+
+// 24시 기준 시각 환산
+// int calculate_hour(void) {
+//   int hour_cal = 0;
+//   if (hour.hour_bitfield.time_24 == 2) {
+//     if ((hour.hour_bitfield.hour_10 == 3) | (hour.hour_bitfield.hour_10 == 2)) {
+//       hour_cal = (hour.hour_bitfield.hour_10-2)*10 +hour.hour_bitfield.hour_1;
+//     }
+//     else {
+//       hour_cal = hour.hour_bitfield.hour_10 * 10 + hour.hour_bitfield.hour_1;
+//     }
+//   }
+//   //24h 기준
+//   else {
+//     hour_cal = hour.hour_bitfield.hour_10 * 10 + hour.hour_bitfield.hour_1;
+//   }
+
+  
+
+//   return hour_cal;
+// }
+
+
 // bool 함수, 점검하기 위한 함수 필요

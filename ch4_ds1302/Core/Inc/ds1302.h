@@ -7,14 +7,14 @@
 // 옵션 전차리기로 정의
 // 전체 옵션 변수화 하기 , 열거형은 그냥 두기 
 
-#define SET_SEC 10   // 0~59
-#define SET_MIN 20   // 0~59
-#define SET_DATE 11  // 1~31
+#define SET_SEC 20   // 0~59
+#define SET_MIN 30   // 0~59
+#define SET_DATE 19  // 1~31
 #define SET_MONTH 2 // 1~12
 #define SET_DAY 4  // 1~7
 #define SET_Year 26 // 0~99
 
-#define SET_HOUR 22 // 1~12 or 0~23
+#define SET_HOUR 11 // 1~12 or 0~23
 
 // type형 변수 전처리기로 정의
 // 모든 설정 변경하기 위함 
@@ -23,7 +23,7 @@
 // 각각 함수에서 옵션 사용하기 
 // // IS_SET_NEW_TIME 설정 시 동작 
 #define SET_HOUR_TYPE_AM_PM HOUR_TYPE_AM // HOUR_TYPE_AM, HOUR_TYPE_PM
-#define SET_HOUR_TYPE_12_24 HOUR_TYPE_12 // HOUR_TYPE_12HOUR_TYPE_24
+#define SET_HOUR_TYPE_12_24 HOUR_TYPE_12 // HOUR_TYPE_12, HOUR_TYPE_24
 #define SET_IS_CLOCK_ENABLE ENABLE_CLOCK //DISABLE_CLOCK , ENABLE_CLOCK
 
 #define SET_ENABLE_WRITE ENABLE_WRITE // ENABLE_WRITE , DISABLE_WRITE
@@ -175,11 +175,17 @@ bool enable_write(IS_CLOCK_ENABLE type);
 bool is_hour_PM_mode(void);
 void get_MCU_clock_inform(_MCU_time_data *r);
 void print_MCU_clock_inform(_MCU_time_data *r);
-void write_MCU_clock_to_ds1302(_MCU_time_data *r,INIT_TIME_TYPE type);
+void write_MCU_clock_to_ds1302(_MCU_time_data *r);
 void bitfield_burst_mode_write(void);
-void set_new_time(_MCU_time_data *r, INIT_TIME_TYPE type);
+// void set_new_time(_MCU_time_data *r, INIT_TIME_TYPE type);
+void set_new_time(_MCU_time_data *r,INIT_TIME_TYPE type, uint8_t input_sec,uint8_t input_min,uint8_t input_hour , uint8_t input_date , uint8_t input_month, uint8_t input_day, uint8_t input_year);
+
 
 bool enable_ch(IS_CLOCK_ENABLE type);
+
+// 재사용 함수
+bool set_hour_type_12_24(_MCU_time_data *r, HOUR_TYPE_12_24 type);
+bool set_hour_type_AM_PM(HOUR_TYPE_AM_PM type);
 
 // void burst_read_print(d_rtc_time *r);
 
