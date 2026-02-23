@@ -75,9 +75,8 @@ static void MX_TIM2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 void delay_5us(void) {
-  // __HAL_TIM_SET_COUNTER(&htim2, 0);
-  // while ((__HAL_TIM_GET_COUNTER(&htim2)) < 5);
-  HAL_Delay(1);
+  __HAL_TIM_SET_COUNTER(&htim2, 0);
+  while ((__HAL_TIM_GET_COUNTER(&htim2)) < 5);
 }
 /* USER CODE END 0 */
 
@@ -118,10 +117,14 @@ int main(void)
   HAL_TIM_Base_Start(&htim2);
 
   printf("UART print test \r\n");
-  write_reg_ds1302(0x90, 0x00);
 
   // Tirckle Charger 정보
   printf("Tirckle Charger inform : %#x \r\n", read_reg_ds1302(0x91));
+
+  // delay test
+  HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_RESET);
+  delay_5us();
+  HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_SET);
 
 
   //구조체 , 공용체 선언
@@ -131,13 +134,13 @@ int main(void)
 
   bust_mode_Bitfield();
 
-   // 11 PM 설정 - for test=
-   write_reg_ds1302(0x84, 0xB1);
-   if (is_hour_PM_mode()) {
-     printf(" is_hour_PM_mode() \r\n");
-   }
+  // // 11 PM 설정 - for test=
+  // write_reg_ds1302(0x84, 0xB1);
+  // if (is_hour_PM_mode()) {
+  //   printf(" is_hour_PM_mode() \r\n");
+  // }
 
-//   전처리기로 테스트만 진행 -> 추후에 변수 넣어 재사용 가능
+  // 전처리기로 테스트만 진행 -> 추후에 변수 넣어 재사용 가능 
   set_new_time(&mcu_clock,SET_INIT_TIME_TYPE,SET_SEC,SET_MIN,SET_HOUR,SET_DATE,SET_MONTH,SET_DAY,SET_Year);
   enable_ch(ENABLE_CLOCK);
   bust_mode_Bitfield();
@@ -157,7 +160,6 @@ int main(void)
     printf(" \r\n");
 
     printf("Bitfield \r\n");
-
     bust_mode_Bitfield();
 
     HAL_Delay(1000);
@@ -315,8 +317,7 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, DS_CLK_Pin|DS_DAT_Pin|DS_RST_Pin|TM_DAT_Pin
-                          |TM_CLK_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, DS_CLK_Pin|DS_DAT_Pin|DS_RST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOA, SMPS_EN_Pin|SMPS_V1_Pin|SMPS_SW_Pin, GPIO_PIN_RESET);
@@ -324,14 +325,17 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOC, TM_DAT_Pin|TM_CLK_Pin, GPIO_PIN_SET);
+
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : DS_CLK_Pin DS_DAT_Pin DS_RST_Pin TM_CLK_Pin */
-  GPIO_InitStruct.Pin = DS_CLK_Pin|DS_DAT_Pin|DS_RST_Pin|TM_CLK_Pin;
+  /*Configure GPIO pins : DS_CLK_Pin DS_DAT_Pin DS_RST_Pin */
+  GPIO_InitStruct.Pin = DS_CLK_Pin|DS_DAT_Pin|DS_RST_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -357,12 +361,12 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD4_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : TM_DAT_Pin */
-  GPIO_InitStruct.Pin = TM_DAT_Pin;
+  /*Configure GPIO pins : TM_DAT_Pin TM_CLK_Pin */
+  GPIO_InitStruct.Pin = TM_DAT_Pin|TM_CLK_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(TM_DAT_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 

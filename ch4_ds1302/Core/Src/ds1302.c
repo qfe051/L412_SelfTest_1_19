@@ -440,6 +440,9 @@ void day_print(uint8_t data) {
   case 7:
     days = "Sun";
     break;
+  default:
+	 days = "Wrong";
+	 break;
   }
 
   printf("day : %s \r\n",days);

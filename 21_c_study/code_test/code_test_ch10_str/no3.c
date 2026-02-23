@@ -21,6 +21,18 @@ int main() {
 
   printf("type string : ");
   fgets(s, sizeof(s), stdin);
+  // '\n' 이 나오는 순서 반환 후 '\0' 대입
+  // strcspn() 사용하여 s의 순서 알게 됨
+  int len_enter = strcspn(s, "\n");
+
+
+  s[len_enter] = '\0';
+
+  int len = strlen(s);
+
+
+
+
 
   printf("type int 'n' : ");
   scanf("%d",&n);
@@ -29,7 +41,8 @@ int main() {
 
   printf("s : %s \n", s);
 
-  for (int i = 0; i < 20; i++) {
+  //len 대입 
+  for (int i = 0; i < len; i++) {
     s[i] += n;
     if (s[i]>122) {
       s[i] -=26;

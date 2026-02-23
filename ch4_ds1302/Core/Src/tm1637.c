@@ -7,47 +7,82 @@
 
 // static 함수 정의
 static uint8_t cal_segment(uint8_t input);
-
+static void ack_tm1637(void);
 
 void TM1637_IO_Set_Output(bool isOutput) {
   if (isOutput == true) {
+	  HAL_GPIO_WritePin(GPIOC, TM_DAT_Pin, GPIO_PIN_RESET);
     GPIO_InitTypeDef GPIO_InitStruct = {0};
     GPIO_InitStruct.Pin = TM_DAT_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Pull = GPIO_PULLDOWN;
     GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   }
   else {
     GPIO_InitTypeDef GPIO_InitStruct = {0};
     GPIO_InitStruct.Pin = TM_DAT_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-    GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    GPIO_InitStruct.Pull = GPIO_PULLUP;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
   }
 }
 //test용 함수
 void test_write_tm1637(void) {
   printf("TM1637 test \r\n");
   // 명령어 1개 세트
-  send_cmd(0x40);
-  send_cmd_2(0xC0);
 
-  write_byte_tm1637(0x01);
-  write_byte_tm1637(0x02);
-  write_byte_tm1637(0x04);
-  write_byte_tm1637(0x08);
+  set_start();
+  write_byte_tm1637(0x40);
+  ack_tm1637();
+  set_stop();
 
-  send_cmd(0x88);
-  // 명령어 1개 세트
-  send_cmd(0x40);
-  send_cmd_2(0xC0);
+   set_start();
+   write_byte_tm1637(0xC0);
+   ack_tm1637();
+  
 
-  write_byte_tm1637(0x3F);
-  write_byte_tm1637(0x06);
-  write_byte_tm1637(0x5B);
-  write_byte_tm1637(0x4F);
-  ////////////////////////////
-  send_cmd(0x87);
+   write_byte_tm1637(cal_segment(0));
+   ack_tm1637();
+   write_byte_tm1637(cal_segment(0));
+   ack_tm1637();
+   write_byte_tm1637(cal_segment(0));
+   ack_tm1637();
+   write_byte_tm1637(cal_segment(0));
+   ack_tm1637();
+
+   set_start();
+   write_byte_tm1637(0x8f);
+   ack_tm1637();
+   set_stop();
+  
+
+  // // 명령어 1개 세트
+  // set_start();
+  // write_byte_tm1637(0x40);
+  // ack_tm1637();
+  // set_stop();
+
+  // set_start();
+  // write_byte_tm1637(0xC0);
+  // ack_tm1637();
+  // delay_5us();
+
+  // write_byte_tm1637(cal_segment(0));
+  // ack_tm1637();
+  // write_byte_tm1637(cal_segment(0));
+  // ack_tm1637();
+  // write_byte_tm1637(cal_segment(0));
+  // ack_tm1637();
+  // write_byte_tm1637(cal_segment(0));
+  // ack_tm1637();
+  // delay_5us();
+
+  // ////////////////////////////
+  // write_byte_tm1637(0x88);
+  // ack_tm1637();
+  // delay_5us();
+  // set_stop();
+  
 }
 
 // data_1,2에 값을 업데이트 해주기 
@@ -60,17 +95,30 @@ void show_tm1637(uint8_t data_1, uint8_t data_2) {
   d3 = data_2 / 10;
   d4 = data_2 % 10;
 
-  // 1. set data
-  send_cmd(0x40);
-  // 2. set address
-  send_cmd_2(0xC0);
-  // send data
-  write_byte_tm1637(cal_segment(d1));
-  write_byte_tm1637(cal_segment(d2));
-  write_byte_tm1637(cal_segment(d3));
-  write_byte_tm1637(cal_segment(d4));
-  //
-  set_stop();
+  set_start();
+    write_byte_tm1637(0x40);
+    ack_tm1637();
+    set_stop();
+
+     set_start();
+     write_byte_tm1637(0xC0);
+     ack_tm1637();
+
+
+     write_byte_tm1637(cal_segment(d1));
+     ack_tm1637();
+     write_byte_tm1637(cal_segment(d2));
+     ack_tm1637();
+     write_byte_tm1637(cal_segment(d3));
+     ack_tm1637();
+     write_byte_tm1637(cal_segment(d4));
+     ack_tm1637();
+
+     set_start();
+     write_byte_tm1637(0x8f);
+     ack_tm1637();
+     set_stop();
+
 
   // // 3. control display
   // send_cmd(0x87);
@@ -78,11 +126,13 @@ void show_tm1637(uint8_t data_1, uint8_t data_2) {
 }
 
 void set_output_tm1637(void) {
+	  HAL_GPIO_WritePin(GPIOC, TM_DAT_Pin, GPIO_PIN_RESET);
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   GPIO_InitStruct.Pin = TM_DAT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 }
 
 void set_input_tm1637(void) {
@@ -90,71 +140,78 @@ void set_input_tm1637(void) {
   GPIO_InitStruct.Pin = TM_DAT_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 }
 
 void write_byte_tm1637(uint8_t data) {
   set_output_tm1637();
-  delay_5us();
-  HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_RESET);
+  HAL_Delay(1);
+  HAL_GPIO_WritePin(GPIOC, TM_CLK_Pin, GPIO_PIN_RESET);
+  HAL_Delay(1);
   for (int i = 0; i < 8; i++) {
     if ((data & 0x01) == 1) {
-      delay_5us();
-      HAL_GPIO_WritePin(GPIOA, TM_DAT_Pin, GPIO_PIN_SET);
+      HAL_GPIO_WritePin(GPIOC, TM_DAT_Pin, GPIO_PIN_SET);
+      HAL_Delay(1);
     } else {
-      delay_5us();
-      HAL_GPIO_WritePin(GPIOA, TM_DAT_Pin, GPIO_PIN_RESET);
+      HAL_GPIO_WritePin(GPIOC, TM_DAT_Pin, GPIO_PIN_RESET);
+      HAL_Delay(1);
     }
     data = data >> 1;
 
-    delay_5us();
-    HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_SET);
-    delay_5us();
-    HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_RESET);
+    HAL_GPIO_WritePin(GPIOC, TM_CLK_Pin, GPIO_PIN_SET);
+    HAL_Delay(1);
+    HAL_GPIO_WritePin(GPIOC, TM_CLK_Pin, GPIO_PIN_RESET);
+    HAL_Delay(1);
   }
-  delay_5us();
-  // HAL_GPIO_WritePin(GPIOA, TM_DAT_Pin, GPIO_PIN_RESET);
+}
 
-  // ACK 동작
-  set_input_tm1637();
-  HAL_GPIO_ReadPin(GPIOA, DS_DAT_Pin);
+void ack_tm1637(void) {
+	  set_input_tm1637();
+	   HAL_Delay(1);
 
-  HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_SET);
-  delay_5us();
-  HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_RESET);
+	   HAL_GPIO_WritePin(GPIOC, TM_CLK_Pin, GPIO_PIN_SET);
+	   HAL_Delay(1);
 
-  set_output_tm1637();
+	   HAL_GPIO_ReadPin(GPIOC, TM_DAT_Pin);
+	   HAL_Delay(1);
+
+	   HAL_GPIO_WritePin(GPIOC, TM_CLK_Pin, GPIO_PIN_RESET);
+	   set_output_tm1637();
+	   HAL_Delay(1);
+	   HAL_GPIO_WritePin(GPIOC, TM_DAT_Pin, GPIO_PIN_RESET);
+	   HAL_Delay(1);
 }
 
 void set_start(void) {
-  delay_5us();
-  HAL_GPIO_WritePin(GPIOA, TM_DAT_Pin, GPIO_PIN_SET);
+	  HAL_GPIO_WritePin(GPIOC, TM_CLK_Pin, GPIO_PIN_SET);
+	  HAL_Delay(1);
 
-  delay_5us();
-  HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOC, TM_DAT_Pin, GPIO_PIN_SET);
+  HAL_Delay(1);
 
-  delay_5us();
-  HAL_GPIO_WritePin(GPIOA, TM_DAT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, TM_DAT_Pin, GPIO_PIN_RESET);
+  HAL_Delay(1);
 }
 
 void set_stop(void) {
-  delay_5us();
-  HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, TM_CLK_Pin, GPIO_PIN_RESET);
+  HAL_Delay(1);
 
-  delay_5us();
-  HAL_GPIO_WritePin(GPIOA, TM_DAT_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, TM_DAT_Pin, GPIO_PIN_RESET);
+  HAL_Delay(1);
 
-  delay_5us();
-  HAL_GPIO_WritePin(GPIOA, TM_CLK_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOC, TM_CLK_Pin, GPIO_PIN_SET);
+  HAL_Delay(1);
 
-  delay_5us();
-  HAL_GPIO_WritePin(GPIOA, TM_DAT_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(GPIOC, TM_DAT_Pin, GPIO_PIN_SET);
+  HAL_Delay(1);
 }
 
 void send_cmd(uint8_t data) {
   set_start();
 
   write_byte_tm1637(data);
+  ack_tm1637();
 
   set_stop();
 }
@@ -163,6 +220,7 @@ void send_cmd_2(uint8_t data) {
   set_start();
 
   write_byte_tm1637(data);
+  ack_tm1637();
 }
 
 uint8_t cal_segment(uint8_t input) {
@@ -198,6 +256,9 @@ uint8_t cal_segment(uint8_t input) {
     break;
   case 9:
     seg_data = 0x6f;
+    break;
+  default:
+    seg_data = 0xff;
     break;
   }
 
