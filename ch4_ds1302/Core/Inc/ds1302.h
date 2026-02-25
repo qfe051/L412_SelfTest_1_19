@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include <stdbool.h>
+#include "main.h"
 
 #ifndef __DS1302_H
 #define __DS1302_H
@@ -155,12 +156,13 @@ typedef union {
 
 
 
+
 // // 구조체 , 공용체 선언
 
 
 // 구조체 관련 함수
 
-void bust_mode_Bitfield(void);
+void bust_mode_Bitfield(_Display_data *r,uint8_t mode);
 
 
 // bool 함수 추가

@@ -10,42 +10,45 @@
 */
 #include <stdio.h>
 
-int add(int a, int b) {
+void add(int a, int b) {
   int c = 0;
 
   c = a + b;
 
-  return c;
+  printf("result : %d \n",c);
+
 }
-int sub(int a, int b) {
+void sub(int a, int b) {
   int c = 0;
 
   c = a - b;
 
-  return c;
+  printf("result : %d \n",c);
 }
+
+void *calculate;
 
 
 int main() {
-  int *p;
+  int input = 0;
   int a = 10;
   int b = 5;
   
   printf("a: %d , b : %d \n" , a,b);
   printf("type 1(a+b) or 2(a-b) :");
-  scanf("%d",p);
+  scanf("%d",&input);
 
-  if ((*p) == 1) {
-    
-    printf("result : %d \n" ,add(a, b) );
+  if (input == 1) {
+    calculate = &add(a,b);
 
   }
-  else if ((*p) == 2) {
-    printf("result : %d \n" ,sub(a, b) );
+  else if (input == 2) {
+    
   }
   else {
     printf("Wrong Number \n");
   }
+
 
  
 

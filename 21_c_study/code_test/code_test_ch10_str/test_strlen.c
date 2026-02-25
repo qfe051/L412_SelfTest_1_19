@@ -13,33 +13,28 @@
 
 
 int main() {
-  char s[20];
-
+  char s[20] = {0};
+  char s2[20] = {0};
+  
   printf("type string : ");
   fgets(s, sizeof(s), stdin);
 
-  int len_enter = strcspn(s, "\n");
+  int len = strlen(s);
+  printf("len : %d \n",len);
 
-  s[len_enter] = '\0';
+  // 0부터 시작이라서 'len-1' 해주어야 함 
+  s[len-1] = '\0';
 
-  int len =strlen(s);
-
-  printf("s : %s \n",s);
-
-  printf("reverse : ");
-
-  for (int i=1; i <= len; i++) {
-    printf("%c",s[len-i]);
+  int i = 0;
+  for (i = 0; i < len; i++) {
+    s2[i] = s[i];
   }
 
-  
 
-  
 
-  
+  printf("s : %s \n", s);
+  printf("s2 : %s \n",s2);
 
-  
-  // printf("a : %d \n", a);
 
 
 }

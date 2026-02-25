@@ -14,16 +14,20 @@ num의 값을 500으로 바꾸고 출력하세요.
 int main() {
   int num = 10;
   int *p;
-  int *pp ;
+  int **pp ;
 
 
-  // 주소 동일하게
-  p = pp;
+
   // 동일한 주소에 값 대입
-  *pp = 500;
-  num = *p;
+
+
+  p = &num;
+  pp = &p;
+
+  
+  **pp =500;  
 
   printf("num : %d",num);
 
-
+  return 0;
 }

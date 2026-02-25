@@ -16,37 +16,54 @@
 bool compare(char data) {
   bool status = false;
   char a[] = {'a', 'e', 'i', 'o', 'u'};
-  for (int i=0; i<5; i++) {
-    if (a[i]==data) {
+  for (int j=0; j<5; j++) {
+    if (a[j]==data) {
       status = true;
+      // printf("true in a[%d] , %c \n", j, data);
+      break;
     }
   }
+  return status;
 }
 
 
 int main() {
-  char a[] = {'a', 'e', 'i', 'o', 'u'};
-  char b[20];
-  char s[20];
+  // char a[] = {'a', 'e', 'i', 'o', 'u'};
+  char b[20] ={0};
+  char s[20] ={0};
   int count = 0;
 
   printf("type string : ");
   fgets(s, sizeof(s), stdin);
 
+  // int len_enter = strcspn(s, "\n");
+
+  // s[len_enter] = '\0';
+
+  int len = strlen(s);
+  
+  printf("lem : %d \n",len);
+
   printf("s : %s \n",s);
 
-  for (int i = 0; i < sizeof(s[20]); i++) {
-    
+  int i = 0;
+  for (i = 0; i < len-1; i++) {
+   // compare 함수만 동작하면 됨
     if (compare(s[i])) {
       count++;
     }
     else {
       // strcpy(&s[i], &b[i]);
-      b[i]=s[i];
+      b[i-count]=s[i];
     }
-  }
 
-  printf("b : %s \n", b);
+
+  }
+  b[i-count] = '\0';
+
+
+
+  printf("b : %s\n",b);
   printf("count : %d \n",count);
 
   

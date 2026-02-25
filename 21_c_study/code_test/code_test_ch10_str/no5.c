@@ -22,15 +22,21 @@ int main() {
   printf("type string : ");
   fgets(s, sizeof(s), stdin);
 
-  if (s[0] != 32) {
+  int len_enter = strcspn(s, "\n");
+
+  s[len_enter] = '\0';
+
+  int len =strlen(s);
+
+  if (s[0] != ' ') {
    s[0] -= 32;
   }
 
-  for (int i =0; i<20; i++) {
-    if (s[i]==32) {
+  for (int i =0; i<len; i++) {
+    if (s[i]==' ') {
       s[i + 1] -= 32;
-      for (int j=i; j<20; j++) {
-        s[i]= s[i+1];
+      for (int j=i; j<len; j++) {
+        s[j]= s[j+1];
       }
     }
   }

@@ -75,10 +75,15 @@ static void MX_TIM2_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 void delay_5us(void) {
-  // __HAL_TIM_SET_COUNTER(&htim2, 0);
-  // while ((__HAL_TIM_GET_COUNTER(&htim2)) < 5);
-  HAL_Delay(1);
+  __HAL_TIM_SET_COUNTER(&htim2, 0);
+  while ((__HAL_TIM_GET_COUNTER(&htim2)) < 5);
+  // HAL_Delay(1);
 }
+// LED blink 위한 변수 선언
+uint8_t *state_dot_led = DOT_LED_OFF;
+uint8_t mode_LED = 0;
+
+
 /* USER CODE END 0 */
 
 /**
@@ -126,10 +131,11 @@ int main(void)
 
   //구조체 , 공용체 선언
   _MCU_time_data mcu_clock;
+  _Display_data dis_data;
 
   DS1302_Init(&mcu_clock);
 
-  bust_mode_Bitfield();
+  bust_mode_Bitfield(&dis_data,mode_LED);
 
    // 11 PM 설정 - for test=
    write_reg_ds1302(0x84, 0xB1);
@@ -140,10 +146,10 @@ int main(void)
 //   전처리기로 테스트만 진행 -> 추후에 변수 넣어 재사용 가능
   set_new_time(&mcu_clock,SET_INIT_TIME_TYPE,SET_SEC,SET_MIN,SET_HOUR,SET_DATE,SET_MONTH,SET_DAY,SET_Year);
   enable_ch(ENABLE_CLOCK);
-  bust_mode_Bitfield();
+  bust_mode_Bitfield(&dis_data,mode_LED);
 
   set_hour_type_12_24(&mcu_clock, HOUR_TYPE_12);
-  bust_mode_Bitfield();
+  bust_mode_Bitfield(&dis_data,mode_LED);
 
 
   // test - 로직아날라이저 확인 ok///////////////
@@ -158,7 +164,8 @@ int main(void)
 
     printf("Bitfield \r\n");
 
-    bust_mode_Bitfield();
+    bust_mode_Bitfield(&dis_data,mode_LED);
+    show_tm1637(&dis_data, &state_dot_led, mode_LED);
 
     HAL_Delay(1000);
     /* USER CODE END WHILE */
@@ -364,13 +371,27 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(TM_DAT_GPIO_Port, &GPIO_InitStruct);
 
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
+
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
+// 간단한 버전 -> 안정성 추가하려면 추가 코드 필요
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
+  if (GPIO_Pin == B1_Pin) {
+    mode_LED =mode_LED+1 ;
+    mode_LED = mode_LED % 4;
 
+    printf("mode_LED : %d \r\n",mode_LED);
+
+  }
+  
+}
 /* USER CODE END 4 */
 
 /**

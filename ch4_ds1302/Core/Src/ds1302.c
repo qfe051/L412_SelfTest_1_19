@@ -16,7 +16,7 @@ static uint8_t read_byte_ds1302(void);
 static void day_print(uint8_t data);
 
 static void bitfield_burst_mode_read(void);
-static void bitfield_burst_mode_print(void);
+static void bitfield_burst_mode_print(_Display_data *r,uint8_t mode);
 static void bit_print_AM_PM(void);
 
 // static void set_MCU_clock_inform(_MCU_time_data *r);
@@ -44,9 +44,9 @@ void set_PM(void);
 
 // 기존 함수 묶어서 사용하기
 
-void bust_mode_Bitfield(void) {
+void bust_mode_Bitfield(_Display_data *r,uint8_t mode) {
   bitfield_burst_mode_read();
-  bitfield_burst_mode_print();
+  bitfield_burst_mode_print(r,mode);
 }
 
 
@@ -185,7 +185,11 @@ void bitfield_burst_mode_read(void) {
 }
 
 // bcd -> dec 변환 없이 bit 단위로 10진수 출력 (%d)
-void bitfield_burst_mode_print(void) {
+void bitfield_burst_mode_print(_Display_data *r,uint8_t mode) {
+
+  // uint8_t data_1,data_2 =0;
+
+  
   if (hour.hour_bitfield.time_24) {
     hour.hour_bitfield.hour_10 = hour.hour_bitfield.hour_10 & 0x1;
   }
@@ -209,8 +213,32 @@ void bitfield_burst_mode_print(void) {
   day_print(day_data);
   printf("year : %d \r\n", year_data);
 
+  
+  switch (mode) {
+  case 0:
+    r->data_1 = 20;
+    r->data_2 = year_data;
+    break;
+  case 1:
+    r->data_1 = month_data;
+    r->data_2 = date_data;
+    break;
+  case 2:
+    r->data_1 = hour_data;
+    r->data_2 = min_data;
+    break;
+  case 3:
+    r-> data_1 = min_data;
+    r-> data_2 = sec_data;
+    break;
+  default:
+    r->data_1 = hour_data;
+    r->data_2 = min_data;
+    break;
+  }
 
-  show_tm1637(hour_data, min_data);
+  // 내부 토글 가능하도록 
+  // show_tm1637(data_1, data_2,led_blink,mode);
 }
 
 // PM인 경우 함수 만들기

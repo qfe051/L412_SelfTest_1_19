@@ -39,7 +39,11 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-
+// 화면 출력용 데이터
+typedef struct Display{
+  uint8_t data_1;
+  uint8_t data_2;
+} _Display_data;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -62,6 +66,7 @@ void delay_5us(void);
 /* Private defines -----------------------------------------------------------*/
 #define B1_Pin GPIO_PIN_13
 #define B1_GPIO_Port GPIOC
+#define B1_EXTI_IRQn EXTI15_10_IRQn
 #define MCO_Pin GPIO_PIN_0
 #define MCO_GPIO_Port GPIOH
 #define DS_CLK_Pin GPIO_PIN_0
