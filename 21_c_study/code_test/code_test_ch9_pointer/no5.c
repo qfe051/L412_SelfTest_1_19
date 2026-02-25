@@ -26,28 +26,35 @@ void sub(int a, int b) {
   printf("result : %d \n",c);
 }
 
-void *calculate;
 
 
 int main() {
   int input = 0;
   int a = 10;
   int b = 5;
+
+  
   
   printf("a: %d , b : %d \n" , a,b);
   printf("type 1(a+b) or 2(a-b) :");
-  scanf("%d",&input);
+  scanf("%d", &input);
+
+  
+  void (*calculate)(int a,int b); // calculate 는 반환값과 매개변수가 없음
 
   if (input == 1) {
-    calculate = &add(a,b);
+    calculate = add;
 
   }
   else if (input == 2) {
+    calculate = sub;
     
   }
   else {
     printf("Wrong Number \n");
   }
+
+  calculate(a,b);
 
 
  
