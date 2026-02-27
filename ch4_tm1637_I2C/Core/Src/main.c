@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include <stdint.h>
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -37,10 +36,12 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
-uint8_t dec_data = 0;
+
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
+I2C_HandleTypeDef hi2c1;
+
 UART_HandleTypeDef hlpuart1;
 
 /* USER CODE BEGIN PV */
@@ -57,6 +58,7 @@ int _write(int file, char *ptr, int len) {
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_I2C1_Init(void);
 static void MX_LPUART1_UART_Init(void);
 /* USER CODE BEGIN PFP */
 
@@ -64,7 +66,52 @@ static void MX_LPUART1_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+uint8_t f_status = 0;
+uint8_t i2c_buff[20];
 
+uint8_t cmd_1st = 0x40;
+uint8_t cmd_2nd = 0xC0;
+uint8_t cmd_3rd = 0x8F;
+uint8_t data[] = {0xFF, 0xFF, 0xFF, 0xFF};
+uint8_t read_data[2] = {0x73,0};
+
+uint8_t device_address= 0x3a;
+uint8_t reg_address[2]={0x73 ,0x3a};
+uint8_t *init_address =0x73;
+
+
+void HAL_I2C_MasterTxCpltCallback(I2C_HandleTypeDef *hi2c) {
+  f_status = 1;
+  printf("found!! \r\n ");
+}
+
+void HAL_I2C_MasterRxCpltCallback(I2C_HandleTypeDef *hi2c) {
+  
+}
+
+void I2C_Add_Search(void) {
+
+  for (uint8_t i=0; i<128; i++) {
+  f_status = 0;
+  HAL_I2C_Master_Transmit_DMA(&hi2c1, i << 1, i2c_buff, 1);
+  HAL_Delay(10);
+  if (f_status == 1) {
+    printf("address : %#x \r\n",i);
+  	  }
+  }
+}
+
+uint8_t reverse_8bit(uint8_t input) {
+  uint8_t output = 0;
+
+  for (int i =0; i<7; i++) {
+    output = output | (input & 0x01);
+    output = output << 1;
+    input = input >> 1;
+  }
+
+  return output;
+}
 /* USER CODE END 0 */
 
 /**
@@ -96,11 +143,62 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_I2C1_Init();
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  printf("LPUART printf test \r\n");
 
-  test_TM1637();
+  // 모듈 주소 출력 테스트 
+  HAL_StatusTypeDef module_status;
+  for (uint8_t i = 0; i < 128; i++) {
+    HAL_Delay(10);
+
+    module_status = HAL_I2C_IsDeviceReady(&hi2c1, i << 1, 3, 10);
+    if (module_status == HAL_OK) {
+      printf("module address : %#x \r\n",i);
+    }
+  }
+
   
+  ("reg_address : %#x \r\n",reg_address);
+
+  // HAL_I2C_Master_Receive 사용하여 register의 data read
+  // HAL_I2C_Master_Transmit(&hi2c1, device_address, *reg_address, 1, 50);
+
+  HAL_I2C_Master_Transmit(&hi2c1, device_address, *init_address, 1, 50);
+  HAL_I2C_Master_Receive(&hi2c1, device_address, read_data, 2, 50);
+  // 동일한 데이터 읽어옴
+  printf("read_data : %#x \r\n",read_data[2]);
+
+  for (int i=0; i<strlen(data); i++) {
+    printf("data[%d] : %#x \r\n",i,data[i]);
+  }
+  for (int i=0; i<strlen(data); i++) {
+    data[i] = reverse_8bit(data[i]);
+  }
+
+
+  uint8_t *test_data = 0;
+  printf("TM1637 I2C Test :  \r\n");
+//  HAL_I2C_Master_Transmit(&hi2c1,reverse_8bit(0x01),NULL,0,HAL_MAX_DELAY); // 0x80
+//  HAL_I2C_Master_Transmit(&hi2c1,reverse_8bit(0x02),NULL,0,HAL_MAX_DELAY); // 0x40
+//  HAL_I2C_Master_Transmit(&hi2c1,reverse_8bit(0x04),NULL,0,HAL_MAX_DELAY); // 0x20
+//  HAL_I2C_Master_Transmit(&hi2c1,reverse_8bit(0x08),NULL,0,HAL_MAX_DELAY); // 0x10
+//  HAL_I2C_Master_Transmit(&hi2c1,reverse_8bit(0x10),NULL,0,HAL_MAX_DELAY); // 0x08
+//  HAL_I2C_Master_Transmit(&hi2c1,reverse_8bit(0x20),NULL,0,HAL_MAX_DELAY); // 0x04
+//  HAL_I2C_Master_Transmit(&hi2c1,reverse_8bit(0x40),NULL,0,HAL_MAX_DELAY); // 0x02
+//  HAL_I2C_Master_Transmit(&hi2c1,reverse_8bit(0x80),NULL,0,HAL_MAX_DELAY); // 0x01
+
+  HAL_I2C_Master_Transmit(&hi2c1,reverse_8bit(cmd_1st),NULL,0,HAL_MAX_DELAY); // 0x80
+
+  HAL_I2C_Master_Transmit(&hi2c1,reverse_8bit(cmd_2nd),data,sizeof(data),HAL_MAX_DELAY);
+
+  HAL_I2C_Master_Transmit(&hi2c1,reverse_8bit(cmd_3rd),test_data,0,HAL_MAX_DELAY);
+  
+
+  printf("Begin I2C_Add_Search() \r\n");
+  I2C_Add_Search();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -110,13 +208,6 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    dec_data++;
-//    show_TM1637((dec_data)%10,(dec_data+1)%10,(dec_data+2)%10,(dec_data+3)%10);
-    if (dec_data > 9) {
-      dec_data = 0;
-    }
-
-//    HAL_Delay(1000);
   }
   /* USER CODE END 3 */
 }
@@ -168,6 +259,54 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief I2C1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2C1_Init(void)
+{
+
+  /* USER CODE BEGIN I2C1_Init 0 */
+
+  /* USER CODE END I2C1_Init 0 */
+
+  /* USER CODE BEGIN I2C1_Init 1 */
+
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.Timing = 0x10D19CE4;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Analogue filter
+  */
+  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c1, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Configure Digital filter
+  */
+  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c1, 0) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2C1_Init 2 */
+
+  /* USER CODE END I2C1_Init 2 */
+
 }
 
 /**
@@ -228,9 +367,6 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, DIO_Pin|CLK_Pin, GPIO_PIN_SET);
-
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
@@ -256,13 +392,6 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD4_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pins : DIO_Pin CLK_Pin */
-  GPIO_InitStruct.Pin = DIO_Pin|CLK_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 

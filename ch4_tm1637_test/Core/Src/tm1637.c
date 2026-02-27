@@ -118,10 +118,12 @@ void test_TM1637(void) {
   write_byte_TM1637(0xFF);
   ack_TM1637();
 
-  set_Start_TM1637();
-  write_byte_TM1637(0x8F);
-  ack_TM1637();
   set_Stop_TM1637();
+
+//  set_Start_TM1637();
+//  write_byte_TM1637(0x8F);
+//  ack_TM1637();
+//  set_Stop_TM1637();
 }
 
 void show_TM1637(uint8_t data_1,uint8_t data_2,uint8_t data_3,uint8_t data_4) {
