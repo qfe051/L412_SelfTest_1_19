@@ -10,9 +10,33 @@
 #include <stdlib.h>
 int main() {
   int n;
+  printf("type number n :");
   scanf("%d", &n);
   int *arr = (int*)malloc(sizeof(int) * n);
   // 1. 숫자 입력 / 2. 포인터 두 개로 swap 하며 중앙으로 이동
+  int temp = 0;
+  int num =0;
+  // num++로 입력 대체 가능 
+  for(int i=0 ; i<n; i++){
+    // printf("type arr[%d] :",i);
+    // scanf("%d", &arr[i]);
+
+    *(arr+i) = num++;
+  }
+
+
+  for(int i=0 ; i<(n/2); i++){
+
+
+    temp = *(arr+i);
+    *(arr+i)=*(arr+n-1-i);
+    *(arr+n-1-i)=temp;
+
+    // printf("temp : %d /n",temp);
+    // printf(" *(arr+i) : %d /n", *(arr+i));
+    // printf("*(arr+n-1-i) : %d /n",*(arr+n-1-i));
+
+  }
 
 
   

@@ -9,6 +9,36 @@
 #include <stdlib.h>
 int* filterEvens(int *arr, int size, int *newSize) {
     // 1. 짝수 개수 세기 -> malloc -> 짝수 복사 -> 주소 반환
+    int even_cnt=0;
+
+    for (int i = 0; i < size; i++)
+    {
+      if((arr[i]%2)==0){
+        (*newSize)++;
+      }
+    }
+    printf("(*newSize) : %d \n",(*newSize));
+
+    int* even_arr = malloc((*newSize)*sizeof(int));
+
+
+
+
+    for (int i = 0; i < size; i++)
+    {
+      if((arr[i]%2)==0){
+        
+        even_arr[even_cnt] = arr[i];
+        printf("even_arr[%d] : %d \n",even_cnt,even_arr[even_cnt]);
+        even_cnt++;
+        // printf("arr[%d] : %d \n",i,arr[i]);
+        
+      }
+    }
+
+    printf("even_arr : %zu \n",even_arr);
+    
+  return even_arr;
 }
 int main() {
   int data[] = {1, 2, 3, 4, 5, 6};
@@ -16,7 +46,10 @@ int main() {
   int *evens = filterEvens(data, 6, &count);
   // [디버깅 틀] 확인
   printf("개수: %d, 데이터: ", count);
+  
   for(int i=0; i<count; i++) printf("%d ", evens[i]);
+
+  printf("evens : %zu \n",evens);
   if (evens) {
     free(evens);
   }

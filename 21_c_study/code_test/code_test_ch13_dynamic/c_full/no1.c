@@ -17,9 +17,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 typedef struct {
   char name[20];
-  int age;
+  char major[20];
+  int GPA;
 } Student;
 
 int main() {
@@ -27,38 +30,51 @@ int main() {
   int tmp_1,tmp_2 = 0; 
   printf("number of student : ");
   scanf("%d", &n);
-  // 1. n명만큼 malloc / 2. 정보 입력 / 3. 나이순 정렬
-  Student *s1;
 
-  s1= malloc(n * sizeof(Student));
+  Student *s;
+  
+  // s = malloc(n*sizeof(Student));
 
-  for (int i = 0; i < n; i++) {
+  for (int i = 0; i < n; i++)
+  {
+    char temp_name[20];
+    char temp_major[20];
+    int temp_GPA;
+
+    // s[i]= malloc(n * sizeof(Student));
 
     printf("type student[%d] 's name : ", i);
-    scanf("%19s", s1[i].name);
+    scanf("%19s", temp_name);
+    // (*s[i]).name = malloc((strlen(temp_name)+1)*sizeof(char));
 
-    printf("type student[%d] 's age : ", i);
-    scanf("%d", &s1[i].age);
+    printf("type student[%d] 's major : ", i);
+    scanf("%19s", temp_major);
+
+    printf("type student[%d] 's GPA : ", i);
+    scanf("%d", &temp_GPA);
+
+    s[i]= (void *kjhgfcdszxcvbnm,.)malloc((strlen(temp_name)+1)*sizeof(char)+(strlen(temp_major)+1)*sizeof(char)+sizeof(int));
   }
+  
+
+
 
   for (int i = 0; i < n-1; i++) {
     // 큰 값을 n+1로 이동
-    if (s1[i].age>s1[i+1].age) {
-      tmp_1 = s1[i].age;
-      s1[i].age = s1[i + 1].age;
-      s1[i+1].age = tmp_1;
+    if (s[i].GPA>s[i+1].GPA) {
+      tmp_1 = s[i].GPA;
+      s[i].GPA = s[i + 1].GPA;
+      s[i+1].GPA = tmp_1;
     }
 
     for (int j = 0; j < n-1; j++) {
-      if (s1[j].age>s1[j+1].age) {
-      tmp_2 = s1[j].age;
-      s1[j].age = s1[j + 1].age;
-      s1[j+1].age = tmp_2;
+      if (s[j].GPA>s[j+1].GPA) {
+      tmp_2 = s[j].GPA;
+      s[j].GPA = s[j + 1].GPA;
+      s[j+1].GPA = tmp_2;
     }
     }
 
-
-    // 작은 값을 n-1로 이동
     
   }
 
@@ -70,13 +86,14 @@ int main() {
   printf("--- result --- \n");
   for (int i = 0; i < n; i++) {
     /* printf("%s(%d)", ...); */
-    printf("student[%d] 's name : %s \n", i, s1[i].name);
-    printf("student[%d] 's age : %d \n", i,s1[i].age);
+    printf("student[%d] 's name : %s \n", i, s[i].name);
+    printf("student[%d] 's major : %s \n", i, s[i].major);
+    printf("student[%d] 's GPA : %d \n", i,s[i].GPA);
 
 
   }
   // 4. free 필수
-  free(s1);
+  free(s);
 
   return 0;
 }
