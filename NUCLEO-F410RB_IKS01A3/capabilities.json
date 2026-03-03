@@ -1,0 +1,25 @@
+{
+    "capabilities": [
+      {
+        "Target": "NUCLEO-F410RB + X-NUCLEO-IKS01A3",
+        "Accelerometer": "1",
+        "Gyroscope": "1",
+        "Magnetometer": "1",
+        "PressureSensor": "1",
+        "TemperatureSensor": "1",
+        "HumiditySensor": "1",
+        "SD": "0",
+        "FSM_MLC": "0",
+        "ISPU": "0",
+        "AccelerometerPartNumber": "LSM6DSO",
+        "GyroscopePartNumber": "LSM6DSO",
+        "MagnetometerPartNumber": "LIS2MDL",
+        "PressureSensorPartNumber": "LPS22HH",
+        "TemperatureSensorPartNumber": "HTS221",
+        "HumiditySensorPartNumber": "HTS221",
+        "stlink": "1",
+        "flash": "1",
+        "dfu": "0"
+      }
+    ]
+}

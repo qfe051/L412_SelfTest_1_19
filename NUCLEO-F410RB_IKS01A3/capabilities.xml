@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Capabilities>
+  <Capability>
+      <Accelerometer>1</Accelerometer>
+      <Gyroscope>1</Gyroscope>
+      <Magnetometer>1</Magnetometer>
+      <PressureSensor>1</PressureSensor>
+      <TemperatureSensor>1</TemperatureSensor>
+      <HumiditySensor>1</HumiditySensor>
+      <SD>0</SD>
+      <FSM_MLC>0</FSM_MLC>
+      <AccelerometerPartNumber>LSM6DSO</AccelerometerPartNumber>
+      <GyroscopePartNumber>LSM6DSO</GyroscopePartNumber>
+      <MagnetometerPartNumber>LIS2MDL</MagnetometerPartNumber>
+      <PressureSensorPartNumber>LPS22HH</PressureSensorPartNumber>
+      <TemperatureSensorPartNumber>HTS221</TemperatureSensorPartNumber>
+      <HumiditySensorPartNumber>HTS221</HumiditySensorPartNumber>
+  </Capability>
+</Capabilities>
