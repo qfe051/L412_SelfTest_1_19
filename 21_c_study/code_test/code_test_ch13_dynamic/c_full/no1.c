@@ -20,11 +20,25 @@
 #include <stdlib.h>
 #include <string.h>
 
+// 배열 대신, 포인터로 선언하기
 typedef struct {
-  char name[20];
-  char major[20];
+  char *name;
+  char *major;
   int GPA;
 } Student;
+
+Student * set_student(char temp_name, char temp_major, int temp_GPA ){
+  Student *s =malloc(sizeof(Student));
+
+  s->name = malloc((strlen(temp_name)+1)*sizeof(char));
+  s->(*name) = temp_name;
+
+  s->major = malloc((strlen(temp_major)+1)*sizeof(char));
+  s->(*major) = temp_major;
+
+
+
+}
 
 int main() {
   int n;
@@ -38,8 +52,8 @@ int main() {
 
   for (int i = 0; i < n; i++)
   {
-    char temp_name[20];
-    char temp_major[20];
+    char temp_name;
+    char temp_major;
     int temp_GPA;
 
     // s[i]= malloc(n * sizeof(Student));
