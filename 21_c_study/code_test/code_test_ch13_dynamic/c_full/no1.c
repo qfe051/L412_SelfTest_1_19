@@ -27,16 +27,17 @@ typedef struct {
   int GPA;
 } Student;
 
-Student * set_student(char temp_name, char temp_major, int temp_GPA ){
+Student * set_student(char *temp_name, char *temp_major, int *temp_GPA, int *number){
   Student *s =malloc(sizeof(Student));
 
-  s->name = malloc((strlen(temp_name)+1)*sizeof(char));
-  s->(*name) = temp_name;
-
-  s->major = malloc((strlen(temp_major)+1)*sizeof(char));
-  s->(*major) = temp_major;
+  s+i->name = malloc((strlen(temp_name)+1)*sizeof(char));
+  s+i->name = temp_name;
 
 
+  s+i->major = malloc((strlen(temp_major)+1)*sizeof(char));
+  s+i->major = temp_major;
+
+  s->GPA = *temp_GPA;
 
 }
 
@@ -46,9 +47,7 @@ int main() {
   printf("number of student : ");
   scanf("%d", &n);
 
-  Student *s;
-  
-  // s = malloc(n*sizeof(Student));
+  // Student *s = malloc(n*sizeof(Student));
 
   for (int i = 0; i < n; i++)
   {
@@ -59,56 +58,58 @@ int main() {
     // s[i]= malloc(n * sizeof(Student));
 
     printf("type student[%d] 's name : ", i);
-    scanf("%19s", temp_name);
+    scanf("%19s", &temp_name);
     // (*s[i]).name = malloc((strlen(temp_name)+1)*sizeof(char));
 
     printf("type student[%d] 's major : ", i);
-    scanf("%19s", temp_major);
+    scanf("%19s", &temp_major);
 
     printf("type student[%d] 's GPA : ", i);
     scanf("%d", &temp_GPA);
 
-    s[i]= (void *kjhgfcdszxcvbnm,.)malloc((strlen(temp_name)+1)*sizeof(char)+(strlen(temp_major)+1)*sizeof(char)+sizeof(int));
+    set_student(&temp_name,&temp_major,&temp_GPA,&i);
+
+    printf("student[%d] Complete  \n", i);
   }
   
 
 
 
-  for (int i = 0; i < n-1; i++) {
-    // 큰 값을 n+1로 이동
-    if (s[i].GPA>s[i+1].GPA) {
-      tmp_1 = s[i].GPA;
-      s[i].GPA = s[i + 1].GPA;
-      s[i+1].GPA = tmp_1;
-    }
+  // for (int i = 0; i < n-1; i++) {
+  //   // 큰 값을 n+1로 이동
+  //   if (s[i].GPA>s[i+1].GPA) {
+  //     tmp_1 = s[i].GPA;
+  //     s[i].GPA = s[i + 1].GPA;
+  //     s[i+1].GPA = tmp_1;
+  //   }
 
-    for (int j = 0; j < n-1; j++) {
-      if (s[j].GPA>s[j+1].GPA) {
-      tmp_2 = s[j].GPA;
-      s[j].GPA = s[j + 1].GPA;
-      s[j+1].GPA = tmp_2;
-    }
-    }
+  //   for (int j = 0; j < n-1; j++) {
+  //     if (s[j].GPA>s[j+1].GPA) {
+  //     tmp_2 = s[j].GPA;
+  //     s[j].GPA = s[j + 1].GPA;
+  //     s[j+1].GPA = tmp_2;
+  //   }
+  //   }
 
     
-  }
+  // }
 
 
 
 
   
-  // [디버깅 틀] 정렬 결과 출력
-  printf("--- result --- \n");
-  for (int i = 0; i < n; i++) {
-    /* printf("%s(%d)", ...); */
-    printf("student[%d] 's name : %s \n", i, s[i].name);
-    printf("student[%d] 's major : %s \n", i, s[i].major);
-    printf("student[%d] 's GPA : %d \n", i,s[i].GPA);
+  // // [디버깅 틀] 정렬 결과 출력
+  // printf("--- result --- \n");
+  // for (int i = 0; i < n; i++) {
+  //   /* printf("%s(%d)", ...); */
+  //   printf("student[%d] 's name : %s \n", i, s[i].name);
+  //   printf("student[%d] 's major : %s \n", i, s[i].major);
+  //   printf("student[%d] 's GPA : %d \n", i,s[i].GPA);
 
 
-  }
+  // }
   // 4. free 필수
-  free(s);
+  // free(s);
 
   return 0;
 }
