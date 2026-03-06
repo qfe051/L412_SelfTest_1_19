@@ -41,7 +41,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-// I2C_HandleTypeDef hi2c1;
+I2C_HandleTypeDef hi2c1;
 I2C_HandleTypeDef hi2c2;
 
 UART_HandleTypeDef hlpuart1;
@@ -110,11 +110,10 @@ int main(void)
 
   printf("LPUART printf test \r\n");
 
-// test_read_temper_HTS221(0xbe,0x0F);
 
 
-
-
+  write_is_sensor_enable();
+  // init_HTS221();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -124,8 +123,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    HAL_Delay(100);
-    test_read_transmit_and_mem_HTS221(0xbe,0x0F);
+    
+    // read_is_sensor_enable();
+    HAL_Delay(1000);
+    read_is_sensor_enable();
+    read_humid_HTS221();
+    read_temperature_HTS221();
   }
   /* USER CODE END 3 */
 }
