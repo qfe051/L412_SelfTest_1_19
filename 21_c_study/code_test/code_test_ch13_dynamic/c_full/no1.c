@@ -16,6 +16,7 @@
 
 */
 
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -30,12 +31,12 @@ typedef struct {
 Student * set_student(char *temp_name, char *temp_major, int *temp_GPA, int *number){
   Student *s =malloc(sizeof(Student));
 
-  s+i->name = malloc((strlen(temp_name)+1)*sizeof(char));
-  s+i->name = temp_name;
+  s+number->name = malloc((strlen(temp_name)+1)*sizeof(char));
+  s+number->name = temp_name;
 
 
-  s+i->major = malloc((strlen(temp_major)+1)*sizeof(char));
-  s+i->major = temp_major;
+  s+number->major = malloc((strlen(temp_major)+1)*sizeof(char));
+  s+number->major = temp_major;
 
   s->GPA = *temp_GPA;
 
@@ -54,6 +55,7 @@ int main() {
     char temp_name;
     char temp_major;
     int temp_GPA;
+    bool state = true;
 
     // s[i]= malloc(n * sizeof(Student));
 
@@ -70,6 +72,12 @@ int main() {
     set_student(&temp_name,&temp_major,&temp_GPA,&i);
 
     printf("student[%d] Complete  \n", i);
+
+    if (state==false) {
+      printf("program is done \n");
+
+      return 0;
+    }
   }
   
 

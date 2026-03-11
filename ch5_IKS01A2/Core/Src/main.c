@@ -66,7 +66,8 @@ static void MX_I2C1_Init(void);
 static void MX_LPUART1_UART_Init(void);
 static void MX_I2C2_Init(void);
 /* USER CODE BEGIN PFP */
-
+float gradient_humid_r;
+float H0_rH_OUT_r;
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -92,6 +93,9 @@ int main(void)
 
   /* USER CODE BEGIN Init */
 
+  _humid humid_data;
+  _temperature temperature_data;
+  _cur current_data;
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -110,7 +114,19 @@ int main(void)
 
   printf("LPUART printf test \r\n");
 
+  printf("int   : %d\r\n", 123);
+  printf("uint  : %u\r\n", 123U);
+  printf("hex   : 0x%04X\r\n", (uint16_t)0xCF04);
+  printf("float : %.2f\r\n", 12.34f);
 
+  cal_humid_gradient(&humid_data);  
+
+  printf("gradient_humid: %.3f \r\n ",humid_data.gradient_humid);
+  printf("H0_rH_OUT : %.2f \r\n ",humid_data.init_humid);
+
+  cal_temperature_gradient(&temperature_data);
+  printf("gradient_temperature : %.3f \r\n ",temperature_data.gradient_temperature);
+  printf("init_temperature : %.2f \r\n ",temperature_data.init_temperature);
 
   write_is_sensor_enable();
   // init_HTS221();
@@ -126,9 +142,18 @@ int main(void)
     
     // read_is_sensor_enable();
     HAL_Delay(1000);
+    printf("/r/n");
+
     read_is_sensor_enable();
-    read_humid_HTS221();
-    read_temperature_HTS221();
+    // read_humid_HTS221();
+    // read_temperature_HTS221();
+
+    // print_all_reg();
+    // read_is_sensor_enable();
+
+    result_humid(&humid_data, &current_data);
+    result_temperature(&temperature_data,&current_data);
+
   }
   /* USER CODE END 3 */
 }
