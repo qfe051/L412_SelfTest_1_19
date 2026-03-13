@@ -39,8 +39,29 @@ Student* create_student(const char *name, int subject_count,
     new_student->scores[i] = input_scores[i];
   }
 
-  restrict new_student;
+  return new_student;
 }
+
+// 리스트 맨 뒤에 학생 추가, 앞서 선언해둔 구조체 멤버의 구조체 '*next' 활용하기
+void append_student(Student **head, Student *new_student) {
+  // 비어있는 경우, 다음꺼 추가 하지 않도록 함
+  if (new_student == NULL) {
+    return;
+  }
+  if (*head == NULL) {
+    *head = new_student;
+    return;
+  }
+
+  // 하나씩 땡겨오는 동작? 
+  Student *cur = *head;
+  while (cur->next != NULL) {
+    cur = cur -> next;
+  }
+
+  cur -> next = new_student;
+}
+
 
 int main(void) {
 

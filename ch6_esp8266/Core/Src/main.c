@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <string.h>
 
 /* USER CODE END Includes */
 
@@ -45,6 +46,24 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 
+uint8_t rxData;
+uint8_t rxCount=0;
+// 자를 용도로 가져옴
+uint8_t ESP8266_RecvBuff[100] = {0};
+uint8_t ESP8266_DataBuff[100] = {0};
+
+uint16_t ESP8266_RecvCount = 0;
+    
+uint8_t flag = 0;
+
+// UART로 출력 보내기 위한 함수
+int _write(int file, char *ptr, int len) {
+
+  //(void)file;
+  HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
+  return len;
+  
+}
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -52,6 +71,7 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_LPUART1_UART_Init(void);
 static void MX_USART1_UART_Init(void);
+static void MX_NVIC_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -59,6 +79,8 @@ static void MX_USART1_UART_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+
+void test_uart(void);
 /* USER CODE END 0 */
 
 /**
@@ -92,7 +114,19 @@ int main(void)
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
   MX_USART1_UART_Init();
+
+  /* Initialize interrupts */
+  MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
+
+  printf("LPUART printf test \r\n");
+
+  // HAL_UART_Receive(&huart1, &rxData, 1, 50);
+  HAL_UART_Receive_IT(&huart1, &rxData, 1);
+  test_uart();
+  HAL_Delay(1000);
+  flag = 0;
+
 
   /* USER CODE END 2 */
 
@@ -103,6 +137,28 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+    
+    if (flag==1) {
+      
+
+      if (rxCount != 0) {
+        get_buf(ESP8266_DataBuff,ESP8266_RecvBuff, &rxCount, rxData);
+      }
+      else {
+        memcpy(ESP8266_DataBuff,ESP8266_RecvBuff,rxCount+1);
+        printf("ESP8266_DataBuff : %s \r\n", ESP8266_DataBuff);
+        printf("Length ESP8266_DataBuff : %d \r\n", strlen(ESP8266_DataBuff));
+        
+        flag = 0;
+      }
+    }
+    else {
+      test_uart();
+    }
+    
+
+    
   }
   /* USER CODE END 3 */
 }
@@ -154,6 +210,17 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
+}
+
+/**
+  * @brief NVIC Configuration.
+  * @retval None
+  */
+static void MX_NVIC_Init(void)
+{
+  /* USART1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(USART1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(USART1_IRQn);
 }
 
 /**
@@ -281,6 +348,19 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+  
+  if (huart->Instance == USART1) {
+    HAL_UART_Receive_IT(&huart1, &rxData, 1);
+
+    }
+
+    flag = 1;
+    rxCount++;
+ 
+
+  }
+
 
 /* USER CODE END 4 */
 
