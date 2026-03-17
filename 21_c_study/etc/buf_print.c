@@ -17,7 +17,7 @@ void callback(void){
         buf_index++;
         if (rxData=='\n' | buf_index>=99){
            buf0[buf_index-1] = '\0';
-           active_buf_flag = (active_buf_flag+1) /2 ;
+           active_buf_flag = (active_buf_flag+1) % 2 ;
             buf_index = 0;
             buf0_print_flag = 1; 
         }
@@ -28,7 +28,7 @@ void callback(void){
         buf_index++;
         if (rxData=='\n' | buf_index>=99){
            buf1[buf_index-1] = '\0';
-           active_buf_flag = (active_buf_flag+1) /2 ;
+           active_buf_flag = (active_buf_flag+1) % 2 ;
             buf_index = 0;
             buf1_print_flag = 1;
     }

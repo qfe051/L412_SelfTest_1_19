@@ -21,8 +21,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
 #include <string.h>
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -46,34 +46,6 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 
-
-// uint8_t rxCount=0;
-// // 자를 용도로 가져옴
-// uint8_t ESP8266_RecvBuff[100] = {0};
-// uint8_t ESP8266_DataBuff[100] = {0};
-
-// uint16_t ESP8266_RecvCount = 0;
-
-
-
-
-uint8_t buf_index = 0;
-uint8_t buf0_print_flag = 0;
-uint8_t buf1_print_flag = 0;
-
-uint8_t non_active_count =0;
-// uint8_t buf1_print_flag = 0;
-
-
-
-// UART로 출력 보내기 위한 함수
-int _write(int file, char *ptr, int len) {
-
-  //(void)file;
-  HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
-  return len;
-  
-}
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -81,23 +53,22 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_LPUART1_UART_Init(void);
 static void MX_USART1_UART_Init(void);
-static void MX_NVIC_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t buf0[100];
-uint8_t buf1[100];
+#define BUF_SIZE_MAX 100
+
+uint8_t buf0[BUF_SIZE_MAX];
+uint8_t buf1[BUF_SIZE_MAX];
+uint8_t buf_index;
+
+uint8_t complete_flag;
+uint8_t select_flag;
 uint8_t rxData;
 
-uint8_t active_buf_flag = 0;   // 0
-uint8_t buf_count = 0;
-
-uint8_t active_print = 0 ;
-
-void test_uart(void);
 /* USER CODE END 0 */
 
 /**
@@ -131,70 +102,33 @@ int main(void)
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
   MX_USART1_UART_Init();
-
-  /* Initialize interrupts */
-  MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
 
-  printf("LPUART printf test \r\n");
-
-  // HAL_UART_Receive(&huart1, &rxData, 1, 50);
+  complete_flag = 0;
+  select_flag = 0;
+  buf_index = 0;
   HAL_UART_Receive_IT(&huart1, &rxData, 1);
-   test_uart();
-  // HAL_Delay(200);
-//   init_esp8266();
-active_buf_flag = 0;   // 0
-buf_count = 0;
-active_print = 0 ;
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1){
+  while (1)
+  {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-    // print 관한 flag 몇 개 쓸지 확인하기
-
-    if (active_print) {
-      if (active_buf_flag == 0) {
-      // __disable_irq();
-
-//      printf(">> buf0[] data : %s \r\n", buf0);
-
-      // buf0_print_flag = 0;
-       HAL_UART_Transmit(&hlpuart1,buf0,strlen(buf0),100);
-
-      // buf0[0] = '\0';
-      active_print = 0;
-
-      // __enable_irq();
-      // HAL_UART_Receive_IT(&huart1, &rxData, 1);
-    } else if (active_buf_flag == 1) {
-      // __disable_irq();
-//      printf(">> buf1[] data : %s \r\n", buf1);
-      // buf1_print_flag = 0;
-       HAL_UART_Transmit(&hlpuart1,buf1,strlen(buf1),100);
-
-
-      // buf1[0] = '\0';
-      
-      active_print = 0;
-      // __enable_irq();
-
-      // HAL_UART_Receive_IT(&huart1, &rxData, 1);
+    if (complete_flag == 1) {
+      complete_flag = 0 ;
+      if (select_flag == 0) {
+        HAL_UART_Transmit(&huart1,buf0,strlen(buf0),100);
+      }
+      else {
+        HAL_UART_Transmit(&huart1,buf1,strlen(buf1),100);
       }
     }
-    else {
-      // HAL_UART_Receive_IT(&huart1, &rxData, 1);
-      // HAL_Delay(1000);
-      // test_uart();
-    }
-
-  /* USER CODE END 3 */
+    
   }
+  /* USER CODE END 3 */
 }
 
 /**
@@ -244,17 +178,6 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-}
-
-/**
-  * @brief NVIC Configuration.
-  * @retval None
-  */
-static void MX_NVIC_Init(void)
-{
-  /* USART1_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(USART1_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(USART1_IRQn);
 }
 
 /**
@@ -384,47 +307,32 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
   if (huart->Instance == USART1) {
-    // HAL_UART_Receive_IT(&huart1, &rxData, 1);
-    // 2개의 buf로 처리
-
-    // 의도치 않은 null 문자에 값 채우기 
-    if (rxData == '\0') {
-      rxData = ' ';
-    }
-    
-    if (active_buf_flag == 0) {
-      buf0[buf_count] = rxData;
-      if (( buf0[buf_count] == '\n') ||  buf_count == 98) {
-       
-        // buf0_print_flag = 1;
-        active_buf_flag = 1;
-        active_print = 1;
-        buf0[buf_count + 1] = '\0';
-         buf_count = 0;
+    if (select_flag == 0) {
+      buf0[buf_index] = rxData;
+      // 0x0D 등의 hex값도 넣어보기
+      if ((buf0[buf_index]=='\n') || buf_index ==98) {
+        buf0[buf_index] = '\0';
+        select_flag = 1;
+        buf_index = 0;
       }
       else {
-        buf_count++;
+        buf_index++;
       }
     }
-    else if (active_buf_flag ==1) {
-      buf1[buf_count] = rxData ;
-      if ((buf1[buf_count] == '\n' ) || buf_count == 98) {
- 
-        // buf1_print_flag = 1;
-        active_buf_flag = 0;
-        active_print = 1;
-        buf1[buf_count + 1] = '\0';
-         buf_count = 0;
+    else {
+      buf1[buf_index] = rxData;
+      // 0x0D 등의 hex값도 넣어보기
+      if ((buf1[buf_index]=='\n') || buf_index ==98) {
+        buf1[buf_index] = '\0';
+        select_flag = 0;
+        buf_index = 0;
       }
       else {
-        buf_count++;
+        buf_index++;
       }
     }
     HAL_UART_Receive_IT(&huart1, &rxData, 1);
   }
-  
-  
-
 }
 /* USER CODE END 4 */
 

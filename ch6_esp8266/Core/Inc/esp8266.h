@@ -6,4 +6,7 @@
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef hlpuart1;
 
+void test_uart(void);
+void init_esp8266(void);
+
 #endif
