@@ -58,7 +58,7 @@ UART_HandleTypeDef huart1;
 
 
 
-// uint8_t Rxbuff1_print_flag = 0;
+// uint8_t buf1_print_flag = 0;
 
 
 
@@ -66,8 +66,7 @@ UART_HandleTypeDef huart1;
 int _write(int file, char *ptr, int len) {
 
   //(void)file;
-  HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, 100);
-  // HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
+  HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
   return len;
   
 }
@@ -85,24 +84,14 @@ static void MX_NVIC_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#define BUF_SIZE 100
+#define RXBUFF_SIZE 100
+uint8_t Rxbuff0[RXBUFF_SIZE];
+uint8_t Rxbuff1[RXBUFF_SIZE];
+uint8_t RxIndex;
+uint8_t RxCompleteFlag;
+uint8_t RxSelectIndex;
+uint8_t RxData;
 
-uint8_t Rxbuff0[BUF_SIZE];
-uint8_t Rxbuff1[BUF_SIZE];
-uint8_t rxData;
-
-uint8_t active_buf_flag = 0;   // 0
-uint8_t buf_count = 0;
-
-uint8_t active_print = 0;
-
-uint8_t buf_index = 0;
-uint8_t Rxbuff0_print_flag = 0;
-uint8_t Rxbuff1_print_flag = 0;
-
-uint8_t non_active_count =0;
-
-void test_uart(void);
 /* USER CODE END 0 */
 
 /**
@@ -140,54 +129,35 @@ int main(void)
   /* Initialize interrupts */
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
+  RxSelectIndex = 0;
+  RxCompleteFlag = 0;
+  RxIndex = 0;
+  HAL_UART_Receive_IT(&huart1, &RxData, 1); 
 
-  printf("LPUART printf test \r\n");
-
-  // HAL_UART_Receive(&huart1, &rxData, 1, 50);
-  HAL_UART_Receive_IT(&huart1, &rxData, 1);
-  // HAL_Delay(200);
-//   init_esp8266();
-active_buf_flag = 0;   // 0
-buf_count = 0;
-active_print = 0 ;
-// HAL_Delay(1000);
-test_uart();
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1){
+  while (1) {
+    if(RxCompleteFlag == 1) {
+      uint8_t* pTransmitBuff;
+      RxCompleteFlag = 0;
+      if(RxSelectIndex == 0)
+        pTransmitBuff = Rxbuff1;
+      else 
+        pTransmitBuff = Rxbuff0;
+
+      HAL_UART_Transmit(&hlpuart1, pTransmitBuff, strlen(pTransmitBuff),100);
+
+      // printf("print : %s \r\n",pTransmitBuff);
+    }
     /* USER CODE END WHILE */
 
+    
     /* USER CODE BEGIN 3 */
-
-    // print 관한 flag 몇 개 쓸지 확인하기
-
-    if (Rxbuff0_print_flag | Rxbuff1_print_flag) {
-
-      if (Rxbuff0_print_flag == 1) {
-        //  printf(">> Rxbuff0[] data : %s \r\n", Rxbuff0);
-        
-      Rxbuff0_print_flag = 0;
-       HAL_UART_Transmit(&hlpuart1,Rxbuff0,strlen(Rxbuff0),100);
-      //  memset(Rxbuff0,0,sizeof(Rxbuff0));
-      }
-      if (Rxbuff1_print_flag == 1) {
-        // sprinf를 버퍼 저장 후 출력 가능 
-        //  printf(">> Rxbuff1[] data : %s \r\n", Rxbuff1);
-        
-      Rxbuff1_print_flag = 0;
-      HAL_UART_Transmit(&hlpuart1,Rxbuff1,strlen(Rxbuff1),100);
-      // memset(Rxbuff1,0,sizeof(Rxbuff1));
-      }
-    }
-    else {
-      // HAL_Delay(1000);
-      // test_uart();
-    }
-  /* USER CODE END 3 */
   }
+  /* USER CODE END 3 */
 }
 
 /**
@@ -379,35 +349,28 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
   if (huart->Instance == USART1) {
     // HAL_UART_Receive_IT(&huart1, &rxData, 1);
     // 2개의 buf로 처리
-    if (active_buf_flag == 0) {
-      Rxbuff0[buf_count] = rxData;
-      if (( Rxbuff0[buf_count] == '\n') ||  buf_count == BUF_SIZE -2) {
-       
-        Rxbuff0_print_flag = 1;
-        active_buf_flag = 1;
-        // active_print = 1;
-        Rxbuff0[buf_count+1] = '\0';
-         buf_count = 0;
+    if(RxSelectIndex == 0) {
+      Rxbuff0[RxIndex] = RxData;
+      if((Rxbuff0[RxIndex] == 0x0D) || RxIndex == (RXBUFF_SIZE - 1)) {
+        Rxbuff0[RxIndex] = '\0';
+        RxCompleteFlag = 1;      
+        RxSelectIndex = !RxSelectIndex;      
+        RxIndex = 0;
+      } else {
+        RxIndex++;
       }
-      else {
-        buf_count++;
-      }
-    }
-    else if (active_buf_flag ==1) {
-      Rxbuff1[buf_count] = rxData ;
-      if ((Rxbuff1[buf_count] == '\n' ) || buf_count == BUF_SIZE -2) {
- 
-        Rxbuff1_print_flag = 1;
-        active_buf_flag = 0;
-        // active_print = 1;
-        Rxbuff1[buf_count+1] = '\0';
-         buf_count = 0;
-      }
-      else {
-        buf_count++;
+    } else {      
+      Rxbuff1[RxIndex] = RxData;
+      if((Rxbuff1[RxIndex] == 0x0D) || RxIndex == (RXBUFF_SIZE - 1)) {
+        Rxbuff1[RxIndex] = '\0';
+        RxCompleteFlag = 1;      
+        RxSelectIndex = !RxSelectIndex;      
+        RxIndex = 0;
+      } else {
+        RxIndex++;
       }
     }
-    HAL_UART_Receive_IT(&huart1, &rxData, 1);
+    HAL_UART_Receive_IT(&huart1, &RxData, 1);
   }
 }
 /* USER CODE END 4 */

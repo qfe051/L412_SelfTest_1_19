@@ -43,6 +43,5 @@ void init_esp8266(void) {
   HAL_UART_Transmit(&huart1, AT_Data, sizeof(AT_Data)-1, 50);
 }
 
-void is_ready_esp8266(void) {
-  
-}
+void is_ready_esp8266(void) {}
+
