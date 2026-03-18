@@ -100,7 +100,14 @@ uint8_t buf_index = 0;
 uint8_t Rxbuff0_print_flag = 0;
 uint8_t Rxbuff1_print_flag = 0;
 
-uint8_t non_active_count =0;
+uint8_t non_active_count = 0;
+
+uint8_t idx_in = 0;
+uint8_t idx_out = 10;
+
+uint8_t q_buff[BUF_SIZE];
+uint8_t q_data[10];
+
 
 void test_uart(void);
 /* USER CODE END 0 */
@@ -151,7 +158,14 @@ active_buf_flag = 0;   // 0
 buf_count = 0;
 active_print = 0 ;
 // HAL_Delay(1000);
-test_uart();
+// test_uart();
+
+// Queue 진행 Test
+q_data[2] = 10;
+  idx_in = 95;
+  input_data(&idx_in,&idx_out,q_data,q_buff,sizeof(q_data),sizeof(q_buff));
+  printf(">>size_data_v2 : %d \r\n", sizeof(q_data));
+
 
   /* USER CODE END 2 */
 

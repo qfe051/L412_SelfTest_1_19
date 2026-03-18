@@ -45,3 +45,26 @@ void init_esp8266(void) {
 
 void is_ready_esp8266(void) {}
 
+// a - 데이터 입력하기
+
+// 배열, 포인터 모두 각각의 주소 입력하기 
+void input_data(uint8_t *index_in,uint8_t *index_out, uint8_t data[] ,uint8_t buff[],uint8_t len_data, uint8_t len_buff) {
+
+  printf(">>*index_in : %d \r\n", *index_in);
+  printf(">>*index_in + 1 : %d \r\n", *index_in+1);
+  printf(">>index_in : %d \r\n", index_in);
+  printf(">>&index_in : %d \r\n", &index_in);
+  printf(">>len_buff : %d \r\n", len_buff);
+  
+
+  for (int i = 0; i < len_data; i++) {
+    buff[(*index_in + i) % len_buff] = data[i];
+
+    printf(">>(*index_in + i)  len_buff : %d \r\n", (*index_in + i) % len_buff);
+  }
+
+  printf(">>size_data : %d \r\n", len_data);
+  printf(">>size_buff : %d \r\n",len_buff);
+
+  *index_out = *index_in ;
+}
