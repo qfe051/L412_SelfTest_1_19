@@ -21,7 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdint.h>
 #include <string.h>
+#include "esp8266.h"
 
 /* USER CODE END Includes */
 
@@ -92,7 +94,7 @@ uint8_t Rxbuff1[BUF_SIZE];
 uint8_t rxData;
 
 uint8_t active_buf_flag = 0;   // 0
-uint8_t buf_count = 0;
+uint8_t rx_count = 0;
 
 uint8_t active_print = 0;
 
@@ -102,11 +104,17 @@ uint8_t Rxbuff1_print_flag = 0;
 
 uint8_t non_active_count = 0;
 
+// idx_in이 더 앞에 있어야 함. 더 큰 숫자 (동일해도 무방)
 uint8_t idx_in = 0;
-uint8_t idx_out = 10;
+uint8_t idx_out = 0;
 
 uint8_t q_buff[BUF_SIZE];
-uint8_t q_data[10];
+// uint8_t *q_data;
+
+uint8_t rx_complete_flag = 0;
+
+queue q_set;
+ring recv;
 
 
 void test_uart(void);
@@ -150,21 +158,16 @@ int main(void)
 
   printf("LPUART printf test \r\n");
 
-  // HAL_UART_Receive(&huart1, &rxData, 1, 50);
-  HAL_UART_Receive_IT(&huart1, &rxData, 1);
-  // HAL_Delay(200);
-//   init_esp8266();
-active_buf_flag = 0;   // 0
-buf_count = 0;
-active_print = 0 ;
-// HAL_Delay(1000);
-// test_uart();
 
-// Queue 진행 Test
-q_data[2] = 10;
-  idx_in = 95;
-  input_data(&idx_in,&idx_out,q_data,q_buff,sizeof(q_data),sizeof(q_buff));
-  printf(">>size_data_v2 : %d \r\n", sizeof(q_data));
+  // 초기화 단계 - 인터럽트 받기 전
+  idx_in = 10;
+  init_data(&idx_in, &idx_out, q_buff);
+  initQueue(&q_set, 1);
+  
+  recv.recv_data = 0;
+
+
+  HAL_UART_Receive_IT(&huart1, &rxData, 1);
 
 
   /* USER CODE END 2 */
@@ -176,30 +179,15 @@ q_data[2] = 10;
 
     /* USER CODE BEGIN 3 */
 
-    // print 관한 flag 몇 개 쓸지 확인하기
+    // 데이터 사용 후에 if문 내에서 'recv->recv_data'을 0으로 만들어주기
+    if (recv.recv_data) {
+      recv.recv_data = 0;
 
-    if (Rxbuff0_print_flag | Rxbuff1_print_flag) {
+      dequeue_ring(&recv);
+    }
 
-      if (Rxbuff0_print_flag == 1) {
-        //  printf(">> Rxbuff0[] data : %s \r\n", Rxbuff0);
-        
-      Rxbuff0_print_flag = 0;
-       HAL_UART_Transmit(&hlpuart1,Rxbuff0,strlen(Rxbuff0),100);
-      //  memset(Rxbuff0,0,sizeof(Rxbuff0));
-      }
-      if (Rxbuff1_print_flag == 1) {
-        // sprinf를 버퍼 저장 후 출력 가능 
-        //  printf(">> Rxbuff1[] data : %s \r\n", Rxbuff1);
-        
-      Rxbuff1_print_flag = 0;
-      HAL_UART_Transmit(&hlpuart1,Rxbuff1,strlen(Rxbuff1),100);
-      // memset(Rxbuff1,0,sizeof(Rxbuff1));
-      }
-    }
-    else {
-      // HAL_Delay(1000);
-      // test_uart();
-    }
+
+
   /* USER CODE END 3 */
   }
 }
@@ -391,36 +379,10 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
   if (huart->Instance == USART1) {
-    // HAL_UART_Receive_IT(&huart1, &rxData, 1);
-    // 2개의 buf로 처리
-    if (active_buf_flag == 0) {
-      Rxbuff0[buf_count] = rxData;
-      if (( Rxbuff0[buf_count] == '\n') ||  buf_count == BUF_SIZE -2) {
-       
-        Rxbuff0_print_flag = 1;
-        active_buf_flag = 1;
-        // active_print = 1;
-        Rxbuff0[buf_count+1] = '\0';
-         buf_count = 0;
-      }
-      else {
-        buf_count++;
-      }
-    }
-    else if (active_buf_flag ==1) {
-      Rxbuff1[buf_count] = rxData ;
-      if ((Rxbuff1[buf_count] == '\n' ) || buf_count == BUF_SIZE -2) {
- 
-        Rxbuff1_print_flag = 1;
-        active_buf_flag = 0;
-        // active_print = 1;
-        Rxbuff1[buf_count+1] = '\0';
-         buf_count = 0;
-      }
-      else {
-        buf_count++;
-      }
-    }
+    // rx 데이터 존재하는 상태
+
+    enqueue_ring(&recv,rxData);
+
     HAL_UART_Receive_IT(&huart1, &rxData, 1);
   }
 }

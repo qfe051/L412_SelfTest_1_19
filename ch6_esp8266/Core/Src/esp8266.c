@@ -48,23 +48,109 @@ void is_ready_esp8266(void) {}
 // a - 데이터 입력하기
 
 // 배열, 포인터 모두 각각의 주소 입력하기 
-void input_data(uint8_t *index_in,uint8_t *index_out, uint8_t data[] ,uint8_t buff[],uint8_t len_data, uint8_t len_buff) {
+void input_data(queue *q, uint8_t *index_in,uint8_t *index_out, uint8_t buff[], uint8_t len_buff) {
 
-  printf(">>*index_in : %d \r\n", *index_in);
-  printf(">>*index_in + 1 : %d \r\n", *index_in+1);
-  printf(">>index_in : %d \r\n", index_in);
-  printf(">>&index_in : %d \r\n", &index_in);
-  printf(">>len_buff : %d \r\n", len_buff);
-  
+  uint8_t len_data = (q->max+1);
+
+  printf(">>len_data : %d \r\n", q->max+1);
 
   for (int i = 0; i < len_data; i++) {
-    buff[(*index_in + i) % len_buff] = data[i];
+    printf(">>q->data[%d] : 0x%02X \r\n",i, q->data[i]);
+    buff[(*index_in + i) % len_buff] = q->data[i];
 
-    printf(">>(*index_in + i)  len_buff : %d \r\n", (*index_in + i) % len_buff);
+    // printf(">>(*index_in + i)  len_buff : %d \r\n", (*index_in + i) % len_buff);
   }
 
-  printf(">>size_data : %d \r\n", len_data);
-  printf(">>size_buff : %d \r\n",len_buff);
+  
+  //기존 *index_in 부터 출력을 시작 함
+  *index_out = *index_in;
+  // 최종 input +1 위치에 새로운 input 넣어두기
+  *index_in = (*index_in + len_data) % len_buff;
 
-  *index_out = *index_in ;
+  // 다음 시작하는 인덱스에 NULL 채워두기! -> 문자열로 한번 출력하도 또 안씀
+
+  // print buf 따로 있어서 필요 없을듯?
+  // buff[*index_in] = '\0';
+}
+
+// *index_in 필요한지?
+void print_data(uint8_t *index_in, uint8_t *index_out, 
+                uint8_t buff[]) {
+  // 출력용 버퍼 만들기
+
+  uint8_t len_print = (100 + *index_in - *index_out) % 100;
+  uint8_t buff_p[len_print+1];
+
+  for (int i = 0; i < len_print; i++) {
+    buff_p[i] = buff[*index_out+i];
+  }
+  buff_p[len_print] = '\0';
+
+  HAL_UART_Transmit(&hlpuart1, buff_p, strlen(buff_p), 100);
+
+  *index_out = *index_in;
+
+}
+
+void init_data(uint8_t *index_in, uint8_t *index_out, uint8_t buff[]) {
+  printf("index_in = %d \r\n", index_in);
+  printf("*index_in = %d \r\n",*index_in);
+  // *index_in = 0;
+  // *index_out = 0;
+  memset(buff,0,sizeof(buff));
+}
+
+void initQueue(queue *q, int size) {
+  q->max = size;
+  q->data = malloc(size*sizeof(uint8_t));
+}
+
+void get_rxdata(queue *q,uint8_t rxdata,uint8_t count) {
+  // 굳이 malloc 안써도 될 것 같으니 확인해보기 
+  q->max = count;
+  uint8_t *buff = malloc(q->max * sizeof(uint8_t));
+  
+
+  for (int i = 0; i < q->max; i++) {
+    buff[i]=q->data[i];
+    printf("q->data [%d] : 0x%02X \r\n",i,q->data[i]);
+    printf("buff [%d] : 0x%02X \r\n",i, buff[i]);
+  }
+  // 1개 추가한다고 생각하기
+  q->data = realloc(q->data, (q->max+1) * sizeof(uint8_t));
+  if (q->data ==NULL) {
+    printf("q->data realloc error \r\n");
+    return 0;
+  }
+  // q->data[i]에 buff[i] 넣는 작업 추가
+  for (int i = 0; i < q->max; i++) {
+    q->data[i]=buff[i];
+  }
+  printf("q->max+1 : %d \r\n",q->max+1);
+
+  q->data[q->max] = rxdata;
+  printf("q->data[q->max] : 0x%02X \r\n",q->data[q->max]);
+  printf("rxdata : 0x%02X \r\n",rxdata);
+
+  free(buff);
+
+}
+
+void enqueue_ring(ring *r,uint8_t rxdata) {
+  r->data[r->rear] = rxdata;
+  r->recv_data = r->data[r->rear];
+
+  // max_size 단위로 순환 -> 약 100개 
+  r->rear = ((r->rear)+1) % r->max_size;
+
+}
+
+void dequeue_ring(ring *r) {
+  //rear , front 다른 경우 출력 
+  if ((100+r->rear-(r->front))%100) {
+  }
+  else {
+    HAL_UART_Transmit(&hlpuart1, r->data[r->front], 1, 100);
+    r->front=((r->front)+1) % r->max_size;
+  }
 }
