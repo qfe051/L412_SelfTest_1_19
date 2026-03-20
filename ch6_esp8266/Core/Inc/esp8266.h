@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdint.h>
+#include <stdbool.h>
 
 #ifndef ESP8266_h_
 #define ESP8266_h_
@@ -29,12 +30,21 @@ typedef struct ring_buf {
 
 } ring;
 
+typedef struct state {
+  bool ready_state;
+  bool wifi_state;
+  bool parsing_state;
+
+} state;
+
 
 
 void print_data(uint8_t *index_in, uint8_t *index_out, 
                 uint8_t buff[]);
 void init_data(uint8_t *index_in, uint8_t *index_out, uint8_t buff[]);
 void initQueue(queue *q, int size);
-void get_rxdata(queue *q,uint8_t rxdata,uint8_t count);
+void get_rxdata(queue *q, uint8_t rxdata, uint8_t count);
+
+void dequeue_ring(ring *r );
 
 #endif

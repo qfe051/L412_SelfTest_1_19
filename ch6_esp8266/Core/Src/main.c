@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include <stdint.h>
 #include <string.h>
+#include <stdbool.h>
 #include "esp8266.h"
 
 /* USER CODE END Includes */
@@ -95,9 +96,9 @@ uint8_t buf[100] = {0,};
 uint8_t queue_buf[100] = {0,};
 
 ring recv;
+state state_esp8266;
 
 
-void test_uart(void);
 /* USER CODE END 0 */
 
 /**
@@ -139,13 +140,21 @@ int main(void)
 
   printf("LPUART printf test \r\n");
 
-  init_ring(&recv,buf,queue_buf);
+  init_ring(&recv, buf, queue_buf);
+  HAL_Delay(100);
+  init_state(&state_esp8266);
+  HAL_Delay(100);
+  state_esp8266.ready_state = false;
+  HAL_Delay(100);
 
 
   HAL_UART_Receive_IT(&huart1, &rxData, 1);
 
   init_esp8266();
-  test_uart();
+
+  // 초기 동작 시작
+  is_ready(&recv,&state_esp8266);
+  
 
   /* USER CODE END 2 */
 

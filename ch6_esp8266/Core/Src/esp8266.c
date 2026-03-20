@@ -159,7 +159,7 @@ void enqueue_ring(ring *r, uint8_t rxdata) {
 
 }
 
-void dequeue_ring(ring *r ) {
+void dequeue_ring(ring *r) {
   // rear , front 다른 경우 출력
 
   while ((r->rear) != (r->front)) {
@@ -172,7 +172,7 @@ void dequeue_ring(ring *r ) {
       r->q_data[r->index + 1] = '\0';
       HAL_UART_Transmit(&hlpuart1, r->q_data, strlen(r->q_data), 100);
 
-      // r->q_data로 파싱 해보기 -> str 함수 사용하기
+ 
 
       r->index =0;
     }
@@ -183,6 +183,31 @@ void dequeue_ring(ring *r ) {
   }
 }
 
-bool is_ready(uint8_t data[]) {
-  
+void init_state(state *s) {
+  s->ready_state = false;
+  s->wifi_state = false;
+  s->parsing_state = false;
+}
+
+
+void is_ready(ring *r, state *s) {
+
+  // ready 체크
+
+  printf("Try ready ESP8266 ... \r\n");
+  printf("s->ready_state : %d \r\n",s->ready_state);
+  // AT 보내기 -> 될 때 까지 진행
+  uint8_t AT_Data[] = "AT\r\n";
+
+  while (s->ready_state == false) {
+    HAL_UART_Transmit(&hlpuart1, AT_Data, strlen(AT_Data), 100);
+
+    dequeue_ring(r);
+    if ((strstr(r->q_data, "OK"))) {
+      s->ready_state = 1;
+          printf("ESP8266 is ready \r\n");
+    }
+  }
+
+  // wait 하는 형식으로 바꿔보기
 }
