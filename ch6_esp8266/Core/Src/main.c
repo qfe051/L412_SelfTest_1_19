@@ -162,9 +162,9 @@ int main(void)
   // 초기화 단계 - 인터럽트 받기 전
   idx_in = 10;
   init_data(&idx_in, &idx_out, q_buff);
-  initQueue(&q_set, 1);
-  
-  recv.recv_data = 0;
+  // initQueue(&q_set, 1);
+
+  init_ring(&recv);
 
 
   HAL_UART_Receive_IT(&huart1, &rxData, 1);
@@ -180,10 +180,13 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
     // 데이터 사용 후에 if문 내에서 'recv->recv_data'을 0으로 만들어주기
-    if (recv.recv_data) {
-      recv.recv_data = 0;
+    if (recv.front == recv.rear) {
+//      recv.recv_data = 0;
 
-      dequeue_ring(&recv);
+//    	printf("r->rear : 0x%02X \r\n",r->rear);
+    }
+    else{
+    	dequeue_ring(&recv);
     }
 
 
