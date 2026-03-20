@@ -19,9 +19,9 @@ typedef struct queue {
 } queue;
 
 typedef struct ring_buf {
-  uint8_t rear;
-  uint8_t front;
-  uint8_t index;
+  int8_t rear;
+  int8_t front;
+  int8_t index;
   uint8_t *data;
   uint8_t *q_data;
   uint8_t max_size;

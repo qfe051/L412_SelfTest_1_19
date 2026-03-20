@@ -89,31 +89,11 @@ static void MX_NVIC_Init(void);
 /* USER CODE BEGIN 0 */
 #define BUF_SIZE 100
 
-uint8_t Rxbuff0[BUF_SIZE];
-uint8_t Rxbuff1[BUF_SIZE];
+
 uint8_t rxData;
+uint8_t buf[100] = {0,};
+uint8_t queue_buf[100] = {0,};
 
-uint8_t active_buf_flag = 0;   // 0
-uint8_t rx_count = 0;
-
-uint8_t active_print = 0;
-
-uint8_t buf_index = 0;
-uint8_t Rxbuff0_print_flag = 0;
-uint8_t Rxbuff1_print_flag = 0;
-
-uint8_t non_active_count = 0;
-
-// idx_in이 더 앞에 있어야 함. 더 큰 숫자 (동일해도 무방)
-uint8_t idx_in = 0;
-uint8_t idx_out = 0;
-
-uint8_t q_buff[BUF_SIZE];
-// uint8_t *q_data;
-
-uint8_t rx_complete_flag = 0;
-
-queue q_set;
 ring recv;
 
 
@@ -143,7 +123,8 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */
+  /* USER CODE BEGIN SysInit */  // r->q_data[r->index] = r->data[r->front];
+
 
   /* USER CODE END SysInit */
 
@@ -158,17 +139,13 @@ int main(void)
 
   printf("LPUART printf test \r\n");
 
-
-  // 초기화 단계 - 인터럽트 받기 전
-  idx_in = 10;
-  init_data(&idx_in, &idx_out, q_buff);
-  // initQueue(&q_set, 1);
-
-  init_ring(&recv);
+  init_ring(&recv,buf,queue_buf);
 
 
   HAL_UART_Receive_IT(&huart1, &rxData, 1);
 
+  init_esp8266();
+  test_uart();
 
   /* USER CODE END 2 */
 
@@ -181,14 +158,13 @@ int main(void)
 
     // 데이터 사용 후에 if문 내에서 'recv->recv_data'을 0으로 만들어주기
     if (recv.front == recv.rear) {
-//      recv.recv_data = 0;
 
-//    	printf("r->rear : 0x%02X \r\n",r->rear);
     }
     else{
     	dequeue_ring(&recv);
     }
-
+    HAL_Delay(10000);
+    test_uart();
 
 
   /* USER CODE END 3 */

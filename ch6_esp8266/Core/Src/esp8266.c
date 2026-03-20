@@ -22,17 +22,16 @@ void test_uart(void) {
   // char AT_Data[] = "AT+CIPSTART=\"TCP\",\"www.naver.com\",80 \r\n";
 
   //테스트 진행
-  // char AT_Data[] = "AT+CWLAP=\"book3\"\r\n";
+  char AT_Data[] = "AT+CWLAP=\"book3\"\r\n";
+  // char AT_Data[] = "AT+CWLAP\r\n";
+
 
   //성공예제
-  char AT_Data[] = "AT+CIFSR\r\n";
+  // char AT_Data[] = "AT+CIFSR\r\n";
 
-  // HAL_UART_Transmit(&hlpuart1, AT_Data, sizeof(AT_Data), 50);
-  // HAL_Delay(800);
-  // printf("size AT_Data : %d  \r\n", sizeof(AT_Data));
+
   HAL_UART_Transmit(&huart1, (uint8_t *)AT_Data, sizeof(AT_Data)-1, 50);
-  // HAL_UART_Transmit_IT(&huart1,AT_Data, sizeof(AT_Data));
-  
+
   
 }
 
@@ -135,57 +134,55 @@ void get_rxdata(queue *q,uint8_t rxdata,uint8_t count) {
   free(buff);
 }
 
+////////////////////////////////////////////
+
 // r->data = buf; 위치에 buf -> 주소형태로 써야함
 // 초기화 해주는 시점은? 시작부 or 지속적으로
-void init_ring(ring *r) {
-  uint8_t buf[100] = {0,};
-  uint8_t queue_buf[100] = {0,};
+void init_ring(ring *r,uint8_t buf_data[],uint8_t buf_q_data[]) {
+  
   r->rear = 0;
   r->front = 0;
   r->index = 0;
-  r->data = buf;
-  r->q_data = queue_buf;
+  r->data = buf_data;
+  r->q_data = buf_q_data;
   r->max_size = 100;
   r->recv_data = 0;
 }
 
-void enqueue_ring(ring *r,uint8_t rxdata) {
-  r->data[r->rear] = rxdata;
-  printf("r->rear : 0x%02X \r\n",r->rear);
-  printf("r->data[r->rear] : 0x%02X \r\n",r->data[r->rear]);
-  r->recv_data = r->data[r->rear];
-  r->recv_data = rxdata;
+void enqueue_ring(ring *r, uint8_t rxdata) {
 
+  // 이 코드만 개선 해보기 
+  r->data[r->rear] = rxdata;
+  
   // max_size 단위로 순환 -> 약 100개 
-  r->rear = ((r->rear)+1) % r->max_size;
+  r->rear = ((r->rear)+1) % (r->max_size);
 
 }
 
 void dequeue_ring(ring *r ) {
   // rear , front 다른 경우 출력
 
-  // 출력용 버퍼 대입 
-  r->q_data[r->index] = r->data[r->front];
+  while ((r->rear) != (r->front)) {
+    r->q_data[r->index] = r->data[r->front];
+    r->front=((r->front)+1) % (r->max_size);
 
-  // data -> q_data로 뽑아서 사용 
-  if (r->q_data[r->index]=='\n' || r->q_data[r->index] ==98 ) {
-    r->q_data[r->index + 1] = '\0';
-    HAL_UART_Transmit(&hlpuart1, r->q_data, strlen(r->q_data), 100);
+    // 출력용 버퍼 대입 
+    // data -> q_data로 뽑아서 사용 
+    if (r->q_data[r->index]=='\n' || r->index == r->max_size -2 ) {
+      r->q_data[r->index + 1] = '\0';
+      HAL_UART_Transmit(&hlpuart1, r->q_data, strlen(r->q_data), 100);
 
+      // r->q_data로 파싱 해보기 -> str 함수 사용하기
 
-    r->index =0;
+      r->index =0;
+    }
+    else{
+    r->index++;
+    }
+
   }
-  else{
-	r->index++;
-  }
+}
+
+bool is_ready(uint8_t data[]) {
   
-  if ((100 + r->rear - (r->front)) % 100) {
-    // /n에서 
-
-    r->front=((r->front)+1) % r->max_size;
-  }
-  else {
-    // 동일하면 +1만 안하는걸로!  
-    // r->front=((r->front)+1) % r->max_size;
-  }
 }
