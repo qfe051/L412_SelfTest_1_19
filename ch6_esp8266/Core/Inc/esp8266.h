@@ -20,13 +20,15 @@ typedef struct queue {
 } queue;
 
 typedef struct ring_buf {
-  int8_t rear;
-  int8_t front;
-  int8_t index;
+  uint8_t rear;
+  uint8_t front;
+  uint8_t index;
   uint8_t *data;
-  uint8_t *q_data;
+  uint8_t *recv_data;
+  uint8_t recv_cnt;
   uint8_t max_size;
-  uint8_t recv_data;
+  // uint8_t recv_data;
+  uint8_t *time_data;
 
 } ring;
 
@@ -34,8 +36,18 @@ typedef struct state {
   bool ready_state;
   bool wifi_state;
   bool parsing_state;
-
+  bool tcp_state;
 } state;
+
+typedef struct time {
+  uint8_t day;
+  uint8_t date;
+  uint8_t month;
+  uint8_t year;
+  uint8_t hour;
+  uint8_t min;
+  uint8_t sec;
+} time;
 
 
 
@@ -45,6 +57,10 @@ void init_data(uint8_t *index_in, uint8_t *index_out, uint8_t buff[]);
 void initQueue(queue *q, int size);
 void get_rxdata(queue *q, uint8_t rxdata, uint8_t count);
 
-void dequeue_ring(ring *r );
+uint8_t dequeue_ring(ring *r);
+
+void is_wifi_enable(ring *r, state *s);
+void is_ready(ring *r, state *s);
+void is_parsing_enable(ring *r, state *s);
 
 #endif

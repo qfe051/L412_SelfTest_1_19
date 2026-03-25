@@ -650,7 +650,7 @@ HAL_StatusTypeDef HAL_DMA_Abort_IT(DMA_HandleTypeDef *hdma)
     __HAL_UNLOCK(hdma);
 
     /* Call User Abort callback */
-    if (hdma->XferAbortCallback != NULL)
+     if (hdma->XferAbortCallback != NULL)
     {
       hdma->XferAbortCallback(hdma);
     }

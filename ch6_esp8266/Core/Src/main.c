@@ -93,10 +93,12 @@ static void MX_NVIC_Init(void);
 
 uint8_t rxData;
 uint8_t buf[100] = {0,};
-uint8_t queue_buf[100] = {0,};
+uint8_t recv_buf[100] = {0,};
+uint8_t time_buf[100] = {0,};
 
 ring recv;
 state state_esp8266;
+time time_esp8266;
 
 
 /* USER CODE END 0 */
@@ -140,7 +142,7 @@ int main(void)
 
   printf("LPUART printf test \r\n");
 
-  init_ring(&recv, buf, queue_buf);
+  init_ring(&recv, buf, recv_buf,time_buf);
   HAL_Delay(100);
   init_state(&state_esp8266);
   HAL_Delay(100);
@@ -153,7 +155,10 @@ int main(void)
   init_esp8266();
 
   // 초기 동작 시작
-  is_ready(&recv,&state_esp8266);
+  // 변경 함수로 다시 해보기 
+  //  is_ready(&recv, &state_esp8266);
+  //  is_wifi_enable(&recv, &state_esp8266);
+  //  is_parsing_enable(&recv, &state_esp8266);
   
 
   /* USER CODE END 2 */
@@ -164,16 +169,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-    // 데이터 사용 후에 if문 내에서 'recv->recv_data'을 0으로 만들어주기
-    if (recv.front == recv.rear) {
-
-    }
-    else{
-    	dequeue_ring(&recv);
-    }
-    HAL_Delay(10000);
     test_uart();
+    HAL_Delay(3000);
+    process_ring(&recv);
 
 
   /* USER CODE END 3 */
