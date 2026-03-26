@@ -117,7 +117,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+   HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -146,13 +146,12 @@ int main(void)
   HAL_Delay(100);
   init_state(&state_esp8266);
   HAL_Delay(100);
-  state_esp8266.ready_state = false;
-  HAL_Delay(100);
-
 
   HAL_UART_Receive_IT(&huart1, &rxData, 1);
 
   init_esp8266();
+
+  // restore_esp8266();
 
   // 초기 동작 시작
   // 변경 함수로 다시 해보기 
@@ -169,8 +168,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    test_uart();
-    HAL_Delay(3000);
+//    test_uart();
+   set_state(&recv);
+//    HAL_Delay(1000);
     process_ring(&recv);
 
 

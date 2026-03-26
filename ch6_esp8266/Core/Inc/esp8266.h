@@ -27,8 +27,10 @@ typedef struct ring_buf {
   uint8_t *recv_data;
   uint8_t recv_cnt;
   uint8_t max_size;
-  // uint8_t recv_data;
   uint8_t *time_data;
+  uint8_t bootstep;
+  uint8_t error_cnt;
+  uint8_t error_cnt_max;
 
 } ring;
 
@@ -48,6 +50,31 @@ typedef struct time {
   uint8_t min;
   uint8_t sec;
 } time;
+
+// 모든 단계를 send, wait로 나눠보기
+// enum ready_state_old {
+//   ESP8266_READY = 0,
+//   ESP8266_GET_WIFI,
+//   ESP8266_PARSE,
+//   ESP8266_WAIT_TCP,
+//   ESP8266_TCP,
+//   ESP8266_GET_TIME,
+//   ESP8266_ERROR
+// };
+
+enum ready_state {
+  ESP8266_READY_SEND = 0,
+  ESP8266_READY_WAIT,
+  ESP8266_WIFI_SEND,
+  ESP8266_WIFI_WAIT,
+  ESP8266_CIPSTART_SEND,
+  ESP8266_CIPSTART_WAIT,
+  ESP8266_CIPSEND_SEND,
+  ESP8266_CIPSEND_WAIT,
+  ESP8266_TCP_NAVER,
+  ESP8266_GET_TIME,
+  ESP8266_ERROR
+};
 
 
 
