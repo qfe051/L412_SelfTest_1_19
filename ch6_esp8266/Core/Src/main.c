@@ -151,7 +151,7 @@ int main(void)
 
   init_esp8266();
 
-  // restore_esp8266();
+//   restore_esp8266();
 
   // 초기 동작 시작
   // 변경 함수로 다시 해보기 
@@ -168,9 +168,9 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//    test_uart();
+    test_uart();
    set_state(&recv);
-//    HAL_Delay(1000);
+    HAL_Delay(1000);
     process_ring(&recv);
 
 
