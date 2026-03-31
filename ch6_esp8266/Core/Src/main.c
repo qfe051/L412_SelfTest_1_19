@@ -169,8 +169,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     test_uart();
-   set_state(&recv);
-    HAL_Delay(1000);
+    // state에 따라, AT 명령어 사용할지 여부 결정
+    set_state(&recv);
+    // 길게 주면 데이터 넘침 -> buf 크기는 정해져있음
+    HAL_Delay(1);
+    // state에 따라, 보냐준 AT 명령어 사용하기 
     process_ring(&recv);
 
 

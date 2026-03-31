@@ -137,7 +137,7 @@ void init_ring(ring *r,uint8_t buf_data[],uint8_t buf_recv_data[],uint8_t buf_ti
   r->time_data = buf_time;
   r->bootstep = ESP8266_READY_SEND;
   r->error_cnt = 0;
-  r->error_cnt_max = 5;
+  r->error_cnt_max = 10000;
 }
 
 // void enqueue_ring(ring *r, uint8_t rxdata) {
