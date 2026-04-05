@@ -18,10 +18,11 @@ typedef struct ring {
 // 함수 정의
 static void init_ring(ring_st *r,uint8_t *pbuffer ,uint8_t buffer_size);
 static bool enqueue(ring_st *r,uint8_t rxdata);
+static bool enqueue_overwrite(ring_st *r, uint8_t rxdata);
 static bool is_full(ring_st *r);
-static uint8_t dequeue(ring_st *r);
+static bool dequeue(ring_st *r, uint8_t *output_data);
 static bool is_empty(ring_st *r);
-static bool get_ring_data(ring_st *r, uint8_t *pbuffer);
+static bool get_ring_data(ring_st *r,uint8_t *pbuffer,uint8_t *output_data);
 static void ring_status(ring_st *r);
 static bool print_temp_data(uint8_t *pbuffer);
 
@@ -31,6 +32,7 @@ uint8_t buf_1[BUFFER_SIZE_1];
 uint8_t buf_2[BUFFER_SIZE_2];
 
 uint8_t buf_data_1[BUFFER_SIZE_1];
+uint8_t dequeue_data = 0;
 
 
 
@@ -45,22 +47,46 @@ int main() {
 
   init_ring(&ring_1, buf_1, BUFFER_SIZE_1);
 
-  enqueue(&ring_1, 10);
-  enqueue(&ring_1, 20);
-  enqueue(&ring_1, 30);
+  enqueue_overwrite(&ring_1, 10);
+  enqueue_overwrite(&ring_1, 20);
+  enqueue_overwrite(&ring_1, 30);
 
-  get_ring_data(&ring_1, buf_data_1);
+  //dequeue 이전
+  printf("[Before] dequeue \n");
+  ring_status(&ring_1);
+  get_ring_data(&ring_1, buf_data_1,&dequeue_data);
   print_temp_data(buf_data_1);
 
-  // dequeue 함수 따로 만들기 
-  uint8_t temp;
-  temp = dequeue(&ring_1);
 
+  enqueue_overwrite(&ring_1, 40);
+  enqueue_overwrite(&ring_1, 50);
+  enqueue_overwrite(&ring_1, 60);
+  enqueue_overwrite(&ring_1, 70);
+
+  //dequeue 이전
+  printf("[Before] dequeue \n");
+  ring_status(&ring_1);
+  get_ring_data(&ring_1, buf_data_1,&dequeue_data);
+  print_temp_data(buf_data_1);    
 
 
   //  case2) overflow -> 7개 한번에
   printf("case 2) \n");
+
+  enqueue_overwrite(&ring_1, 10);
+  enqueue_overwrite(&ring_1, 20);
+  enqueue_overwrite(&ring_1, 30);
+  enqueue_overwrite(&ring_1, 40);
+  enqueue_overwrite(&ring_1, 50);
+  enqueue_overwrite(&ring_1, 60);
+  enqueue_overwrite(&ring_1, 70);
   
+  //dequeue 이전
+  printf("[Before] dequeue \n");
+  ring_status(&ring_1);
+  get_ring_data(&ring_1, buf_data_1,&dequeue_data);
+  print_temp_data(buf_data_1);
+
 
 }
 
@@ -115,36 +141,36 @@ bool is_empty(ring_st *r) {
   }
 }
 
-uint8_t dequeue(ring_st *r) {
+// 교재에서는 0으로 반환, 하지만 예외처리 필요
+bool dequeue(ring_st *r, uint8_t *output_data) {
   if (is_empty(r)) {
     return false;
   }
-  uint8_t output_data = r->buffer[r->front];
+  *output_data = r->buffer[r->front];
   r->front = (r->front +1)% (r->size);
 
-  return output_data;
+  return true;
 }
 
 // 데이터 쌓기용으로 만들기
-bool get_ring_data(ring_st *r,uint8_t *pbuffer) {
+bool get_ring_data(ring_st *r,uint8_t *pbuffer,uint8_t *output_data) {
 
     for (int i=0; i<BUFFER_SIZE_1; i++) {
         pbuffer[i]=0;
     }
-  
 
   if (is_empty(r)) {
     printf("ring buffer is empty \n");
     return false;
   }
 
-
-
-  printf("buf data :");
   // while문 안에 for문. 써도 괜찮은 스타일인지 확인하기 
   while (!is_empty(r)) {
     for (int i=0; i<BUFFER_SIZE_1; i++) {
-        pbuffer[i]=dequeue(r);
+        if (dequeue(r,output_data))
+        {
+          pbuffer[i]=*output_data;
+        }
     }
   }
 
@@ -153,12 +179,14 @@ bool get_ring_data(ring_st *r,uint8_t *pbuffer) {
          r->rear);
 
   printf("\n --------------------------------------------------- \n");
+
+  return true;
 }
 
 void ring_status(ring_st *r) {
-  printf("[Before]buffer state : size %d | front: %d |rear %d \n", r->size,
+  printf("[]buffer state : size %d | front: %d |rear %d \n", r->size,
          r->front, r->rear);
-  printf("\n --------------------------------------------------- \n");
+  // printf("\n --------------------------------------------------- \n");
 }
 
 bool print_temp_data(uint8_t *pbuffer) {
@@ -168,16 +196,15 @@ bool print_temp_data(uint8_t *pbuffer) {
       return false;
     }
   
-    printf("temp buff data : ");
+  printf("temp buff data : ");
 
   for (int i = 0; i < BUFFER_SIZE_1; i++) {
     if (pbuffer[i] == 0) {
       printf("\n");
+      printf("\n --------------------------------------------------- \n");
         return true;
     }
     printf("%d ",pbuffer[i]);
   }
-
-  printf("\n");
-  return true;
+  // return true;
 }
