@@ -73,6 +73,8 @@ int main() {
   //  case2) overflow -> 7개 한번에
   printf("case 2) \n");
 
+  init_ring(&ring_1, buf_1, BUFFER_SIZE_1);
+
   enqueue_overwrite(&ring_1, 10);
   enqueue_overwrite(&ring_1, 20);
   enqueue_overwrite(&ring_1, 30);
@@ -186,7 +188,6 @@ bool get_ring_data(ring_st *r,uint8_t *pbuffer,uint8_t *output_data) {
 void ring_status(ring_st *r) {
   printf("[]buffer state : size %d | front: %d |rear %d \n", r->size,
          r->front, r->rear);
-  // printf("\n --------------------------------------------------- \n");
 }
 
 bool print_temp_data(uint8_t *pbuffer) {
