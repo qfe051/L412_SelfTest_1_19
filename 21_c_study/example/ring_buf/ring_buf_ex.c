@@ -126,20 +126,20 @@ bool enqueue(ring_st *r, uint8_t rxdata) {
 bool is_full(ring_st *r) {
   if (r->front == (r->rear + 1) % (r->size)) {
     printf("ring buffer is full \n");
-    return 1;
+    return true;
   }
   else {
-    return 0;
+    return false;
   }
 }
 
 // front가 rear 따라 잡아 동일한 상황
 bool is_empty(ring_st *r) {
     if (r->front == r->rear) {
-    return 1;
+    return true;
   }
   else {
-    return 0;
+    return false;
   }
 }
 

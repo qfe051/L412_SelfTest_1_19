@@ -89,12 +89,14 @@ static void MX_NVIC_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 #define BUF_SIZE 100
+// #define WAIT_TIME 1000
 
 
 uint8_t rxData;
 uint8_t buf[100] = {0,};
 uint8_t recv_buf[100] = {0,};
 uint8_t time_buf[100] = {0,};
+// uint32_t tickstart_esp = 0;
 
 ring recv;
 state state_esp8266;
@@ -168,11 +170,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    // test_uart();
+//     test_uart();
     // state에 따라, AT 명령어 사용할지 여부 결정
     set_state(&recv);
     // 길게 주면 데이터 넘침 -> buf 크기는 정해져있음
-    HAL_Delay(300);
+//    HAL_Delay(30);
     // state에 따라, 보냐준 AT 명령어 사용하기 
     process_ring(&recv);
 

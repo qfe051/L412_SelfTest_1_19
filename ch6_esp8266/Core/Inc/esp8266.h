@@ -85,9 +85,12 @@ void initQueue(queue *q, int size);
 void get_rxdata(queue *q, uint8_t rxdata, uint8_t count);
 
 uint8_t dequeue_ring(ring *r);
+void enqueue_ring(ring *r, uint8_t input_data);
 
 void is_wifi_enable(ring *r, state *s);
 void is_ready(ring *r, state *s);
 void is_parsing_enable(ring *r, state *s);
+
+
 
 #endif
