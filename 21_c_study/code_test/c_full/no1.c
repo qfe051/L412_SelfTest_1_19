@@ -22,102 +22,134 @@
 #include <string.h>
 
 // 배열 대신, 포인터로 선언하기
-typedef struct {
+typedef struct Student{
   char *name;
   char *major;
-  int GPA;
+  uint8_t GPA;
+  struct Student *next;
 } Student;
 
-Student * set_student(char *temp_name, char *temp_major, int *temp_GPA, int *number){
+Student *set_student(char *temp_name, char *temp_major, int temp_GPA){
   Student *s =malloc(sizeof(Student));
+  if (s==NULL){
+    printf("Student malloc failed\n");
+    return NULL;
+  }
 
-  s+number->name = malloc((strlen(temp_name)+1)*sizeof(char));
-  s+number->name = temp_name;
+  // 이름 넣기
+  s->name = malloc(strlen(temp_name)+1);
+  if (s->name==NULL){
+    printf("s->name malloc failed\n");
+    free(s);
+    return NULL;
+  }
 
+  // 전공 넣기
+  s->major = malloc(strlen(temp_major)+1);
+  if (s->major==NULL){
+    printf("s->major malloc failed\n");
+    free(s);
+    free(s->name);
+    return NULL;
+  }
 
-  s+number->major = malloc((strlen(temp_major)+1)*sizeof(char));
-  s+number->major = temp_major;
+  strcpy(s->name,temp_name);
+  strcpy(s->major,temp_major);
+  s->GPA = temp_GPA;
+  s->next = NULL;
 
-  s->GPA = *temp_GPA;
+  return s;
+}
+
+void append_student(Student **head, Student *s){
+  if(s==NULL){
+    return;
+  }
+  if(*head==NULL){
+    *head=s;
+    return;
+  }
+
+  Student *cur = *head;
+  while (cur->next !=NULL){
+    cur = cur ->next;
+  }
+  //새로운 구조체 추가
+  cur->next = s;
 
 }
 
+void print_student(const Student *head){
+  //const 사용 이유
+  const Student *cur = head;
+
+  while (cur !=NULL){
+    printf("name: %s \n",cur->name);
+    printf("major: %s \n",cur->major);
+    printf("GPA: %d \n",cur->GPA);
+
+    // next로 이동
+    cur=cur->next;
+  }
+}
+
+
+//free 과정 다시보기 
+void free_all(Student **head){
+  Student *cur = *head;
+  while (cur !=NULL){
+    Student *next = cur->next;
+
+    free(cur->name);
+    free(cur->major);
+
+    free(cur);
+
+    cur = next;
+  }
+  *head = NULL;
+}
+
+
 int main() {
-  int n;
-  int tmp_1,tmp_2 = 0; 
-  printf("number of student : ");
-  scanf("%d", &n);
-
-  // Student *s = malloc(n*sizeof(Student));
-
-  for (int i = 0; i < n; i++)
+  //초기에는 head 값 없음
+  Student *head = NULL;
+  
+  while (1)
   {
-    char temp_name;
-    char temp_major;
-    int temp_GPA;
-    bool state = true;
+    uint8_t type_input=0; 
+    char temp_name[20];
+    char temp_major[20];
+    uint8_t temp_GPA;
 
-    // s[i]= malloc(n * sizeof(Student));
+   printf("type : 1 - add stdent, type others : exit \n");
+   scanf("%d",&type_input);
+   if(type_input==1){
+    printf("type name : ");
+    scanf("%s",temp_name);
 
-    printf("type student[%d] 's name : ", i);
-    scanf("%19s", &temp_name);
-    // (*s[i]).name = malloc((strlen(temp_name)+1)*sizeof(char));
+    printf("type major : ");
+    scanf("%s",temp_major);
 
-    printf("type student[%d] 's major : ", i);
-    scanf("%19s", &temp_major);
+    printf("type GPA : ");
+    scanf("%d",temp_GPA);
 
-    printf("type student[%d] 's GPA : ", i);
-    scanf("%d", &temp_GPA);
+    printf("name : %s , major : %s , GPA : %d \n",temp_name,temp_major,temp_GPA);
 
-    set_student(&temp_name,&temp_major,&temp_GPA,&i);
+    Student *s_1 = set_student(temp_name,temp_major,temp_GPA);
 
-    printf("student[%d] Complete  \n", i);
+    //append 함수 내에 정렬까지 추가하기
+    append_student(&head,s_1);
 
-    if (state==false) {
-      printf("program is done \n");
 
-      return 0;
-    }
+    print_student(head);
+
+
+   }
+   else{
+    return 0;
+   }
+    
   }
   
-
-
-
-  // for (int i = 0; i < n-1; i++) {
-  //   // 큰 값을 n+1로 이동
-  //   if (s[i].GPA>s[i+1].GPA) {
-  //     tmp_1 = s[i].GPA;
-  //     s[i].GPA = s[i + 1].GPA;
-  //     s[i+1].GPA = tmp_1;
-  //   }
-
-  //   for (int j = 0; j < n-1; j++) {
-  //     if (s[j].GPA>s[j+1].GPA) {
-  //     tmp_2 = s[j].GPA;
-  //     s[j].GPA = s[j + 1].GPA;
-  //     s[j+1].GPA = tmp_2;
-  //   }
-  //   }
-
-    
-  // }
-
-
-
-
-  
-  // // [디버깅 틀] 정렬 결과 출력
-  // printf("--- result --- \n");
-  // for (int i = 0; i < n; i++) {
-  //   /* printf("%s(%d)", ...); */
-  //   printf("student[%d] 's name : %s \n", i, s[i].name);
-  //   printf("student[%d] 's major : %s \n", i, s[i].major);
-  //   printf("student[%d] 's GPA : %d \n", i,s[i].GPA);
-
-
-  // }
-  // 4. free 필수
-  // free(s);
-
-  return 0;
 }
