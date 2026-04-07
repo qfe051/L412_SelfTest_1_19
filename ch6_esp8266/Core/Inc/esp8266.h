@@ -8,8 +8,6 @@
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef hlpuart1;
 
-void test_uart(void);
-void init_esp8266(void);
 
 typedef struct queue {
 //   uint8_t rear;
@@ -90,6 +88,10 @@ void enqueue_ring(ring *r, uint8_t input_data);
 void is_wifi_enable(ring *r, state *s);
 void is_ready(ring *r, state *s);
 void is_parsing_enable(ring *r, state *s);
+
+void test_uart(void);
+void init_esp8266(void);
+void process_ring(ring *r, time *t);
 
 
 

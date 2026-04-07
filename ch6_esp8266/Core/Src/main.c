@@ -176,7 +176,7 @@ int main(void)
     // 길게 주면 데이터 넘침 -> buf 크기는 정해져있음
 //    HAL_Delay(30);
     // state에 따라, 보냐준 AT 명령어 사용하기 
-    process_ring(&recv);
+    process_ring(&recv,&time_esp8266);
 
 
   /* USER CODE END 3 */
