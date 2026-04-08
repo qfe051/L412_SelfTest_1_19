@@ -39,11 +39,12 @@ typedef struct state {
   bool tcp_state;
 } state;
 
+// uint8_t -> uint32_t로 저장 주소값 저장 목적
 typedef struct time {
-  uint8_t day;
+  char day[5];
   uint8_t date;
-  uint8_t month;
-  uint8_t year;
+  char month[5];
+  uint32_t year;
   uint8_t hour;
   uint8_t min;
   uint8_t sec;

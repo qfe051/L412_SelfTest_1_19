@@ -20,6 +20,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
 // 배열 대신, 포인터로 선언하기
 typedef struct Student{
@@ -61,20 +62,26 @@ Student *set_student(char *temp_name, char *temp_major, int temp_GPA){
   return s;
 }
 
+// 오류 지점. 출력 후에 성적순 포인터 기반 정렬 하기 
+// 현재 상태로 동작 멈춤 -> 동작 가능하도록 생각해보기
 void append_student(Student **head, Student *s){
-  if(s==NULL){
+  if (s == NULL) {
+    printf("set_student is NULL \n");
     return;
   }
-  if(*head==NULL){
+  //*head가 NULL일 때 동작 확인
+  if (*head == NULL) {
+    printf("*head is NULL \n");
     *head=s;
     return;
   }
 
   Student *cur = *head;
+  // cur이 1칸씩 next로 이동
   while (cur->next !=NULL){
     cur = cur ->next;
   }
-  //새로운 구조체 추가
+  //새로운 구조체 추가 -> next에 저장된 구조체를 새로운 구조체로
   cur->next = s;
 
 }
@@ -110,21 +117,26 @@ void free_all(Student **head){
   *head = NULL;
 }
 
-
 int main() {
   //초기에는 head 값 없음
   Student *head = NULL;
-  
+
   while (1)
   {
-    uint8_t type_input=0; 
+    uint8_t type_input = 0;
     char temp_name[20];
     char temp_major[20];
     uint8_t temp_GPA;
 
-   printf("type : 1 - add stdent, type others : exit \n");
-   scanf("%d",&type_input);
-   if(type_input==1){
+
+   printf("type (1) : add student, type others : exit \n");
+   scanf("%d", &type_input);
+
+   if (type_input == 1) {
+     
+   
+
+
     printf("type name : ");
     scanf("%s",temp_name);
 
@@ -132,21 +144,21 @@ int main() {
     scanf("%s",temp_major);
 
     printf("type GPA : ");
-    scanf("%d",temp_GPA);
+    scanf("%d",&temp_GPA);
 
     printf("name : %s , major : %s , GPA : %d \n",temp_name,temp_major,temp_GPA);
 
     Student *s_1 = set_student(temp_name,temp_major,temp_GPA);
 
+    printf("append_student \n ");
     //append 함수 내에 정렬까지 추가하기
     append_student(&head,s_1);
 
-
+    printf("print_student \n ");
     print_student(head);
-
-
    }
-   else{
+   else {
+    free_all(&head);
     return 0;
    }
     

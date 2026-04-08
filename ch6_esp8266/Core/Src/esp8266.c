@@ -3,12 +3,15 @@
 #include <stdint.h>
 
 #define WAIT_TIME 5000
+#define WAIT_TIME_DISPLAY 1000
 
 uint32_t tickstart_esp = 0;
+uint32_t tickstart_display = 0;
 // flag 사용 어떻게 할지 생각해보기=
 
 static void restart_esp8266(ring *r, state *s);
 static void get_state(ring *r, time *t);
+static uint32_t wait_time_for_display(uint32_t tickstart);
 static uint32_t wait_time_ms(uint32_t tickstart);
 static bool time_parsing(uint8_t *buffer_data, time *t);
 
@@ -313,25 +316,81 @@ uint32_t wait_time_ms(uint32_t tickstart) {
   return wait_time;
 }
 
+uint32_t wait_time_for_display(uint32_t tickstart) {
+  uint32_t wait_time = HAL_GetTick() - tickstart;
+
+  return wait_time;
+}
+
 // 파싱할 데이터 넣기, 시간 데이터용 구조체 |
 bool time_parsing(uint8_t *buffer_data, time *t) {
 
   printf("parsing data : \r\n");
   //버리는 데이터 - 1번째 
   char *ptr = strtok(buffer_data,":, ");
-  // 구조체 내용 배열로 -> 고정된 출력값을 세팅
-  uint32_t time_member[7] = {t->date,t->day,t->month,t->year,t->hour,t->min,t->sec};
 
 
-  for (int i=0; i<7; i++) {
-    time_member[i] = strtok(NULL, ":, ");
-    printf("%s \r\n",time_member[i]);
-  }
+
+  // ptr로 순서대로 대입하기
+  // t->date
+  strcpy(t->day, strtok(NULL, ":, "));
+  t->date = atoi(strtok(NULL, ":, "));
+  strcpy(t->month, strtok(NULL, ":, "));
+  t->year = atoi(strtok(NULL, ":, "));
+  t->hour = atoi(strtok(NULL, ":, "));
+  t->min = atoi(strtok(NULL, ":, "));
+  t->sec = atoi(strtok(NULL, ":, "));
+
+  // 출력
+   printf("t->day %s \r\n", t->day);
+  printf("t->date %d \r\n", t->date);
+  printf("t->month %s \r\n", t->month);
+  printf("t->year %d \r\n", t->year);
+  printf("t->hour %d \r\n", t->hour);
+  printf("t->min %d \r\n", t->min);
+  printf("t->sec %d \r\n", t->sec);
+  
 
   // while (ptr != NULL) {
   //   printf("%s \r\n", ptr);
   //   ptr = strtok(NULL,":, ");
   // }
-
-  
 }
+
+bool display_time(time *t) {
+  // 예외처리
+  if (t==NULL) {
+    printf("Time data is NULL  \r\n");
+    return false;
+  }
+  // 한국 시간으로 업데이트
+  // t->hour = t->hour + 9;
+  // if (t->hour>23) {
+  //   t->hour = t->hour % 24;
+  //   // date 업데이트
+  //   t->date = t->date + 1;
+
+  //   // 월별 처리 알고리즘 작성하기 
+  //   if (t->date>=28) {
+    
+  //   }
+  // }
+
+  if (wait_time_for_display(tickstart_display)>=WAIT_TIME_DISPLAY) {
+    // 출력
+  printf("date : %d.%d.%d  (%s) \r\n", t->year, t->month, t->date, t->day);
+  printf("time : %d:%d:%d \r\n", t->hour, t->min, t->sec);
+  }
+
+  tickstart_display = HAL_GetTick();
+}
+
+// 2차 과제 함수 작성
+
+// 이번에는 return으로 문자열 반환 해보기
+
+void process_ring_html(ring *r);
+
+// get set 했던 것들 한번에 처리하는  함수 만들기
+// AP 설정, client 대기(connection 메시지 처리)
+void sequence_html(ring *r)
