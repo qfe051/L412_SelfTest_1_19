@@ -1,0 +1,5 @@
+#include <stdio.h>
+#include <string.h>
+
+char app[] = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n Connection: close\r\n\r\n<html>\r\n<body>\r\n<h1>ESP8266 LED Control</h1>\r\n<a href="/led/on"><button>LED ON</button></a>\r\n<a href="/led/off"><button>LED OFF</button></a>\r\n</body>\r\n</html>\r\n";
+printf("%d \n",strlen(app));

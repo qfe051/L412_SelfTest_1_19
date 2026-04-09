@@ -21,10 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <stdint.h>
 #include <string.h>
-#include <stdbool.h>
-#include "esp8266.h"
 
 /* USER CODE END Includes */
 
@@ -50,7 +47,18 @@ UART_HandleTypeDef huart1;
 /* USER CODE BEGIN PV */
 
 
+// uint8_t rxCount=0;
+// // 자를 용도로 가져옴
+// uint8_t ESP8266_RecvBuff[100] = {0};
+// uint8_t ESP8266_DataBuff[100] = {0};
 
+// uint16_t ESP8266_RecvCount = 0;
+
+
+
+
+
+// uint8_t buf1_print_flag = 0;
 
 
 
@@ -58,8 +66,7 @@ UART_HandleTypeDef huart1;
 int _write(int file, char *ptr, int len) {
 
   //(void)file;
-  HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, 100);
-  // HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
+  HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
   return len;
   
 }
@@ -77,20 +84,13 @@ static void MX_NVIC_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#define BUF_SIZE 100
-
-
-
-uint8_t rxData;
-uint8_t buf[100] = {0,};
-uint8_t recv_buf[100] = {0,};
-uint8_t time_buf[100] = {0,};
-// uint32_t tickstart_esp = 0;
-
-ring recv;
-state state_esp8266;
-time time_esp8266;
-
+#define RXBUFF_SIZE 100
+uint8_t Rxbuff0[RXBUFF_SIZE];
+uint8_t Rxbuff1[RXBUFF_SIZE];
+uint8_t RxIndex;
+uint8_t RxCompleteFlag;
+uint8_t RxSelectIndex;
+uint8_t RxData;
 
 /* USER CODE END 0 */
 
@@ -108,7 +108,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-   HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -117,8 +117,7 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */  // r->q_data[r->index] = r->data[r->front];
-
+  /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
 
@@ -130,48 +129,35 @@ int main(void)
   /* Initialize interrupts */
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
+  RxSelectIndex = 0;
+  RxCompleteFlag = 0;
+  RxIndex = 0;
+  HAL_UART_Receive_IT(&huart1, &RxData, 1); 
 
-  printf("LPUART printf test \r\n");
-
-  init_ring(&recv, buf, recv_buf,time_buf);
-  HAL_Delay(100);
-  init_state(&state_esp8266);
-  HAL_Delay(100);
-
-  HAL_UART_Receive_IT(&huart1, &rxData, 1);
-
-  init_esp8266();
-
-//   restore_esp8266();
-
-  // 초기 동작 시작
-  // 변경 함수로 다시 해보기 
-  //  is_ready(&recv, &state_esp8266);
-  //  is_wifi_enable(&recv, &state_esp8266);
-  //  is_parsing_enable(&recv, &state_esp8266);
-  
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1){
+  while (1) {
+    if(RxCompleteFlag == 1) {
+      uint8_t* pTransmitBuff;
+      RxCompleteFlag = 0;
+      if(RxSelectIndex == 0)
+        pTransmitBuff = Rxbuff1;
+      else 
+        pTransmitBuff = Rxbuff0;
+
+      HAL_UART_Transmit(&hlpuart1, pTransmitBuff, strlen(pTransmitBuff),100);
+
+      // printf("print : %s \r\n",pTransmitBuff);
+    }
     /* USER CODE END WHILE */
 
-    /* USER CODE BEGIN 3 */
-//     test_uart();
-    // state에 따라, AT 명령어 사용할지 여부 결정
-    set_state(&recv);
-    // 길게 주면 데이터 넘침 -> buf 크기는 정해져있음
-//    HAL_Delay(30);
-    // state에 따라, 보냐준 AT 명령어 사용하기
-    process_ring(&recv, &time_esp8266);
-
     
-    display_time(&time_esp8266);
-
-  /* USER CODE END 3 */
+    /* USER CODE BEGIN 3 */
   }
+  /* USER CODE END 3 */
 }
 
 /**
@@ -361,11 +347,30 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
   if (huart->Instance == USART1) {
-    // rx 데이터 존재하는 상태
-
-    enqueue_ring(&recv,rxData);
-
-    HAL_UART_Receive_IT(&huart1, &rxData, 1);
+    // HAL_UART_Receive_IT(&huart1, &rxData, 1);
+    // 2개의 buf로 처리
+    if(RxSelectIndex == 0) {
+      Rxbuff0[RxIndex] = RxData;
+      if((Rxbuff0[RxIndex] == 0x0D) || RxIndex == (RXBUFF_SIZE - 1)) {
+        Rxbuff0[RxIndex] = '\0';
+        RxCompleteFlag = 1;      
+        RxSelectIndex = !RxSelectIndex;      
+        RxIndex = 0;
+      } else {
+        RxIndex++;
+      }
+    } else {      
+      Rxbuff1[RxIndex] = RxData;
+      if((Rxbuff1[RxIndex] == 0x0D) || RxIndex == (RXBUFF_SIZE - 1)) {
+        Rxbuff1[RxIndex] = '\0';
+        RxCompleteFlag = 1;      
+        RxSelectIndex = !RxSelectIndex;      
+        RxIndex = 0;
+      } else {
+        RxIndex++;
+      }
+    }
+    HAL_UART_Receive_IT(&huart1, &RxData, 1);
   }
 }
 /* USER CODE END 4 */

@@ -16,18 +16,27 @@ typedef struct queue {
 
 } queue;
 
+// typedef struct ring_buf {
+//   uint8_t rear;
+//   uint8_t front;
+//   uint8_t index;
+//   uint8_t *data;
+//   uint8_t *recv_data;
+//   uint8_t recv_cnt;
+//   uint8_t max_size;
+//   uint8_t *time_data;
+//   uint8_t bootstep;
+//   uint8_t error_cnt;
+//   uint8_t error_cnt_max;
+
+// } ring;
+
 typedef struct ring_buf {
   uint8_t rear;
   uint8_t front;
-  uint8_t index;
   uint8_t *data;
-  uint8_t *recv_data;
   uint8_t recv_cnt;
   uint8_t max_size;
-  uint8_t *time_data;
-  uint8_t bootstep;
-  uint8_t error_cnt;
-  uint8_t error_cnt_max;
 
 } ring;
 
@@ -37,6 +46,11 @@ typedef struct state {
   bool parsing_state;
   bool tcp_state;
 } state;
+
+typedef struct status {
+  uint8_t server_status;
+  uint8_t d_connect_status;
+} status;
 
 // uint8_t -> uint32_t로 저장 주소값 저장 목적
 typedef struct time {
@@ -60,6 +74,7 @@ typedef struct time {
 //   ESP8266_ERROR
 // };
 
+/*
 enum ready_state {
   ESP8266_READY_SEND = 0,
   ESP8266_READY_WAIT,
@@ -73,7 +88,29 @@ enum ready_state {
   ESP8266_GET_TIME,
   ESP8266_ERROR
 };
+*/
 
+enum set_up_state {
+  ESP8266_READY_SEND = 0,
+  ESP8266_READY_WAIT,
+  ESP8266_CWMODE_SEND,
+  ESP8266_CWMODE_WAIT,
+  ESP8266_CIPMUX_SEND,
+  ESP8266_CIPMUX_WAIT,
+  ESP8266_CIPSERVER_SEND,
+  ESP8266_CIPSERVER_WAIT
+};
+
+// 별도 함수에서 사용 예정이므로 0에서 시작
+enum connect_device_state {
+  ESP8266_DEVICE_WAIT = 0,
+  ESP8266_D_CIPSEND_SEND,
+  ESP8266_D_CIPSEND_WAIT,
+  ESP8266_HTML_SEND,
+  ESP8266_HTML_WAIT,
+  ESP8266_BUTTON_WAIT
+
+};
 
 
 void print_data(uint8_t *index_in, uint8_t *index_out, 

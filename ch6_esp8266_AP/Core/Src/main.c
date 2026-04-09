@@ -133,10 +133,8 @@ int main(void)
 
   printf("LPUART printf test \r\n");
 
-  init_ring(&recv, buf, recv_buf,time_buf);
-  HAL_Delay(100);
-  init_state(&state_esp8266);
-  HAL_Delay(100);
+  init_ring(&recv, buf);
+
 
   HAL_UART_Receive_IT(&huart1, &rxData, 1);
 
@@ -159,16 +157,11 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-//     test_uart();
-    // state에 따라, AT 명령어 사용할지 여부 결정
-    set_state(&recv);
-    // 길게 주면 데이터 넘침 -> buf 크기는 정해져있음
-//    HAL_Delay(30);
-    // state에 따라, 보냐준 AT 명령어 사용하기
-    process_ring(&recv, &time_esp8266);
+    test_uart();
+    process_ring_html(&recv,recv_buf);
+    sequence_html(&recv,recv_buf);
 
-    
-    display_time(&time_esp8266);
+    HAL_Delay(500);
 
   /* USER CODE END 3 */
   }
