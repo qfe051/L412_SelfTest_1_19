@@ -26,7 +26,7 @@ const char *ATE1 = "ATE1\r\n";
 const char *AT_RESET = "AT+RST\r\n";
 const char *AT_SET_WIFI = "AT+CWJAP=\"book3\"\,\"22222222\"\r\n";
 const char *AT_WEB = "AT+CIPSTART=\"TCP\",\"www.naver.com\",80\r\n";
-const char *AT_TCP_CMD = "AT+CIPSEND=39\r\n";
+const char *AT_TCP_CMD = "AT+CIPSEND=0,771\r\n";
 const char *AT_GET_HTML = "GET / HTTP/1.1\r\nHost: www.naver.com\r\n\r\n";
 const char *AT_RESTORE = "AT+RESTORE\r\n";
 const char *AT_SEARCH_WIFI = "AT+CWLAP\r\n";
@@ -42,13 +42,37 @@ const char *APPLY_AT_WEB_2 = "ALREADY CONNECTED\r\n";
 const char *APPLY_AT_TCP_CMD = "OK\r\n";
 const char *APPLY_AT_TCP_NOT_VALID = "link is not valid\r\n";
 
+// 파싱으로 업그레이드 하기
+const char *AT_LED_OFF = "+IPD,1,480:GET /led/off HTTP/1.1\r\n";
+const char *AT_LED_ON = "+IPD,1,479:GET /led/on HTTP/1.1\r\n";
 
+// device 관련 명령어
+const char *AT_HTML =
+    "HTTP/1.1 200 OK\r\n"
+    "Content-Type: text/html\r\n"
+    "Connection: close\r\n"
+    "\r\n"
+    "<html>\r\n"
+    "  <body>\r\n"
+    "    <h1>ESP8266 LED Control</h1>\r\n"
+    "    <a href=\"/led/on\"><button>LED ON</button></a>\r\n"
+    "    <a href=\"/led/off\"><button>LED OFF</button></a>\r\n"
+    "  </body>\r\n"
+    "</html>\r\n";
 
-void init_esp8266(void) {
+const char *AT_D_CIPSEND = "AT+CIPSEND=0,239\r\n";
+
+void enable_esp8266_echo(void) {
 
   //echo 없음
   // char AT_Data[] = "ATE1\r\n";
   HAL_UART_Transmit(&huart1, ATE1, sizeof(ATE1)-1, 50);
+}
+
+// 임시 문자열 구하기 함수 -> send 위함
+print_html_strlen(void) {
+  printf("strlen(AT_HTML) : %d \r\n", strlen(AT_HTML));
+  printf("sizeof(AT_HTML) : %d \r\n", sizeof(AT_HTML));
 }
 
 // ring에 해당하는 것 빼고 다 넘기기 -> 다른 구조체 만들어서 분할
@@ -56,13 +80,17 @@ void init_esp8266(void) {
 // r->data = buf; 위치에 buf -> 주소형태로 써야함
 // 초기화 해주는 시점은? 시작부 or 지속적으로
 // uint8_t buf_recv_data[] -> process로 이동
-void init_ring(ring *r,uint8_t buf_data[]) {
-  
+void init_ring(ring *r, uint8_t buf_data[]) {
   r->rear = 0;
   r->front = 0;
   r->data = buf_data;
   r->recv_cnt = 0;
   r->max_size = BUF_SIZE;
+}
+
+void init_status(status *s) {
+  s->server_status = 0;
+  s->d_connect_status = -1;
 }
 
 // 링버퍼에 넣는 역할만 함
@@ -129,176 +157,163 @@ bool process_ring_html(ring *r,uint8_t buf_recv_data[]) {
   return true;
 };
 
-// get set 했던 것들 한번에 처리하는  함수 만들기
+//
+// get set 했던 것들 한번에 처리하는  함수 만들기 -enum 참고
 // AP 설정, client 대기(connection 메시지 처리)
-void sequence_html(ring *r, uint8_t buf_recv_data[],status *s) {
-	uint8_t raw_data[100] = {0,};
+void ready_sequence_html(ring *r, uint8_t buf_recv_data[], status *s) {
+  // raw_data 변수 선언 후 내부에서 데이터 처리
+  uint8_t raw_data[100] = {
+      0,
+  };
+
   if (process_ring_html(r,buf_recv_data)) {
     strcpy(raw_data,buf_recv_data);
   }
   // test용
-  printf("sequence :%s \r\n", raw_data);
+  // printf("sequence :%s \r\n", raw_data);
 
   // raw_data 기반 sequence 작성하기
 
   switch (s->server_status) {
-  
+  case ESP8266_READY_SEND:
+    HAL_UART_Transmit(&huart1, (uint8_t *)AT, strlen(AT), 50);
+    s->server_status = ESP8266_READY_WAIT;
+    tickstart_esp = HAL_GetTick();
+    break;
+  case ESP8266_READY_WAIT:
+    if (!strcmp(raw_data, APPLY_AT)) {
+      printf("[strcmp]ESP8266_WIFI_WAIT : OK \r\n");
+      s->server_status = ESP8266_CWMODE_SEND;
+    } else if (wait_time_ms(tickstart_esp) > WAIT_TIME) {
+      printf("[Change State]s->server_status = ESP8266_READY_SEND; \r\n");
+      s->server_status = ESP8266_READY_SEND;
+    }
+    break;
+  case ESP8266_CWMODE_SEND:
+    HAL_UART_Transmit(&huart1, (uint8_t *)AT_CWMODE, strlen(AT_CWMODE), 50);
+    s->server_status = ESP8266_CWMODE_WAIT;
+    tickstart_esp = HAL_GetTick();
+    break;
+
+  case ESP8266_CWMODE_WAIT:
+    if (!strcmp(raw_data, APPLY_AT)) {
+      printf("[strcmp]ESP8266_CWMODE_WAIT : OK \r\n");
+      s->server_status = ESP8266_CIPMUX_SEND;
+    } else if (wait_time_ms(tickstart_esp) > WAIT_TIME) {
+      printf("[Change State]s->server_status = ESP8266_CWMODE_SEND; \r\n");
+      s->server_status = ESP8266_CWMODE_SEND;
+    }
+    break;
+  case ESP8266_CIPMUX_SEND:
+    HAL_UART_Transmit(&huart1, (uint8_t *)AT_CIPMUX, strlen(AT_CIPMUX), 50);
+    s->server_status = ESP8266_CIPMUX_WAIT;
+    tickstart_esp = HAL_GetTick();
+    break;
+  case ESP8266_CIPMUX_WAIT:
+    if (!strcmp(raw_data, APPLY_AT)) {
+      printf("[strcmp]ESP8266_CIPMUX_WAIT : OK \r\n");
+      s->server_status = ESP8266_CIPSERVER_SEND;
+    } else if (wait_time_ms(tickstart_esp) > WAIT_TIME) {
+      printf("[Change State]s->server_status = ESP8266_CIPMUX_SEND; \r\n");
+      s->server_status = ESP8266_CIPMUX_SEND;
+    }
+    break;
+  case ESP8266_CIPSERVER_SEND:
+    HAL_UART_Transmit(&huart1, (uint8_t *)AT_CIPSERVER, strlen(AT_CIPSERVER),
+                      50);
+    s->server_status = ESP8266_CIPSERVER_WAIT;
+    tickstart_esp = HAL_GetTick();
+    break;
+  case ESP8266_CIPSERVER_WAIT:
+    if (!strcmp(raw_data, APPLY_AT)) {
+      printf("[strcmp]ESP8266_CIPSERVER_WAIT _1: OK \r\n");
+      // status 처리 어떻게? -> 별도의 변수 건들기
+      s->d_connect_status = ESP8266_DEVICE_WAIT;
+      s->server_status = -1;
+    } else if (wait_time_ms(tickstart_esp) > WAIT_TIME * 600) {
+      // 10분마다 상태 전환 함 -> 필요 없을 듯
+      printf("[Change State]s->server_status = ESP8266_CIPSERVER_SEND; \r\n");
+      s->server_status = ESP8266_CIPSERVER_SEND;
+    }
+    break;
   }
 }
 
-void led_button_html() {
-  
+// html 데이터 전송 , LED 기능
+void connect_html(ring *r, uint8_t buf_recv_data[], status *s) {
+  // raw_data 변수 선언 후 내부에서 데이터 처리
+  uint8_t raw_data[100] = {
+      0,
+  };
+
+  if (process_ring_html(r, buf_recv_data)) {
+    strcpy(raw_data, buf_recv_data);
+  }
+
+  switch (s->d_connect_status) {
+  case ESP8266_DEVICE_WAIT:
+    if (strstr(raw_data, "GET")) {
+      printf("[strcmp]ESP8266_CIPSERVER_WAIT _2 : OK \r\n");
+      s->d_connect_status = ESP8266_D_CIPSEND_SEND;
+      tickstart_esp = HAL_GetTick();
+    } else if (wait_time_ms(tickstart_esp) > WAIT_TIME) {
+      printf("[ESP8266_DEVICE_WAIT] : WAIT DEVICE \r\n");
+      tickstart_esp = HAL_GetTick();
+    }
+    break;
+  case ESP8266_D_CIPSEND_SEND:
+    if (wait_time_ms(tickstart_esp) > WAIT_TIME) {
+      HAL_UART_Transmit(&huart1, (uint8_t *)AT_D_CIPSEND, strlen(AT_D_CIPSEND),
+                        50);
+      s->d_connect_status = ESP8266_D_CIPSEND_WAIT;
+      tickstart_esp = HAL_GetTick();
+    }
+    break;
+  case ESP8266_D_CIPSEND_WAIT:
+    // 값 판단 읽어오기 못함
+    // if (!strcmp(raw_data, APPLY_AT) | !strcmp(raw_data, AT_D_CIPSEND))
+    if (1) {
+      printf("[strcmp]ESP8266_D_CIPSEND_WAIT : OK \r\n");
+      s->d_connect_status = ESP8266_HTML_SEND;
+      tickstart_esp = HAL_GetTick();
+    } else if (wait_time_ms(tickstart_esp) > WAIT_TIME) {
+      printf(
+          "[Change State]s->d_connect_status = ESP8266_D_CIPSEND_SEND; \r\n");
+      s->d_connect_status = ESP8266_D_CIPSEND_SEND;
+    }
+    break;
+  case ESP8266_HTML_SEND:
+    if (wait_time_ms(tickstart_esp) > WAIT_TIME) {
+      HAL_UART_Transmit(&huart1, (uint8_t *)AT_HTML, strlen(AT_HTML), 50);
+      s->d_connect_status = ESP8266_HTML_WAIT;
+      // s->d_connect_status = ESP8266_BUTTON_WAIT;
+      tickstart_esp = HAL_GetTick();
+    }
+    break;
+  case ESP8266_HTML_WAIT:
+    if (strstr(raw_data, "Recv")) {
+      printf("[strcmp]ESP8266_HTML_WAIT : OK \r\n");
+      s->d_connect_status = ESP8266_BUTTON_WAIT;
+    } else if (wait_time_ms(tickstart_esp) > WAIT_TIME) {
+      printf("[Change State]s->d_connect_status = ESP8266_HTML_SEND; \r\n");
+      s->d_connect_status = ESP8266_HTML_SEND;
+    }
+    break;
+  case ESP8266_BUTTON_WAIT:
+    if (strstr(raw_data, "/led/on")) {
+      printf("[Change LED State] LED_ON \r\n\r\n");
+      HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
+    } else if (strstr(raw_data, "/led/off")) {
+      printf("[Change LED State] LED_OFF \r\n\r\n");
+      HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET);
+    }
+    break;
+  }
 }
 
 void test_uart(void) {
   HAL_UART_Transmit(&huart1, (uint8_t *)AT, strlen(AT), 50);
 }
-
-
-
-
-/*
-// strstr 대신 strcmp 사용해보기 
-// buf_recv_data 값 분석하기 -> process 함수 내부에서 사용하기 
-void get_state(ring *r, time *t) {
-  // case 따라서 판정기준 다르게! 
-  switch (r->bootstep) {
-  case ESP8266_READY_WAIT:
-
-    
-    
-    if (!strcmp(buf_recv_data,APPLY_AT)) {
-      printf("[strcmp]ESP8266_READY_WAIT : OK \r\n");
-      r->bootstep = ESP8266_WIFI_SEND;
-    }
-    else if(wait_time_ms(tickstart_esp)>WAIT_TIME){
-        printf("[Change State]r->bootstep = ESP8266_READY_SEND; \r\n");
-        r->bootstep = ESP8266_READY_SEND;
-    }
-    
-      break;
-  case ESP8266_WIFI_WAIT:
-    if ((!strcmp(buf_recv_data,APPLY_AT_SET_WIFI))|(!strcmp(buf_recv_data,APPLY_AT_SET_WIFI_2))) {
-      printf("[strcmp]ESP8266_WIFI_WAIT : OK \r\n");
-      r->bootstep = ESP8266_CIPSTART_SEND;
-    }
-    else if (wait_time_ms(tickstart_esp)>WAIT_TIME) {
-        printf("[Change State]r->bootstep = ESP8266_WIFI_SEND; \r\n");
-        r->bootstep = ESP8266_WIFI_SEND;
-      }
-    
-  
-      break;
-  case ESP8266_CIPSTART_WAIT:
-    if (!strcmp(buf_recv_data,APPLY_AT_WEB)|!strcmp(buf_recv_data,APPLY_AT_WEB_2)) {
-      printf("[strcmp]ESP8266_CIPSTART_WAIT : OK \r\n");
-      r->bootstep = ESP8266_CIPSEND_SEND;
-    }
-    else if (wait_time_ms(tickstart_esp)>WAIT_TIME) {
-        printf("[Change State]r->bootstep = ESP8266_CIPSTART_SEND; \r\n");
-        r->bootstep = ESP8266_CIPSTART_SEND;
-      }
-    
-  
-      break;
-  case ESP8266_CIPSEND_WAIT:
-    if (!strcmp(buf_recv_data,APPLY_AT_TCP_CMD)) {
-        printf("[strcmp]ESP8266_CIPSEND_WAIT : OK \r\n");
-        r->bootstep = ESP8266_TCP_NAVER;
-    }
-    else if (!strcmp(buf_recv_data,APPLY_AT_TCP_NOT_VALID)) {
-        printf("[Change State] r->bootstep = ESP8266_CIPSTART_SEND \r\n");
-        r->bootstep = ESP8266_CIPSTART_SEND;
-    }
-    else if(wait_time_ms(tickstart_esp)>WAIT_TIME){
-      r->error_cnt++;
-      if (r->error_cnt > r->error_cnt_max) {
-        printf("[Change State]r->bootstep = ESP8266_CIPSEND_SEND; \r\n");
-        r->bootstep = ESP8266_CIPSEND_SEND;
-        r->error_cnt =0;
-      }
-    }
-  
-      break;
-  // 내부 파싱 알고리즘 설계하기    
-  case ESP8266_GET_TIME:
-      if (strstr(buf_recv_data,"Date")) {
-        printf("[strstr]ESP8266_GET_TIME : OK \r\n");
-        // data 기반 파싱작업
-        printf(" <Date> address : %d \r\n", strstr(buf_recv_data, "Date"));
-        tickstart_esp = HAL_GetTick();
-
-        time_parsing(buf_recv_data,t);
-
-        return;
-      }
-      else if (wait_time_ms(tickstart_esp)>(WAIT_TIME*10)) {
-          printf("[strcmp]ESP8266_GET_TIME : FAIL>> \r\n");
-          r->bootstep = ESP8266_ERROR;
-          printf("[Reset]ESP8266 \r\n");
-          r->error_cnt =0;
-        }
-      
-      break;
-      // case ESP8266_ERROR:
-      //   if (strstr(buf_recv_data,"ready")) {
-      //     printf("[strstr]ESP8266_ERROR : OK \r\n");
-      //     r->bootstep = ESP8266_READY_SEND;
-      //  }
-      //   break;
-    }
-  }
-
-
-void set_state(ring *r) {
-//  uint8_t AT_CMD[] = {0,};
-  // switch 문 사용하여 상태 바탕을 분기
-  switch (r->bootstep) {
-  case ESP8266_READY_SEND:
-	  // uint8_t AT_READY_CMD[] = "AT\r\n";
-	  HAL_UART_Transmit(&huart1, (uint8_t *)AT, strlen(AT), 50);
-    r->bootstep = ESP8266_READY_WAIT;
-    r->error_cnt = 0;
-    tickstart_esp = HAL_GetTick();
-    break;
-  case ESP8266_WIFI_SEND:
-	  // uint8_t AT_GET_WIFI_CMD[] = "AT+CWJAP=\"book3\"\,\"22222222\"\r\n";
-	  HAL_UART_Transmit(&huart1, (uint8_t *)AT_SET_WIFI, strlen(AT_SET_WIFI), 50);
-    r->bootstep = ESP8266_WIFI_WAIT;
-    r->error_cnt = 0;
-    tickstart_esp = HAL_GetTick();
-    break;
-  case ESP8266_CIPSTART_SEND:
-	  // uint8_t AT_PARSE_CMD[] = "AT+CIPSTART=\"TCP\",\"www.naver.com\",80\r\n";
-	  HAL_UART_Transmit(&huart1, (uint8_t *)AT_WEB, strlen(AT_WEB), 50);
-    r->bootstep = ESP8266_CIPSTART_WAIT;
-    r->error_cnt = 0;
-    tickstart_esp = HAL_GetTick();
-    break;
-  case ESP8266_CIPSEND_SEND:
-	  // uint8_t AT_TCP_CMD[] = "AT+CIPSEND=40\r\n";
-	  HAL_UART_Transmit(&huart1, (uint8_t *)AT_TCP_CMD, strlen(AT_TCP_CMD), 50);
-    r->bootstep = ESP8266_CIPSEND_WAIT;
-    r->error_cnt = 0;
-    tickstart_esp = HAL_GetTick();
-    break;
-  case ESP8266_TCP_NAVER:
-	  // uint8_t AT_TIME_CMD[] = "GET / HTTP/1.1\r\nHost: www.naver.com\r\n\r\n";
-	  HAL_UART_Transmit(&huart1, (uint8_t *)AT_GET_HTML, strlen(AT_GET_HTML), 1000);
-    printf("strlen(AT_GET_HTML) : %d \r\n",strlen(AT_GET_HTML));
-    r->bootstep = ESP8266_GET_TIME;
-    r->error_cnt = 0;
-    tickstart_esp = HAL_GetTick();
-    break;
-  case ESP8266_ERROR:
-	  // uint8_t AT_RST_CMD[] = "AT+RST\r\n";
-	  HAL_UART_Transmit(&huart1, (uint8_t *)AT_RESET, strlen(AT_RESET), 50);
-    r->bootstep = ESP8266_READY_SEND;
-    r->error_cnt =0;
-    break;
-  }
-}
-*/
 
 void restore_esp8266(void) {
   printf("Restore ESP8266 \r\n");
@@ -308,12 +323,6 @@ void restore_esp8266(void) {
 
 // if 문에서 WAIT_TIME 이랑 조합해서 사용해보기
 uint32_t wait_time_ms(uint32_t tickstart) {
-  uint32_t wait_time = HAL_GetTick() - tickstart;
-
-  return wait_time;
-}
-
-uint32_t wait_time_for_display(uint32_t tickstart) {
   uint32_t wait_time = HAL_GetTick() - tickstart;
 
   return wait_time;

@@ -83,14 +83,13 @@ static void MX_NVIC_Init(void);
 
 uint8_t rxData;
 uint8_t buf[100] = {0,};
-uint8_t recv_buf[100] = {0,};
-uint8_t time_buf[100] = {0,};
-// uint32_t tickstart_esp = 0;
+uint8_t recv_buf[100] = {
+    0,
+};
 
+// 구조체 선언
 ring recv;
-state state_esp8266;
-time time_esp8266;
-
+status status_esp8266;
 
 /* USER CODE END 0 */
 
@@ -133,21 +132,14 @@ int main(void)
 
   printf("LPUART printf test \r\n");
 
+  // 구조체 초기화
   init_ring(&recv, buf);
-
+  init_status(&status_esp8266);
 
   HAL_UART_Receive_IT(&huart1, &rxData, 1);
 
-  init_esp8266();
-
-//   restore_esp8266();
-
-  // 초기 동작 시작
-  // 변경 함수로 다시 해보기 
-  //  is_ready(&recv, &state_esp8266);
-  //  is_wifi_enable(&recv, &state_esp8266);
-  //  is_parsing_enable(&recv, &state_esp8266);
-  
+  // html의 strlen 값 -> 추후 값 가져오기로 대체 예정
+  print_html_strlen();
 
   /* USER CODE END 2 */
 
@@ -157,13 +149,14 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-    test_uart();
+    // 링버퍼에 저장하는 함수
     process_ring_html(&recv,recv_buf);
-    sequence_html(&recv,recv_buf);
+    // device 연결을 위한 함수 -> 연결 이후에 사용 불가능한 state
+    ready_sequence_html(&recv, recv_buf, &status_esp8266);
+    // html 데이터 전송 , LED 동작 기능
+    connect_html(&recv, recv_buf, &status_esp8266);
 
-    HAL_Delay(500);
-
-  /* USER CODE END 3 */
+    /* USER CODE END 3 */
   }
 }
 
@@ -345,6 +338,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD4_GPIO_Port, &GPIO_InitStruct);
+
+  // LED 추가
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 

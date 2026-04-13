@@ -98,7 +98,8 @@ enum set_up_state {
   ESP8266_CIPMUX_SEND,
   ESP8266_CIPMUX_WAIT,
   ESP8266_CIPSERVER_SEND,
-  ESP8266_CIPSERVER_WAIT
+  ESP8266_CIPSERVER_WAIT,
+  ESP8266_CONNECTED_CLIENT
 };
 
 // 별도 함수에서 사용 예정이므로 0에서 시작
@@ -130,6 +131,8 @@ void test_uart(void);
 void init_esp8266(void);
 void process_ring(ring *r, time *t);
 
-
+// main 사용 함수
+void ready_sequence_html(ring *r, uint8_t buf_recv_data[], status *s);
+void connect_html(ring *r, uint8_t buf_recv_data[], status *s);
 
 #endif
