@@ -14,8 +14,6 @@ uint32_t tickstart_esp = 0;
 uint32_t tickstart_display = 0;
 // flag 사용 어떻게 할지 생각해보기=
 
-static void restart_esp8266(ring *r, state *s);
-static void get_state(ring *r, time *t);
 static uint32_t wait_time_for_display(uint32_t tickstart);
 static uint32_t wait_time_ms(uint32_t tickstart);
 static bool time_parsing(uint8_t *buffer_data, time *t);
@@ -26,7 +24,7 @@ const char *ATE1 = "ATE1\r\n";
 const char *AT_RESET = "AT+RST\r\n";
 const char *AT_SET_WIFI = "AT+CWJAP=\"book3\"\,\"22222222\"\r\n";
 const char *AT_WEB = "AT+CIPSTART=\"TCP\",\"www.naver.com\",80\r\n";
-const char *AT_TCP_CMD = "AT+CIPSEND=0,771\r\n";
+const char *AT_TCP_CMD = "AT+CIPSEND=0,239\r\n";
 const char *AT_GET_HTML = "GET / HTTP/1.1\r\nHost: www.naver.com\r\n\r\n";
 const char *AT_RESTORE = "AT+RESTORE\r\n";
 const char *AT_SEARCH_WIFI = "AT+CWLAP\r\n";
@@ -71,85 +69,54 @@ void enable_esp8266_echo(void) {
 
 // 임시 문자열 구하기 함수 -> send 위함
 print_html_strlen(void) {
+  // 이 값 그대로 "AT+CIPSEND=0,239\r\n" 하기
   printf("strlen(AT_HTML) : %d \r\n", strlen(AT_HTML));
-  printf("sizeof(AT_HTML) : %d \r\n", sizeof(AT_HTML));
+  // printf("sizeof(AT_HTML) : %d \r\n", sizeof(AT_HTML));
 }
 
 // ring에 해당하는 것 빼고 다 넘기기 -> 다른 구조체 만들어서 분할
-
-// r->data = buf; 위치에 buf -> 주소형태로 써야함
-// 초기화 해주는 시점은? 시작부 or 지속적으로
-// uint8_t buf_recv_data[] -> process로 이동
-void init_ring(ring *r, uint8_t buf_data[]) {
-  r->rear = 0;
-  r->front = 0;
-  r->data = buf_data;
-  r->recv_cnt = 0;
-  r->max_size = BUF_SIZE;
-}
 
 void init_status(status *s) {
   s->server_status = 0;
   s->d_connect_status = -1;
 }
 
-// 링버퍼에 넣는 역할만 함
-// 포화상태 처리 추가 
-void enqueue_ring(ring *r, uint8_t input_data) {
-  // rear 먼저 계산
-
-  if (((r->rear + 1) % r->max_size) == (r->front)) {
-    // 포화 상태에서 동작 안함 -> 덮어쓰기 방지
-  }
-  else {
-    r->rear = (r->rear + 1) % r->max_size;
-    r->data[r->rear] = input_data;
-  }
-}
-
-// return값 형태 개선 필요 
-uint8_t dequeue_ring(ring *r) {
-  if (r->rear == r->front) {
-    return 0;
-  }
-
-  r->front = (r->front + 1) % r->max_size;
-
-  return r->data[r->front];
-}
-
 // 2차 과제 함수 작성
 
 // 이번에는 return으로 문자열 반환 해보기
 
-bool process_ring_html(ring *r,uint8_t buf_recv_data[]) {
-    while (r->rear != r->front) {
+// 이 프로젝트에서만 이러한 형식으로 데이터 출력 ->ring 가져다가만 씀
+bool process_ring_html(ring *r, uint8_t buf_recv_data[], uint8_t *count) {
+  while (r->rear != r->front) {
     // 출력용 데이터와 버퍼 구현
-    buf_recv_data[r->recv_cnt] = dequeue_ring(r);
-    
+    buf_recv_data[*count] = dequeue_ring(r);
+
     // 데이터를 ring으로 처리 가능? max_size일 때 대응 어떻게?
     // 얘는 ring 아니라 초기화 해주는 data
-    if (r->recv_cnt == r->max_size - 2) {
+    if (*count == r->max_size - 2) {
       buf_recv_data[r->max_size - 1] = '\0';
       HAL_UART_Transmit(&hlpuart1, buf_recv_data, strlen(buf_recv_data), 100);
-      r->recv_cnt = 0;
+      *count = 0;
 
-    }
-    else if ((buf_recv_data[r->recv_cnt])=='\n') {
-      buf_recv_data[r->recv_cnt + 1] = '\0';
+    } else if ((buf_recv_data[*count]) == '\n') {
+      buf_recv_data[*count + 1] = '\0';
       HAL_UART_Transmit(&hlpuart1, buf_recv_data, strlen(buf_recv_data), 100);
-      r->recv_cnt = 0;
+      *count = 0;
 
+    } else {
+      *count = (*count + 1) % (r->max_size);
     }
-    else {
-      r->recv_cnt=(r->recv_cnt+1)%(r->max_size);
+  }
 
-    }
-    }
+  if (buf_recv_data == NULL) {
+    return false;
+  }
 
-    if (buf_recv_data == NULL) {
-      return false;
-    }
+  if (strlen(buf_recv_data)) {
+    return true;
+  } else {
+    return false;
+  }
 
   // buf_recv_data 반환하기
   // 이후에 strcpy로 문자열 복사
@@ -160,13 +127,14 @@ bool process_ring_html(ring *r,uint8_t buf_recv_data[]) {
 //
 // get set 했던 것들 한번에 처리하는  함수 만들기 -enum 참고
 // AP 설정, client 대기(connection 메시지 처리)
-void ready_sequence_html(ring *r, uint8_t buf_recv_data[], status *s) {
+void ready_sequence_html(ring *r, uint8_t buf_recv_data[], status *s,
+                         uint8_t *count) {
   // raw_data 변수 선언 후 내부에서 데이터 처리
   uint8_t raw_data[100] = {
       0,
   };
 
-  if (process_ring_html(r,buf_recv_data)) {
+  if (process_ring_html(r, buf_recv_data, count)) {
     strcpy(raw_data,buf_recv_data);
   }
   // test용
@@ -240,20 +208,19 @@ void ready_sequence_html(ring *r, uint8_t buf_recv_data[], status *s) {
 }
 
 // html 데이터 전송 , LED 기능
-void connect_html(ring *r, uint8_t buf_recv_data[], status *s) {
+void connect_html(ring *r, uint8_t buf_recv_data[], status *s, uint8_t *count) {
   // raw_data 변수 선언 후 내부에서 데이터 처리
   uint8_t raw_data[100] = {
       0,
   };
 
-  if (process_ring_html(r, buf_recv_data)) {
+  if (process_ring_html(r, buf_recv_data, count)) {
     strcpy(raw_data, buf_recv_data);
   }
 
   switch (s->d_connect_status) {
   case ESP8266_DEVICE_WAIT:
     if (strstr(raw_data, "GET")) {
-      printf("[strcmp]ESP8266_CIPSERVER_WAIT _2 : OK \r\n");
       s->d_connect_status = ESP8266_D_CIPSEND_SEND;
       tickstart_esp = HAL_GetTick();
     } else if (wait_time_ms(tickstart_esp) > WAIT_TIME) {
@@ -262,6 +229,7 @@ void connect_html(ring *r, uint8_t buf_recv_data[], status *s) {
     }
     break;
   case ESP8266_D_CIPSEND_SEND:
+    // 몇번 포트로 들어왔는지에 따른 분기 필요
     if (wait_time_ms(tickstart_esp) > WAIT_TIME) {
       HAL_UART_Transmit(&huart1, (uint8_t *)AT_D_CIPSEND, strlen(AT_D_CIPSEND),
                         50);

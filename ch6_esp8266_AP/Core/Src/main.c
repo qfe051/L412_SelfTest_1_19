@@ -21,10 +21,11 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "esp8266.h"
+#include "queue.h"
+#include <stdbool.h>
 #include <stdint.h>
 #include <string.h>
-#include <stdbool.h>
-#include "esp8266.h"
 
 /* USER CODE END Includes */
 
@@ -82,10 +83,15 @@ static void MX_NVIC_Init(void);
 
 
 uint8_t rxData;
-uint8_t buf[100] = {0,};
-uint8_t recv_buf[100] = {
+uint8_t buf[BUF_SIZE] = {
     0,
 };
+uint8_t recv_buf[BUF_SIZE] = {
+    0,
+};
+uint8_t recv_buf = NULL;
+uint8_t *recv_buf = NULL;
+uint8_t recv_cnt = 0;
 
 // 구조체 선언
 ring recv;
@@ -133,7 +139,7 @@ int main(void)
   printf("LPUART printf test \r\n");
 
   // 구조체 초기화
-  init_ring(&recv, buf);
+  init_ring(&recv, buf, BUF_SIZE);
   init_status(&status_esp8266);
 
   HAL_UART_Receive_IT(&huart1, &rxData, 1);
@@ -150,11 +156,11 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     // 링버퍼에 저장하는 함수
-    process_ring_html(&recv,recv_buf);
+    process_ring_html(&recv, recv_buf, &recv_cnt);
     // device 연결을 위한 함수 -> 연결 이후에 사용 불가능한 state
-    ready_sequence_html(&recv, recv_buf, &status_esp8266);
+    ready_sequence_html(&recv, recv_buf, &status_esp8266, &recv_cnt);
     // html 데이터 전송 , LED 동작 기능
-    connect_html(&recv, recv_buf, &status_esp8266);
+    connect_html(&recv, recv_buf, &status_esp8266, &recv_cnt);
 
     /* USER CODE END 3 */
   }
