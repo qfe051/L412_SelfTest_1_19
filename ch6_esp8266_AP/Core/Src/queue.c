@@ -14,19 +14,22 @@ void enqueue_ring(ring *r, uint8_t input_data) {
 }
 
 // return값 형태 개선 필요
-uint8_t dequeue_ring(ring *r) {
+bool dequeue_ring(ring *r) {
   if (r->rear == r->front) {
-    return 0;
+    return false;
   }
 
   r->front = (r->front + 1) % r->max_size;
+  r->dequeue_data = r->data[r->front];
 
-  return r->data[r->front];
+  return true;
 }
 
 void init_ring(ring *r, uint8_t buf_data[], uint8_t buf_size) {
   r->rear = 0;
   r->front = 0;
+  r->over_cnt = 0;
   r->data = buf_data;
   r->max_size = buf_size;
+  r->dequeue_data = 0;
 }

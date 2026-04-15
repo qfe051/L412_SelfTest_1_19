@@ -89,13 +89,10 @@ uint8_t buf[BUF_SIZE] = {
 uint8_t recv_buf[BUF_SIZE] = {
     0,
 };
-uint8_t recv_buf = NULL;
-uint8_t *recv_buf = NULL;
-uint8_t recv_cnt = 0;
 
 // 구조체 선언
-ring recv;
-status status_esp8266;
+ring struct_ring;
+esp_8266 struct_esp8266;
 
 /* USER CODE END 0 */
 
@@ -139,13 +136,16 @@ int main(void)
   printf("LPUART printf test \r\n");
 
   // 구조체 초기화
-  init_ring(&recv, buf, BUF_SIZE);
-  init_status(&status_esp8266);
+  init_ring(&struct_ring, buf, BUF_SIZE);
+  init_esp_8266(&struct_esp8266, recv_buf);
 
   HAL_UART_Receive_IT(&huart1, &rxData, 1);
 
   // html의 strlen 값 -> 추후 값 가져오기로 대체 예정
-  print_html_strlen();
+  // print_html_strlen();
+  char *return_AT[50];
+  strcpy(return_AT, set_AT_CIPSEND());
+  printf("return_AT : %s \r\n", return_AT);
 
   /* USER CODE END 2 */
 
@@ -155,12 +155,17 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+
+    // process_ring_html을 bool로 처리할 이유 있을지?
     // 링버퍼에 저장하는 함수
-    process_ring_html(&recv, recv_buf, &recv_cnt);
+    process_ring_html(&struct_ring, &struct_esp8266);
     // device 연결을 위한 함수 -> 연결 이후에 사용 불가능한 state
-    ready_sequence_html(&recv, recv_buf, &status_esp8266, &recv_cnt);
+    sequence_html(&struct_ring, &struct_esp8266);
+
+    // AP, Device가 정상 연결 상태인지 check
+    check_connection(&struct_ring, &struct_esp8266);
     // html 데이터 전송 , LED 동작 기능
-    connect_html(&recv, recv_buf, &status_esp8266, &recv_cnt);
+    // connect_html(&recv, recv_buf, &struct_esp8266, &recv_cnt);
 
     /* USER CODE END 3 */
   }
@@ -357,7 +362,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
   if (huart->Instance == USART1) {
     // rx 데이터 존재하는 상태
 
-    enqueue_ring(&recv,rxData);
+    enqueue_ring(&struct_ring, rxData);
 
     HAL_UART_Receive_IT(&huart1, &rxData, 1);
   }
