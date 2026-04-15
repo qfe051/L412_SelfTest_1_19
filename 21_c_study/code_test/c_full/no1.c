@@ -26,9 +26,18 @@
 typedef struct Student{
   char *name;
   char *major;
-  uint8_t GPA;
+  int GPA;
   struct Student *next;
 } Student;
+
+typedef struct tmp_data{
+    int type_input;
+    char temp_name[20];
+    char temp_major[20];
+    int temp_GPA;
+}tmp_data;
+
+tmp_data t;
 
 Student *set_student(char *temp_name, char *temp_major, int temp_GPA){
   Student *s =malloc(sizeof(Student));
@@ -123,32 +132,24 @@ int main() {
 
   while (1)
   {
-    uint8_t type_input = 0;
-    char temp_name[20];
-    char temp_major[20];
-    uint8_t temp_GPA;
-
-
    printf("type (1) : add student, type others : exit \n");
-   scanf("%d", &type_input);
+   scanf("%d", &t.type_input);
 
-   if (type_input == 1) {
-     
-   
-
-
+   if (t.type_input == 1) {
     printf("type name : ");
-    scanf("%s",temp_name);
+    scanf("%s",t.temp_name);
 
     printf("type major : ");
-    scanf("%s",temp_major);
+    scanf("%s",t.temp_major);
 
     printf("type GPA : ");
-    scanf("%d",&temp_GPA);
+    scanf("%d",&t.temp_GPA);
 
-    printf("name : %s , major : %s , GPA : %d \n",temp_name,temp_major,temp_GPA);
+    printf("name : %s , major : %s , GPA : %d \n",t.temp_name,t.temp_major,t.temp_GPA);
 
-    Student *s_1 = set_student(temp_name,temp_major,temp_GPA);
+    printf("temp_GPA : %d \n",t.temp_GPA);
+
+    Student *s_1 = set_student(t.temp_name,t.temp_major,t.temp_GPA);
 
     printf("append_student \n ");
     //append 함수 내에 정렬까지 추가하기
