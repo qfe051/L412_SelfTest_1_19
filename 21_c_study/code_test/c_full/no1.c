@@ -22,7 +22,9 @@
 #include <string.h>
 #include <stdint.h>
 
-// 배열 대신, 포인터로 선언하기
+#define MAX_NUM_S 100
+
+// Student 나타내는 순차리스트
 typedef struct Student{
   char *name;
   char *major;
@@ -30,7 +32,7 @@ typedef struct Student{
   struct Student *next;
 } Student;
 
-// 임시 저장용 구조체
+// 반복 입력, 임시 저장용 구조체
 typedef struct tmp_data{
     int type_input;
     char temp_name[20];
@@ -38,32 +40,38 @@ typedef struct tmp_data{
     int temp_GPA;
 }tmp_data;
 
+//tmp_data 구조체 선언
 tmp_data t;
 
-// 이 구조체를 배열로 선언
+//  성적 순 정렬용 구조체 : Student 구조체, 점수
 typedef struct gpa_list {
   Student *s_addr;
   int GPA;
 } gpa_list;
 
-gpa_list s_list[100];
+//  구조체를 배열로 선언하여 MAX_NUM_S 만큼 받음
+gpa_list s_list[MAX_NUM_S];
 
+// status 구조체 : 저장된 학생 수 count 및 process 저장
 typedef struct status {
   int count;
   int now_process;
+  int process_cnt;
 } status;
-
+// status 구조체 선언
 status sta;
 
+// 타이핑으로 얻을 3가지
 enum S_Process{
   ADD_STUDENT =1,
   PRINT_STUDENT_GPA,
   EXIT
 };
 
-//초기에는 head 값 없음
+//초기에는 head 값 없는 상태 선언
 Student *head = NULL;
 
+// 동적메모리를 사용하여 Student 구조체 선언 | 입력 : tmp_data 구조체, 출력: Student 구조체
 Student *set_student(tmp_data *t){
   Student *s =malloc(sizeof(Student));
   if (s==NULL){
@@ -96,18 +104,17 @@ Student *set_student(tmp_data *t){
   return s;
 }
 
-// 오류 지점. 출력 후에 성적순 포인터 기반 정렬 하기 
-// 현재 상태로 동작 멈춤 -> 동작 가능하도록 생각해보기
-void append_student(Student **head, Student *s){
+// 학생 추가 함수 | 입력 : Student 구조체 head 의 주소, student 구조체 s 출력 : T/F
+bool append_student(Student **head, Student *s){
   if (s == NULL) {
     printf("set_student is NULL \n");
-    return;
+    return false;
   }
   //*head가 NULL일 때 동작 확인
   if (*head == NULL) {
     printf("*head is NULL \n");
     *head=s;
-    return;
+    return true;
   }
 
   Student *cur = *head;
@@ -117,10 +124,17 @@ void append_student(Student **head, Student *s){
   }
   //새로운 구조체 추가 -> next에 저장된 구조체를 새로운 구조체로
   cur->next = s;
-
+  return true;
 }
+// 학생 출력 함수(순서리스트 순서(append 순서)) | 입력 : 구조체 head, 출력 T/F
+bool print_student(const Student *head){
+  if (head == NULL)
+  {
+    printf("head is NULL \n");
+    return false;
+  }
+  
 
-void print_student(const Student *head){
   //const 사용 이유
   const Student *cur = head;
 
@@ -134,9 +148,12 @@ void print_student(const Student *head){
     // next로 이동
     cur=cur->next;
   }
+
+  return true;
 }
 
-// list 배열 형태로 구조체 선언
+// Student 구조체. list 배열 형태로 정리(구조체 주소,GPA) | 입력 : Student 구조체 head, gpa_list 구조체 list[],status 구조체
+// 출력 T/F
 bool make_gpa_list(Student *head, gpa_list list[],status *sta) {
   if (list ==NULL)
   {
@@ -164,7 +181,8 @@ bool make_gpa_list(Student *head, gpa_list list[],status *sta) {
   return true;
 }
 
-// 정렬 및 출력 모두. 순차리스트와 별개의 인덱스 사용
+// gpa_list 구조체 list[] 내부 정렬 및 출력 모두. 순차리스트와 별개의 인덱스 사용
+// 입력 gpa_list 구조체 list[], status 구조체, 출력 T/F
 bool print_gpa_list(gpa_list list[], status *sta) {
   if (list ==NULL || sta->count==0)
   {
@@ -174,8 +192,6 @@ bool print_gpa_list(gpa_list list[], status *sta) {
     return false;
   }
   
-
-
   for (int j = 0; j < sta->count - 1; j++) {
     for (int i = 0; i < sta->count - 1; i++) {
       if (list[i].GPA < list[i + 1].GPA) {
@@ -197,7 +213,8 @@ bool print_gpa_list(gpa_list list[], status *sta) {
   return true;
 }
 
-//free 과정 다시보기 
+//Exit시 전체 free
+// 입력 : Student 구조체 head의 주소
 void free_all(Student **head){
   Student *cur = *head;
   while (cur !=NULL){
@@ -213,10 +230,12 @@ void free_all(Student **head){
   *head = NULL;
 }
 
-bool process_input(tmp_data *t,status *sta){
+//전체 시스템 진행 함수
+// 입력:tmp_data 구조체,status 구조체 . 출력 : T/F
+bool process_system(tmp_data *t,status *sta){
   if (t==NULL || sta ==NULL){
     printf(">>>>>>>>>>>>>>>>>> ");
-    printf("No data - process_input \n");
+    printf("No data - process_system \n");
   }
   
 
@@ -243,13 +262,17 @@ bool process_input(tmp_data *t,status *sta){
 
     Student *s_1 = set_student(t);
 
-    printf("append_student \n ");
+    
     // append 함수 내에 정렬까지 추가하기
-    append_student(&head, s_1);
-
-    printf("print_student \n ");
-    print_student(head);
-
+    if (append_student(&head, s_1)){
+    printf("append_student is done \n ");
+ 
+    if(print_student(head)){
+      printf("print_student is done \n ");
+    }
+    }
+    
+    return true;
     break;
   case PRINT_STUDENT_GPA:
     //if문으로 함수 true일 때 실행
@@ -261,10 +284,13 @@ bool process_input(tmp_data *t,status *sta){
           printf("print_gpa_list is done \n\n ");
         }
       }
+      return true;
       break;
   case EXIT:
     printf("process is done \n\n ");
     free_all(&head);
+
+    return true;
     break;
   default:
     printf("type again \n ");
@@ -277,11 +303,22 @@ bool process_input(tmp_data *t,status *sta){
 int main() {
   
 while(1){
-    while (process_input(&t,&sta))
-    {
-      
-    }
+  sta.process_cnt++;
+  printf("------------------------\n");
+  printf("process_cnt : %d \n",sta.process_cnt);
+  printf("------------------------\n");
 
+
+    //false 반환하면 재반복
+      if (process_system(&t,&sta))
+      {
+        sta.process_cnt=0;
+      }
+      else{
+        
+      }
+
+    
     if (sta.now_process==EXIT)
     {
       printf("process is done ,.......... \n\n ");
