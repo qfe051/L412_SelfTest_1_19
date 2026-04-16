@@ -30,6 +30,7 @@ typedef struct Student{
   struct Student *next;
 } Student;
 
+// 임시 저장용 구조체
 typedef struct tmp_data{
     int type_input;
     char temp_name[20];
@@ -38,6 +39,15 @@ typedef struct tmp_data{
 }tmp_data;
 
 tmp_data t;
+
+// 이 구조체를 배열로 선언
+typedef struct gpa_list {
+  Student *s_addr;
+  int GPA;
+} gpa_list;
+
+gpa_list s_list[100];
+int list_cnt;
 
 Student *set_student(char *temp_name, char *temp_major, int temp_GPA){
   Student *s =malloc(sizeof(Student));
@@ -99,7 +109,9 @@ void print_student(const Student *head){
   //const 사용 이유
   const Student *cur = head;
 
-  while (cur !=NULL){
+  // cur=cur->next 기반으로 출력
+  while (cur != NULL) {
+    printf("---------------------------------------------- \n");
     printf("name: %s \n",cur->name);
     printf("major: %s \n",cur->major);
     printf("GPA: %d \n",cur->GPA);
@@ -109,6 +121,44 @@ void print_student(const Student *head){
   }
 }
 
+// list 배열 형태로 구조체 선언
+int make_gpa_list(Student *head, gpa_list list[]) {
+  Student *cur = head;
+  int count = 0;
+
+  // 순차리스트 출력방식 사용
+  while (cur != NULL) {
+    list[count].s_addr = cur;
+    list[count].GPA = cur->GPA;
+    count++;
+
+    cur = cur->next;
+  }
+
+  // 저장 개수
+  return count;
+}
+
+// 정렬 및 출력 모두. 순차리스트와 별개의 인덱스 사용
+void print_gpa_list(gpa_list list[], int count) {
+  for (int j = 0; j < count - 1; j++) {
+    for (int i = 0; i < count - 1; i++) {
+      if (list[i].GPA < list[i + 1].GPA) {
+        gpa_list tmp = list[i];
+        list[i] = list[i + 1];
+        list[i + 1] = tmp;
+      }
+    }
+  }
+
+  for (int j = 0; j < count; j++) {
+    printf("---------------------------------------------- \n");
+    printf("index : %d \n", j);
+    printf("name : %s \n", list[j].s_addr->name);
+    printf("major : %s \n", list[j].s_addr->major);
+    printf("GPA : %d \n", list[j].s_addr->GPA);
+  }
+}
 
 //free 과정 다시보기 
 void free_all(Student **head){
@@ -130,39 +180,43 @@ int main() {
   //초기에는 head 값 없음
   Student *head = NULL;
 
-  while (1)
-  {
-   printf("type (1) : add student, type others : exit \n");
-   scanf("%d", &t.type_input);
+  while (1) {
+    t.type_input = 0;
+    printf("type (1) : add student, type (2) : print student,type others : "
+           "exit \n");
+    scanf("%d", &t.type_input);
 
-   if (t.type_input == 1) {
-    printf("type name : ");
-    scanf("%s",t.temp_name);
+    if (t.type_input == 1) {
+      printf("type name : ");
+      scanf("%s", t.temp_name);
 
-    printf("type major : ");
-    scanf("%s",t.temp_major);
+      printf("type major : ");
+      scanf("%s", t.temp_major);
 
-    printf("type GPA : ");
-    scanf("%d",&t.temp_GPA);
+      printf("type GPA : ");
+      scanf("%d", &t.temp_GPA);
 
-    printf("name : %s , major : %s , GPA : %d \n",t.temp_name,t.temp_major,t.temp_GPA);
+      printf("name : %s , major : %s , GPA : %d \n", t.temp_name, t.temp_major,
+             t.temp_GPA);
 
-    printf("temp_GPA : %d \n",t.temp_GPA);
+      printf("temp_GPA : %d \n", t.temp_GPA);
 
-    Student *s_1 = set_student(t.temp_name,t.temp_major,t.temp_GPA);
+      Student *s_1 = set_student(t.temp_name, t.temp_major, t.temp_GPA);
 
-    printf("append_student \n ");
-    //append 함수 내에 정렬까지 추가하기
-    append_student(&head,s_1);
+      printf("append_student \n ");
+      // append 함수 내에 정렬까지 추가하기
+      append_student(&head, s_1);
 
-    printf("print_student \n ");
-    print_student(head);
-   }
-   else {
-    free_all(&head);
-    return 0;
-   }
-    
+      printf("print_student \n ");
+      print_student(head);
+    } else if (t.type_input == 2) {
+      printf("make_gpa_list \n ");
+      list_cnt = make_gpa_list(head, s_list);
+      printf("print_gpa_list \n ");
+      print_gpa_list(s_list, list_cnt);
+    } else {
+      free_all(&head);
+      return 0;
+    }
   }
-  
 }
