@@ -21,11 +21,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "esp8266.h"
-#include "queue.h"
-#include <stdbool.h>
-#include <stdint.h>
-#include <string.h>
 
 /* USER CODE END Includes */
 
@@ -50,20 +45,6 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 
-
-
-
-
-
-// UART로 출력 보내기 위한 함수
-int _write(int file, char *ptr, int len) {
-
-  //(void)file;
-  HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, 100);
-  // HAL_UART_Transmit(&hlpuart1, (uint8_t *)ptr, len, HAL_MAX_DELAY);
-  return len;
-  
-}
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -78,19 +59,6 @@ static void MX_NVIC_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-#define BUF_SIZE 100
-
-uint8_t rxData;
-uint8_t buf[BUF_SIZE] = {
-    0,
-};
-uint8_t recv_buf[BUF_SIZE] = {
-    0,
-};
-
-// 구조체 선언
-ring struct_ring;
-esp_8266 struct_esp8266;
 
 /* USER CODE END 0 */
 
@@ -108,7 +76,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-   HAL_Init();
+  HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -117,8 +85,7 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
 
-  /* USER CODE BEGIN SysInit */  // r->q_data[r->index] = r->data[r->front];
-
+  /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
 
@@ -131,42 +98,17 @@ int main(void)
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
 
-  printf("LPUART printf test \r\n");
-
-  // 구조체 초기화
-  init_ring(&struct_ring, buf, BUF_SIZE);
-  init_esp_8266(&struct_esp8266, recv_buf);
-
-  HAL_UART_Receive_IT(&huart1, &rxData, 1);
-
-  // html의 strlen 값 -> 추후 값 가져오기로 대체 예정
-  // // print_html_strlen();
-  // char *return_AT[50];
-  // strcpy(return_AT, set_AT_CIPSEND());
-  // printf("return_AT : %s \r\n", return_AT);
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1){
+  while (1)
+  {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
-    // process_ring_html을 bool로 처리할 이유 있을지?
-    // 링버퍼에 저장하는 함수
-    process_ring_html(&struct_ring, &struct_esp8266);
-    // device 연결을 위한 함수 -> 연결 이후에 사용 불가능한 state
-    sequence_html(&struct_ring, &struct_esp8266);
-
-    // AP, Device가 정상 연결 상태인지 check
-    check_connection(&struct_ring, &struct_esp8266);
-    // html 데이터 전송 , LED 동작 기능
-    // connect_html(&recv, recv_buf, &struct_esp8266, &recv_cnt);
-
-    /* USER CODE END 3 */
   }
+  /* USER CODE END 3 */
 }
 
 /**
@@ -348,23 +290,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD4_GPIO_Port, &GPIO_InitStruct);
 
-  // LED 추가
-
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 
   /* USER CODE END MX_GPIO_Init_2 */
 }
 
 /* USER CODE BEGIN 4 */
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
-  if (huart->Instance == USART1) {
-    // rx 데이터 존재하는 상태
 
-    enqueue_ring(&struct_ring, rxData);
-
-    HAL_UART_Receive_IT(&huart1, &rxData, 1);
-  }
-}
 /* USER CODE END 4 */
 
 /**

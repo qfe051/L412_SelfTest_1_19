@@ -30,7 +30,7 @@ typedef struct Student{
   struct Student *next;
 } Student;
 
-// 임시 저장용 구조체
+// 임시 저장용 구조체 -> while문 내에 있어서 위치 변경
 typedef struct tmp_data{
     int type_input;
     char temp_name[20];
@@ -40,7 +40,7 @@ typedef struct tmp_data{
 
 tmp_data t;
 
-// 이 구조체를 배열로 선언
+// 구조체(Student의 주소,그 주소의 GPA) -> 배열로 선언
 typedef struct gpa_list {
   Student *s_addr;
   int GPA;
@@ -49,7 +49,7 @@ typedef struct gpa_list {
 gpa_list s_list[100];
 int list_cnt;
 
-Student *set_student(char *temp_name, char *temp_major, int temp_GPA){
+Student *set_student(tmp_data *t) {
   Student *s =malloc(sizeof(Student));
   if (s==NULL){
     printf("Student malloc failed\n");
@@ -57,7 +57,7 @@ Student *set_student(char *temp_name, char *temp_major, int temp_GPA){
   }
 
   // 이름 넣기
-  s->name = malloc(strlen(temp_name)+1);
+  s->name = malloc(strlen(t->temp_name) + 1);
   if (s->name==NULL){
     printf("s->name malloc failed\n");
     free(s);
@@ -65,7 +65,7 @@ Student *set_student(char *temp_name, char *temp_major, int temp_GPA){
   }
 
   // 전공 넣기
-  s->major = malloc(strlen(temp_major)+1);
+  s->major = malloc(strlen(t->temp_major) + 1);
   if (s->major==NULL){
     printf("s->major malloc failed\n");
     free(s);
@@ -73,9 +73,9 @@ Student *set_student(char *temp_name, char *temp_major, int temp_GPA){
     return NULL;
   }
 
-  strcpy(s->name,temp_name);
-  strcpy(s->major,temp_major);
-  s->GPA = temp_GPA;
+  strcpy(s->name, t->temp_name);
+  strcpy(s->major, t->temp_major);
+  s->GPA = t->temp_GPA;
   s->next = NULL;
 
   return s;
@@ -105,7 +105,13 @@ void append_student(Student **head, Student *s){
 
 }
 
-void print_student(const Student *head){
+void print_student(const Student *head) {
+  if (head == NULL) {
+    printf("*head is NULL \n");
+
+    return;
+  }
+
   //const 사용 이유
   const Student *cur = head;
 
@@ -121,8 +127,13 @@ void print_student(const Student *head){
   }
 }
 
-// list 배열 형태로 구조체 선언
+// list 배열 형태로 구조체 선언 -> 정수로 반환할 필요 X
 int make_gpa_list(Student *head, gpa_list list[]) {
+  if (list == NULL) {
+    printf("list[] is NULL \n");
+
+    return 0;
+  }
   Student *cur = head;
   int count = 0;
 
@@ -136,11 +147,19 @@ int make_gpa_list(Student *head, gpa_list list[]) {
   }
 
   // 저장 개수
+  // return이 아닌 참조할 수 있는 변수를 만들어보기 -> 외부의 전역변수
   return count;
 }
 
+// 입력값 없이 출력할 경우, 출력 X
 // 정렬 및 출력 모두. 순차리스트와 별개의 인덱스 사용
 void print_gpa_list(gpa_list list[], int count) {
+  if (list == NULL || count == 0) {
+    printf("list[] is NULL \n");
+
+    return;
+  }
+
   for (int j = 0; j < count - 1; j++) {
     for (int i = 0; i < count - 1; i++) {
       if (list[i].GPA < list[i + 1].GPA) {
@@ -181,6 +200,9 @@ int main() {
   Student *head = NULL;
 
   while (1) {
+
+    // 타이핑해서 프로세스 진행하는 것도 다시 생각해보기 -> 함수화 진행. ㅇ
+
     t.type_input = 0;
     printf("type (1) : add student, type (2) : print student,type others : "
            "exit \n");
@@ -196,23 +218,18 @@ int main() {
       printf("type GPA : ");
       scanf("%d", &t.temp_GPA);
 
-      printf("name : %s , major : %s , GPA : %d \n", t.temp_name, t.temp_major,
-             t.temp_GPA);
-
-      printf("temp_GPA : %d \n", t.temp_GPA);
-
-      Student *s_1 = set_student(t.temp_name, t.temp_major, t.temp_GPA);
+      Student *s_1 = set_student(&t);
 
       printf("append_student \n ");
       // append 함수 내에 정렬까지 추가하기
       append_student(&head, s_1);
 
-      printf("print_student \n ");
+      printf("[Unsorted] print_student : appending order \n ");
       print_student(head);
     } else if (t.type_input == 2) {
       printf("make_gpa_list \n ");
       list_cnt = make_gpa_list(head, s_list);
-      printf("print_gpa_list \n ");
+      printf("[Sorted]print_gpa_list : descending order \n ");
       print_gpa_list(s_list, list_cnt);
     } else {
       free_all(&head);

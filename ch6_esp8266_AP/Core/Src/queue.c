@@ -7,13 +7,14 @@ void enqueue_ring(ring *r, uint8_t input_data) {
 
   if (((r->rear + 1) % r->max_size) == (r->front)) {
     // 포화 상태에서 동작 안함 -> 덮어쓰기 방지
+    r->over_cnt++;
   } else {
     r->rear = (r->rear + 1) % r->max_size;
     r->data[r->rear] = input_data;
   }
 }
 
-// return값 형태 개선 필요
+// return값 형태 개선 -> true일 때만 값 출력
 bool dequeue_ring(ring *r) {
   if (r->rear == r->front) {
     return false;

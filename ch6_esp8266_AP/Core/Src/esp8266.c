@@ -354,7 +354,6 @@ static void check_err_cnt(esp_8266 *s) {
   }
 }
 
-void test_uart(void) { send_AT_CMD(AT); }
 
 void restore_esp8266(void) {
   printf("Restore ESP8266 \r\n");
