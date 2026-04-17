@@ -80,4 +80,4 @@ bool dequeue(User_ring *r, uint8_t *output) {
 }
 
 // User_ring의 rear, front 값을 통해 현재 저장된 데이터 크기를 반환 | 입ㄺ User_ring , 출력 data_size
-uint8_t get_ring_datasize(User_ring *r)
+uint8_t get_ring_datasize(User_ring *r){}

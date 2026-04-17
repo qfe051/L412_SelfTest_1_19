@@ -61,7 +61,7 @@ typedef struct status {
 // status 구조체 선언
 status sta;
 
-// 타이핑으로 얻을 3가지
+// 타이핑으로 얻을 3가지 Process
 enum S_Process{
   ADD_STUDENT =1,
   PRINT_STUDENT_GPA,
