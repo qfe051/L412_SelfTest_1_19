@@ -23,6 +23,7 @@ bool enqueue(User_ring *r, uint8_t *input);
 // output에 값 넣는 과정
 bool dequeue(User_ring *r,uint8_t *output);
 
+// 인자로 받는 값은 다른 함수에서 둘 예정
 // 인자로 받는 값들 항상 에러처리하기 
 bool ring_init(User_ring *r,uint8_t init_size,uint8_t *init_buf);
 

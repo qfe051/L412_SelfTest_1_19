@@ -9,8 +9,8 @@
 #include <string.h>
 
 // esp8266에서 사용할 ring 구조체, 변수
-uint8_t rx_data_esp;
-User_ring rx_ring_esp;
+extern uint8_t rx_data_esp;
+extern User_ring rx_ring_esp;
 
 extern UART_HandleTypeDef huart1;
 extern UART_HandleTypeDef hlpuart1;
@@ -40,6 +40,6 @@ bool recv_data_task(void); // p_rxdata를 -> recv_buffer에 저장, p_rxdata를
 // last_resp가 실시간으로 업데이트 되니, void로 받아오기
 bool esp_8266_control(void);
 
-bool init_esp8266();
+bool init_esp8266(void);
 
 #endif

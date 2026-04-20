@@ -46,6 +46,10 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 
+// 링버퍼 관련 -> 변수들 선언하기
+#define RING_SIZE 100
+uint8_t ring_buf[RING_SIZE];
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -99,6 +103,9 @@ int main(void)
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
 
+  ring_init(&rx_ring_esp, RING_SIZE, ring_buf);
+
+  HAL_UART_Receive_IT(&huart1, &rx_data_esp, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -299,7 +306,15 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+  if (huart->Instance == USART1) {
+    // rx 데이터 존재하는 상태
 
+    enqueue(&rx_ring_esp, &rx_data_esp);
+
+    HAL_UART_Receive_IT(&huart1, &rx_data_esp, 1);
+  }
+}
 /* USER CODE END 4 */
 
 /**

@@ -3,6 +3,9 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+uint8_t rx_data_esp;
+User_ring rx_ring_esp;
+
 #define RECV_BUF_SIZE 100
 #define RECV_TIMEOUT 5000
 
@@ -93,6 +96,7 @@ static bool send_AT_CMD(char *input_str) {
 
     return false;
   }
+  last_resp.type = RESP_UNKNOWN;
   HAL_UART_Transmit(&huart1, (uint8_t *)input_str, strlen(input_str), 50);
 
   return true;
@@ -142,6 +146,12 @@ static AT_Response parse_response(uint8_t *raw_data) {
   return resp;
 }
 
+bool init_esp8266(void) {
+  last_resp.type = RESP_UNKNOWN;
+  // last_resp.params =
+  last_resp.param_count = 0;
+}
+
 bool esp_8266_control(void) {
   if (&last_resp == NULL) {
     return false;
@@ -159,11 +169,78 @@ bool esp_8266_control(void) {
       esp8266_step = ESP8266_READY_SEND;
     } else {
       if (last_resp.type == RESP_OK) {
-        printf("[ESP8266] READY : OK \r\n");
+        send_Serial("[ESP8266] READY : OK \r\n");
         esp8266_step = ESP8266_CWMODE_SEND;
       }
     }
     return true;
     break;
+  case ESP8266_CWMODE_SEND:
+    send_AT_CMD("AT+CWMODE=2\r\n");
+    esp8266_step = ESP8266_CWMODE_WAIT;
+    tickstart_esp = HAL_GetTick();
+    return true;
+    break;
+  case ESP8266_CWMODE_WAIT:
+    if (HAL_GetTick() - tickstart_esp > RECV_TIMEOUT) {
+      esp8266_step = ESP8266_READY_SEND;
+    } else {
+      if (last_resp.type == RESP_OK) {
+        send_Serial("[ESP8266] AT+CWMODE=2 : OK \r\n");
+        esp8266_step = ESP8266_CIPMUX_SEND;
+      }
+    }
+    return true;
+    break;
+  case ESP8266_CIPMUX_SEND:
+    send_AT_CMD("AT+CIPMUX=1\r\n");
+    esp8266_step = ESP8266_CIPMUX_WAIT;
+    tickstart_esp = HAL_GetTick();
+    return true;
+    break;
+  case ESP8266_CIPMUX_WAIT:
+    if (HAL_GetTick() - tickstart_esp > RECV_TIMEOUT) {
+      esp8266_step = ESP8266_READY_SEND;
+    } else {
+      if (last_resp.type == RESP_OK) {
+        send_Serial("[ESP8266] AT+CIPMUX=1 : OK \r\n");
+        esp8266_step = ESP8266_CIPSERVER_SEND;
+      }
+    }
+    return true;
+    break;
+  case ESP8266_CIPSERVER_SEND:
+    send_AT_CMD("AT+CIPSERVER=1\r\n");
+    esp8266_step = ESP8266_CIPSERVER_WAIT;
+    tickstart_esp = HAL_GetTick();
+    return true;
+    break;
+  case ESP8266_CIPSERVER_WAIT:
+    if (HAL_GetTick() - tickstart_esp > RECV_TIMEOUT) {
+      esp8266_step = ESP8266_READY_SEND;
+    } else {
+      if (last_resp.type == RESP_OK) {
+        send_Serial("[ESP8266] AT+CIPMUX=1 : OK \r\n");
+        esp8266_step = ESP8266_DEVICE_WAIT;
+
+        // 다음단계 WAIT이므로 동작 추가
+        tickstart_esp = HAL_GetTick();
+      }
+    }
+    return true;
+    break;
+  case ESP8266_DEVICE_WAIT:
+    if (HAL_GetTick() - tickstart_esp > RECV_TIMEOUT) {
+      send_Serial("[ESP8266] DEVICE_WAIT \r\n");
+      tickstart_esp = HAL_GetTick();
+    } else {
+      if (last_resp.type == RESP_OK) {
+        send_Serial("[ESP8266] DEVICE_WAIT : OK \r\n");
+        esp8266_step = ESP8266_DEVICE_WAIT;
+
+        // 다음단계 WAIT이므로 동작 추가
+        tickstart_esp = HAL_GetTick();
+      }
+    }
   }
 }
