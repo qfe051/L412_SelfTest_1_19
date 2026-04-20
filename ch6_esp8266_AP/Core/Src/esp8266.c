@@ -319,6 +319,7 @@ void check_connection(ring *r, esp_8266 *s) {
   }
 }
 
+// 이전 데이터값 가져가지 않도록! 
 static void init_recv_buf(ring *r, esp_8266 *s) {
   memset(s->recv_buf, 0, sizeof(uint8_t) * r->max_size);
 }

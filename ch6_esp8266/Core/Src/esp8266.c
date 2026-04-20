@@ -4,17 +4,166 @@
 #include <stdint.h>
 
 #define RECV_BUF_SIZE 100
+#define RECV_TIMEOUT 5000
+
+typedef enum _esp8266_step {
+  ESP8266_READY_SEND = 0,
+  ESP8266_READY_WAIT,
+  ESP8266_CWMODE_SEND,
+  ESP8266_CWMODE_WAIT,
+  ESP8266_CIPMUX_SEND,
+  ESP8266_CIPMUX_WAIT,
+  ESP8266_CIPSERVER_SEND,
+  ESP8266_CIPSERVER_WAIT,
+  ESP8266_CONNECTED_CLIENT,
+
+  ESP8266_DEVICE_WAIT,
+  ESP8266_D_CIPSEND_SEND,
+  ESP8266_D_CIPSEND_WAIT,
+  ESP8266_HTML_SEND,
+  ESP8266_HTML_WAIT,
+  ESP8266_BUTTON_WAIT
+
+} ESP_8266_STEP;
 
 static uint8_t recv_buf[RECV_BUF_SIZE];
+static uint8_t recv_cnt;
+static uint32_t tickstart_esp;
+static AT_Response last_resp; // 마지막 응답 저장 -> 이 응답 바탕으로 나머지 연산들 진행
 
-static AT_Response parse_response(uint8_t *raw_data) {}
+// 이 코드 내에서 사용할 링 구조체
+// static User_ring rx_ring_esp;
+static ESP_8266_STEP esp8266_step;
+
+static AT_Response parse_response(uint8_t *raw_data);
+
+static bool send_AT_CMD(char *input_str);
+static bool send_Serial(char *input_str);
 
 //static uint8_t recv_buf[RECV_BUF_SIZE]; 활용하기
 bool recv_ring_data(uint8_t *p_rxdata, uint8_t recv_size) {
   if (p_rxdata==NULL||recv_size==0) {
     return false;
   }
-  for (int i=0; i<recv_size; i++) {
-    
+  for (int i = 0; i < recv_size; i++) {
+    if (is_empty(&rx_ring_esp)) {
+    } else {
+      dequeue(&rx_ring_esp, &p_rxdata[i]);
+    }
+  }
+  return true;
+}
+
+bool recv_data_task(void) {
+  // 추출할 데이터 있으면 동작하기
+  if (!is_empty(&rx_ring_esp)) {
+    uint8_t recv_data;
+
+    // data를 받는지부터 확인 -> 1개 데이터 뽑는 동작 성공하는지 check
+    if (recv_ring_data(&recv_data, 1)) {
+      recv_buf[recv_cnt] = recv_data;
+
+      if (recv_cnt == RECV_BUF_SIZE - 2) {
+        recv_buf[RECV_BUF_SIZE - 1] = '\0';
+        send_Serial(recv_buf);
+        recv_cnt = 0;
+        // last_resp 구조체에 값저장
+        last_resp = parse_response(recv_buf);
+      } else if (recv_buf[recv_cnt] == '\n') {
+        recv_buf[recv_cnt + 1] = '\0';
+        send_Serial(recv_buf);
+        recv_cnt = 0;
+        // last_resp 구조체에 값저장
+        last_resp = parse_response(recv_buf);
+      } else {
+        recv_cnt = (recv_cnt + 1) % RECV_BUF_SIZE;
+      }
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+  return true;
+}
+
+// AT CMD 전송 | 입력 : input_str , 출력 : T/F
+static bool send_AT_CMD(char *input_str) {
+  if (input_str == NULL || &huart1 == NULL) {
+
+    return false;
+  }
+  HAL_UART_Transmit(&huart1, (uint8_t *)input_str, strlen(input_str), 50);
+
+  return true;
+}
+
+// Serial 출력 용도 | 입력 : input_str , 출력 : T/F
+static bool send_Serial(char *input_str) {
+  if (input_str == NULL || &huart1 == NULL) {
+
+    return false;
+  }
+  HAL_UART_Transmit(&hlpuart1, (uint8_t *)input_str, strlen(input_str), 50);
+
+  return true;
+}
+
+// recv_buf 내의 데이터를 AT_Response 구조체 형태로 파싱| 입력 : recv_buf ,출력
+// : AT_Response 구조체 데이터
+static AT_Response parse_response(uint8_t *raw_data) {
+  // AT_Response 구조체 초기화
+  AT_Response resp = {RESP_UNKNOWN, {0}, 0};
+
+  // type 부터 확인
+  if (strcmp((char *)raw_data, "OK\r\n") == 0) {
+    resp.type = RESP_OK;
+  } else if (strcmp((char *)raw_data, "ERROR") == 0) {
+    resp.type = RESP_ERROR;
+  } else if (strcmp((char *)raw_data, "ready") == 0) {
+    resp.type = RESP_READY;
+  } else {
+    resp.type = RESP_ETC;
+
+    // 분리하여 작업 strtok
+    // 쉼표와 공백으로 분리 해보기 -> 쉼표 공백, 아무거나 있어도 구분 됨
+    char *token = strtok((char *)raw_data, ", ");
+    if (token) {
+      // 초반 분류 tag 없으니, 바로 param 사용하기
+      strcpy(resp.params[resp.param_count], token);
+      resp.param_count++;
+    }
+    while ((token == strtok(NULL, ", ")) != NULL && resp.param_count < 5) {
+      strcpy(resp.params[resp.param_count], token);
+      resp.param_count++;
+    }
+  }
+
+  return resp;
+}
+
+bool esp_8266_control(void) {
+  if (&last_resp == NULL) {
+    return false;
+  }
+
+  switch (esp8266_step) {
+  case ESP8266_READY_SEND:
+    send_AT_CMD("AT\r\n");
+    esp8266_step = ESP8266_READY_WAIT;
+    tickstart_esp = HAL_GetTick();
+    return true;
+    break;
+  case ESP8266_READY_WAIT:
+    if (HAL_GetTick() - tickstart_esp > RECV_TIMEOUT) {
+      esp8266_step = ESP8266_READY_SEND;
+    } else {
+      if (last_resp.type == RESP_OK) {
+        printf("[ESP8266] READY : OK \r\n");
+        esp8266_step = ESP8266_CWMODE_SEND;
+      }
+    }
+    return true;
+    break;
   }
 }

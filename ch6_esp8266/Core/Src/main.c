@@ -21,6 +21,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "esp8266.h"
 
 /* USER CODE END Includes */
 
@@ -107,6 +108,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+    recv_data_task();
+    esp_8266_control();
   }
   /* USER CODE END 3 */
 }
