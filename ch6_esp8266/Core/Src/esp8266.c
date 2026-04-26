@@ -18,7 +18,6 @@ typedef enum _esp8266_step {
   ESP8266_CIPMUX_WAIT,
   ESP8266_CIPSERVER_SEND,
   ESP8266_CIPSERVER_WAIT,
-  ESP8266_CONNECTED_CLIENT,
 
   ESP8266_DEVICE_WAIT,
   ESP8266_D_CIPSEND_SEND,
@@ -57,6 +56,8 @@ bool recv_ring_data(uint8_t *p_rxdata, uint8_t recv_size) {
   return true;
 }
 
+// main의 while에서 처리하기엔 부족 -> 별도의 반복루프 필요함
+// flag 방식이든지 사용해보기
 bool recv_data_task(void) {
   // 추출할 데이터 있으면 동작하기
   if (!is_empty(&rx_ring_esp)) {
@@ -153,9 +154,9 @@ bool init_esp8266(void) {
 }
 
 bool esp_8266_control(void) {
-  if (&last_resp == NULL) {
-    return false;
-  }
+  // if (&last_resp == NULL) {
+  //   return false;
+  // }
 
   switch (esp8266_step) {
   case ESP8266_READY_SEND:
@@ -234,13 +235,25 @@ bool esp_8266_control(void) {
       send_Serial("[ESP8266] DEVICE_WAIT \r\n");
       tickstart_esp = HAL_GetTick();
     } else {
-      if (last_resp.type == RESP_OK) {
+      // 파라미터 test
+      if (last_resp.params[0][0] != '\n') {
+        for (int i = 0; i < 5; i++) {
+          send_Serial(i);
+          send_Serial("last_resp.params  :  \r\n");
+          send_Serial(last_resp.params[i]);
+          send_Serial("\r\n");
+        }
+      }
+
+      if (last_resp.type == RESP_ETC && last_resp.params[1] == "CONNECT") {
         send_Serial("[ESP8266] DEVICE_WAIT : OK \r\n");
-        esp8266_step = ESP8266_DEVICE_WAIT;
+        esp8266_step = ESP8266_D_CIPSEND_SEND;
 
         // 다음단계 WAIT이므로 동작 추가
         tickstart_esp = HAL_GetTick();
       }
     }
+  case ESP8266_D_CIPSEND_SEND:
+    send_Serial("[ESP8266] ESP8266_D_CIPSEND_SEND \r\n");
   }
 }

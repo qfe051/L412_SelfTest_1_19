@@ -104,6 +104,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   ring_init(&rx_ring_esp, RING_SIZE, ring_buf);
+  init_esp8266();
 
   HAL_UART_Receive_IT(&huart1, &rx_data_esp, 1);
   /* USER CODE END 2 */
