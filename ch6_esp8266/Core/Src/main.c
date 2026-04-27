@@ -22,6 +22,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "esp8266.h"
+#include "printf.h"
 
 /* USER CODE END Includes */
 
@@ -102,6 +103,8 @@ int main(void)
   /* Initialize interrupts */
   MX_NVIC_Init();
   /* USER CODE BEGIN 2 */
+
+  printf("LPUART printf test \r\n");
 
   ring_init(&rx_ring_esp, RING_SIZE, ring_buf);
   init_esp8266();

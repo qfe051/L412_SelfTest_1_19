@@ -33,7 +33,7 @@ typedef struct {
 
 // 지정된 사이즈로 data 수
 bool recv_ring_data(uint8_t *p_rxdata, uint8_t recv_size); // p_rxdata
-bool recv_data_task(void); // p_rxdata를 -> recv_buffer에 저장, p_rxdata를
+void recv_data_task(void); // p_rxdata를 -> recv_buffer에 저장, p_rxdata를
                            // 받아줄 변수 1개 필요
 
 // 전체 프로세스 진행하며 단계별로 판단하기 -> 응답은 구조체 활용!
