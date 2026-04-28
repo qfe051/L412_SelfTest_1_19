@@ -11,6 +11,19 @@ bool recv_flag = true;
 #define RECV_TIMEOUT 5000
 #define RECV_WAIT_TIME 1000
 
+const char *AT_HTML =
+    "HTTP/1.1 200 OK\r\n"
+    "Content-Type: text/html\r\n"
+    "Connection: close\r\n"
+    "\r\n"
+    "<html>\r\n"
+    "  <body>\r\n"
+    "    <h1>ESP8266 LED Control</h1>\r\n"
+    "    <a href=\"/led/on\"><button>LED ON</button></a>\r\n"
+    "    <a href=\"/led/off\"><button>LED OFF</button></a>\r\n"
+    "  </body>\r\n"
+    "</html>\r\n";
+
 typedef enum _esp8266_step {
   ESP8266_READY_SEND = 0,
   ESP8266_READY_WAIT,
@@ -76,12 +89,11 @@ void recv_data_task(void) {
       if (recv_cnt == RECV_BUF_SIZE - 2) {
         recv_buf[RECV_BUF_SIZE - 1] = '\0';
         send_Serial(recv_buf);
-        // // 함수 대신 사용하기 test
-        // HAL_UART_Transmit(&hlpuart1, recv_buf, strlen(recv_buf), 100);
+        last_resp = parse_response(recv_buf);
+
         // memset(recv_buf, 0, sizeof(uint8_t) * RECV_BUF_SIZE);
         recv_cnt = 0;
         // last_resp 구조체에 값저장
-        last_resp = parse_response(recv_buf);
 
         // // recv_flag 값 변경
         // recv_flag = false;
@@ -89,16 +101,11 @@ void recv_data_task(void) {
       } else if (recv_buf[recv_cnt] == '\n') {
         recv_buf[recv_cnt + 1] = '\0';
         send_Serial(recv_buf);
-        // // 함수 대신 사용하기 test
-        // HAL_UART_Transmit(&hlpuart1, recv_buf, strlen(recv_buf), 100);
-        // memset(recv_buf, 0, sizeof(uint8_t) * RECV_BUF_SIZE);
-
-        recv_cnt = 0;
-        // last_resp 구조체에 값저장
         last_resp = parse_response(recv_buf);
 
-        // // recv_flag 값 변경
-        // recv_flag = false;
+        // memset(recv_buf, 0, sizeof(uint8_t) * RECV_BUF_SIZE);
+        recv_cnt = 0;
+
         return;
       } else {
         recv_cnt = (recv_cnt + 1) % RECV_BUF_SIZE;
@@ -180,6 +187,7 @@ bool esp_8266_control(void) {
 
   switch (esp8266_step) {
   case ESP8266_READY_SEND:
+    send_Serial("[ESP8266] START \r\n");
     send_AT_CMD("AT\r\n");
     esp8266_step = ESP8266_READY_WAIT;
     tickstart_esp = HAL_GetTick();
@@ -257,15 +265,15 @@ bool esp_8266_control(void) {
       send_Serial("[ESP8266] DEVICE_WAIT \r\n");
       tickstart_esp = HAL_GetTick();
     } else {
-      // 파라미터 test
-      if (last_resp.params[0][0] != '\n') {
-        for (int i = 0; i < 5; i++) {
-          send_Serial(i);
-          send_Serial("last_resp.params  :  \r\n");
-          send_Serial(last_resp.params[i]);
-          send_Serial("\r\n");
-        }
-      }
+      // // 파라미터 test
+      // if (last_resp.params[0][0] != '\n') {
+      //   for (int i = 0; i < 5; i++) {
+      //     send_Serial(i);
+      //     send_Serial("last_resp.params  :  \r\n");
+      //     send_Serial(last_resp.params[i]);
+      //     send_Serial("\r\n");
+      //   }
+      // }
 
       if (last_resp.type == RESP_ETC && last_resp.params[1] == "CONNECT") {
         send_Serial("[ESP8266] DEVICE_WAIT : OK \r\n");
@@ -276,6 +284,70 @@ bool esp_8266_control(void) {
       }
     }
   case ESP8266_D_CIPSEND_SEND:
-    send_Serial("[ESP8266] ESP8266_D_CIPSEND_SEND \r\n");
+    send_AT_CMD("AT+CIPSEND=0,239\r\n");
+    esp8266_step = ESP8266_D_CIPSEND_WAIT;
+    tickstart_esp = HAL_GetTick();
+    return true;
+    break;
+  case ESP8266_D_CIPSEND_WAIT:
+    if (HAL_GetTick() - tickstart_esp > RECV_TIMEOUT) {
+      esp8266_step = ESP8266_READY_SEND;
+    } else {
+      if (last_resp.type == RESP_OK) {
+        // 0,239는 현재 상황에서만 적용되는 값
+        send_Serial("[ESP8266] AT+CIPSEND=0,239 : OK \r\n");
+        esp8266_step = ESP8266_DEVICE_WAIT;
+
+        // 다음단계 WAIT이므로 동작 추가
+        tickstart_esp = HAL_GetTick();
+      }
+    }
+    return true;
+    break;
+  case ESP8266_HTML_SEND:
+    send_AT_CMD(AT_HTML);
+    esp8266_step = ESP8266_HTML_WAIT;
+    tickstart_esp = HAL_GetTick();
+    return true;
+    break;
+  case ESP8266_HTML_WAIT:
+    if (HAL_GetTick() - tickstart_esp > RECV_TIMEOUT) {
+      esp8266_step = ESP8266_READY_SEND;
+    } else {
+      if (last_resp.type == RESP_ETC && last_resp.params[1] == "Recv") {
+        send_Serial("[ESP8266] DEVICE_WAIT : OK \r\n");
+        esp8266_step = ESP8266_D_CIPSEND_SEND;
+
+        // 다음단계 WAIT이므로 동작 추가
+        tickstart_esp = HAL_GetTick();
+      }
+    }
+  case ESP8266_BUTTON_WAIT:
+    if (last_resp.type == RESP_ETC && last_resp.params[1] == "/led/on") {
+    } else if (last_resp.type == RESP_ETC &&
+               last_resp.params[1] == "/led/off") {
+    }
   }
+}
+
+void test_task(void) {
+  // 1st
+  send_AT_CMD("AT\r\n");
+
+  recv_data_task();
+
+  if (last_resp.type == RESP_OK) {
+    printf("RESP_OK  \r\n");
+  } else if (last_resp.type == RESP_ETC) {
+    printf("RESP_ETC  \r\n");
+  }
+
+  printf("check last_resp [1] \r\n");
+
+  //  //2nd
+  //  send_AT_CMD("AT\r\n");
+  //
+  //  recv_data_task();
+  //
+  //  printf("check last_resp [2] \r\n");
 }

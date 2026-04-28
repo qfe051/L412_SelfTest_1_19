@@ -42,4 +42,6 @@ bool esp_8266_control(void);
 
 bool init_esp8266(void);
 
+void test_task(void);
+
 #endif
