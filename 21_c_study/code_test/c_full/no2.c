@@ -17,6 +17,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// 배열의 가로 크기 지정하는 이유는?
+// 정적메모리 2차원배열 예시 작성하기
+void _sta_print_2D_Array(int arr[][5], int col, int row) {
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < col; j++) {
+      printf("%d ", arr[i][j]);
+    }
+    printf("\n");
+  }
+}
 
 int main() {
   int page;

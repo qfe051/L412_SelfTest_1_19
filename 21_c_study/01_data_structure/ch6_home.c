@@ -200,3 +200,55 @@
     bst_free(root->right);
     free(root);
  }
+
+ /* ============================================================
+  * 2. Max Heap (배열 기반)
+  * ============================================================
+  */
+
+ typedef struct {
+   int data[HEAP_CAPACITY];
+   int size;
+ } MaxHeap;
+
+ // 초기화
+ void heap_init(MaxHeap *heap) {
+   if (heap == NULL) {
+     return;
+   }
+   heap->size = 0;
+ }
+
+ // 공집합 여부
+ bool heap_is_empty(MaxHeap *heap) { return (heap != NULL || heap->size == 0); }
+
+ // 포화여부
+ bool heap_is_full(MaxHeap *heap) {
+   return (heap != NULL && heap->size >= HEAP_CAPACITY);
+ }
+
+ /* 삽입 (heapify-up)
+  * 1) 맨 뒤에 삽입
+  * 2) 부모보다 크면 swap 반복
+  */
+ bool heap_insert(MaxHeap *heap, int value) {
+   if (heap == NULL || heap_is_full(heap)) {
+     return false;
+   }
+
+   int idx = heap->size;
+   heap->data[idx] = value;
+   heap->size++;
+
+   // 부모와 비교하여 위로 올림
+   while (idx > 0) {
+     int parent = (idx - 1) / 2;
+     if (heap->data[parent] >= heap->data[idx]) {
+       break;
+     }
+     heap_swap(&heap->data[parent], &heap->data[idx]);
+     idx = parent;
+   }
+
+   return true;
+ }
