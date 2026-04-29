@@ -55,9 +55,10 @@ bool enqueue(User_ring *r, uint8_t *input) {
   if (is_full(r)) {
     return false;
   } else {
+    // 순서 변경 필요  1.값 넣기 , 2.값 이동
     r->rear = (r->rear + 1) % r->size;
     r->p_buffer[r->rear] = *input;
-    
+
     return true;
   }
 }
@@ -70,10 +71,9 @@ bool dequeue(User_ring *r, uint8_t *output) {
 
   if (is_empty(r)) {
     return false;
-  }
-  else {
-    *output = r->p_buffer[r->front];
+  } else {
     r->front = (r->front + 1) % r->size;
+    *output = r->p_buffer[r->front];
 
     return true;
   }

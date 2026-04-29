@@ -119,9 +119,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	esp_8266_control();
     recv_data_task();
-
+    esp_8266_control();
 
     // // test용 함수
     // test_task();

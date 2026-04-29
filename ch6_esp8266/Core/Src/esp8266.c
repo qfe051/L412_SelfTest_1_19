@@ -92,21 +92,41 @@ void recv_data_task(void) {
         last_resp = parse_response(recv_buf);
 
         // memset(recv_buf, 0, sizeof(uint8_t) * RECV_BUF_SIZE);
-        recv_cnt = 0;
+
         // last_resp 구조체에 값저장
 
-        // // recv_flag 값 변경
-        // recv_flag = false;
-        return;
+        // send_Serial("[PARSE] ");
+        // send_Serial(recv_buf);
+        // send_Serial(" => ");
+
+        // if (last_resp.type == RESP_OK) {
+        //   send_Serial("RESP_OK\r\n");
+        // } else if (last_resp.type == RESP_ETC) {
+        //   send_Serial("RESP_ETC\r\n");
+        // } else {
+        //   send_Serial("RESP_UNKNOWN\r\n");
+        // }
+
+        recv_cnt = 0;
+
       } else if (recv_buf[recv_cnt] == '\n') {
         recv_buf[recv_cnt + 1] = '\0';
         send_Serial(recv_buf);
         last_resp = parse_response(recv_buf);
 
-        // memset(recv_buf, 0, sizeof(uint8_t) * RECV_BUF_SIZE);
-        recv_cnt = 0;
+        // send_Serial("[PARSE] ");
+        // send_Serial(recv_buf);
+        // send_Serial(" => ");
 
-        return;
+        // if (last_resp.type == RESP_OK) {
+        //   send_Serial("RESP_OK\r\n");
+        // } else if (last_resp.type == RESP_ETC) {
+        //   send_Serial("RESP_ETC\r\n");
+        // } else {
+        //   send_Serial("RESP_UNKNOWN\r\n");
+        // }
+
+        recv_cnt = 0;
       } else {
         recv_cnt = (recv_cnt + 1) % RECV_BUF_SIZE;
       }
@@ -154,6 +174,8 @@ static AT_Response parse_response(uint8_t *raw_data) {
     resp.type = RESP_ERROR;
   } else if (strcmp((char *)raw_data, "ready\r\n") == 0) {
     resp.type = RESP_READY;
+  } else if (strcmp((char *)raw_data, "\r\n") == 0) {
+    return;
   } else {
     resp.type = RESP_ETC;
 
@@ -163,12 +185,24 @@ static AT_Response parse_response(uint8_t *raw_data) {
     if (token) {
       // 초반 분류 tag 없으니, 바로 param 사용하기
       strcpy(resp.params[resp.param_count], token);
+      // resp.params 출력
+      //      printf("resp.params[%d] : %s \r\n", resp.param_count,
+      //             resp.params[resp.param_count]);
       resp.param_count++;
     }
-    while ((token == strtok(NULL, ", ")) != NULL && resp.param_count < 5) {
-      strcpy(resp.params[resp.param_count], token);
+    // while ((token == strtok(NULL, ", ")) != NULL && resp.param_count < 5)
+    while (resp.param_count < 5) {
+
+      if ((token = strtok(NULL, ", ")) != NULL) {
+        strcpy(resp.params[resp.param_count], token);
+        // resp.params 출력 -> 정상동작확인
+        //        printf("resp.params[%d] : %s \r\n", resp.param_count,
+        //               resp.params[resp.param_count]);
+      }
       resp.param_count++;
     }
+    // B.P 진행용
+    resp.type = RESP_ETC;
   }
 
   return resp;
@@ -236,6 +270,11 @@ bool esp_8266_control(void) {
       if (last_resp.type == RESP_OK) {
         send_Serial("[ESP8266] AT+CIPMUX=1 : OK \r\n");
         esp8266_step = ESP8266_CIPSERVER_SEND;
+      } else if (last_resp.type == RESP_ETC) {
+        if (strcmp((char *)last_resp.params[0], "link") == 0) {
+          send_Serial("[ESP8266] AT+CIPMUX=1 : OK \r\n");
+          esp8266_step = ESP8266_CIPSERVER_SEND;
+        }
       }
     }
     return true;
@@ -265,24 +304,18 @@ bool esp_8266_control(void) {
       send_Serial("[ESP8266] DEVICE_WAIT \r\n");
       tickstart_esp = HAL_GetTick();
     } else {
-      // // 파라미터 test
-      // if (last_resp.params[0][0] != '\n') {
-      //   for (int i = 0; i < 5; i++) {
-      //     send_Serial(i);
-      //     send_Serial("last_resp.params  :  \r\n");
-      //     send_Serial(last_resp.params[i]);
-      //     send_Serial("\r\n");
-      //   }
-      // }
+      if (last_resp.type == RESP_ETC) {
+        if (strcmp((char *)last_resp.params[1], "CONNECT\r\n") == 0) {
+          send_Serial("[ESP8266] DEVICE_WAIT : OK \r\n");
+          esp8266_step = ESP8266_D_CIPSEND_SEND;
 
-      if (last_resp.type == RESP_ETC && last_resp.params[1] == "CONNECT") {
-        send_Serial("[ESP8266] DEVICE_WAIT : OK \r\n");
-        esp8266_step = ESP8266_D_CIPSEND_SEND;
-
-        // 다음단계 WAIT이므로 동작 추가
-        tickstart_esp = HAL_GetTick();
+          // 다음단계 WAIT이므로 동작 추가
+          tickstart_esp = HAL_GetTick();
+        }
       }
     }
+    return true;
+    break;
   case ESP8266_D_CIPSEND_SEND:
     send_AT_CMD("AT+CIPSEND=0,239\r\n");
     esp8266_step = ESP8266_D_CIPSEND_WAIT;
@@ -296,7 +329,7 @@ bool esp_8266_control(void) {
       if (last_resp.type == RESP_OK) {
         // 0,239는 현재 상황에서만 적용되는 값
         send_Serial("[ESP8266] AT+CIPSEND=0,239 : OK \r\n");
-        esp8266_step = ESP8266_DEVICE_WAIT;
+        esp8266_step = ESP8266_HTML_SEND;
 
         // 다음단계 WAIT이므로 동작 추가
         tickstart_esp = HAL_GetTick();
@@ -314,19 +347,36 @@ bool esp_8266_control(void) {
     if (HAL_GetTick() - tickstart_esp > RECV_TIMEOUT) {
       esp8266_step = ESP8266_READY_SEND;
     } else {
-      if (last_resp.type == RESP_ETC && last_resp.params[1] == "Recv") {
-        send_Serial("[ESP8266] DEVICE_WAIT : OK \r\n");
-        esp8266_step = ESP8266_D_CIPSEND_SEND;
+      if (last_resp.type == RESP_ETC) {
+        if (strcmp((char *)last_resp.params[0], "Recv") == 0) {
+          send_Serial("[ESP8266] ESP8266_HTML_WAIT : OK \r\n");
+          esp8266_step = ESP8266_BUTTON_WAIT;
 
-        // 다음단계 WAIT이므로 동작 추가
-        tickstart_esp = HAL_GetTick();
+          // 다음단계 WAIT이므로 동작 추가
+          tickstart_esp = HAL_GetTick();
+        }
       }
     }
+    return true;
+    break;
   case ESP8266_BUTTON_WAIT:
-    if (last_resp.type == RESP_ETC && last_resp.params[1] == "/led/on") {
-    } else if (last_resp.type == RESP_ETC &&
-               last_resp.params[1] == "/led/off") {
+    if (HAL_GetTick() - tickstart_esp > RECV_TIMEOUT) {
+      send_Serial("[ESP8266] BUTTON_WAIT \r\n");
+      tickstart_esp = HAL_GetTick();
+    } else {
+      // if (last_resp.type == RESP_ETC) {
+      if (strcmp((char *)last_resp.params[0], "+IPD") == 0) {
+        if (strcmp((char *)last_resp.params[3], "/led/on") == 0) {
+          send_Serial("[ESP8266] LED is ON \r\n");
+        } else if (strcmp((char *)last_resp.params[3], "/led/off") == 0) {
+          send_Serial("[ESP8266] LED is OFF \r\n");
+        }
+      }
+      // }
+      // last_resp.type = RESP_UNKNOWN;
     }
+    return true;
+    break;
   }
 }
 
