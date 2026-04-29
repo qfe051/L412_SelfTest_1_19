@@ -51,6 +51,9 @@ UART_HandleTypeDef huart1;
 #define RING_SIZE 100
 uint8_t ring_buf[RING_SIZE];
 
+//main에서만 사용
+bool esp8266_state = true;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -120,7 +123,20 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
     recv_data_task();
-    esp_8266_control();
+  
+    // 함수의 return값 대입 T/F
+    esp8266_state = esp_8266_control();
+    esp8266_state = (check_connection()&&esp8266_state);
+
+    // 함수의 return값 false면 초기화 루틴 시작 -> ISR로도 가능한지 확인하기
+    if (esp8266_state == false){
+      ring_init(&rx_ring_esp, RING_SIZE, ring_buf);
+      init_esp8266();
+
+      esp8266_state = true;
+    }
+    
+
 
     // // test용 함수
     // test_task();

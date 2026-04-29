@@ -31,16 +31,19 @@ typedef struct {
   int param_count;
 } AT_Response;
 
-// 지정된 사이즈로 data 수
+// 지정된 사이즈로 data 수. 현재 내부에서만 활용. 추후 확장 위해 외부에서 필요한지?
 bool recv_ring_data(uint8_t *p_rxdata, uint8_t recv_size); // p_rxdata
+
+
 void recv_data_task(void); // p_rxdata를 -> recv_buffer에 저장, p_rxdata를
                            // 받아줄 변수 1개 필요
 
 // 전체 프로세스 진행하며 단계별로 판단하기 -> 응답은 구조체 활용!
 // last_resp가 실시간으로 업데이트 되니, void로 받아오기
 bool esp_8266_control(void);
+bool check_connection(void);
 
-bool init_esp8266(void);
+void init_esp8266(void);
 
 void test_task(void);
 

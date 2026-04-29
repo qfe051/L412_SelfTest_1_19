@@ -201,17 +201,16 @@ static AT_Response parse_response(uint8_t *raw_data) {
       }
       resp.param_count++;
     }
-    // B.P 진행용
-    resp.type = RESP_ETC;
   }
 
   return resp;
 }
 
-bool init_esp8266(void) {
+void init_esp8266(void) {
   last_resp.type = RESP_UNKNOWN;
   // last_resp.params =
   last_resp.param_count = 0;
+  esp8266_step=ESP8266_READY_SEND;
 }
 
 bool esp_8266_control(void) {
@@ -271,7 +270,9 @@ bool esp_8266_control(void) {
         send_Serial("[ESP8266] AT+CIPMUX=1 : OK \r\n");
         esp8266_step = ESP8266_CIPSERVER_SEND;
       } else if (last_resp.type == RESP_ETC) {
-        if (strcmp((char *)last_resp.params[0], "link") == 0) {
+        // 디버깅 속도에 따라 탐색 여부 달라짐 - strcmp -> strstr 변경
+        // if (strcmp((char *)last_resp.params[0], "link") == 0)
+        if (strstr(recv_buf,"link")) {
           send_Serial("[ESP8266] AT+CIPMUX=1 : OK \r\n");
           esp8266_step = ESP8266_CIPSERVER_SEND;
         }
@@ -365,17 +366,27 @@ bool esp_8266_control(void) {
       tickstart_esp = HAL_GetTick();
     } else {
       // if (last_resp.type == RESP_ETC) {
-      if (strcmp((char *)last_resp.params[0], "+IPD") == 0) {
-        if (strcmp((char *)last_resp.params[3], "/led/on") == 0) {
-          send_Serial("[ESP8266] LED is ON \r\n");
-        } else if (strcmp((char *)last_resp.params[3], "/led/off") == 0) {
-          send_Serial("[ESP8266] LED is OFF \r\n");
-        }
+      // if (strcmp((char *)last_resp.params[0], "+IPD") == 0) {
+        
+      // if (strcmp((char *)last_resp.params[3], "/led/on") == 0) 
+      if (strstr(recv_buf,"/led/on")){
+        send_Serial("[ESP8266] LED is ON \r\n");
+      } 
+      // else if (strcmp((char *)last_resp.params[3], "/led/off") == 0)
+      else if (strstr(recv_buf,"/led/off")) {
+        send_Serial("[ESP8266] LED is OFF \r\n");
       }
+
+      // }
       // }
       // last_resp.type = RESP_UNKNOWN;
     }
     return true;
+    break;
+
+  default:
+    send_Serial("[ESP8266] State Error \r\n");
+    return false;
     break;
   }
 }
@@ -400,4 +411,15 @@ void test_task(void) {
   //  recv_data_task();
   //
   //  printf("check last_resp [2] \r\n");
+}
+
+bool check_connection(void) {
+
+  if (!strcmp(recv_buf, "ready\r\n")) {
+    esp8266_step = ESP8266_READY_SEND;
+    printf("[ESP8266] ESP8266_READY_SEND \r\n");
+
+    return false;
+  }
+  return true;
 }
