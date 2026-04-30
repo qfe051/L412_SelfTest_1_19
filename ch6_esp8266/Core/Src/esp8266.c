@@ -131,7 +131,7 @@ static bool send_AT_CMD(char *input_str) {
 
 // Serial 출력 용도 | 입력 : input_str , 출력 : T/F
 static bool send_Serial(char *input_str) {
-  if (input_str == NULL || &huart1 == NULL) {
+  if (input_str == NULL || &hlpuart1 == NULL) {
 
     return false;
   }
@@ -250,14 +250,10 @@ bool esp_8266_control(void) {
       if (last_resp.type == RESP_OK) {
         send_Serial("[ESP8266] AT+CIPMUX=1 : OK \r\n");
         esp8266_step = ESP8266_CIPSERVER_SEND;
-      } else if (last_resp.type == RESP_ETC) {
-        // 디버깅 속도에 따라 탐색 여부 달라짐 - strcmp -> strstr 변경
-        // if (strcmp((char *)last_resp.params[0], "link") == 0)
-        if (strstr(recv_buf, "link")) {
-          RST_RECV_BUF;
-          send_Serial("[ESP8266] AT+CIPMUX=1 : OK \r\n");
-          esp8266_step = ESP8266_CIPSERVER_SEND;
-        }
+      } else if (strstr(recv_buf, "link")) {
+        RST_RECV_BUF;
+        send_Serial("[ESP8266] AT+CIPMUX=1 : OK \r\n");
+        esp8266_step = ESP8266_CIPSERVER_SEND;
       }
     }
     return true;

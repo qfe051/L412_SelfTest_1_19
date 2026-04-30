@@ -1507,7 +1507,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="esp8266" id="-LDwkpopQaUTWq8sEIPF">
-    <mxGraphModel dx="1801" dy="1380" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="1534" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="PO3zvFb4hh2YRBcTxihm-0" />
         <mxCell id="PO3zvFb4hh2YRBcTxihm-1" parent="PO3zvFb4hh2YRBcTxihm-0" />
@@ -1551,9 +1551,6 @@
           <mxGeometry x="356" y="432" as="geometry">
             <mxPoint x="-46" y="-82" as="offset" />
           </mxGeometry>
-        </mxCell>
-        <mxCell id="ffLmIqgJ7o688HuZfG6D-3" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;bool recv_ring_data(uint8_t *p_rxdata, uint8_t recv_size)&lt;/div&gt;" vertex="1">
-          <mxGeometry height="50" width="340" x="130" y="730" as="geometry" />
         </mxCell>
         <mxCell id="ffLmIqgJ7o688HuZfG6D-15" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="ffLmIqgJ7o688HuZfG6D-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="ffLmIqgJ7o688HuZfG6D-11">
           <mxGeometry relative="1" as="geometry" />
@@ -1600,15 +1597,13 @@
         <mxCell id="WNBnJpzffE1-Y3yuV_p3-2" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="WNBnJpzffE1-Y3yuV_p3-0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="WNBnJpzffE1-Y3yuV_p3-1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="WNBnJpzffE1-Y3yuV_p3-0" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;bool recv_data_task(void);&lt;/div&gt;" vertex="1">
+        <mxCell id="WNBnJpzffE1-Y3yuV_p3-0" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;void recv_data_task(void);&lt;/div&gt;" vertex="1">
           <mxGeometry height="50" width="340" x="1480" y="150" as="geometry" />
         </mxCell>
-        <mxCell id="WNBnJpzffE1-Y3yuV_p3-4" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="WNBnJpzffE1-Y3yuV_p3-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1863" y="306.5" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="WNBnJpzffE1-Y3yuV_p3-7" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="WNBnJpzffE1-Y3yuV_p3-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="WNBnJpzffE1-Y3yuV_p3-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-44" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="WNBnJpzffE1-Y3yuV_p3-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NMLlB310vGOPAp6zTIFn-43">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="WNBnJpzffE1-Y3yuV_p3-1" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="! (is_empty())" vertex="1">
@@ -1619,12 +1614,10 @@
             <mxPoint x="-3" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="WNBnJpzffE1-Y3yuV_p3-9" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="WNBnJpzffE1-Y3yuV_p3-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1867" y="460" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
         <mxCell id="WNBnJpzffE1-Y3yuV_p3-12" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="WNBnJpzffE1-Y3yuV_p3-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="WNBnJpzffE1-Y3yuV_p3-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-45" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="WNBnJpzffE1-Y3yuV_p3-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NMLlB310vGOPAp6zTIFn-43">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="WNBnJpzffE1-Y3yuV_p3-6" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="&lt;div&gt;데이터 받는지 여부 확인&lt;/div&gt;(recv_ring_data(&amp;amp;recv_data, 1)" vertex="1">
@@ -1649,8 +1642,8 @@
             <Array as="points">
               <mxPoint x="2290" y="619" />
               <mxPoint x="2290" y="1070" />
-              <mxPoint x="1390" y="1070" />
-              <mxPoint x="1390" y="306" />
+              <mxPoint x="1320" y="1070" />
+              <mxPoint x="1320" y="306" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -1674,8 +1667,8 @@
             <Array as="points">
               <mxPoint x="2288" y="781" />
               <mxPoint x="2288" y="1070" />
-              <mxPoint x="1390" y="1070" />
-              <mxPoint x="1390" y="306" />
+              <mxPoint x="1320" y="1070" />
+              <mxPoint x="1320" y="306" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -1696,8 +1689,8 @@
         <mxCell id="WNBnJpzffE1-Y3yuV_p3-79" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="WNBnJpzffE1-Y3yuV_p3-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="WNBnJpzffE1-Y3yuV_p3-1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1390" y="945" />
-              <mxPoint x="1390" y="306" />
+              <mxPoint x="1400" y="945" />
+              <mxPoint x="1400" y="306" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -1831,9 +1824,6 @@
             <mxPoint x="4" y="11" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="WNBnJpzffE1-Y3yuV_p3-74" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="WNBnJpzffE1-Y3yuV_p3-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="WNBnJpzffE1-Y3yuV_p3-73">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
         <mxCell id="WNBnJpzffE1-Y3yuV_p3-77" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="WNBnJpzffE1-Y3yuV_p3-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="WNBnJpzffE1-Y3yuV_p3-48">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
@@ -1842,7 +1832,10 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="WNBnJpzffE1-Y3yuV_p3-69" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="(token == strtok(NULL, &quot;, &quot;)) != NULL &amp;amp;&amp;amp; resp.param_count &amp;lt; 5" vertex="1">
+        <mxCell id="NMLlB310vGOPAp6zTIFn-47" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="WNBnJpzffE1-Y3yuV_p3-69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-46">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="WNBnJpzffE1-Y3yuV_p3-69" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="resp.param_count &amp;lt; 5" vertex="1">
           <mxGeometry height="130" width="420" x="2637" y="1370" as="geometry" />
         </mxCell>
         <mxCell id="WNBnJpzffE1-Y3yuV_p3-72" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
@@ -1853,15 +1846,15 @@
         <mxCell id="WNBnJpzffE1-Y3yuV_p3-76" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="WNBnJpzffE1-Y3yuV_p3-73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="WNBnJpzffE1-Y3yuV_p3-69">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="2846" y="1680" />
-              <mxPoint x="2617" y="1680" />
+              <mxPoint x="2846" y="1890" />
+              <mxPoint x="2617" y="1890" />
               <mxPoint x="2617" y="1350" />
               <mxPoint x="2847" y="1350" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="WNBnJpzffE1-Y3yuV_p3-73" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1. token의 문자열&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;resp.param[resp.param_count]에&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;복사&lt;br&gt;2.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;resp.param_coun 값 증가&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;strcpy(resp.param[resp.param_count], token);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; resp.param_count++;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="100" width="307" x="2692.5" y="1560" as="geometry" />
+        <mxCell id="WNBnJpzffE1-Y3yuV_p3-73" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;1.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;resp.param_coun 값 증가&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; resp.param_count++;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="307" x="2693.5" y="1755" as="geometry" />
         </mxCell>
         <mxCell id="WNBnJpzffE1-Y3yuV_p3-75" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
           <mxGeometry x="2843" y="1511" as="geometry">
@@ -2112,7 +2105,7 @@
         <mxCell id="o5HUGXILsV2SPAXHu0q3-62" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-60">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="o5HUGXILsV2SPAXHu0q3-95" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
+        <mxCell id="NMLlB310vGOPAp6zTIFn-1" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-57" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="&lt;div&gt;[AT 응답확인]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;last_resp.type == RESP_OK" vertex="1">
@@ -2248,10 +2241,10 @@
             <mxPoint x="-3" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="o5HUGXILsV2SPAXHu0q3-106" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-102" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-104">
+        <mxCell id="o5HUGXILsV2SPAXHu0q3-116" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-102" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="o5HUGXILsV2SPAXHu0q3-114">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="o5HUGXILsV2SPAXHu0q3-116" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-102" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="o5HUGXILsV2SPAXHu0q3-114">
+        <mxCell id="NMLlB310vGOPAp6zTIFn-8" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-102" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NMLlB310vGOPAp6zTIFn-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-102" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="[case]&lt;div&gt;ESP8266_DEVICE_WAIT&lt;/div&gt;" vertex="1">
@@ -2263,13 +2256,13 @@
         <mxCell id="o5HUGXILsV2SPAXHu0q3-109" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="4696" y="3300" />
-              <mxPoint x="5450" y="3300" />
+              <mxPoint x="4696" y="3510" />
+              <mxPoint x="5450" y="3510" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-104" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="&lt;div&gt;[AT 응답확인]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;last_resp.type == RESP_ETC&lt;div&gt;&amp;amp;&amp;amp;&lt;/div&gt;&lt;div&gt;last_resp.params[1] == &quot;CONNECT&quot;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="145" width="370" x="4511" y="3112.5" as="geometry" />
+          <mxGeometry height="145" width="370" x="4511" y="3319.5" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-108" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
           <mxGeometry relative="1" as="geometry">
@@ -2277,13 +2270,13 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-105" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1.&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266&amp;nbsp;&lt;/span&gt;DEVICE_WAIT&amp;nbsp;&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;완료 출력&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;2.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266_step :&amp;nbsp;&lt;/span&gt;ESP8266_D_CIPSEND_SEND&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;로 변경&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;send_Serial(&quot;[ESP8266] DEVICE_WAIT : OK \r\n&quot;);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; esp8266_step = ESP8266_D_CIPSEND_SEND;&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="72.5" width="370" x="5030" y="3148.75" as="geometry" />
+          <mxGeometry height="72.5" width="370" x="5030" y="3355.75" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-110" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
           <mxGeometry x="4410" y="3180" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-111" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
-          <mxGeometry x="4950" y="3180" as="geometry" />
+          <mxGeometry x="4950" y="3387" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-112" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
           <mxGeometry x="4223" y="3007" as="geometry">
@@ -2291,7 +2284,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-113" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
-          <mxGeometry x="4696" y="3279" as="geometry">
+          <mxGeometry x="4696" y="3486" as="geometry">
             <mxPoint x="-3" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
@@ -2302,13 +2295,13 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-114" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="[case]&lt;div&gt;ESP8266_D_CIPSEND_SEND&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="180" x="4139" y="3400" as="geometry" />
+          <mxGeometry height="90" width="180" x="4139" y="3590" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-129" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-115" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="o5HUGXILsV2SPAXHu0q3-115" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1. AT CMD 전송&lt;/div&gt;&lt;div&gt;2.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266_step :&amp;nbsp;&lt;/span&gt;ESP8266_D_CIPSEND_WAIT&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;rgba(0, 0, 0, 0)&quot;&gt;로 변경&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;3.&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;tickstart_esp&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;초기화&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="193" width="370" x="4501" y="3348.5" as="geometry" />
+        <mxCell id="o5HUGXILsV2SPAXHu0q3-115" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1. AT CMD 전송&lt;/div&gt;&lt;div&gt;2.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266_step :&amp;nbsp;&lt;/span&gt;ESP8266_D_CIPSEND_WAIT&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;rgba(0, 0, 0, 0)&quot;&gt;로 변경&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;3.&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;tickstart_esp&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;초기화&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;send_AT_CMD(&quot;AT+CIPSEND=0,239\r\n&quot;);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; esp8266_step = ESP8266_D_CIPSEND_WAIT;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; tickstart_esp = HAL_GetTick();&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="193" width="370" x="4501" y="3538.5" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-118" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
           <mxGeometry x="4223" y="3297" as="geometry">
@@ -2316,7 +2309,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-119" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
-          <mxGeometry x="4394" y="3443" as="geometry" />
+          <mxGeometry x="4394" y="3633" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-125" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-120" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-121">
           <mxGeometry relative="1" as="geometry" />
@@ -2325,7 +2318,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-120" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="[case]&lt;div&gt;ESP8266_D_CIPSEND_WAIT&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="180" x="4139" y="3630" as="geometry" />
+          <mxGeometry height="90" width="180" x="4139" y="3820" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-126" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-121" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-123">
           <mxGeometry relative="1" as="geometry" />
@@ -2334,7 +2327,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-121" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="RECV_TIMEOUT 초과?" vertex="1">
-          <mxGeometry height="80" width="370" x="4511" y="3636" as="geometry" />
+          <mxGeometry height="80" width="370" x="4511" y="3826" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-128" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-122" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="o5HUGXILsV2SPAXHu0q3-124">
           <mxGeometry relative="1" as="geometry" />
@@ -2342,25 +2335,25 @@
         <mxCell id="o5HUGXILsV2SPAXHu0q3-160" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-122" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="4697" y="3910" />
-              <mxPoint x="5450" y="3910" />
+              <mxPoint x="4697" y="4110" />
+              <mxPoint x="5450" y="4110" />
             </Array>
           </mxGeometry>
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-122" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="&lt;div&gt;[AT 응답확인]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;last_resp.type == RESP_OK" vertex="1">
-          <mxGeometry height="80" width="370" x="4512" y="3791" as="geometry" />
+          <mxGeometry height="80" width="370" x="4512" y="3981" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-130" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-123" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-123" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1.&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266_step :&amp;nbsp;&lt;/span&gt;ESP8266_READY_SEND&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;로 변경&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;esp8266_step = ESP8266_READY_SEND;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="72.5" width="370" x="5031" y="3639" as="geometry" />
+          <mxGeometry height="72.5" width="370" x="5031" y="3829" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-131" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-124" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="o5HUGXILsV2SPAXHu0q3-124" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1.&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266&amp;nbsp;&lt;/span&gt;AT+CIPSERVER=1&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;완료 출력&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;2.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266_step :&amp;nbsp;&lt;/span&gt;ESP8266_DEVICE_WAIT&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;로 변경&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;send_Serial(&quot;[ESP8266] AT+CIPSERVER=1 : OK \r\n&quot;);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; esp8266_step = ESP8266_DEVICE_WAIT;&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="72.5" width="370" x="5031" y="3794.5" as="geometry" />
+        <mxCell id="o5HUGXILsV2SPAXHu0q3-124" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1.&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266&amp;nbsp;&lt;/span&gt;AT+CIPSEND=0,239&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;완료 출력&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;2.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266_step :&amp;nbsp;&lt;/span&gt;ESP8266_HTML_SEND&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;로 변경&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;send_Serial(&quot;[ESP8266] AT+CIPSEND=0,239 : OK \r\n&quot;);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; esp8266_step = ESP8266_HTML_SEND;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="72.5" width="370" x="5031" y="3984.5" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-142" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-133" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="o5HUGXILsV2SPAXHu0q3-134">
           <mxGeometry relative="1" as="geometry" />
@@ -2369,13 +2362,13 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-133" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="[case]&lt;div&gt;ESP8266_HTML_SEND&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="180" x="4139" y="3991.5" as="geometry" />
+          <mxGeometry height="90" width="180" x="4139" y="4181.5" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-149" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-134" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="o5HUGXILsV2SPAXHu0q3-134" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1. AT CMD 전송&lt;/div&gt;&lt;div&gt;2.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266_step :&amp;nbsp;&lt;/span&gt;ESP8266_D_CIPSEND_WAIT&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;rgba(0, 0, 0, 0)&quot;&gt;로 변경&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;3.&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;tickstart_esp&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;초기화&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="193" width="370" x="4501" y="3940" as="geometry" />
+        <mxCell id="o5HUGXILsV2SPAXHu0q3-134" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1. AT CMD 전송&lt;/div&gt;&lt;div&gt;2.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266_step :&amp;nbsp;&lt;/span&gt;ESP8266_HTML_WAIT&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;font color=&quot;rgba(0, 0, 0, 0)&quot;&gt;로 변경&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;3.&amp;nbsp;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;tickstart_esp&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;초기화&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;send_AT_CMD(AT_HTML);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; esp8266_step = ESP8266_HTML_WAIT;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; tickstart_esp = HAL_GetTick();&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="193" width="370" x="4501" y="4130" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-144" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-135" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="o5HUGXILsV2SPAXHu0q3-136">
           <mxGeometry relative="1" as="geometry" />
@@ -2384,7 +2377,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-135" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="[case]&lt;div&gt;ESP8266_HTML_WAIT&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="180" x="4139" y="4221.5" as="geometry" />
+          <mxGeometry height="90" width="180" x="4139" y="4411.5" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-146" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-136" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="o5HUGXILsV2SPAXHu0q3-138">
           <mxGeometry relative="1" as="geometry" />
@@ -2393,7 +2386,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-136" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="RECV_TIMEOUT 초과?" vertex="1">
-          <mxGeometry height="80" width="370" x="4511" y="4227.5" as="geometry" />
+          <mxGeometry height="80" width="370" x="4511" y="4417.5" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-148" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-137" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-139">
           <mxGeometry relative="1" as="geometry" />
@@ -2401,82 +2394,347 @@
         <mxCell id="o5HUGXILsV2SPAXHu0q3-161" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-137" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="o5HUGXILsV2SPAXHu0q3-137" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="&lt;div&gt;[AT 응답확인]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;last_resp.type == RESP_OK" vertex="1">
-          <mxGeometry height="80" width="370" x="4512" y="4382.5" as="geometry" />
+        <mxCell id="o5HUGXILsV2SPAXHu0q3-137" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="&lt;div&gt;[AT 응답확인]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;last_resp.type == RESP_ETC&lt;div&gt;strcmp((char *)last_resp.params[0], &quot;Recv&quot;) == 0&lt;/div&gt;" vertex="1">
+          <mxGeometry height="127.5" width="370" x="4512" y="4572.5" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-150" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-138" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-138" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1.&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266_step :&amp;nbsp;&lt;/span&gt;ESP8266_READY_SEND&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;로 변경&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;esp8266_step = ESP8266_READY_SEND;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="72.5" width="370" x="5031" y="4230.5" as="geometry" />
+          <mxGeometry height="72.5" width="370" x="5031" y="4420.5" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-151" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-139" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="o5HUGXILsV2SPAXHu0q3-139" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1.&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266&amp;nbsp;&lt;/span&gt;AT+CIPSERVER=1&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;완료 출력&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;2.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266_step :&amp;nbsp;&lt;/span&gt;ESP8266_DEVICE_WAIT&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;로 변경&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;send_Serial(&quot;[ESP8266] AT+CIPSERVER=1 : OK \r\n&quot;);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; esp8266_step = ESP8266_DEVICE_WAIT;&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="72.5" width="370" x="5031" y="4386" as="geometry" />
+        <mxCell id="o5HUGXILsV2SPAXHu0q3-139" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1.&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266&amp;nbsp;&lt;/span&gt;ESP8266_HTML_WAIT&amp;nbsp;&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;완료 출력&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;2.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;esp8266_step :&amp;nbsp;&lt;/span&gt;ESP8266_BUTTON_WAIT&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;로 변경&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;send_Serial(&quot;[ESP8266] ESP8266_HTML_WAIT : OK \r\n&quot;);&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; esp8266_step = ESP8266_BUTTON_WAIT;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; tickstart_esp = HAL_GetTick();&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="108.5" width="370" x="5031" y="4540" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-19" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NMLlB310vGOPAp6zTIFn-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-34" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="o5HUGXILsV2SPAXHu0q3-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-33">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-140" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="[case]&lt;div&gt;ESP8266_BUTTON_WAIT&lt;/div&gt;" vertex="1">
-          <mxGeometry height="90" width="180" x="4139" y="4640" as="geometry" />
+          <mxGeometry height="90" width="180" x="4139" y="4830" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-153" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
-          <mxGeometry x="4400" y="3670" as="geometry" />
+          <mxGeometry x="4400" y="3860" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-154" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
-          <mxGeometry x="4400" y="4030" as="geometry" />
+          <mxGeometry x="4400" y="4220" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-155" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
-          <mxGeometry x="4410" y="4260" as="geometry" />
+          <mxGeometry x="4410" y="4450" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-156" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
-          <mxGeometry x="4940" y="3670" as="geometry" />
+          <mxGeometry x="4940" y="3860" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-157" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
-          <mxGeometry x="4960" y="3830" as="geometry" />
+          <mxGeometry x="4960" y="4020" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-158" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
-          <mxGeometry x="4950" y="4260" as="geometry" />
+          <mxGeometry x="4950" y="4450" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-159" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
-          <mxGeometry x="4950" y="4420" as="geometry" />
+          <mxGeometry x="4950" y="4610" as="geometry" />
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-162" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
-          <mxGeometry x="4223" y="3547" as="geometry">
+          <mxGeometry x="4223" y="3737" as="geometry">
             <mxPoint x="-3" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-163" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
-          <mxGeometry x="4223" y="3767" as="geometry">
+          <mxGeometry x="4223" y="3957" as="geometry">
             <mxPoint x="-3" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-164" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
-          <mxGeometry x="4693" y="3757" as="geometry">
+          <mxGeometry x="4693" y="3947" as="geometry">
             <mxPoint x="-3" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-165" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
-          <mxGeometry x="4693" y="3897" as="geometry">
+          <mxGeometry x="4693" y="4087" as="geometry">
             <mxPoint x="-3" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-166" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
-          <mxGeometry x="4223" y="4107" as="geometry">
+          <mxGeometry x="4223" y="4297" as="geometry">
             <mxPoint x="-3" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-167" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
-          <mxGeometry x="4223" y="4337" as="geometry">
+          <mxGeometry x="4223" y="4527" as="geometry">
             <mxPoint x="-3" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-168" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
-          <mxGeometry x="4693" y="4337" as="geometry">
+          <mxGeometry x="4693" y="4527" as="geometry">
             <mxPoint x="-3" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
         <mxCell id="o5HUGXILsV2SPAXHu0q3-169" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
-          <mxGeometry x="4693" y="4477" as="geometry">
+          <mxGeometry x="4737" y="4727" as="geometry">
+            <mxPoint x="-3" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-3" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-5" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-0" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-60">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-0" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="&lt;div&gt;[AT 응답확인]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&quot;link&quot; 검출 여부&lt;/div&gt;strstr(recv_buf, &quot;link&quot;)" vertex="1">
+          <mxGeometry height="80" width="370" x="4501" y="2400" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-4" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
+          <mxGeometry x="4683" y="2487" as="geometry">
+            <mxPoint x="-3" y="8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-6" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
+          <mxGeometry x="4910" y="2430" as="geometry">
+            <mxPoint y="9" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-9" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="o5HUGXILsV2SPAXHu0q3-104">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-12" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NMLlB310vGOPAp6zTIFn-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-7" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="RECV_TIMEOUT 초과?" vertex="1">
+          <mxGeometry height="80" width="370" x="4511" y="3145" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-10" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
+          <mxGeometry x="4693" y="3267" as="geometry">
+            <mxPoint x="-3" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-13" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-11" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;[ESP8266] DEVICE_WAIT 출력&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;send_Serial(&quot;[ESP8266] DEVICE_WAIT \r\n&quot;);&lt;/div&gt;" vertex="1">
+          <mxGeometry height="72.5" width="370" x="5020" y="3148.75" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-20" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-25" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-14" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="RECV_TIMEOUT 초과?" vertex="1">
+          <mxGeometry height="80" width="370" x="4510" y="4835" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-36" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-15" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;[ESP8266] DEVICE_WAIT 출력&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;send_Serial(&quot;[ESP8266] DEVICE_WAIT \r\n&quot;);&lt;/div&gt;" vertex="1">
+          <mxGeometry height="72.5" width="370" x="5019" y="4838.75" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-22" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-26" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-17" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="&lt;div&gt;[AT 응답확인]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;strstr(recv_buf, &quot;/led/on&quot;)" vertex="1">
+          <mxGeometry height="127.5" width="370" x="4510" y="4990" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-24" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NMLlB310vGOPAp6zTIFn-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-18" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="&lt;div&gt;[AT 응답확인]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;strstr(recv_buf, &quot;/led/off&quot;)" vertex="1">
+          <mxGeometry height="127.5" width="370" x="4510" y="5197" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-37" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="5379" y="5053.750000000001" as="sourcePoint" />
+            <mxPoint x="5450.000000000001" y="550" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-21" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1. recv_buf 초기화&lt;/div&gt;&lt;div&gt;2. LED ON&lt;/div&gt;&lt;div&gt;3.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;[ESP8266]&amp;nbsp;&lt;/span&gt;LED is ON&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;출력&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;RST_RECV_BUF;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; LED_ON;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; send_Serial(&quot;[ESP8266] LED is ON \r\n&quot;);&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="132.5" width="381" x="5008" y="4987.5" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-38" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="o5HUGXILsV2SPAXHu0q3-0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-23" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1. recv_buf 초기화&lt;/div&gt;&lt;div&gt;2. LED OFF&lt;/div&gt;&lt;div&gt;3.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;[ESP8266]&amp;nbsp;&lt;/span&gt;LED is OFF&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;출력&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;RST_RECV_BUF;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; LED_OFF;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; send_Serial(&quot;[ESP8266] LED is OFF \r\n&quot;);&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="132.5" width="381" x="5009" y="5194" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-27" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
+          <mxGeometry x="4410" y="4870" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-28" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
+          <mxGeometry x="4693" y="4947" as="geometry">
+            <mxPoint x="-3" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-29" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
+          <mxGeometry x="4693" y="5167" as="geometry">
+            <mxPoint x="-3" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-30" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
+          <mxGeometry x="4940" y="4870" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-31" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
+          <mxGeometry x="4940" y="5050" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-32" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
+          <mxGeometry x="4940" y="5260" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-41" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NMLlB310vGOPAp6zTIFn-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-33" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="[case]&lt;div&gt;default&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="180" x="4139" y="5370" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-35" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
+          <mxGeometry x="4223" y="4967" as="geometry">
+            <mxPoint x="-3" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-39" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;break;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Return True&lt;/div&gt;" vertex="1">
+          <mxGeometry height="95.5" width="280" x="5180" y="5367.5" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-42" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="NMLlB310vGOPAp6zTIFn-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-40" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;[ESP8266]&amp;nbsp;&lt;/span&gt;State Error&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;출력&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;send_Serial(&quot;[ESP8266] State Error \r\n&quot;)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="72.5" width="370" x="4460" y="5378.75" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-43" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;return;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="59" width="160" x="2040" y="276.5" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-49" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-48">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-50" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="WNBnJpzffE1-Y3yuV_p3-73">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-46" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="(token == strtok(NULL, &quot;, &quot;)) != NULL" vertex="1">
+          <mxGeometry height="130" width="420" x="2638" y="1562" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-53" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="WNBnJpzffE1-Y3yuV_p3-73">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-48" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1. token의 문자열&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;resp.param[resp.param_count]에&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;복사&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;strcpy(resp.param[resp.param_count], token);&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="100" width="307" x="3150" y="1577" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-51" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
+          <mxGeometry x="2843" y="1717" as="geometry">
+            <mxPoint x="-3" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-52" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
+          <mxGeometry x="3091" y="1615" as="geometry">
+            <mxPoint x="4" y="11" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-60" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="NMLlB310vGOPAp6zTIFn-55">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-54" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;bool check_connection(void)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="390" x="5789" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-57" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-56">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-61" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-59">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-55" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="&lt;div&gt;[AT 응답확인]&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;strstr(recv_buf, &quot;ready&quot;) != NULL" vertex="1">
+          <mxGeometry height="80" width="370" x="5799" y="384" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-56" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Return True&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="63.75" width="210" x="6300" y="392.13" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-58" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
+          <mxGeometry x="6223" y="427" as="geometry">
+            <mxPoint x="-3" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-64" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="NMLlB310vGOPAp6zTIFn-63">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-59" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;1. recv_buf 초기화&lt;/div&gt;&lt;div&gt;2. &amp;nbsp;esp8266_step 변경 ESP8266_READY_SEND;&lt;/div&gt;&lt;div&gt;3.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;[ESP8266]&amp;nbsp;&lt;/span&gt;ESP8266_READY_SEND&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;출력&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;div&gt;RST_RECV_BUF;&lt;/div&gt;&lt;div&gt;&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;&amp;nbsp;&lt;span style=&quot;background-color: transparent;&quot;&gt;esp8266_step = ESP8266_READY_SEND;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent;&quot;&gt;&amp;nbsp; &amp;nbsp; printf(&quot;[ESP8266] ESP8266_READY_SEND \r\n&quot;);&lt;/span&gt;;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="132.5" width="381" x="5793.5" y="553.75" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-62" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
+          <mxGeometry x="5980" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-63" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Return false&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="63.75" width="210" x="5879" y="758.25" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-68" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-65" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;bool send_AT_CMD(char *input_str)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="340" x="120" y="832" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-69" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-67">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-72" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-70">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-66" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="input_str == NULL || &amp;amp;huart1 == NULL" vertex="1">
+          <mxGeometry height="80" width="286" x="147" y="940" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-67" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;False&lt;/div&gt;" vertex="1">
+          <mxGeometry height="35" width="120" x="552" y="962.5" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-73" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="NMLlB310vGOPAp6zTIFn-71">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-70" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;1.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;last_resp.type 변경-&amp;gt; RESP_UNKNOWN;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;2.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;HAL_UART_Transmit - huart사용&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;last_resp.type = RESP_UNKNOWN;&lt;/div&gt;&lt;div&gt;&amp;nbsp; HAL_UART_Transmit(&amp;amp;huart1, (uint8_t *)input_str, strlen(input_str), 50);&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="340" x="120" y="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-71" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;True&lt;/div&gt;" vertex="1">
+          <mxGeometry height="35" width="120" x="230" y="1255" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-74" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
+          <mxGeometry x="480" y="977" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-75" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
+          <mxGeometry x="289" y="1048" as="geometry">
+            <mxPoint x="-3" y="-7" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-76" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-80">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-77" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;bool send_Serial(char *input_str)&lt;/div&gt;" vertex="1">
+          <mxGeometry height="50" width="340" x="718" y="833" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-78" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-81">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-79" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="NMLlB310vGOPAp6zTIFn-83">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-80" parent="PO3zvFb4hh2YRBcTxihm-1" style="rhombus;whiteSpace=wrap;html=1;" value="input_str == NULL || &amp;amp;hlpuart1== NULL" vertex="1">
+          <mxGeometry height="80" width="286" x="745" y="941" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-81" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;False&lt;/div&gt;" vertex="1">
+          <mxGeometry height="35" width="120" x="1150" y="963.5" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-82" edge="1" parent="PO3zvFb4hh2YRBcTxihm-1" source="NMLlB310vGOPAp6zTIFn-83" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="NMLlB310vGOPAp6zTIFn-84">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-83" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;1.&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;last_resp.type 변경-&amp;gt; RESP_UNKNOWN;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;2.&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;HAL_UART_Transmit - huart사용&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;last_resp.type = RESP_UNKNOWN;&lt;/div&gt;&lt;div&gt;&amp;nbsp; HAL_UART_Transmit(&amp;amp;hlpuart1, (uint8_t *)input_str, strlen(input_str), 50);&lt;/div&gt;" vertex="1">
+          <mxGeometry height="120" width="340" x="718" y="1081" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-84" parent="PO3zvFb4hh2YRBcTxihm-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;True&lt;/div&gt;" vertex="1">
+          <mxGeometry height="35" width="120" x="828" y="1256" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-85" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1" value="&lt;font style=&quot;color: rgb(51, 51, 255);&quot;&gt;True&lt;/font&gt;" vertex="1">
+          <mxGeometry x="1078" y="978" as="geometry" />
+        </mxCell>
+        <mxCell id="NMLlB310vGOPAp6zTIFn-86" connectable="0" parent="PO3zvFb4hh2YRBcTxihm-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">
+          <mxGeometry x="887" y="1049" as="geometry">
             <mxPoint x="-3" y="-7" as="offset" />
           </mxGeometry>
         </mxCell>
