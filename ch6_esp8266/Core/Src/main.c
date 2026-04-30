@@ -126,9 +126,11 @@ int main(void)
   
     // 함수의 return값 대입 T/F
     esp8266_state = esp_8266_control();
+    // 기존 esp8266_state와 &&연산하며, check_connection() 함수 사용
     esp8266_state = (check_connection()&&esp8266_state);
 
-    // 함수의 return값 false면 초기화 루틴 시작 -> ISR로도 가능한지 확인하기
+    //-> ISR로도 가능한지 확인하기
+    // 함수의 return값 false면 초기화 루틴 시작
     if (esp8266_state == false){
       ring_init(&rx_ring_esp, RING_SIZE, ring_buf);
       init_esp8266();

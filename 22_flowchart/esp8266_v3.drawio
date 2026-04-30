@@ -1210,7 +1210,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="ring_buffer" id="WhNfGE1H_ncCqKCsW83P">
-    <mxGraphModel dx="3006" dy="1198" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3255" dy="1227" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="dG3otL9o4z4xa_iOoaX_-0" />
         <mxCell id="dG3otL9o4z4xa_iOoaX_-1" parent="dG3otL9o4z4xa_iOoaX_-0" />
@@ -1359,7 +1359,7 @@
         <mxCell id="v1Ujv2aOeASrFS9kssQf-38" edge="1" parent="dG3otL9o4z4xa_iOoaX_-1" source="v1Ujv2aOeASrFS9kssQf-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="v1Ujv2aOeASrFS9kssQf-37">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="v1Ujv2aOeASrFS9kssQf-33" parent="dG3otL9o4z4xa_iOoaX_-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;r-&amp;gt;p_buffer[r-&amp;gt;rear] = *input;&lt;/div&gt;&lt;div&gt;r-&amp;gt;rear 1칸 이동&lt;/div&gt;" vertex="1">
+        <mxCell id="v1Ujv2aOeASrFS9kssQf-33" parent="dG3otL9o4z4xa_iOoaX_-1" style="rounded=1;whiteSpace=wrap;html=1;" value="&lt;div&gt;r-&amp;gt;rear 1칸 이동&lt;/div&gt;&lt;div&gt;r-&amp;gt;p_buffer[r-&amp;gt;rear] = *input;&lt;/div&gt;" vertex="1">
           <mxGeometry height="57.5" width="195" x="673" y="582.5" as="geometry" />
         </mxCell>
         <mxCell id="v1Ujv2aOeASrFS9kssQf-35" connectable="0" parent="dG3otL9o4z4xa_iOoaX_-1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=1;fontColor=#FF0000;" value="Flase" vertex="1">

@@ -31,9 +31,9 @@ typedef struct {
   int param_count;
 } AT_Response;
 
-// 지정된 사이즈로 data 수. 현재 내부에서만 활용. 추후 확장 위해 외부에서 필요한지?
-bool recv_ring_data(uint8_t *p_rxdata, uint8_t recv_size); // p_rxdata
-
+// 지정된 사이즈로 data 수. 현재 내부에서만 활용. 추후 확장 위해 외부에서
+// 필요한지? bool recv_ring_data(uint8_t *p_rxdata, uint8_t recv_size); //
+// p_rxdata
 
 void recv_data_task(void); // p_rxdata를 -> recv_buffer에 저장, p_rxdata를
                            // 받아줄 변수 1개 필요

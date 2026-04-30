@@ -11,6 +11,10 @@ bool recv_flag = true;
 #define RECV_TIMEOUT 5000
 #define RECV_WAIT_TIME 1000
 
+#define LED_ON HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET)
+#define LED_OFF HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_RESET)
+#define RST_RECV_BUF memset(recv_buf, 0, sizeof(uint8_t) * RECV_BUF_SIZE)
+
 const char *AT_HTML =
     "HTTP/1.1 200 OK\r\n"
     "Content-Type: text/html\r\n"
@@ -46,19 +50,23 @@ typedef enum _esp8266_step {
 static uint8_t recv_buf[RECV_BUF_SIZE];
 static uint8_t recv_cnt;
 static uint32_t tickstart_esp;
-static AT_Response last_resp; // 마지막 응답 저장 -> 이 응답 바탕으로 나머지 연산들 진행
-
-// 이 코드 내에서 사용할 링 구조체
-
+static AT_Response
+    last_resp; // 마지막 응답 저장 -> 이 응답 바탕으로 나머지 연산들 진행
 static ESP_8266_STEP esp8266_step;
+
+// esp8266.c 내부에서 사용하는 함수
 
 static AT_Response parse_response(uint8_t *raw_data);
 
 static bool send_AT_CMD(char *input_str);
 static bool send_Serial(char *input_str);
+static bool recv_ring_data(uint8_t *p_rxdata, uint8_t recv_size);
 
-//static uint8_t recv_buf[RECV_BUF_SIZE]; 활용하기
-bool recv_ring_data(uint8_t *p_rxdata, uint8_t recv_size) {
+// static uint8_t recv_buf[RECV_BUF_SIZE]; 활용하기
+//
+// 링버퍼로 부터 받을 데이터 [인자] 1)주소, 2)크기 설정
+// [반환값]F : p_rxdata==NULL||recv_size==0 인 경우, | T : 이외 모든 경우
+static bool recv_ring_data(uint8_t *p_rxdata, uint8_t recv_size) {
   if (p_rxdata==NULL||recv_size==0) {
     return false;
   }
@@ -73,16 +81,18 @@ bool recv_ring_data(uint8_t *p_rxdata, uint8_t recv_size) {
 
 // main의 while에서 처리하기엔 부족 -> 별도의 반복루프 필요함
 // flag 방식이든지 사용해보기
+
+// main.c의 while문 내에서 반복적으로, 처리 예정
+// [목적] : 링버퍼내의 데이터 출력용 버퍼(recv_buf)에 1)저장, 2)serial 출력
 void recv_data_task(void) {
 
   uint8_t recv_data;
-  // memset(recv_buf, 0, sizeof(uint8_t) * RECV_BUF_SIZE);
-  // recv_flag 초기값 true, 데이터 수신 완료되면 false로 변경하기
-  // while (recv_flag) {
-  // 추출할 데이터 있으면 동작하기
+
+  // 추출할 데이터 있으면 반복 동작하기
   while (!is_empty(&rx_ring_esp)) {
 
-    // data를 받는지부터 확인 -> 1개 데이터 뽑는 동작 성공하는지 check
+    // data를 받는지부터 확인(recv_ring_data) -> 1개 데이터 뽑는 동작 성공하는지
+    // check
     if (recv_ring_data(&recv_data, 1)) {
       recv_buf[recv_cnt] = recv_data;
 
@@ -91,22 +101,6 @@ void recv_data_task(void) {
         send_Serial(recv_buf);
         last_resp = parse_response(recv_buf);
 
-        // memset(recv_buf, 0, sizeof(uint8_t) * RECV_BUF_SIZE);
-
-        // last_resp 구조체에 값저장
-
-        // send_Serial("[PARSE] ");
-        // send_Serial(recv_buf);
-        // send_Serial(" => ");
-
-        // if (last_resp.type == RESP_OK) {
-        //   send_Serial("RESP_OK\r\n");
-        // } else if (last_resp.type == RESP_ETC) {
-        //   send_Serial("RESP_ETC\r\n");
-        // } else {
-        //   send_Serial("RESP_UNKNOWN\r\n");
-        // }
-
         recv_cnt = 0;
 
       } else if (recv_buf[recv_cnt] == '\n') {
@@ -114,30 +108,16 @@ void recv_data_task(void) {
         send_Serial(recv_buf);
         last_resp = parse_response(recv_buf);
 
-        // send_Serial("[PARSE] ");
-        // send_Serial(recv_buf);
-        // send_Serial(" => ");
-
-        // if (last_resp.type == RESP_OK) {
-        //   send_Serial("RESP_OK\r\n");
-        // } else if (last_resp.type == RESP_ETC) {
-        //   send_Serial("RESP_ETC\r\n");
-        // } else {
-        //   send_Serial("RESP_UNKNOWN\r\n");
-        // }
-
         recv_cnt = 0;
       } else {
         recv_cnt = (recv_cnt + 1) % RECV_BUF_SIZE;
       }
     }
   }
-  // recv_flag = true;
   return;
-  // }
 }
 
-// AT CMD 전송 | 입력 : input_str , 출력 : T/F
+// AT CMD 전송 | 입력 : input_str 주소 , 출력 : T/F
 static bool send_AT_CMD(char *input_str) {
   if (input_str == NULL || &huart1 == NULL) {
 
@@ -206,6 +186,7 @@ static AT_Response parse_response(uint8_t *raw_data) {
   return resp;
 }
 
+// [목적] : esp8266사용을 위한 변수 초기화
 void init_esp8266(void) {
   last_resp.type = RESP_UNKNOWN;
   // last_resp.params =
@@ -213,10 +194,10 @@ void init_esp8266(void) {
   esp8266_step=ESP8266_READY_SEND;
 }
 
+// [목적] : esp8266_step에 따른 switch문 동작.
+// [반환] :  T-정해진 case로 동작할 때, F-정의해주지 않은 case(defalt)로 동작할
+// 때.
 bool esp_8266_control(void) {
-  // if (&last_resp == NULL) {
-  //   return false;
-  // }
 
   switch (esp8266_step) {
   case ESP8266_READY_SEND:
@@ -272,7 +253,8 @@ bool esp_8266_control(void) {
       } else if (last_resp.type == RESP_ETC) {
         // 디버깅 속도에 따라 탐색 여부 달라짐 - strcmp -> strstr 변경
         // if (strcmp((char *)last_resp.params[0], "link") == 0)
-        if (strstr(recv_buf,"link")) {
+        if (strstr(recv_buf, "link")) {
+          RST_RECV_BUF;
           send_Serial("[ESP8266] AT+CIPMUX=1 : OK \r\n");
           esp8266_step = ESP8266_CIPSERVER_SEND;
         }
@@ -365,21 +347,16 @@ bool esp_8266_control(void) {
       send_Serial("[ESP8266] BUTTON_WAIT \r\n");
       tickstart_esp = HAL_GetTick();
     } else {
-      // if (last_resp.type == RESP_ETC) {
-      // if (strcmp((char *)last_resp.params[0], "+IPD") == 0) {
-        
-      // if (strcmp((char *)last_resp.params[3], "/led/on") == 0) 
-      if (strstr(recv_buf,"/led/on")){
+
+      if (strstr(recv_buf, "/led/on")) {
+        RST_RECV_BUF;
+        LED_ON;
         send_Serial("[ESP8266] LED is ON \r\n");
-      } 
-      // else if (strcmp((char *)last_resp.params[3], "/led/off") == 0)
-      else if (strstr(recv_buf,"/led/off")) {
+      } else if (strstr(recv_buf, "/led/off")) {
+        RST_RECV_BUF;
+        LED_OFF;
         send_Serial("[ESP8266] LED is OFF \r\n");
       }
-
-      // }
-      // }
-      // last_resp.type = RESP_UNKNOWN;
     }
     return true;
     break;
@@ -391,6 +368,7 @@ bool esp_8266_control(void) {
   }
 }
 
+// [목적] : last_resp 파싱 여부 디버깅 용도
 void test_task(void) {
   // 1st
   send_AT_CMD("AT\r\n");
@@ -404,18 +382,15 @@ void test_task(void) {
   }
 
   printf("check last_resp [1] \r\n");
-
-  //  //2nd
-  //  send_AT_CMD("AT\r\n");
-  //
-  //  recv_data_task();
-  //
-  //  printf("check last_resp [2] \r\n");
 }
 
+// [목적] : esp8266, client 와의 연결 상태 확인하여 T/F 반환
+// T - if문 이외의 상황 , F - 문자열 내에서 "ready", "CLOSE" 확인
 bool check_connection(void) {
-
-  if (!strcmp(recv_buf, "ready\r\n")) {
+  // "CLOSED" 계속 떠서 비교할 필요 X
+  // (strstr(recv_buf, "CLOSED") != NULL)
+  if ((strstr(recv_buf, "ready") != NULL)) {
+    RST_RECV_BUF;
     esp8266_step = ESP8266_READY_SEND;
     printf("[ESP8266] ESP8266_READY_SEND \r\n");
 
