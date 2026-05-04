@@ -14,10 +14,75 @@
 
 */
 
+#include <stdbool.h>
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 
-// 배열의 가로 크기 지정하는 이유는?
+// 구조체 만들기, page에 이중 포인터 사용 해보기
+typedef struct {
+  int **pages;    // 페이지의 시작 주소 -> 2차원배열 나타내기 위함
+  int *page_size; // 페이지의 사이즈 나타냄 1페이지 길이 a, 2페이지 길이 b
+  int page_cnt;   // 전체 페이지 수 총 페이지가 몇페이지 인지
+} page_manager;
+
+// 페이지 관리자 구조체 선언
+page_manager pm;
+
+// 초기화 함수
+void init_page(page_manager *p) {
+  p->pages = NULL;
+  p->page_size = NULL;
+  p->page_cnt = 0;
+}
+
+// malloc fail하는 예외처리 하기
+bool first_setup_page(page_manager *p) {
+  printf("[1] type page_cnt : ");
+  scanf("%d", &p->page_cnt);
+  printf(">>>page size : %d \n", p->page_cnt);
+
+  // 바로 malloc으로 대입
+  p->page_size = malloc(sizeof(int) * p->page_cnt);
+  p->pages = malloc(sizeof(int *) * p->page_cnt);
+  printf("---------------------------------------------\n");
+
+  for (int i = 0; i < p->page_cnt; i++) {
+    printf("[2] type page[%d]_size  : ", i);
+    scanf("%d", &p->page_size[i]);
+    printf("page[%d]_size : %d \n\n", i, p->page_size[i]);
+    // p->page_size[i]d에 대한 malloc 대입
+    p->pages[i] = malloc(sizeof(int) * p->page_size[i]);
+  }
+}
+
+// realloc 고려 해보기
+// page 1장 추가
+bool add_page(page_manager *p) {
+  int new_index = p->page_cnt; // 1개 뒤에 삽입
+  int new_size;
+
+  // 새로 추가하는 페이지의 크기
+  printf("[ADD Page] type new page size : ");
+  scanf("%d", &new_size);
+
+  printf("[Inform] new page[%d] size : %d \n\n", new_index, new_size);
+
+  // 카운트 증가
+  p->page_cnt++;
+
+  p->page_size = realloc(p->page_size, sizeof(int) * p->page_cnt);
+  p->pages = realloc(p->pages, sizeof(int *) * p->page_cnt);
+
+  // 값 저장
+  p->page_size[new_index] = new_size;
+
+  p->pages[new_index] = malloc(sizeof(int) * new_size);
+
+  printf("[Create] new page[%d] size : %d \n\n", new_index, new_size);
+}
+
+// 배열의 가로 크기 지정하는 이유는? -> 저장핳 때는, malloc으로?
 // 정적메모리 2차원배열 예시 작성하기
 void _sta_print_2D_Array(int arr[][5], int col, int row) {
   for (int i = 0; i < row; i++) {
@@ -28,37 +93,14 @@ void _sta_print_2D_Array(int arr[][5], int col, int row) {
   }
 }
 
+// malloc으로 입력 받은 값 생성 -> 초기 데이터 없는 경우에만 가능
+
 int main() {
-  int page;
-  // int data_size[] ;
-  int row, col ;
 
-  printf("set page number : \n");
-  scanf("%d", &page);
-
-  int data_size[page] ;
-  
-  // row, col 세팅
-  for (int i =0; i<page; i++) {
-    printf("set row number : \n");
-    scanf("%d", &row);
-
-    printf("set col number : \n");
-    scanf("%d", &col);
-
-    data_size[i] = row * col;
-
-    int *data_i = malloc(data_size[i] * sizeof(int));
-  }
-
-
-
-
-  
-
+  first_setup_page(&pm);
 
   // 4. free 필수
-  free();
+  // free();
 
   return 0;
 }
