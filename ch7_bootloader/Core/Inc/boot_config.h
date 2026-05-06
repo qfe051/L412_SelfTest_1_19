@@ -1,0 +1,9 @@
+// Flash 및 RAM 주소
+// FLASH는 기능별로 주소 나누기
+
+#define BOOT_ADDR 0x08000000U
+#define APP_ADDR 0x08006000U
+
+#define SRAM_START 0x20000000U
+#define SRAM_END 0x2000A000U
+

@@ -59,6 +59,8 @@ bool first_setup_page(page_manager *p) {
 // realloc 고려 해보기
 // page 1장 추가
 bool add_page(page_manager *p) {
+  if (p == NULL) {
+  }
   int new_index = p->page_cnt; // 1개 뒤에 삽입
   int new_size;
 
@@ -74,17 +76,33 @@ bool add_page(page_manager *p) {
   p->page_size = realloc(p->page_size, sizeof(int) * p->page_cnt);
   p->pages = realloc(p->pages, sizeof(int *) * p->page_cnt);
 
-  // 값 저장
+  // 값 저장 page_size, pages 세트로 가져가기
   p->page_size[new_index] = new_size;
-
   p->pages[new_index] = malloc(sizeof(int) * new_size);
 
   printf("[Create] new page[%d] size : %d \n\n", new_index, new_size);
+
+  return true;
 }
+// 참고 코드 사용하여 동적메모리로 나타내기
+void print_page() {}
+
+// 2차원 포인터 사용하여, 가장 깊은 곳부터 역순으로 해제
+bool free_page() {}
+
+// 선택사항 입력하여 진행
+// 1) print 2) 삭제 3)추가 4)수정
+void process_loop() {}
+
+bool delete_page() {}
+
+bool revise_page() {}
 
 // 배열의 가로 크기 지정하는 이유는? -> 저장핳 때는, malloc으로?
 // 정적메모리 2차원배열 예시 작성하기
+// page_size[]의 개수만큼 출력해보기
 void _sta_print_2D_Array(int arr[][5], int col, int row) {
+  // 단순 예시 코드이므로 동적메모리 출력으로 재작성 필요
   for (int i = 0; i < row; i++) {
     for (int j = 0; j < col; j++) {
       printf("%d ", arr[i][j]);
