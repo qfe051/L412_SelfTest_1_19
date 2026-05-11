@@ -24,6 +24,7 @@
 // boot_ 관련 테스트 함수 넣어보기
 #include "boot_app.h"
 #include "boot_jump.h"
+#include "printf.h"
 
 /* USER CODE END Includes */
 
@@ -93,9 +94,17 @@ int main(void)
   MX_GPIO_Init();
   MX_LPUART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  printf("Bootloader Start \r\n");
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
+
+  HAL_Delay(1000);
+
   if (app_is_valid()) {
     jump_to_app();
   }
+
+  printf("Bootloader Start \r\n");
+  HAL_GPIO_WritePin(LD4_GPIO_Port, LD4_Pin, GPIO_PIN_SET);
 
   /* USER CODE END 2 */
 
